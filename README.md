@@ -1,18 +1,21 @@
-# [Nome do projeto]
+# Boutique das Carnes
 
-[Escreva um ou dois  parágrafo resumindo o objetivo do seu projeto.]
+A **Boutique das Carnes** é uma empresa de compra e venda de produtos alimentícios, que opera na cidade de Ilhéus, na Bahia. A operação ocorre por meio da compra de gado vivo em fazendas, encaminhamento do gado ao matadouro, transformação do produto em carcaça e venda aos clientes, que geralmente são açougues da região.
+
+Este software tem como objetivo auxiliar a empresa a gerenciar suas atividades, substituindo o sistema de controle por planilhas, que tem se mostrado cada vez mais inadequada e limitada para acompanhar o crescimento e a complexidade da operação.
 
 ## Alunos integrantes da equipe
 
-* [Nome completo do aluno 1]
-* [Nome completo do aluno 2]
-* [Nome completo do aluno 3]
-* [Nome completo do aluno 4]
+- Fernando Antônio Ferreira Ibrahim
+- Gabriel Henrique Silva Pereira
+- Jhonata Silveira Dias
+- Luca Ferrari Azalim
+- Rafael Moreira Barbosa Baptista
 
 ## Professores responsáveis
 
-* [Nome completo do professor 1]
-* [Nome completo do professor 2]
+- Eveline Alonso Veloso
+- Juliana Amaral Baroni de Carvalho
 
 ## Instruções de utilização
 

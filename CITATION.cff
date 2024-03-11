@@ -1,31 +1,29 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title:
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Ferreira Ibrahim
+    given-names: Fernando Antônio
+  - family-names: Silva Pereira
+    given-names: Gabriel Henrique
+  - family-names: Silveira Dias
+    given-names: Jhonata
+  - family-names: Ferrari Azalim
+    given-names: Luca
+  - family-names: Moreira Barbosa Baptista
+    given-names: Rafael
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Alonso Veloso
+    given-names: Eveline
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Amaral Baroni de Carvalho
+    given-names: Juliana
 keywords:
-  - 
-  - 
-repository-code: 
+  - management
+  - software
+repository-code:
 license: CC-BY-4.0
 version: 1.0.0
-date-released: 2022-07-14
+date-released: 2024-06-19

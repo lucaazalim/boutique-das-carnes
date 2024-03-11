@@ -6,11 +6,11 @@ Este software tem como objetivo auxiliar a empresa a gerenciar suas atividades, 
 
 ## Alunos integrantes da equipe
 
-- Fernando Antônio Ferreira Ibrahim
-- Gabriel Henrique Silva Pereira
-- Jhonata Silveira Dias
-- Luca Ferrari Azalim
-- Rafael Moreira Barbosa Baptista
+- Fernando Antônio Ferreira Ibrahim (@FernandoIbrahim)
+- Gabriel Henrique Silva Pereira (@Gab-HSP)
+- Jhonata Silveira Dias (@jhonatasdias)
+- Luca Ferrari Azalim (@lucaazalim)
+- Rafael Moreira Barbosa Baptista (@RafaMtF)
 
 ## Professores responsáveis
 

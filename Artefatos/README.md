@@ -1,6 +1,11 @@
 # Artefatos do Projeto
 
 - `/atas`
-  - **Ata de Reunião - 27-02-2024.pdf**: Ata de reunião com o cliente do dia 27 de fevereiro de 2024.
+  - **[Ata de Reunião - 27-02-2024.pdf](/termos/Ata_de_Reunião_-_27-02-2024.pdf)**
+- `/termos`
+  - **Termo de Ciência e Compromisso - Assinado.pdf**
+  - **Termo de Ciência e Compromisso.pdf**
+  - **Termo de Sigilo e Confidencialidade - Assinado.pdf**
+  - **Termo de Sigilo e Confidencialidade.pdf**
 - `/visao`
-  - **Documento de Visão - 1.0.pdf**: Primeira versão do Documento de Visão do projeto.
+  - **Documento de Visão - 1.0.pdf**

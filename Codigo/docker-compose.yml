@@ -1,0 +1,38 @@
+version: '3.4'
+name: boutique-das-carnes
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: bc-mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: password
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+      - ./mariadb/entrypoint:/docker-entrypoint-initdb.d
+  back:
+    build:
+      context: ./back
+      dockerfile: Dockerfile
+    container_name: bc-back
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3001:3001"
+    restart: always
+    depends_on:
+      - mariadb
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: bc-front
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    restart: always

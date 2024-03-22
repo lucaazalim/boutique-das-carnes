@@ -10,6 +10,8 @@ Além do arquivo `docker-compose.yml`, que é responsável por orquestrar os con
 
 # Tecnologias Utilizadas
 
+- Docker
+
 ## Backend
 
 - Node.js

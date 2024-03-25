@@ -41,6 +41,18 @@ CREATE TABLE `compra` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `compra_id_fornecedor_FK` (`id_fornecedor`),
+  KEY `compra_id_documento_romaneio_FK` (`id_documento_romaneio`),
+  KEY `compra_id_documento_gta_FK` (`id_documento_gta`),
+  KEY `compra_id_documento_nf_compra_FK` (`id_documento_nf_compra`),
+  KEY `compra_id_documento_nf_abate_FK` (`id_documento_nf_abate`),
+  KEY `compra_id_documento_nfs_matadouro_FK` (`id_documento_nfs_matadouro`),
+  KEY `compra_id_documento_nf_retorno_FK` (`id_documento_nf_retorno`),
+  CONSTRAINT `compra_id_documento_gta_FK` FOREIGN KEY (`id_documento_gta`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_nf_abate_FK` FOREIGN KEY (`id_documento_nf_abate`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_nf_compra_FK` FOREIGN KEY (`id_documento_nf_compra`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_nf_retorno_FK` FOREIGN KEY (`id_documento_nf_retorno`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_nfs_matadouro_FK` FOREIGN KEY (`id_documento_nfs_matadouro`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_romaneio_FK` FOREIGN KEY (`id_documento_romaneio`) REFERENCES `documento` (`id`),
   CONSTRAINT `compra_id_fornecedor_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -60,7 +72,9 @@ CREATE TABLE `compra_pagamento` (
   `valor` decimal(15,2) NOT NULL,
   `id_documento_comprovante` bigint(20) DEFAULT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `compra_pagamento_id_documento_comprovante_FK` (`id_documento_comprovante`),
+  CONSTRAINT `compra_pagamento_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,4 +227,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-25 16:16:18
+-- Dump completed on 2024-03-25 16:47:54

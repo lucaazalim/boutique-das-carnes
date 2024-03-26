@@ -9,7 +9,7 @@
 | POST | `/fornecedores` | Criar um novo fornecedor |
 | PUT | `/fornecedores/{id}` | Atualizar dados do fornecedor pelo ID |
 
-## Listar cursos
+## Listar Fornecedores
 
 **Rota:** /fornecedores
 

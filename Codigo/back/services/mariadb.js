@@ -1,6 +1,9 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('boutique_das_carnes', 'root', 'password', {
+    define: {
+        freezeTableName:true
+    },
     host: 'localhost',
     dialect: 'mariadb',
     port: 3307

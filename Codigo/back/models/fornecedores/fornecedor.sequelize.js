@@ -49,12 +49,9 @@ const Fornecedor = sequelize.define('fornecedor', {
     },
     notas: {
         type: DataTypes.TEXT
-    },
-    criado_em: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
     }
+}, {
+    timestamps: false
 });
 
 module.exports = Fornecedor;

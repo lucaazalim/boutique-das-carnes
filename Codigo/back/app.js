@@ -6,7 +6,7 @@ app.use(express.json())
 app.use(api);
 
 app.use('/', (req, res, next) => {
-    console.log('request made on "/"');
+    console.log(`request made on: ${req.url}`);
     next();
 });
 

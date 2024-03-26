@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../services/mariadb');
 
-const Fornecedor = sequelize.define('fornecedores', {
+const Fornecedor = sequelize.define('fornecedor', {
     tipo: {
         type: DataTypes.ENUM,
         values: ['PJ', 'PF'],

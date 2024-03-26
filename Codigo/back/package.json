@@ -2,10 +2,10 @@
   "name": "back",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start.dev": "node server.js -L"
+    "start.dev": "nodemon server.js -L"
   },
   "author": "",
   "license": "ISC",

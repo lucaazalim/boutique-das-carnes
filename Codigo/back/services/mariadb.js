@@ -9,7 +9,7 @@ const sequelize = new Sequelize('boutique_das_carnes', 'root', 'password', {
     port: 3307
 });
 
-async function connctionDB() {
+async function connectToDatabase() {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
@@ -20,7 +20,6 @@ async function connctionDB() {
 }
 
 module.exports = {
-    connctionDB,
-    // newSequelizeInstance
+    connectToDatabase,
     sequelize
 }

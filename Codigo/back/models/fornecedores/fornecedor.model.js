@@ -1,15 +1,15 @@
-const Fornecedor = require('../fornecedores/fornecedor.mariadb');
+const Fornecedor = require('../fornecedores/fornecedor.sequelize');
 
 async function getAllForcedores() {
     return await Fornecedor.findAll({
-        attributes: { exclude: ['createdAt', 'updatedAt'] },
-        where: { ativo: true }
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
     })
 }
 
 async function getByIdFornecedores(id) {
-    return Fornecedor.findAll({
-        attributes: {
+    return await Fornecedor.findAll({
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+        where: {
             id
         }
     })

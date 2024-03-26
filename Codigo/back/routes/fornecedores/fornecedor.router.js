@@ -6,7 +6,7 @@ const {
 } = require('./fornecedor.controller')
 
 routerFornecedor.get('/', httpGetAllFornecedores);
-//routerFornecedor.get('/:id', httpGetByIdFornecedores);
+routerFornecedor.get('/:id', httpGetByIdFornecedores);
 
 
 module.exports = routerFornecedor;

@@ -1,14 +1,15 @@
-const compra = require('../../models/compras/compra.model');
+const {getAllCompras, getCompraById, postCompra } = require('../../models/compras/compra.model');
+
 
 async function httpGetAllCompras(req, res){
-    const resultado = await compra.httpGetAllCompras();
+    const resultado = await getAllCompras();
     return res.status(200).json(resultado);
 }
 
 
 async function httpGetCompraByID(req, res){
     const id = req.params.id;
-    const resultado = await compra.httpGetCompraById(id);
+    const resultado = await getCompraById(id);
     return res.status(200).json(resultado);
 }
 
@@ -32,7 +33,7 @@ async function httpPostCompra(req, res){
         idDocumentoNFRetorno: id_documento_nf_retorno 
     } = req.body;
 
-    const data = await compra.httpPostCompra(
+    const data = await postCompra(
         id_fornecedor,
         status,
         unidades_macho,

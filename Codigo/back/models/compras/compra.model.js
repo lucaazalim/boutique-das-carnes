@@ -1,15 +1,15 @@
 const { Model } = require('sequelize');
 const Compra = require('./compra.sequelize');
 
-async function httpGetAllCompras(){
+async function getAllCompras(){
     return await Compra.findAll();
 }
 
-async function httpGetCompraById(id){
+async function getCompraById(id){
     return await Compra.findByPk(id);
 }
 
-async function httpPostCompra(
+async function postCompra(
     id_fornecedor,
     status,
     unidades_macho,
@@ -46,7 +46,7 @@ async function httpPostCompra(
 
 
 module.exports = {
-    httpGetAllCompras,
-    httpGetCompraById,
-    httpPostCompra,
+    getAllCompras,
+    getCompraById,
+    postCompra,
 } 

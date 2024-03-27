@@ -11,9 +11,13 @@ async function httpGetAllFornecedores(req, res) {
     return res.status(200).json(data);
 }
 
-async function httpGetByIdFornecedores(req, res) {
+async function httpGetByIdFornecedores(req, res) {    
     const data = await getByIdFornecedores(req.params.id)
     
+    if(data === null) {
+        return res.status(404).json({erro: 'Fornecedor não encontrado'});
+    }
+
     return res.status(200).json(data);
 }
 
@@ -48,7 +52,9 @@ async function httpPostFornecedores(req, res) {
         cidade,
         ativo,
         notas,
-    );
+    ).catch((err) => {
+        return res.status(400).json({ erro: err.message });
+    });
 
     return res.status(201).json(data);
 }
@@ -70,8 +76,10 @@ async function httpUpdateFornecedores(req, res) {
         notas,
     } = req.body;
 
+    const id = req.params.id;
+
     await updateFornecedores(
-        req.params.id,
+        id,
         tipo,
         email,
         telefone,
@@ -85,9 +93,11 @@ async function httpUpdateFornecedores(req, res) {
         cidade,
         ativo,
         notas,
-    );
+    ).catch((err) => {
+        return res.status(400).json({ erro: err.message })
+    })
 
-    const data = await getByIdFornecedores(req.params.id);
+    const data = await getByIdFornecedores(id);
 
     return res.status(200).json(data);
 }

@@ -1,8 +1,14 @@
 const express = require('express');
-const comprasControler = require('./compras.controller');
+const {
+        httpGetAllCompras,
+        httpGetCompraByID, 
+        httpPostCompra
+    } = require('./compras.controller');
 
-const routerCompras = express.Router();
+const comprasRouter = express.Router();
 
-routerCompras.get('/', comprasControler.getAllCompras);
+comprasRouter.get('/', httpGetAllCompras);
+comprasRouter.get('/:id', httpGetCompraByID);
+comprasRouter.post('/', httpPostCompra)
 
-module.exports = routerCompras;
+module.exports = comprasRouter;

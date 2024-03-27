@@ -9,7 +9,9 @@ const getPagination = require('../../services/query');
 async function httpGetAllFornecedores(req, res) {
 
     const { offset, limit } = getPagination(req.query);
-    const data = await getAllForcedores(offset, limit);
+    const data = await getAllForcedores(offset, limit).catch((err) => {
+        return res.status(500).json({ erro: err.message });
+    });
     
     return res.status(200).json(data);
 }
@@ -60,6 +62,13 @@ async function httpPostFornecedores(req, res) {
     });
 
     return res.status(201).json(data);
+}
+
+async function verificarSeEmailExiste(email) {
+    const data = await getAllForcedores(0, 1000);
+    const emailExiste = data.find((fornecedor) => fornecedor.email === email);
+
+    return emailExiste;
 }
 
 async function httpUpdateFornecedores(req, res) {

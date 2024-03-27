@@ -2,8 +2,8 @@ const Fornecedor = require('../fornecedores/fornecedor.sequelize');
 
 async function getAllForcedores(offset, limit) {
     return await Fornecedor.findAll({
-        offset: parseInt(offset),
-        limit: parseInt(limit),
+        offset: offset,
+        limit: limit,
     });
 }
 

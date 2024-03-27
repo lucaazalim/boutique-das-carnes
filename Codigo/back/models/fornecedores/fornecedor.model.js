@@ -1,7 +1,10 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
 
-async function getAllForcedores() {
-    return await Fornecedor.findAll();
+async function getAllForcedores(offset, limit) {
+    return await Fornecedor.findAll({
+        offset: parseInt(offset),
+        limit: parseInt(limit),
+    });
 }
 
 async function getByIdFornecedores(id) {

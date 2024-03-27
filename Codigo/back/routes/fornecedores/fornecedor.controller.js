@@ -4,9 +4,12 @@ const {
     addFornecedores,
     updateFornecedores,
 } = require('../../models/fornecedores/fornecedor.model');
+const getPagination = require('../../services/query');
 
 async function httpGetAllFornecedores(req, res) {
-    const data = await getAllForcedores();
+
+    const { offset, limit } = getPagination(req.query);
+    const data = await getAllForcedores(offset, limit);
     
     return res.status(200).json(data);
 }

@@ -39,7 +39,7 @@
 ]
 ```
 
-**Rota:** /fornecedores?page=2&pageSize=5
+**Rota:** /fornecedores?page=2&page_size=5
 
 **Método:** GET
 

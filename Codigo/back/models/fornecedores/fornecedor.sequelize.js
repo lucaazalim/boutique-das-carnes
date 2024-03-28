@@ -35,7 +35,8 @@ const Fornecedor = sequelize.define('fornecedor', {
         type: DataTypes.STRING(10)
     },
     estado: {
-        type: DataTypes.STRING(2),
+        type: DataTypes.ENUM,
+        values: ['AC', 'AL', 'AM', 'AP', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MG', 'MS', 'MT', 'PA', 'PB', 'PE', 'PI', 'PR', 'RJ', 'RN', 'RO', 'RR', 'RS', 'SC', 'SE', 'SP', 'TO' ],
         allowNull: false
     },
     cidade: {

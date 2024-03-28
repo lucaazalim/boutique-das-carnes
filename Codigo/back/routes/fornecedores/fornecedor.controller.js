@@ -41,6 +41,11 @@ async function httpPostFornecedores(req, res) {
         cidade,
         ativo,
         notas,
+        cpf,
+        nome,
+        cnpj,
+        razao_social,
+        nome_fantasia
     } = req.body;
 
     const data = await addFornecedores(
@@ -57,18 +62,16 @@ async function httpPostFornecedores(req, res) {
         cidade,
         ativo,
         notas,
+        cpf,
+        nome,
+        cnpj,
+        razao_social,
+        nome_fantasia
     ).catch((err) => {
         return res.status(400).json({ erro: err.message });
     });
 
     return res.status(201).json(data);
-}
-
-async function verificarSeEmailExiste(email) {
-    const data = await getAllForcedores(0, 1000);
-    const emailExiste = data.find((fornecedor) => fornecedor.email === email);
-
-    return emailExiste;
 }
 
 async function httpUpdateFornecedores(req, res) {
@@ -86,6 +89,11 @@ async function httpUpdateFornecedores(req, res) {
         cidade,
         ativo,
         notas,
+        cpf,
+        nome,
+        cnpj,
+        razao_social,
+        nome_fantasia
     } = req.body;
 
     const id = req.params.id;
@@ -105,6 +113,11 @@ async function httpUpdateFornecedores(req, res) {
         cidade,
         ativo,
         notas,
+        cpf,
+        nome,
+        cnpj,
+        razao_social,
+        nome_fantasia
     ).catch((err) => {
         return res.status(400).json({ erro: err.message })
     })

@@ -131,7 +131,7 @@ CREATE TABLE `fornecedor` (
   `bairro` varchar(50) DEFAULT NULL,
   `numero` varchar(5) DEFAULT NULL,
   `complemento` varchar(10) DEFAULT NULL,
-  `estado` varchar(2) NOT NULL,
+  `estado` enum('AC','AL','AM','AP','BA','CE','DF','ES','GO','MA','MG','MS','MT','PA','PB','PE','PI','PR','RJ','RN','RO','RR','RS','SC','SE','SP','TO') NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `ativo` tinyint(1) NOT NULL,
   `notas` text DEFAULT NULL,
@@ -227,4 +227,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-25 16:47:54
+-- Dump completed on 2024-03-28 16:47:29

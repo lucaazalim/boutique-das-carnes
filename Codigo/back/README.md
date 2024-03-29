@@ -20,26 +20,51 @@
 ```json
 [
     {
-        "id": 1,
-        "tipo": "PJ",
-        "email": "fornecedor1@exemplo.com",
-        "telefone": null,
-        "celular": null,
-        "cep": "12345678",
-        "logradouro": "Rua Exemplo, 123",
-        "bairro": "Centro",
-        "numero": null,
-        "complemento": null,
-        "estado": "SP",
-        "cidade": "São Paulo",
-        "ativo": true,
-        "notas": null
-    },
+		"id": 11,
+		"tipo": "PJ",
+		"pessoa": {
+			"cnpj": "123456995555",
+			"razao_social": "Empresa sa",
+			"nome_fantasia": "Empresa"
+		},
+		"email": "contato11@exemplo.com",
+		"telefone": "1234567800",
+		"celular": "9876543200",
+		"cep": "23456-789",
+		"logradouro": "Rua Exemplo 11",
+		"bairro": "Bairro Exemplo 11",
+		"numero": "234",
+		"complemento": "Sala 111",
+		"estado": "RJ",
+		"cidade": "Rio de Janeiro",
+		"ativo": true,
+		"notas": "Notas sobre o fornecedor 11"
+	},
+	{
+		"id": 12,
+		"tipo": "PF",
+		"pessoa": {
+			"cpf": "12345678901",
+			"nome": "Maria De J"
+		},
+		"email": "contato12@exemplo.com",
+		"telefone": "1234567801",
+		"celular": "9876543201",
+		"cep": "34567-890",
+		"logradouro": "Rua Exemplo 12",
+		"bairro": "Bairro Exemplo 12",
+		"numero": "345",
+		"complemento": "Sala 112",
+		"estado": "RS",
+		"cidade": "Porto Alegre",
+		"ativo": true,
+		"notas": "Notas sobre o fornecedor 12"
+	}
     ...
 ]
 ```
 
-**Rota:** /fornecedores?page=2&page_size=5
+**Rota:** /fornecedores?page=3&page_size=5
 
 **Método:** GET
 
@@ -49,38 +74,47 @@
 [
     [
 	{
-		"id": 6,
+		"id": 11,
 		"tipo": "PJ",
-		"email": "contato1@exemplo.com",
-		"telefone": "1234567890",
-		"celular": "9876543210",
-		"cep": "12345-678",
-		"logradouro": "Rua Exemplo 1",
-		"bairro": "Bairro Exemplo 1",
-		"numero": "123",
-		"complemento": "Sala 101",
-		"estado": "SP",
-		"cidade": "São Paulo",
+		"pessoa": {
+			"cnpj": "123456995555",
+			"razao_social": "Empresa sa",
+			"nome_fantasia": "Empresa"
+		},
+		"email": "contato11@exemplo.com",
+		"telefone": "1234567800",
+		"celular": "9876543200",
+		"cep": "23456-789",
+		"logradouro": "Rua Exemplo 11",
+		"bairro": "Bairro Exemplo 11",
+		"numero": "234",
+		"complemento": "Sala 111",
+		"estado": "RJ",
+		"cidade": "Rio de Janeiro",
 		"ativo": true,
-		"notas": "Notas sobre o fornecedor 1"
+		"notas": "Notas sobre o fornecedor 11"
 	},
     ...
     ,
 	{
-		"id": 10,
-		"tipo": "PJ",
-		"email": "contato5@exemplo.com",
-		"telefone": "1234567894",
-		"celular": "9876543214",
-		"cep": "56789-012",
-		"logradouro": "Rua Exemplo 5",
-		"bairro": "Bairro Exemplo 5",
-		"numero": "567",
-		"complemento": "Sala 105",
-		"estado": "BA",
-		"cidade": "Salvador",
-		"ativo": false,
-		"notas": "Notas sobre o fornecedor 5"
+		"id": 15,
+		"tipo": "PF",
+		"pessoa": {
+			"cpf": "12345677522",
+			"nome": "Fornecedor 74852"
+		},
+		"email": "contato9995145@exemplo.com",
+		"telefone": "0012345678",
+		"celular": "00987654321",
+		"cep": "12345678",
+		"logradouro": "Rua Exemplo",
+		"bairro": "Bairro Exemplo",
+		"numero": "123",
+		"complemento": "Sala 101",
+		"estado": "SE",
+		"cidade": "Aracaju",
+		"ativo": true,
+		"notas": "Este é um fornecedor de exemplo"
 	}
 ]
 ```

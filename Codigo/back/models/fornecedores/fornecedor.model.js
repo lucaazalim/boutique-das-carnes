@@ -1,6 +1,6 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
-const FornecedorPF = require('../fornecedores/fornecedor-pf.sequelize');
-const FornecedorPJ = require('../fornecedores/fornecedor-pj.sequelize');
+const FornecedorPF = require('../fornecedor-pf/fornecedor-pf.sequelize');
+const FornecedorPJ = require('../fornecedor-pj/fornecedor-pj.sequelize');
 const respostaFornecedor = require('../../services/fornecedor.service');
 const { Op } = require('sequelize');
 

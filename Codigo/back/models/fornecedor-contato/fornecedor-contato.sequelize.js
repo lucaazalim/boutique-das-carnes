@@ -1,4 +1,4 @@
-const { sequelize } = require('../../services/mariadb');
+const { sequelize } = require('../../services/mariadb.service');
 const { DataTypes } = require('sequelize');
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
 
@@ -28,6 +28,6 @@ const FornecedorContato = sequelize.define('fornecedor_contato', {
     }
 })
 
-FornecedorContato.belongsTo(Fornecedor, { foreignKey: 'id_fornecedor' });
+FornecedorContato.belongsToMany(Fornecedor, { foreignKey: 'id_fornecedor' });
 
 module.exports = FornecedorContato;

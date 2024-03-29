@@ -1,6 +1,6 @@
 const http = require('http');
 const app = require('./app');
-const { connectToDatabase } = require('./services/mariadb')
+const { connectToDatabase } = require('./services/mariadb.service')
 
 const port = 3001;
 

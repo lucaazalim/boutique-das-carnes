@@ -4,7 +4,7 @@ const {
     addFornecedores,
     updateFornecedores,
 } = require('../../models/fornecedores/fornecedor.model');
-const getPagination = require('../../services/query');
+const getPagination = require('../../services/query.service');
 
 async function httpGetAllFornecedores(req, res) {
 
@@ -89,16 +89,14 @@ async function httpUpdateFornecedores(req, res) {
         cidade,
         ativo,
         notas,
-        cpf,
         nome,
-        cnpj,
         razao_social,
         nome_fantasia
     } = req.body;
 
     const id = req.params.id;
 
-    await updateFornecedores(
+    const data = await updateFornecedores(
         id,
         tipo,
         email,
@@ -113,16 +111,12 @@ async function httpUpdateFornecedores(req, res) {
         cidade,
         ativo,
         notas,
-        cpf,
         nome,
-        cnpj,
         razao_social,
         nome_fantasia
     ).catch((err) => {
         return res.status(400).json({ erro: err.message })
     })
-
-    const data = await getByIdFornecedores(id);
 
     return res.status(200).json(data);
 }

@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const { sequelize } = require('../../services/mariadb');
+const { sequelize } = require('../../services/mariadb.service');
 const Fornecedor = require('./fornecedor.sequelize');
 
 const FornecedorPJ = sequelize.define('fornecedor_pj', {

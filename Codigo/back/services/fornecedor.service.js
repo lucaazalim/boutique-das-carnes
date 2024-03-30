@@ -1,38 +1,16 @@
-// arquivo: services/fornecedor.service.js
-
-module.exports = function respostaFornecedor(fornecedor, pessoaF, pessoaJ, contatos) {
+module.exports = function respostaFornecedor(fornecedor, updateValue, contatos) {
 
     let pessoa = null;
+    let resposta = fornecedor.dataValues;
 
-    if (pessoaF === undefined && pessoaJ === undefined) {
+    if (updateValue === undefined) {
         pessoa = {};
     } else {
-        pessoa = fornecedor.tipo === 'PF' ? {
-            cpf: pessoaF.cpf,
-            nome: pessoaF.nome
-        } : {
-            cnpj: pessoaJ.cnpj,
-            razao_social: pessoaJ.razao_social,
-            nome_fantasia: pessoaJ.nome_fantasia
-        };
+        pessoa = updateValue.dataValues;
     }
 
-    return {
-        id: fornecedor.id,
-        tipo: fornecedor.tipo,
-        pessoa: pessoa,
-        email: fornecedor.email,
-        telefone: fornecedor.telefone,
-        celular: fornecedor.celular,
-        cep: fornecedor.cep,
-        logradouro: fornecedor.logradouro,
-        bairro: fornecedor.bairro,
-        numero: fornecedor.numero,
-        complemento: fornecedor.complemento,
-        estado: fornecedor.estado,
-        cidade: fornecedor.cidade,
-        ativo: fornecedor.ativo,
-        notas: fornecedor.notas,
-        contatos: contatos
-    };
+    resposta.pessoa = pessoa;
+    resposta.contato = contatos;
+
+    return resposta;
 }

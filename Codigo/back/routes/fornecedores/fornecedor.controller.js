@@ -78,7 +78,6 @@ async function httpPostFornecedores(req, res) {
 
 async function httpUpdateFornecedores(req, res) {
     const {
-        tipo,
         email,
         telefone,
         celular,
@@ -100,7 +99,6 @@ async function httpUpdateFornecedores(req, res) {
 
     const data = await updateFornecedores(
         id,
-        tipo,
         email,
         telefone,
         celular,

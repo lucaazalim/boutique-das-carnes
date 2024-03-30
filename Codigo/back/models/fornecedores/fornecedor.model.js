@@ -6,18 +6,18 @@ const {
     updateFornecedorPJ,
     createFornecedorPJ,
     getFornecedorPJById
-} = require('../fornecedor-pj/fornecedor-pj.model');
+} = require('../fornecedores/pj/fornecedor-pj.model');
 const {
     addFornecedoresPF,
     updateFornecedorPF,
     verificarSeCpfExiste,
     getFornecedorPFById,
     getAllFornecedorPF
-} = require('../fornecedor-pf/fornecedor-pf.model');
+} = require('../fornecedores/pf/fornecedor-pf.model');
 const { 
     createFornecedorContatos,
     getAllFornecedorContatos
- } = require('../fornecedor-contato/fornecedor-contato.model');
+ } = require('../fornecedores/contatos/fornecedor-contato.model');
 
 async function getAllForcedores(offset, limit) {
 
@@ -36,25 +36,40 @@ async function getAllForcedores(offset, limit) {
     const fornecedores = [];
 
     fornecedor.forEach(fornecedor => {
-        const pessoaF = fonecedorPF.find(p => p.id_fornecedor === fornecedor.id);
-        const pessoaJ = fonecedorPJ.find(p => p.id_fornecedor === fornecedor.id);
+        
+        var updateValue;
+
+        if (fornecedor.tipo === 'PF') {
+            updateValue = fonecedorPF.find(p => p.id_fornecedor === fornecedor.id);
+        } else if (fornecedor.tipo === 'PJ') {
+            updateValue = fonecedorPJ.find(p => p.id_fornecedor === fornecedor.id);
+        }
+
         const contato = contatos.filter(c => c.id_fornecedor === fornecedor.id);
 
-        fornecedores.push(respostaFornecedor(fornecedor, pessoaF, pessoaJ, contato));
+        fornecedores.push(respostaFornecedor(fornecedor, updateValue, contato));
     });
 
     return fornecedores;
 }
 
 async function getByIdFornecedores(id) {
-    
-    const fornecedorPF = await getFornecedorPFById(id);
-    const fornecedorPJ = await getFornecedorPJById(id);
+
     const fornecedor = await Fornecedor.findByPk(id);
+
+    var updateValue;
+
+    if (fornecedor.tipo === 'PF') {
+        updateValue = await getFornecedorPFById(id);
+    } else if (fornecedor.tipo === 'PJ') {
+        updateValue = await getFornecedorPJById(id);
+    }
+
+    const contatos = await getAllFornecedorContatos(id, id);
 
     const data = [];
 
-    data.push(respostaFornecedor(fornecedor, fornecedorPF, fornecedorPJ));
+    data.push(respostaFornecedor(fornecedor, updateValue, contatos));
 
     return data;
 }
@@ -86,9 +101,7 @@ async function addFornecedores(
         return {
             erro: "CPF já cadastrado"
         }
-    }
-
-    if (tipo === 'PJ' && await verificarSeCnpjExiste(cnpj)) {
+    } else if (tipo === 'PJ' && await verificarSeCnpjExiste(cnpj)) {
         return {
             erro: "CNPJ já cadastrado"
         }
@@ -111,12 +124,14 @@ async function addFornecedores(
             notas
         })
 
+        var updateValue;
+
         if (tipo === 'PF') {
             await addFornecedoresPF(newFornecedor.id, cpf, nome);
-        }
-
-        if (tipo === 'PJ') {
+            updateValue = await getFornecedorPFById(newFornecedor.id);
+        } else if (tipo === 'PJ') {
             await createFornecedorPJ(newFornecedor.id, cnpj, razao_social, nome_fantasia)
+            updateValue = await getFornecedorPJById(newFornecedor.id);
         }
 
         const contatoComId = contatos.map(contato => {
@@ -126,17 +141,13 @@ async function addFornecedores(
             }
         })
 
-        console.log("contatos", contatoComId);
-
         const newContatos = await createFornecedorContatos(contatoComId);
 
-        const fornecedorPF = await getFornecedorPFById(newFornecedor.id);
-        const fornecedorPJ = await getFornecedorPJById(newFornecedor.id);
         const fornecedor = await Fornecedor.findByPk(newFornecedor.id);
 
         const data = [];
 
-        data.push(respostaFornecedor(fornecedor, fornecedorPF, fornecedorPJ, newContatos));
+        data.push(respostaFornecedor(fornecedor, updateValue, newContatos));
 
         return data;
 
@@ -148,7 +159,6 @@ async function addFornecedores(
 
 async function updateFornecedores(
     id,
-    tipo,
     email,
     telefone,
     celular,
@@ -172,7 +182,6 @@ async function updateFornecedores(
     }
 
     let updatedFornecedor = await Fornecedor.update({
-        tipo,
         email,
         telefone,
         celular,
@@ -189,30 +198,29 @@ async function updateFornecedores(
         where: { id }
     });
 
+    var updateValue;
+
     if (fornecedor.tipo === 'PF' && nome !== undefined) {
         try {
             await updateFornecedorPF(id, nome);
         } catch (error) {
             throw new Error(error);
         }
-    }
-
-    if (fornecedor.tipo === 'PJ' && (razao_social !== undefined || nome_fantasia !== undefined)) {
+        updateValue = await getFornecedorPFById(id);
+    } else if (fornecedor.tipo === 'PJ' && (razao_social !== undefined || nome_fantasia !== undefined)) {
         try {
             await updateFornecedorPJ(id, razao_social, nome_fantasia);
         } catch (error) {
             throw new Error(error);
         }
+        updateValue = await getFornecedorPJById(id);
     }
-
-    const updatedFornecedorPF = await getFornecedorPFById(id);
-    const updatedFornecedorPJ = await getFornecedorPJById(id);
 
     const resposta = [];
 
-    resposta.push(respostaFornecedor(fornecedor, updatedFornecedorPF, updatedFornecedorPJ));
+    resposta.push(respostaFornecedor(fornecedor, updateValue));
 
-    if (updatedFornecedorPF === undefined && updatedFornecedorPJ === undefined && updatedFornecedor[0] === 0) {
+    if (updateValue === undefined && updatedFornecedor[0] === 0) {
         throw new Error('Nenhum dado do fornecedor foi atualizado');
     }
 

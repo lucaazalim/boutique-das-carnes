@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const FornecedorPJ = require('../fornecedor-pj/fornecedor-pj.sequelize');
+const FornecedorPJ = require('./fornecedor-pj.sequelize');
 
 async function createFornecedorPJ(id_fornecedor, cnpj, razao_social, nome_fantasia) {
     try {

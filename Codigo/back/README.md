@@ -1,6 +1,6 @@
 # Back-end
 
-## Rotas
+## Rotas Fornecedores
 
 | Método | Rota | Descrição |
 | :------: | ---- | --------- |
@@ -116,5 +116,61 @@
 		"ativo": true,
 		"notas": "Este é um fornecedor de exemplo"
 	}
+]
+```
+
+## Rotas Compras
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/compras` | Consultar as compras criadas |
+| GET | `/compras/{id}` | Consultar uma compra pelo ID |
+| POST | `/compras` | Criar uma nova compra |
+| PUT | `/compras/{id}` | Atualizar dados da compra pelo ID |
+
+## Listar Compras
+
+**Rota:** /compras
+
+**Método:** GET
+
+**Formato:**
+
+```json
+[
+    {
+        "id": 2,
+        "id_fornecedor": 1,
+        "status": "CONCLUIDA",
+        "unidades_macho": 10,
+        "unidades_femea": 5,
+        "preco_arroba": 137.77,
+        "desconto": null,
+        "animais_abatidos": 15,
+        "peso_total_abate": 10500.75,
+        "id_documento_romaneio": 1,
+        "id_documento_gta": 2,
+        "id_documento_nf_compra": 3,
+        "id_documento_nf_abate": 4,
+        "id_documento_nfs_matadouro": 5,
+        "id_documento_nf_retorno": 6
+    },
+    {
+        "id": 3,
+        "id_fornecedor": 1,
+        "status": "CONCLUIDA",
+        "unidades_macho": 1,
+        "unidades_femea": 2,
+        "preco_arroba": 150.5,
+        "desconto": null,
+        "animais_abatidos": 3,
+        "peso_total_abate": 2100.25,
+        "id_documento_romaneio": 7,
+        "id_documento_gta": 8,
+        "id_documento_nf_compra": 9,
+        "id_documento_nf_abate": 10,
+        "id_documento_nfs_matadouro": null,
+        "id_documento_nf_retorno": 11
+    }
 ]
 ```

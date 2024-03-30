@@ -14,6 +14,10 @@ const {
     getFornecedorPFById,
     getAllFornecedorPF
 } = require('../fornecedor-pf/fornecedor-pf.model');
+const { 
+    createFornecedorContatos,
+    getAllFornecedorContatos
+ } = require('../fornecedor-contato/fornecedor-contato.model');
 
 async function getAllForcedores(offset, limit) {
 
@@ -27,14 +31,16 @@ async function getAllForcedores(offset, limit) {
 
     const fonecedorPF = await getAllFornecedorPF(fornecedorFirst.id, fornecedorLast.id);
     const fonecedorPJ = await getAllFornecedorPJ(fornecedorFirst.id, fornecedorLast.id);
+    const contatos = await getAllFornecedorContatos(fornecedorFirst.id, fornecedorLast.id);
 
     const fornecedores = [];
 
     fornecedor.forEach(fornecedor => {
         const pessoaF = fonecedorPF.find(p => p.id_fornecedor === fornecedor.id);
         const pessoaJ = fonecedorPJ.find(p => p.id_fornecedor === fornecedor.id);
+        const contato = contatos.filter(c => c.id_fornecedor === fornecedor.id);
 
-        fornecedores.push(respostaFornecedor(fornecedor, pessoaF, pessoaJ));
+        fornecedores.push(respostaFornecedor(fornecedor, pessoaF, pessoaJ, contato));
     });
 
     return fornecedores;
@@ -71,8 +77,9 @@ async function addFornecedores(
     nome,
     cnpj,
     razao_social,
-    nome_fantasia) {
-
+    nome_fantasia,
+    contatos) {
+    
     // verificar se existe cnpj ou cpf cadastrado no banco de dados
     
     if (tipo === 'PF' && await verificarSeCpfExiste(cpf)) {
@@ -112,13 +119,24 @@ async function addFornecedores(
             await createFornecedorPJ(newFornecedor.id, cnpj, razao_social, nome_fantasia)
         }
 
+        const contatoComId = contatos.map(contato => {
+            return {
+                ...contato,
+                id_fornecedor: newFornecedor.id
+            }
+        })
+
+        console.log("contatos", contatoComId);
+
+        const newContatos = await createFornecedorContatos(contatoComId);
+
         const fornecedorPF = await getFornecedorPFById(newFornecedor.id);
         const fornecedorPJ = await getFornecedorPJById(newFornecedor.id);
         const fornecedor = await Fornecedor.findByPk(newFornecedor.id);
 
         const data = [];
 
-        data.push(respostaFornecedor(fornecedor, fornecedorPF, fornecedorPJ));
+        data.push(respostaFornecedor(fornecedor, fornecedorPF, fornecedorPJ, newContatos));
 
         return data;
 

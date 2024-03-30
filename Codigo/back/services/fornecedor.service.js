@@ -1,6 +1,6 @@
 // arquivo: services/fornecedor.service.js
 
-module.exports = function respostaFornecedor(fornecedor, pessoaF, pessoaJ) {
+module.exports = function respostaFornecedor(fornecedor, pessoaF, pessoaJ, contatos) {
 
     let pessoa = null;
 
@@ -32,6 +32,7 @@ module.exports = function respostaFornecedor(fornecedor, pessoaF, pessoaJ) {
         estado: fornecedor.estado,
         cidade: fornecedor.cidade,
         ativo: fornecedor.ativo,
-        notas: fornecedor.notas
+        notas: fornecedor.notas,
+        contatos: contatos
     };
 }

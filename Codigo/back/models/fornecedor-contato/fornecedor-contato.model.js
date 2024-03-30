@@ -1,23 +1,21 @@
+const { Op } = require('sequelize');
 const FornecedorContato = require('./fornecedor-contato.sequelize');
 
-async function createFornecedorContato(id_fornecedor, nome, celular, cargo) {
+async function createFornecedorContatos(contatos) {
     try {
-        return await FornecedorContato.create({
-            id_fornecedor,
-            nome,
-            celular,
-            cargo
-        });
+        return await FornecedorContato.bulkCreate(contatos);
     } catch (error) {
         throw new Error(error);
     }
 }
 
-async function getFornecedorContatosByIdFornecedor(id_fornecedor) {
+async function getAllFornecedorContatos(idFornecedorFirt, idFornecedorLast) {
     try {
         return await FornecedorContato.findAll({
             where: {
-                id: id_fornecedor
+                id_fornecedor: {
+                    [Op.between]: [idFornecedorFirt, idFornecedorLast]
+                }
             }
         });
     } catch (error) {
@@ -65,8 +63,8 @@ async function updateFornecedorContato(id, nome, celular, cargo) {
 }
 
 module.exports = {
-    createFornecedorContato,
-    getFornecedorContatosByIdFornecedor,
+    createFornecedorContatos,
+    getAllFornecedorContatos,
     getFornecedorContato,
     updateFornecedorContato,
 }

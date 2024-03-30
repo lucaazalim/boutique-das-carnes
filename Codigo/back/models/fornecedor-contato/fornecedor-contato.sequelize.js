@@ -26,8 +26,10 @@ const FornecedorContato = sequelize.define('fornecedor_contato', {
     cargo: {
         type: DataTypes.STRING(100)
     }
+}, {
+    timestamps: false
 })
 
-FornecedorContato.belongsToMany(Fornecedor, { foreignKey: 'id_fornecedor' });
+Fornecedor.hasMany(FornecedorContato, { foreignKey: 'id_fornecedor' });
 
 module.exports = FornecedorContato;

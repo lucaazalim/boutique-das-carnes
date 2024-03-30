@@ -13,7 +13,7 @@ async function postComprasPagamentos(
     data, 
     meio_pagamento, 
     valor, 
-    id_documento_comprovante, 
+    id_documento_comprovante
 ){
     const compra =  ComprasPagamentos.create({
         id_compra,
@@ -27,8 +27,31 @@ async function postComprasPagamentos(
 }
 
 
+async function updateComrpaById(
+    id,    
+    id_compra, 
+    data, 
+    meio_pagamento, 
+    valor, 
+    id_documento_comprovante
+){
+    return await ComprasPagamentos.update({
+            id_compra,
+            data,
+            meio_pagamento,
+            valor,
+            id_documento_comprovante,
+        },
+        {
+            where: {id}
+        }
+    );
+ }
+
+
 module.exports = {
     getAllComprasPagamentos,
     getComprasPagamentosById,
-    postComprasPagamentos
+    postComprasPagamentos,
+    updateComrpaById
 }

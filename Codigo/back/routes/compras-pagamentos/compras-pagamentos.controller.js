@@ -1,4 +1,4 @@
-const {getAllComprasPagamentos, getComprasPagamentosById, postComprasPagamentos} = require('../../models/compras-pagamentos/compras-pagamentos.model');
+const {getAllComprasPagamentos, getComprasPagamentosById, postComprasPagamentos, updateComrpaById} = require('../../models/compras-pagamentos/compras-pagamentos.model');
 
 async function httpGetAllComprasPagamentos(req, res){
     const result =  await getAllComprasPagamentos();
@@ -24,8 +24,24 @@ async function httpPostComprasPagamentos(req, res){
     res.status(201).json(result);
 }
 
+async function httpPutCompraById(req, res){
+    const id = req.params.id;
+
+    const { 
+        id_compra: id_compra, 
+        data, 
+        meio_pagamento: meio_pagamento, 
+        valor, 
+        id_documento_comprovante: id_documento_comprovante, 
+    } = req.body;
+
+    const result = await updateComrpaById(id ,id_compra, data, meio_pagamento, valor, id_documento_comprovante);
+    res.status(200).json(result);
+}
+
 module.exports = {
     httpGetAllComprasPagamentos,
     httpGetComprasPagamentosById,
-    httpPostComprasPagamentos
+    httpPostComprasPagamentos,
+    httpPutCompraById
 }

@@ -19,48 +19,45 @@
 
 ```json
 [
-    {
-		"id": 11,
-		"tipo": "PJ",
-		"pessoa": {
-			"cnpj": "123456995555",
-			"razao_social": "Empresa sa",
-			"nome_fantasia": "Empresa"
-		},
-		"email": "contato11@exemplo.com",
-		"telefone": "1234567800",
-		"celular": "9876543200",
-		"cep": "23456-789",
-		"logradouro": "Rua Exemplo 11",
-		"bairro": "Bairro Exemplo 11",
-		"numero": "234",
-		"complemento": "Sala 111",
-		"estado": "RJ",
-		"cidade": "Rio de Janeiro",
-		"ativo": true,
-		"notas": "Notas sobre o fornecedor 11"
-	},
 	{
-		"id": 12,
-		"tipo": "PF",
-		"pessoa": {
-			"cpf": "12345678901",
-			"nome": "Maria De J"
-		},
-		"email": "contato12@exemplo.com",
-		"telefone": "1234567801",
-		"celular": "9876543201",
-		"cep": "34567-890",
-		"logradouro": "Rua Exemplo 12",
-		"bairro": "Bairro Exemplo 12",
-		"numero": "345",
-		"complemento": "Sala 112",
-		"estado": "RS",
-		"cidade": "Porto Alegre",
+		"id": 28,
+		"tipo": "PJ",
+		"email": "exemplo@empresa.com",
+		"telefone": "1234567890",
+		"celular": "987654321",
+		"cep": "12345678",
+		"logradouro": "Rua Exemplo",
+		"bairro": "Bairro Exemplo",
+		"numero": "123",
+		"complemento": "Comple",
+		"estado": "SP",
+		"cidade": "São Paulo",
 		"ativo": true,
-		"notas": "Notas sobre o fornecedor 12"
-	}
-    ...
+		"notas": "Notas do fornecedor",
+		"pessoa": {
+			"id_fornecedor": 28,
+			"cnpj": "121156851955",
+			"razao_social": "Empresa 123",
+			"nome_fantasia": "Empresa Number"
+		},
+		"contato": [
+			{
+				"id": 1,
+				"id_fornecedor": 28,
+				"nome": "Contato 1",
+				"celular": "987654321",
+				"cargo": "Cargo 1"
+			},
+			{
+				"id": 2,
+				"id_fornecedor": 28,
+				"nome": "Contato 2",
+				"celular": "987654322",
+				"cargo": "Cargo 2"
+			}
+		]
+	},
+	...
 ]
 ```
 
@@ -76,11 +73,6 @@
 	{
 		"id": 11,
 		"tipo": "PJ",
-		"pessoa": {
-			"cnpj": "123456995555",
-			"razao_social": "Empresa sa",
-			"nome_fantasia": "Empresa"
-		},
 		"email": "contato11@exemplo.com",
 		"telefone": "1234567800",
 		"celular": "9876543200",
@@ -92,17 +84,20 @@
 		"estado": "RJ",
 		"cidade": "Rio de Janeiro",
 		"ativo": true,
-		"notas": "Notas sobre o fornecedor 11"
+		"notas": "Notas sobre o fornecedor 11",
+		"pessoa": {
+			"id_fornecedor": 11,
+			"cnpj": "123456995555",
+			"razao_social": "Empresa sa",
+			"nome_fantasia": "Empresa"
+		},
+		"contato": []
 	},
     ...
     ,
 	{
 		"id": 15,
 		"tipo": "PF",
-		"pessoa": {
-			"cpf": "12345677522",
-			"nome": "Fornecedor 74852"
-		},
 		"email": "contato9995145@exemplo.com",
 		"telefone": "0012345678",
 		"celular": "00987654321",
@@ -114,9 +109,99 @@
 		"estado": "SE",
 		"cidade": "Aracaju",
 		"ativo": true,
-		"notas": "Este é um fornecedor de exemplo"
+		"notas": "Este é um fornecedor de exemplo",
+		"pessoa": {
+			"id_fornecedor": 15,
+			"cpf": "12345677522",
+			"nome": "Fornecedor 74852"
+		},
+		"contato": []
 	}
 ]
+```
+
+## Rotas Fornecedores - Contatos
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/fornecedores/contatos` | Consultar os contatos dos fornecedores criados |
+| GET | `/fornecedores/{idFornecedor}/contatos/{id}` | Consultar o contato do fornecedor pelo ID |
+| POST | `/fornecedores/{idFornecedor}/contatos/{id}` | Criar um novo contato com o ID do fornecedor |
+| PUT | `/fornecedores/{idFornecedor}/contatos/{id}` | Atualizar dados do contaot com ID do fornecedor |
+
+## Listar Fornecedores
+
+**Rota:** /fornecedores/contatos
+
+**Método:** GET
+
+**Formato:**
+
+```json
+[
+	{
+		"id": 1,
+		"id_fornecedor": 28,
+		"nome": "Contato 1",
+		"celular": "987654321",
+		"cargo": "Cargo 1"
+	},
+	{
+		"id": 2,
+		"id_fornecedor": 28,
+		"nome": "Contato 2",
+		"celular": "987654322",
+		"cargo": "Cargo 2"
+	},
+	...
+]
+```
+
+**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
+
+**Método:** POST
+
+**Formato:**
+
+```json
+[
+	{
+	"contato": [
+			{
+				"nome": "Contato 1",
+				"celular": "987654321",
+				"cargo": "Cargo 1"
+			},
+			{
+				"nome": "Contato 2",
+				"celular": "987654322",
+				"cargo": "Cargo 2"
+			}
+		]
+	}
+]
+```
+
+**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
+
+**Método:** PUT
+
+**Formato:**
+
+```json
+{
+	"nome": "Novo Nome"
+}
+```
+
+**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
+
+**Método:** DELETE
+
+**Formato:**
+
+```json
+
 ```
 
 ## Rotas Compras

@@ -15,7 +15,6 @@ const {
     getAllFornecedorPF
 } = require('../fornecedores/pf/fornecedor-pf.model');
 const { 
-    createFornecedorContatos,
     getAllFornecedorContatos
  } = require('../fornecedores/contatos/fornecedor-contato.model');
 
@@ -92,8 +91,7 @@ async function addFornecedores(
     nome,
     cnpj,
     razao_social,
-    nome_fantasia,
-    contatos) {
+    nome_fantasia) {
     
     // verificar se existe cnpj ou cpf cadastrado no banco de dados
     
@@ -134,20 +132,13 @@ async function addFornecedores(
             updateValue = await getFornecedorPJById(newFornecedor.id);
         }
 
-        const contatoComId = contatos.map(contato => {
-            return {
-                ...contato,
-                id_fornecedor: newFornecedor.id
-            }
-        })
-
-        const newContatos = await createFornecedorContatos(contatoComId);
-
         const fornecedor = await Fornecedor.findByPk(newFornecedor.id);
 
         const data = [];
 
-        data.push(respostaFornecedor(fornecedor, updateValue, newContatos));
+        const contatos = [];
+
+        data.push(respostaFornecedor(fornecedor, updateValue, contatos));
 
         return data;
 

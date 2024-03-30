@@ -45,8 +45,7 @@ async function httpPostFornecedores(req, res) {
         nome,
         cnpj,
         razao_social,
-        nome_fantasia,
-        contatos
+        nome_fantasia
     } = req.body;
 
     const data = await addFornecedores(
@@ -67,8 +66,7 @@ async function httpPostFornecedores(req, res) {
         nome,
         cnpj,
         razao_social,
-        nome_fantasia,
-        contatos
+        nome_fantasia
     ).catch((err) => {
         return res.status(400).json({ erro: err.message });
     });

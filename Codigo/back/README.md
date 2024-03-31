@@ -352,9 +352,10 @@
 | Método | Rota | Descrição |
 | :------: | ---- | --------- |
 | GET | `/compras/pagamentos` | Consultar os pagamentos criados |
-| GET | `/compras/pagamentos/{id}` | Consultar um pagamento pelo ID |
+| GET | `/compras/{idCompra}/pagamentos/{idPagamento}` | Consultar um pagamento pelo ID |
 | POST | `/compras/pagamento` | Criar um novo pagamento |
-| PUT | `/compras/pagamento/{id}` | Atualizar dados de um pagamento pelo ID |
+| POST | `/compras/{idCompra}/pagamento` | Criar novos pagamentos |
+| PUT | `/compras/{idCompra}/pagamento/{idPagamento}` | Atualizar dados de um pagamento pelo ID |
 
 ## Listar Pagamentos
 
@@ -414,14 +415,40 @@
 
 ```
 
+**Rota:** /compras/{idCompra}/pagamentos
+
+**Método:** POST
+
+**Formato:**
+
+```json
+{
+    "pagamento": [
+            {
+                "data": "2024-03-28",
+                "meio_pagamento": "PIX",
+                "valor": 66666.00,
+                "id_documento_comprovante": null
+            },
+            {
+                "data": "2024-03-28",
+                "meio_pagamento": "PIX",
+                "valor": 222222.00,
+                "id_documento_comprovante": null
+            }
+        ]
+}
+```
+
 ## Rotas Pesagens
 
 | Método | Rota | Descrição |
 | :------: | ---- | --------- |
 | GET | `/compras/pesagens` | Consultar as pesagens criadas |
-| GET | `/compras/pesagens/{id}` | Consultar uma pesagem pelo ID |
+| GET | `/compras/{idCompra}/pesagens/{id}` | Consultar uma pesagem pelo ID |
 | POST | `/compras/pesagens` | Criar uma nova pesagem |
-| PUT | `/compras/pesagens/{id}` | Atualizar dados de uma pesagem pelo ID |
+| POST | `/compras/{idCompra}/pesagens` | Criar novas pesagens |
+| PUT | `/compras/{idCompra}/pesagens/{id}` | Atualizar dados de uma pesagem pelo ID |
 
 ## Listar Pagamentos
 
@@ -478,6 +505,31 @@
     "id_compra": 10,
     "unidades": 5,
     "peso": 1300
+}
+
+```
+
+
+
+**Rota:** /compras/{idCompra}/pesagens
+
+**Método:** POST
+
+**Formato:**
+
+```json
+
+{
+    "pesagem": [
+            {
+		"unidades": 777,
+                "peso": 5000.25,
+            },
+            {
+                "unidades": 333,
+                "peso": 5000.25,
+            }
+        ]
 }
 
 ```

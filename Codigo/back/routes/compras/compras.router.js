@@ -8,6 +8,13 @@ const {
 } = require('./compras-pagamentos/compras-pagamentos.controller');
 
 const {
+    httpGetAllComprasPesagens,
+    httpGetComprasPesagensById,
+    httpPostComprasPesagens,
+    httpPutCompraPesagensById,
+} = require('./compras-pesagens/compras-pesagens.controller');
+
+const {
         httpGetAllCompras,
         httpGetCompraByID, 
         httpPostCompra,
@@ -16,6 +23,10 @@ const {
 
 const comprasRouter = express.Router();
 
+comprasRouter.get('/pesagens/',httpGetAllComprasPesagens);
+comprasRouter.get('/pesagens/:id', httpGetComprasPesagensById);
+comprasRouter.post('/pesagens/', httpPostComprasPesagens);
+comprasRouter.put('/pesagens/:id', httpPutCompraPesagensById);
 
 comprasRouter.get('/pagamentos/',httpGetAllComprasPagamentos);
 comprasRouter.get('/pagamentos/:id', httpGetComprasPagamentosById);

@@ -2,6 +2,7 @@ const {sequelize} = require('../../services/mariadb.service');
 const { DataTypes } = require('sequelize');
 
 const CompraPagamento = require('../compras/compras-pagamentos/compras-pagamentos.sequelize');
+const CompraPesagens = require('../compras/compras-pesagens/compras-pesagens.sequelize');
 
 const Compra = sequelize.define('compra', 
     {
@@ -56,11 +57,13 @@ const Compra = sequelize.define('compra',
     { 
         timestamps: false, 
         defaultScope: {
-            include: { model: CompraPagamento }
+            include: [{ model: CompraPagamento },{ model: CompraPesagens }]
         }
    }
 );
 
 Compra.hasMany(CompraPagamento, { foreignKey: 'id_compra'});
+Compra.hasMany(CompraPesagens, { foreignKey: 'id_compra' });
+
 
 module.exports = Compra;

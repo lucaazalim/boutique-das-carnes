@@ -27,13 +27,13 @@ const comprasRouter = express.Router();
 comprasRouter.get('/pesagens/',httpGetAllComprasPesagens);
 comprasRouter.get('/pesagens/:id', httpGetComprasPesagensById);
 comprasRouter.post('/pesagens/', httpPostComprasPesagens);
-comprasRouter.put('/pesagens/:id', httpPutCompraPesagensById);
+comprasRouter.put('/:idCompra/pesagens/:id', httpPutCompraPesagensById);
 
 comprasRouter.get('/pagamentos/',httpGetAllComprasPagamentos);
 comprasRouter.get('/pagamentos/:id', httpGetComprasPagamentosById);
 comprasRouter.post('/pagamentos/', httpPostComprasPagamentos);
-comprasRouter.post('/:id/pagamentos/', httpPostManyComprasPagamentos);
-comprasRouter.put('/pagamentos/:id', httpPutCompraPagamentoById);
+comprasRouter.post('/:idCompra/pagamentos/', httpPostManyComprasPagamentos);
+comprasRouter.put('/:idCompra/pagamentos/:id', httpPutCompraPagamentoById);
 
 comprasRouter.get('/', httpGetAllCompras);
 comprasRouter.get('/:id', httpGetCompraByID);

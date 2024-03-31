@@ -242,7 +242,7 @@
         "compra_pagamentos": [
             {
                 "id": 2,
-                "id_compra": 4,
+                "id_compra": 1,
                 "data": "2024-03-28",
                 "meio_pagamento": "PIX",
                 "valor": 8000,
@@ -250,11 +250,20 @@
             },
             {
                 "id": 11,
-                "id_compra": 4,
+                "id_compra": 1,
                 "data": "2024-03-28",
                 "meio_pagamento": "PIX",
                 "valor": 777,
                 "id_documento_comprovante": null
+            }
+        ],
+	"compra_pesagems": [
+            {
+                "id": 2,
+                "id_compra": 1,
+                "unidades": 10,
+                "peso": 10.25,
+                "criado_em": "2024-03-31T07:35:15.000Z"
             }
         ]
     }
@@ -300,7 +309,16 @@
             "valor": 8000,
             "id_documento_comprovante": null
         }
-    ]
+    ],
+    "compra_pesagems": [
+            {
+                "id": 2,
+                "id_compra": 4,
+                "unidades": 10,
+                "peso": 10.25,
+                "criado_em": "2024-03-31T07:35:15.000Z"
+            }
+     ]
 }
 
 ```

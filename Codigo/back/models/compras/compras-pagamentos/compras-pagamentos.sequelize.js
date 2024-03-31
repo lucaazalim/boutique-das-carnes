@@ -1,4 +1,4 @@
-const {sequelize} = require('../../services/mariadb.service');
+const {sequelize} = require('../../../services/mariadb.service');
 const { DataTypes } = require('sequelize');
 
 const ComprasPagamentos = sequelize.define('compra_pagamento', {

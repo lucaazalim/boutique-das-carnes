@@ -1,12 +1,26 @@
 const express = require('express');
+
+const {
+    httpGetAllComprasPagamentos,
+    httpGetComprasPagamentosById,
+    httpPostComprasPagamentos,
+    httpPutCompraPagamentoById
+} = require('./compras-pagamentos/compras-pagamentos.controller');
+
 const {
         httpGetAllCompras,
         httpGetCompraByID, 
         httpPostCompra,
         httpPutCompraById
-    } = require('./compras.controller');
+} = require('./compras.controller');
 
 const comprasRouter = express.Router();
+
+
+comprasRouter.get('/pagamentos/',httpGetAllComprasPagamentos);
+comprasRouter.get('/pagamentos/:id', httpGetComprasPagamentosById);
+comprasRouter.post('/pagamentos/', httpPostComprasPagamentos);
+comprasRouter.put('/pagamentos/:id', httpPutCompraPagamentoById);
 
 comprasRouter.get('/', httpGetAllCompras);
 comprasRouter.get('/:id', httpGetCompraByID);

@@ -48,6 +48,9 @@ async function httpPostManyComprasPagamentos(req, res){
         const idCompra = req.params.id;
         const pagamentos =  req.body;
 
+        console.log("**req**", req);
+        console.log("**req.body**", req.body);
+
         pagamentos.pagamento.forEach( pagamento => {
             pagamento.id_compra = idCompra;
         });

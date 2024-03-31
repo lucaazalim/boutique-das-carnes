@@ -7,7 +7,6 @@ app.use(express.json())
 
 app.use('/', (req, res, next) => {
     console.log(`request made on: ${req.url}`);
-    console.log(`request made on: ${req}`);
     next();
 });
 

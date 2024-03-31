@@ -48,9 +48,18 @@ async function updateCompraPesagemById(id, id_compra, unidades, peso) {
     }
 }
 
+async function postManyComprasPesagem(pesagens){
+    try{
+        return await CompraPesagens.bulkCreate(pesagens);
+    }catch(error){
+        throw new Error(`Erro ao criar a pesagem de compra: ${error.message}`);
+    }
+}
+
 module.exports = {
     getAllCompraPesagem,
     getCompraPesagemById,
     postCompraPesagem,
     updateCompraPesagemById,
+    postManyComprasPesagem
 };

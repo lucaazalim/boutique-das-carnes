@@ -223,39 +223,263 @@
 
 ```json
 [
-    {
-        "id": 2,
+     {
+        "id": 1,
         "id_fornecedor": 1,
         "status": "CONCLUIDA",
         "unidades_macho": 10,
         "unidades_femea": 5,
-        "preco_arroba": 137.77,
-        "desconto": null,
-        "animais_abatidos": 15,
-        "peso_total_abate": 10500.75,
-        "id_documento_romaneio": 1,
-        "id_documento_gta": 2,
-        "id_documento_nf_compra": 3,
-        "id_documento_nf_abate": 4,
-        "id_documento_nfs_matadouro": 5,
-        "id_documento_nf_retorno": 6
-    },
-    {
-        "id": 3,
-        "id_fornecedor": 1,
-        "status": "CONCLUIDA",
-        "unidades_macho": 1,
-        "unidades_femea": 2,
         "preco_arroba": 150.5,
         "desconto": null,
-        "animais_abatidos": 3,
-        "peso_total_abate": 2100.25,
-        "id_documento_romaneio": 7,
-        "id_documento_gta": 8,
-        "id_documento_nf_compra": 9,
-        "id_documento_nf_abate": 10,
+        "animais_abatidos": 15,
+        "peso_total_abate": null,
+        "id_documento_romaneio": null,
+        "id_documento_gta": null,
+        "id_documento_nf_compra": null,
+        "id_documento_nf_abate": null,
         "id_documento_nfs_matadouro": null,
-        "id_documento_nf_retorno": 11
+        "id_documento_nf_retorno": null,
+        "compra_pagamentos": [
+            {
+                "id": 2,
+                "id_compra": 1,
+                "data": "2024-03-28",
+                "meio_pagamento": "PIX",
+                "valor": 8000,
+                "id_documento_comprovante": null
+            },
+            {
+                "id": 11,
+                "id_compra": 1,
+                "data": "2024-03-28",
+                "meio_pagamento": "PIX",
+                "valor": 777,
+                "id_documento_comprovante": null
+            }
+        ],
+	"compra_pesagems": [
+            {
+                "id": 2,
+                "id_compra": 1,
+                "unidades": 10,
+                "peso": 10.25,
+                "criado_em": "2024-03-31T07:35:15.000Z"
+            }
+        ]
     }
 ]
 ```
+**Rota:** /compras/{idCompra}
+
+**Método:** GET
+
+**Formato:**
+
+```json
+{
+    "id": 3,
+    "id_fornecedor": 1,
+    "status": "CONCLUIDA",
+    "unidades_macho": 10,
+    "unidades_femea": 5,
+    "preco_arroba": 150.5,
+    "desconto": null,
+    "animais_abatidos": 15,
+    "peso_total_abate": 200.75,
+    "id_documento_romaneio": null,
+    "id_documento_gta": null,
+    "id_documento_nf_compra": null,
+    "id_documento_nf_abate": null,
+    "id_documento_nfs_matadouro": null,
+    "id_documento_nf_retorno": null,
+    "compra_pagamentos": [
+        {
+            "id": 3,
+            "id_compra": 3,
+            "data": "2024-03-28",
+            "meio_pagamento": "PIX",
+            "valor": 8001,
+            "id_documento_comprovante": null
+        },
+        {
+            "id": 4,
+            "id_compra": 3,
+            "data": "2024-03-28",
+            "meio_pagamento": "PIX",
+            "valor": 8000,
+            "id_documento_comprovante": null
+        }
+    ],
+    "compra_pesagems": [
+            {
+                "id": 2,
+                "id_compra": 4,
+                "unidades": 10,
+                "peso": 10.25,
+                "criado_em": "2024-03-31T07:35:15.000Z"
+            }
+     ]
+}
+
+```
+**Rota:** /compras
+
+**Método:** POST
+
+**Formato:**
+
+```json
+{
+    "idFornecedor": 1,
+    "status": "CONCLUIDA",
+    "unidadesMachos": 10,
+    "unidadeFemea": 5,
+    "precoArroba": 130.50,
+    "desconto": null,
+    "animaisAbatidos": 15,
+    "pesoTotalAbate": 200.75,
+    "idDocumentoRomaneio": null,
+    "idDocumentoGta": null,
+    "idDocumentoNFCompra": null,
+    "idDocumentoNFAbate": null,
+    "idDocumentoNFsMatadouro": null,
+    "idDocumentoNFRetorno": null
+}
+```
+
+## Rotas Pagamentos
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/compras/pagamentos` | Consultar os pagamentos criados |
+| GET | `/compras/pagamentos/{id}` | Consultar um pagamento pelo ID |
+| POST | `/compras/pagamento` | Criar um novo pagamento |
+| PUT | `/compras/pagamento/{id}` | Atualizar dados de um pagamento pelo ID |
+
+## Listar Pagamentos
+
+**Rota:** /compras/pagamentos
+
+**Método:** GET
+
+**Formato:**
+
+```json
+[
+    {
+        "id": 2,
+        "id_compra": 4,
+        "data": "2024-03-28",
+        "meio_pagamento": "PIX",
+        "valor": 8000,
+        "id_documento_comprovante": null
+    }
+]
+```
+
+
+**Rota:** /compras/pagamentos/{idPagamentos}
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+{
+	"id": 2,
+        "id_compra": 4,
+        "data": "2024-03-28",
+        "meio_pagamento": "PIX",
+        "valor": 8000,
+	"id_documento_comprovante": null
+}
+```
+
+**Rota:** /compras/pagamentos
+
+**Método:** POST
+
+**Formato:**
+
+```json
+
+{
+    "id_compra": 4,
+    "data": "2024-03-28",
+    "meio_pagamento": "PIX",
+    "valor": 1000.00,
+    "id_documento_comprovante": null
+}
+
+```
+
+## Rotas Pesagens
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/compras/pesagens` | Consultar as pesagens criadas |
+| GET | `/compras/pesagens/{id}` | Consultar uma pesagem pelo ID |
+| POST | `/compras/pesagens` | Criar uma nova pesagem |
+| PUT | `/compras/pesagens/{id}` | Atualizar dados de uma pesagem pelo ID |
+
+## Listar Pagamentos
+
+**Rota:** /compras/pesagens
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+[
+    {
+        "id": 2,
+        "id_compra": 4,
+        "unidades": 10,
+        "peso": 1300.25,
+        "criado_em": "2024-03-31T07:35:15.000Z"
+    }
+]
+
+```
+
+
+
+**Rota:** /compras/pesagens/{idPesagem}
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+
+{
+        "id": 2,
+        "id_compra": 4,
+        "unidades": 10,
+        "peso": 1200.25,
+        "criado_em": "2024-03-31T07:35:15.000Z"
+}
+```
+
+**Rota:** /compras/pesagens/
+
+**Método:** POST
+
+**Formato:**
+
+```json
+
+
+{
+    "id_compra": 10,
+    "unidades": 5,
+    "peso": 1300
+}
+
+```
+
+

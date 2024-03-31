@@ -47,12 +47,11 @@ async function httpPostManyComprasPagamentos(req, res){
     try {
         const idCompra = req.params.id;
         const pagamentos =  req.body;
-        console.log(`\n Pagamentos: ${req}`);
 
         pagamentos.pagamento.forEach( pagamento => {
             pagamento.id_compra = idCompra;
         });
-        const result = await postManyComprasPagamentos(pagamentos);
+        const result = await postManyComprasPagamentos(pagamentos.pagamento);
         return res.status(201).json(result);
     } catch (error) {
         return res.status(500).json({ erro: error.message });

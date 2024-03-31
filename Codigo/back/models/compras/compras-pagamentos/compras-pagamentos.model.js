@@ -48,8 +48,7 @@ async function postComprasPagamentos(
 
 async function postManyComprasPagamentos(pagamentos){  
     try{
-        const resultPagamentos =  await ComprasPagamentos.bulkCreate(pagamentos);
-        return resultPagamentos;
+        return await ComprasPagamentos.bulkCreate(pagamentos);
     }catch(error){
         throw new Error(`Erro ao criar pagamento: ${error.message}`);
     }

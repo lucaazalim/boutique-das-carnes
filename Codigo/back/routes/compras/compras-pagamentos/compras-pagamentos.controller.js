@@ -1,4 +1,9 @@
-const {getAllComprasPagamentos, getComprasPagamentosById, postComprasPagamentos, updateCompraPagamentoById} = require('../../../models/compras/compras-pagamentos/compras-pagamentos.model');
+const {getAllComprasPagamentos,
+     getComprasPagamentosById,
+    postComprasPagamentos,
+    updateCompraPagamentoById,
+    postManyComprasPagamentos,
+} = require('../../../models/compras/compras-pagamentos/compras-pagamentos.model');
 
 async function httpGetAllComprasPagamentos(req, res){
     try {
@@ -36,6 +41,24 @@ async function httpPostComprasPagamentos(req, res){
     }
 }
 
+
+
+async function httpPostManyComprasPagamentos(req, res){
+    try {
+        const idCompra = req.params.id;
+        const pagamentos =  req.body;
+        console.log(`\n Pagamentos: ${req}`);
+
+        pagamentos.pagamento.forEach( pagamento => {
+            pagamento.id_compra = idCompra;
+        });
+        const result = await postManyComprasPagamentos(pagamentos);
+        return res.status(201).json(result);
+    } catch (error) {
+        return res.status(500).json({ erro: error.message });
+    }
+}
+
 async function httpPutCompraPagamentoById(req, res){
     try {
         const id = req.params.id;
@@ -59,5 +82,6 @@ module.exports = {
     httpGetAllComprasPagamentos,
     httpGetComprasPagamentosById,
     httpPostComprasPagamentos,
-    httpPutCompraPagamentoById
+    httpPutCompraPagamentoById,
+    httpPostManyComprasPagamentos
 }

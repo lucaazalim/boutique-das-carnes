@@ -4,7 +4,8 @@ const {
     httpGetAllComprasPagamentos,
     httpGetComprasPagamentosById,
     httpPostComprasPagamentos,
-    httpPutCompraPagamentoById
+    httpPutCompraPagamentoById,
+    httpPostManyComprasPagamentos
 } = require('./compras-pagamentos/compras-pagamentos.controller');
 
 const {
@@ -31,6 +32,7 @@ comprasRouter.put('/pesagens/:id', httpPutCompraPesagensById);
 comprasRouter.get('/pagamentos/',httpGetAllComprasPagamentos);
 comprasRouter.get('/pagamentos/:id', httpGetComprasPagamentosById);
 comprasRouter.post('/pagamentos/', httpPostComprasPagamentos);
+comprasRouter.post('/:id/pagamentos/', httpPostManyComprasPagamentos);
 comprasRouter.put('/pagamentos/:id', httpPutCompraPagamentoById);
 
 comprasRouter.get('/', httpGetAllCompras);

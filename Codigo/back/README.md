@@ -396,3 +396,72 @@
 
 ```
 
+## Rotas Pesagens
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/compras/pesagens` | Consultar as pesagens criadas |
+| GET | `/compras/pesagens/{id}` | Consultar uma pesagem pelo ID |
+| POST | `/compras/pesagens` | Criar uma nova pesagem |
+| PUT | `/compras/pesagens/{id}` | Atualizar dados de uma pesagem pelo ID |
+
+## Listar Pagamentos
+
+**Rota:** /compras/pesagens
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+[
+    {
+        "id": 2,
+        "id_compra": 4,
+        "unidades": 10,
+        "peso": 1300.25,
+        "criado_em": "2024-03-31T07:35:15.000Z"
+    }
+]
+
+```
+
+
+
+**Rota:** /compras/pesagens/{idPesagem}
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+
+{
+        "id": 2,
+        "id_compra": 4,
+        "unidades": 10,
+        "peso": 1200.25,
+        "criado_em": "2024-03-31T07:35:15.000Z"
+}
+```
+
+**Rota:** /compras/pesagens/
+
+**Método:** POST
+
+**Formato:**
+
+```json
+
+
+{
+    "id_compra": 10,
+    "unidades": 5,
+    "peso": 1300
+}
+
+```
+
+

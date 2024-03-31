@@ -329,4 +329,70 @@
 }
 ```
 
+## Rotas Pagamentos
+
+| Método | Rota | Descrição |
+| :------: | ---- | --------- |
+| GET | `/compras/pagamentos` | Consultar os pagamentos criados |
+| GET | `/compras/pagamentos/{id}` | Consultar um pagamento pelo ID |
+| POST | `/compras/pagamento` | Criar um novo pagamento |
+| PUT | `/compras/pagamento/{id}` | Atualizar dados de um pagamento pelo ID |
+
+## Listar Pagamentos
+
+**Rota:** /compras/pagamentos
+
+**Método:** GET
+
+**Formato:**
+
+```json
+[
+    {
+        "id": 2,
+        "id_compra": 4,
+        "data": "2024-03-28",
+        "meio_pagamento": "PIX",
+        "valor": 8000,
+        "id_documento_comprovante": null
+    }
+]
+```
+
+
+**Rota:** /compras/pagamentos/{idPagamentos}
+
+**Método:** GET
+
+**Formato:**
+
+```json
+
+{
+	"id": 2,
+        "id_compra": 4,
+        "data": "2024-03-28",
+        "meio_pagamento": "PIX",
+        "valor": 8000,
+	"id_documento_comprovante": null
+}
+```
+
+**Rota:** /compras/pagamentos
+
+**Método:** POST
+
+**Formato:**
+
+```json
+
+{
+    "id_compra": 4,
+    "data": "2024-03-28",
+    "meio_pagamento": "PIX",
+    "valor": 1000.00,
+    "id_documento_comprovante": null
+}
+
+```
 

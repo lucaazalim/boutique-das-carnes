@@ -351,20 +351,20 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 ```json
 {
-  "idFornecedor": 1,
+  "id_fornecedor": 1,
   "status": "CONCLUIDA",
-  "unidadesMachos": 10,
-  "unidadeFemea": 5,
-  "precoArroba": 130.5,
+  "unidades_macho": 10,
+  "unidades_femea": 5,
+  "preco_arroba": 10.50,
   "desconto": null,
-  "animaisAbatidos": 15,
-  "pesoTotalAbate": 200.75,
-  "idDocumentoRomaneio": null,
-  "idDocumentoGta": null,
-  "idDocumentoNFCompra": null,
-  "idDocumentoNFAbate": null,
-  "idDocumentoNFsMatadouro": null,
-  "idDocumentoNFRetorno": null
+  "animais_abatidos": 15,
+  "peso_total_abate": 200.75,
+  "id_documento_romaneio": null,
+  "id_documento_gta": null,
+  "id_documento_nf_compra": null,
+  "id_documento_nf_abate": null,
+  "id_documento_nfs_matadouro": null,
+  "id_documento_nf_retorno": null
 }
 ```
 
@@ -384,15 +384,17 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 **Exemplo de Requisição:**
 
 ```json
-[
-  {
-    "data": "2024-03-28",
-    "meio_pagamento": "PIX",
-    "valor": 8000,
-    "id_documento_comprovante": null
-  },
-  ...
-]
+{
+    "pagamento": [
+            {
+                "data": "2024-03-28",
+                "meio_pagamento": "PIX",
+                "valor": 66666.00,
+                "id_documento_comprovante": null
+            },
+            ...
+        ]
+}
 ```
 
 #### GET /compras/pagamentos/{id}
@@ -424,9 +426,14 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 ```json
 {
-  "unidades": 10,
-  "peso": 1300.25,
-  "criado_em": "2024-03-31T07:35:15.000Z"
+    "pesagem": [
+            {
+                "unidades": 777,
+                "peso": 5000.25,
+                "criado_em": "2024-04-01T01:27:51.000Z"
+            },
+            ...
+        ]
 }
 ```
 

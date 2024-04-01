@@ -493,6 +493,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 #### GET /compras/pesagens/{id}
 
+**Exemplo de Resposta:**
+
 ```json
 {
   "id": 2,

@@ -3,14 +3,11 @@ const { Op } = require('sequelize');
 
 const Compra = require('./compra.sequelize');
 
-async function getAllCompras(idComprasFirst, idComprasLast){
+async function getAllCompras(offset, limit){
     try {
         const compras = await Compra.findAll({
-            where: {
-                id_fornecedor: {
-                    [Op.between]: [idComprasFirst, idComprasLast]
-                }
-            }
+            offset: offset,
+            limit: limit,
         });
         return compras;
     } catch (error) {

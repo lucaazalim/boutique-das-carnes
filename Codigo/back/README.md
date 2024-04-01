@@ -179,45 +179,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
-#### GET /fornecedores/{idFornecedor}/contatos
-
-**Exemplo de Resposta:**
-
-```json
-[
-  {
-    "id": 1,
-    "id_fornecedor": 28,
-    "nome": "Contato 1",
-    "celular": "987654321",
-    "cargo": "Cargo 1"
-  },
-  {
-    "id": 2,
-    "id_fornecedor": 28,
-    "nome": "Contato 2",
-    "celular": "987654322",
-    "cargo": "Cargo 2"
-  },
-  ...
-]
-```
-
-#### GET /fornecedores/{idFornecedor}/contatos/{id}
-
-**Exemplo de Resposta:**
-
-```json
-{
-  "id": 1,
-  "id_fornecedor": 28,
-  "nome": "Contato 1",
-  "celular": "987654321",
-  "cargo": "Cargo 1"
-}
-```
-
-#### POST /fornecedores/{idFornecedor}/contatos
+#### POST /fornecedores/{id}/contatos
 
 **Exemplo de Requisição:**
 
@@ -237,7 +199,21 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ]
 ```
 
-#### PUT /fornecedores/{idFornecedor}/contatos/{id}
+#### GET /fornecedores/contatos/{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "id_fornecedor": 28,
+  "nome": "Contato 1",
+  "celular": "987654321",
+  "cargo": "Cargo 1"
+}
+```
+
+#### PUT /fornecedores/contatos/{id}
 
 **Exemplo de Requisição:**
 
@@ -403,24 +379,6 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
-#### GET /compras/{id}/pagamentos
-
-**Exemplo de Resposta:**
-
-```json
-[
-  {
-    "id": 2,
-    "id_compra": 4,
-    "data": "2024-03-28",
-    "meio_pagamento": "PIX",
-    "valor": 8000,
-    "id_documento_comprovante": null
-  },
-  ...
-]
-```
-
 #### POST /compras/{id}/pagamentos
 
 **Exemplo de Requisição:**
@@ -458,23 +416,6 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 {
   "valor": 10000
 }
-```
-
-#### GET /compras/{id}/pesagens
-
-**Exemplo de Resposta:**
-
-```json
-[
-  {
-    "id": 2,
-    "id_compra": 4,
-    "unidades": 10,
-    "peso": 1300.25,
-    "criado_em": "2024-03-31T07:35:15.000Z"
-  },
-  ...
-]
 ```
 
 #### POST /compras/{id}/pesagens

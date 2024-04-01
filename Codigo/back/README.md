@@ -1,283 +1,279 @@
-# Back-end
+# Documentação da API
 
-## Rotas Fornecedores
+## Paginação
 
-| Método | Rota | Descrição |
-| :------: | ---- | --------- |
-| GET | `/fornecedores` | Consultar os fornecedores criados |
-| GET | `/fornecedores/{id}` | Consultar o fornecedor pelo ID |
-| POST | `/fornecedores` | Criar um novo fornecedor |
-| PUT | `/fornecedores/{id}` | Atualizar dados do fornecedor pelo ID |
+As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
-## Listar Fornecedores
+- **page**: Número da página a ser consultada.
+- **page_size**: Quantidade de registros por página.
 
-**Rota:** /fornecedores
+## Rotas
 
-**Método:** GET
+### Fornecedores
 
-**Formato:**
+| Método | Rota                                         | Descrição                                       |
+| :----: | -------------------------------------------- | ----------------------------------------------- |
+|  GET   | `/fornecedores`                              | Consultar os fornecedores criados               |
+|  GET   | `/fornecedores/{id}`                         | Consultar o fornecedor pelo ID                  |
+|  POST  | `/fornecedores`                              | Criar um novo fornecedor                        |
+|  PUT   | `/fornecedores/{id}`                         | Atualizar dados do fornecedor pelo ID           |
+|  GET   | `/fornecedores/{idFornecedor}/contatos`      | Consultar todos os contatos de um fornecedor    |
+|  GET   | `/fornecedores/{idFornecedor}/contatos/{id}` | Consultar o contato do fornecedor pelo ID       |
+|  POST  | `/fornecedores/{idFornecedor}/contatos/{id}` | Criar um novo contato com o ID do fornecedor    |
+|  PUT   | `/fornecedores/{idFornecedor}/contatos/{id}` | Atualizar dados do contaot com ID do fornecedor |
 
-```json
-[
-	{
-		"id": 28,
-		"tipo": "PJ",
-		"email": "exemplo@empresa.com",
-		"telefone": "1234567890",
-		"celular": "987654321",
-		"cep": "12345678",
-		"logradouro": "Rua Exemplo",
-		"bairro": "Bairro Exemplo",
-		"numero": "123",
-		"complemento": "Comple",
-		"estado": "SP",
-		"cidade": "São Paulo",
-		"ativo": true,
-		"notas": "Notas do fornecedor",
-		"pessoa": {
-			"id_fornecedor": 28,
-			"cnpj": "121156851955",
-			"razao_social": "Empresa 123",
-			"nome_fantasia": "Empresa Number"
-		},
-		"contato": [
-			{
-				"id": 1,
-				"id_fornecedor": 28,
-				"nome": "Contato 1",
-				"celular": "987654321",
-				"cargo": "Cargo 1"
-			},
-			{
-				"id": 2,
-				"id_fornecedor": 28,
-				"nome": "Contato 2",
-				"celular": "987654322",
-				"cargo": "Cargo 2"
-			}
-		]
-	},
-	...
-]
-```
+---
 
-**Rota:** /fornecedores?page=3&page_size=5
+#### GET /fornecedores
 
-**Método:** GET
-
-**Formato:**
+**Exemplo de Resposta:**
 
 ```json
 [
-    [
-	{
-		"id": 11,
-		"tipo": "PJ",
-		"email": "contato11@exemplo.com",
-		"telefone": "1234567800",
-		"celular": "9876543200",
-		"cep": "23456-789",
-		"logradouro": "Rua Exemplo 11",
-		"bairro": "Bairro Exemplo 11",
-		"numero": "234",
-		"complemento": "Sala 111",
-		"estado": "RJ",
-		"cidade": "Rio de Janeiro",
-		"ativo": true,
-		"notas": "Notas sobre o fornecedor 11",
-		"pessoa": {
-			"id_fornecedor": 11,
-			"cnpj": "123456995555",
-			"razao_social": "Empresa sa",
-			"nome_fantasia": "Empresa"
-		},
-		"contato": []
-	},
-    ...
-    ,
-	{
-		"id": 15,
-		"tipo": "PF",
-		"email": "contato9995145@exemplo.com",
-		"telefone": "0012345678",
-		"celular": "00987654321",
-		"cep": "12345678",
-		"logradouro": "Rua Exemplo",
-		"bairro": "Bairro Exemplo",
-		"numero": "123",
-		"complemento": "Sala 101",
-		"estado": "SE",
-		"cidade": "Aracaju",
-		"ativo": true,
-		"notas": "Este é um fornecedor de exemplo",
-		"pessoa": {
-			"id_fornecedor": 15,
-			"cpf": "12345677522",
-			"nome": "Fornecedor 74852"
-		},
-		"contato": []
-	}
+  {
+    "id": 28,
+    "tipo": "PJ",
+    "email": "exemplo@empresa.com",
+    "telefone": "1234567890",
+    "celular": "987654321",
+    "cep": "12345678",
+    "logradouro": "Rua Exemplo",
+    "bairro": "Bairro Exemplo",
+    "numero": "123",
+    "complemento": "Comple",
+    "estado": "SP",
+    "cidade": "São Paulo",
+    "ativo": true,
+    "notas": "Notas do fornecedor",
+    "pessoa": {
+      "id_fornecedor": 28,
+      "cnpj": "121156851955",
+      "razao_social": "Empresa 123",
+      "nome_fantasia": "Empresa Number"
+    },
+    "contato": [
+      {
+        "id": 1,
+        "id_fornecedor": 28,
+        "nome": "Contato 1",
+        "celular": "987654321",
+        "cargo": "Cargo 1"
+      },
+      {
+        "id": 2,
+        "id_fornecedor": 28,
+        "nome": "Contato 2",
+        "celular": "987654322",
+        "cargo": "Cargo 2"
+      }
+    ]
+  },
+  ...
 ]
 ```
 
-## Rotas Fornecedores - Contatos
+#### GET /fornecedores/{id}
 
-| Método | Rota | Descrição |
-| :------: | ---- | --------- |
-| GET | `/fornecedores/contatos` | Consultar os contatos dos fornecedores criados |
-| GET | `/fornecedores/{idFornecedor}/contatos/{id}` | Consultar o contato do fornecedor pelo ID |
-| POST | `/fornecedores/{idFornecedor}/contatos/{id}` | Criar um novo contato com o ID do fornecedor |
-| PUT | `/fornecedores/{idFornecedor}/contatos/{id}` | Atualizar dados do contaot com ID do fornecedor |
-
-## Listar Fornecedores
-
-**Rota:** /fornecedores/contatos
-
-**Método:** GET
-
-**Formato:**
-
-```json
-[
-	{
-		"id": 1,
-		"id_fornecedor": 28,
-		"nome": "Contato 1",
-		"celular": "987654321",
-		"cargo": "Cargo 1"
-	},
-	{
-		"id": 2,
-		"id_fornecedor": 28,
-		"nome": "Contato 2",
-		"celular": "987654322",
-		"cargo": "Cargo 2"
-	},
-	...
-]
-```
-
-**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
-
-**Método:** POST
-
-**Formato:**
-
-```json
-[
-	{
-	"contato": [
-			{
-				"nome": "Contato 1",
-				"celular": "987654321",
-				"cargo": "Cargo 1"
-			},
-			{
-				"nome": "Contato 2",
-				"celular": "987654322",
-				"cargo": "Cargo 2"
-			}
-		]
-	}
-]
-```
-
-**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
-
-**Método:** PUT
-
-**Formato:**
+**Exemplo de Resposta:**
 
 ```json
 {
-	"nome": "Novo Nome"
+  "id": 28,
+  "tipo": "PJ",
+  "email": "exemplo@empresa.com",
+  "telefone": "1234567890",
+  "celular": "987654321",
+  "cep": "12345678",
+  "logradouro": "Rua Exemplo",
+  "bairro": "Bairro Exemplo",
+  "numero": "123",
+  "complemento": "Comple",
+  "estado": "SP",
+  "cidade": "São Paulo",
+  "ativo": true,
+  "notas": "Notas do fornecedor",
+  "pessoa": {
+    "id_fornecedor": 28,
+    "cnpj": "121156851955",
+    "razao_social": "Empresa 123",
+    "nome_fantasia": "Empresa Number"
+  },
+  "contato": [
+    {
+      "id": 1,
+      "id_fornecedor": 28,
+      "nome": "Contato 1",
+      "celular": "987654321",
+      "cargo": "Cargo 1"
+    },
+    {
+      "id": 2,
+      "id_fornecedor": 28,
+      "nome": "Contato 2",
+      "celular": "987654322",
+      "cargo": "Cargo 2"
+    }
+  ]
 }
 ```
 
-**Rota:** /fornecedores/{idFornecedor}/contatos/{id}
+#### POST /fornecedores
 
-**Método:** DELETE
-
-**Formato:**
-
-```json
-
-```
-
-## Rotas Compras
-
-| Método | Rota | Descrição |
-| :------: | ---- | --------- |
-| GET | `/compras` | Consultar as compras criadas |
-| GET | `/compras/{id}` | Consultar uma compra pelo ID |
-| POST | `/compras` | Criar uma nova compra |
-| PUT | `/compras/{id}` | Atualizar dados da compra pelo ID |
-
-## Listar Compras
-
-**Rota:** /compras
-
-**Método:** GET
-
-**Formato:**
+**Exemplo de Requisição:**
 
 ```json
 [
-     {
-        "id": 1,
-        "id_fornecedor": 1,
-        "status": "CONCLUIDA",
-        "unidades_macho": 10,
-        "unidades_femea": 5,
-        "preco_arroba": 150.5,
-        "desconto": null,
-        "animais_abatidos": 15,
-        "peso_total_abate": null,
-        "id_documento_romaneio": null,
-        "id_documento_gta": null,
-        "id_documento_nf_compra": null,
-        "id_documento_nf_abate": null,
-        "id_documento_nfs_matadouro": null,
-        "id_documento_nf_retorno": null,
-        "compra_pagamentos": [
-            {
-                "id": 2,
-                "id_compra": 1,
-                "data": "2024-03-28",
-                "meio_pagamento": "PIX",
-                "valor": 8000,
-                "id_documento_comprovante": null
-            },
-            {
-                "id": 11,
-                "id_compra": 1,
-                "data": "2024-03-28",
-                "meio_pagamento": "PIX",
-                "valor": 777,
-                "id_documento_comprovante": null
-            }
-        ],
-	"compra_pesagems": [
-            {
-                "id": 2,
-                "id_compra": 1,
-                "unidades": 10,
-                "peso": 10.25,
-                "criado_em": "2024-03-31T07:35:15.000Z"
-            }
-        ]
+  {
+    "tipo": "PJ",
+    "email": "exemplo@empresa.com",
+    "telefone": "1234567890",
+    "celular": "987654321",
+    "cep": "12345678",
+    "logradouro": "Rua Exemplo",
+    "bairro": "Bairro Exemplo",
+    "numero": "123",
+    "complemento": "Comple",
+    "estado": "SP",
+    "cidade": "São Paulo",
+    "ativo": true,
+    "notas": "Notas do fornecedor",
+    "pessoa": {
+      "cnpj": "121156851955",
+      "razao_social": "Empresa 123",
+      "nome_fantasia": "Empresa Number"
     }
+  },
+  {
+    "tipo": "PF",
+    "email": "exemplo@gmail.com",
+    "telefone": "1234567890",
+    "celular": "987654321",
+    "cep": "12345678",
+    "logradouro": "Rua Exemplo",
+    "bairro": "Bairro Exemplo",
+    "numero": "123",
+    "complemento": "Comple",
+    "estado": "SP",
+    "cidade": "São Paulo",
+    "ativo": true,
+    "notas": "Notas do fornecedor",
+    "pessoa": {
+      "cpf": "12304838483",
+      "nome": "João Silva"
+    }
+  },
+  ...
 ]
 ```
-**Rota:** /compras/{idCompra}
 
-**Método:** GET
+#### PUT /fornecedores/{id}
 
-**Formato:**
+**Exemplo de Requisição:**
 
 ```json
 {
-    "id": 3,
+  "notas": "Novas notas do fornecedor",
+  "pessoa": {
+    "nome_fantasia": "Novo nome fantasia"
+  }
+}
+```
+
+#### GET /fornecedores/{idFornecedor}/contatos
+
+**Exemplo de Resposta:**
+
+```json
+[
+  {
+    "id": 1,
+    "id_fornecedor": 28,
+    "nome": "Contato 1",
+    "celular": "987654321",
+    "cargo": "Cargo 1"
+  },
+  {
+    "id": 2,
+    "id_fornecedor": 28,
+    "nome": "Contato 2",
+    "celular": "987654322",
+    "cargo": "Cargo 2"
+  },
+  ...
+]
+```
+
+#### GET /fornecedores/{idFornecedor}/contatos/{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "id_fornecedor": 28,
+  "nome": "Contato 1",
+  "celular": "987654321",
+  "cargo": "Cargo 1"
+}
+```
+
+#### POST /fornecedores/{idFornecedor}/contatos
+
+**Exemplo de Requisição:**
+
+```json
+[
+  {
+    "nome": "Contato 1",
+    "celular": "987654321",
+    "cargo": "Cargo 1"
+  },
+  {
+    "nome": "Contato 2",
+    "celular": "987654322",
+    "cargo": "Cargo 2"
+  },
+  ...
+]
+```
+
+#### PUT /fornecedores/{idFornecedor}/contatos/{id}
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "nome": "Novo Nome"
+}
+```
+
+### Compras
+
+| Método | Rota                       | Descrição                               |
+| :----: | -------------------------- | --------------------------------------- |
+|  GET   | `/compras`                 | Consultar as compras criadas            |
+|  GET   | `/compras/{id}`            | Consultar uma compra pelo ID            |
+|  POST  | `/compras`                 | Criar uma nova compra                   |
+|  PUT   | `/compras/{id}`            | Editar dados da compra pelo ID          |
+|  GET   | `/compras/{id}/pagamentos` | Consultar pagamentos de uma compra      |
+|  POST  | `/compras/{id}/pagamentos` | Criar um novo pagamento para uma compra |
+|  GET   | `/compras/pagamentos/{id}` | Consultar pagamento pelo ID             |
+|  PUT   | `/compras/pagamentos/{id}` | Editar um pagamento pelo ID             |
+| DELETE | `/compras/pagamentos/{id}` | Deletar um pagamento pelo ID            |
+|  GET   | `/compras/{id}/pesagens`   | Consultar pesagens de uma compra        |
+|  POST  | `/compras/{id}/pesagens`   | Criar nova pesagem para uma compra      |
+|  GET   | `/compras/pesagens/{id}`   | Consultar pesagem pelo ID               |
+|  PUT   | `/compras/pesagens/{id}`   | Editar pesagem pelo ID                  |
+| DELETE | `/compras/pesagens/{id}`   | Deletar uma pesagem pelo ID             |
+
+## GET /compras
+
+**Exemplo de Resposta:**
+
+```json
+[
+  {
+    "id": 1,
     "id_fornecedor": 1,
     "status": "CONCLUIDA",
     "unidades_macho": 10,
@@ -285,7 +281,7 @@
     "preco_arroba": 150.5,
     "desconto": null,
     "animais_abatidos": 15,
-    "peso_total_abate": 200.75,
+    "peso_total_abate": null,
     "id_documento_romaneio": null,
     "id_documento_gta": null,
     "id_documento_nf_compra": null,
@@ -293,245 +289,222 @@
     "id_documento_nfs_matadouro": null,
     "id_documento_nf_retorno": null,
     "compra_pagamentos": [
-        {
-            "id": 3,
-            "id_compra": 3,
-            "data": "2024-03-28",
-            "meio_pagamento": "PIX",
-            "valor": 8001,
-            "id_documento_comprovante": null
-        },
-        {
-            "id": 4,
-            "id_compra": 3,
-            "data": "2024-03-28",
-            "meio_pagamento": "PIX",
-            "valor": 8000,
-            "id_documento_comprovante": null
-        }
-    ],
-    "compra_pesagems": [
-            {
-                "id": 2,
-                "id_compra": 4,
-                "unidades": 10,
-                "peso": 10.25,
-                "criado_em": "2024-03-31T07:35:15.000Z"
-            }
-     ]
-}
-
-```
-**Rota:** /compras
-
-**Método:** POST
-
-**Formato:**
-
-```json
-{
-    "idFornecedor": 1,
-    "status": "CONCLUIDA",
-    "unidadesMachos": 10,
-    "unidadeFemea": 5,
-    "precoArroba": 130.50,
-    "desconto": null,
-    "animaisAbatidos": 15,
-    "pesoTotalAbate": 200.75,
-    "idDocumentoRomaneio": null,
-    "idDocumentoGta": null,
-    "idDocumentoNFCompra": null,
-    "idDocumentoNFAbate": null,
-    "idDocumentoNFsMatadouro": null,
-    "idDocumentoNFRetorno": null
-}
-```
-
-## Rotas Pagamentos
-
-| Método | Rota | Descrição |
-| :------: | ---- | --------- |
-| GET | `/compras/pagamentos` | Consultar os pagamentos criados |
-| GET | `/compras/{idCompra}/pagamentos/{idPagamento}` | Consultar um pagamento pelo ID |
-| POST | `/compras/pagamento` | Criar um novo pagamento |
-| POST | `/compras/{idCompra}/pagamento` | Criar novos pagamentos |
-| PUT | `/compras/{idCompra}/pagamento/{idPagamento}` | Atualizar dados de um pagamento pelo ID |
-
-## Listar Pagamentos
-
-**Rota:** /compras/pagamentos
-
-**Método:** GET
-
-**Formato:**
-
-```json
-[
-    {
+      {
         "id": 2,
-        "id_compra": 4,
+        "id_compra": 1,
         "data": "2024-03-28",
         "meio_pagamento": "PIX",
         "valor": 8000,
         "id_documento_comprovante": null
-    }
+      },
+      {
+        "id": 11,
+        "id_compra": 1,
+        "data": "2024-03-28",
+        "meio_pagamento": "PIX",
+        "valor": 777,
+        "id_documento_comprovante": null
+      }
+    ],
+    "compra_pesagems": [
+      {
+        "id": 2,
+        "id_compra": 1,
+        "unidades": 10,
+        "peso": 10.25,
+        "criado_em": "2024-03-31T07:35:15.000Z"
+      }
+    ]
+  },
+  ...
 ]
 ```
 
+#### GET /compras/{id}
 
-**Rota:** /compras/pagamentos/{idPagamentos}
-
-**Método:** GET
-
-**Formato:**
+**Exemplo de Resposta:**
 
 ```json
-
 {
-	"id": 2,
-        "id_compra": 4,
-        "data": "2024-03-28",
-        "meio_pagamento": "PIX",
-        "valor": 8000,
-	"id_documento_comprovante": null
+  "id": 3,
+  "id_fornecedor": 1,
+  "status": "CONCLUIDA",
+  "unidades_macho": 10,
+  "unidades_femea": 5,
+  "preco_arroba": 150.5,
+  "desconto": null,
+  "animais_abatidos": 15,
+  "peso_total_abate": 200.75,
+  "id_documento_romaneio": null,
+  "id_documento_gta": null,
+  "id_documento_nf_compra": null,
+  "id_documento_nf_abate": null,
+  "id_documento_nfs_matadouro": null,
+  "id_documento_nf_retorno": null,
+  "compra_pagamentos": [
+    {
+      "id": 3,
+      "id_compra": 3,
+      "data": "2024-03-28",
+      "meio_pagamento": "PIX",
+      "valor": 8001,
+      "id_documento_comprovante": null
+    },
+    {
+      "id": 4,
+      "id_compra": 3,
+      "data": "2024-03-28",
+      "meio_pagamento": "PIX",
+      "valor": 8000,
+      "id_documento_comprovante": null
+    }
+  ],
+  "compra_pesagems": [
+    {
+      "id": 2,
+      "id_compra": 4,
+      "unidades": 10,
+      "peso": 10.25,
+      "criado_em": "2024-03-31T07:35:15.000Z"
+    }
+  ]
 }
 ```
 
-**Rota:** /compras/pagamentos
+#### POST /compras
 
-**Método:** POST
-
-**Formato:**
+**Exemplo de Requisição:**
 
 ```json
-
 {
+  "idFornecedor": 1,
+  "status": "CONCLUIDA",
+  "unidadesMachos": 10,
+  "unidadeFemea": 5,
+  "precoArroba": 130.5,
+  "desconto": null,
+  "animaisAbatidos": 15,
+  "pesoTotalAbate": 200.75,
+  "idDocumentoRomaneio": null,
+  "idDocumentoGta": null,
+  "idDocumentoNFCompra": null,
+  "idDocumentoNFAbate": null,
+  "idDocumentoNFsMatadouro": null,
+  "idDocumentoNFRetorno": null
+}
+```
+
+#### PUT /compras/{id}
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "status": "CANCELADA",
+  "unidadesMachos": 5
+}
+```
+
+#### GET /compras/{id}/pagamentos
+
+**Exemplo de Resposta:**
+
+```json
+[
+  {
+    "id": 2,
     "id_compra": 4,
     "data": "2024-03-28",
     "meio_pagamento": "PIX",
-    "valor": 1000.00,
+    "valor": 8000,
     "id_documento_comprovante": null
-}
-
-```
-
-**Rota:** /compras/{idCompra}/pagamentos
-
-**Método:** POST
-
-**Formato:**
-
-```json
-{
-    "pagamento": [
-            {
-                "data": "2024-03-28",
-                "meio_pagamento": "PIX",
-                "valor": 66666.00,
-                "id_documento_comprovante": null
-            },
-            {
-                "data": "2024-03-28",
-                "meio_pagamento": "PIX",
-                "valor": 222222.00,
-                "id_documento_comprovante": null
-            }
-        ]
-}
-```
-
-## Rotas Pesagens
-
-| Método | Rota | Descrição |
-| :------: | ---- | --------- |
-| GET | `/compras/pesagens` | Consultar as pesagens criadas |
-| GET | `/compras/{idCompra}/pesagens/{id}` | Consultar uma pesagem pelo ID |
-| POST | `/compras/pesagens` | Criar uma nova pesagem |
-| POST | `/compras/{idCompra}/pesagens` | Criar novas pesagens |
-| PUT | `/compras/{idCompra}/pesagens/{id}` | Atualizar dados de uma pesagem pelo ID |
-
-## Listar Pagamentos
-
-**Rota:** /compras/pesagens
-
-**Método:** GET
-
-**Formato:**
-
-```json
-
-[
-    {
-        "id": 2,
-        "id_compra": 4,
-        "unidades": 10,
-        "peso": 1300.25,
-        "criado_em": "2024-03-31T07:35:15.000Z"
-    }
+  },
+  ...
 ]
-
 ```
 
+#### POST /compras/{id}/pagamentos
 
-
-**Rota:** /compras/pesagens/{idPesagem}
-
-**Método:** GET
-
-**Formato:**
+**Exemplo de Requisição:**
 
 ```json
+[
+  {
+    "data": "2024-03-28",
+    "meio_pagamento": "PIX",
+    "valor": 8000,
+    "id_documento_comprovante": null
+  },
+  ...
+]
+```
 
+#### GET /compras/pagamentos/{id}
 
+```json
 {
-        "id": 2,
-        "id_compra": 4,
-        "unidades": 10,
-        "peso": 1200.25,
-        "criado_em": "2024-03-31T07:35:15.000Z"
+  "id": 2,
+  "id_compra": 4,
+  "data": "2024-03-28",
+  "meio_pagamento": "PIX",
+  "valor": 8000,
+  "id_documento_comprovante": null
 }
 ```
 
-**Rota:** /compras/pesagens/
+#### PUT /compras/pagamentos/{id}
 
-**Método:** POST
+**Exemplo de Requisição:**
 
-**Formato:**
+```json
+{
+  "valor": 10000
+}
+```
+
+#### GET /compras/{id}/pesagens
+
+**Exemplo de Resposta:**
+
+```json
+[
+  {
+    "id": 2,
+    "id_compra": 4,
+    "unidades": 10,
+    "peso": 1300.25,
+    "criado_em": "2024-03-31T07:35:15.000Z"
+  },
+  ...
+]
+```
+
+#### POST /compras/{id}/pesagens
+
+**Exemplo de Requisição:**
 
 ```json
 
-
-{
-    "id_compra": 10,
-    "unidades": 5,
-    "peso": 1300
-}
-
 ```
 
-
-
-**Rota:** /compras/{idCompra}/pesagens
-
-**Método:** POST
-
-**Formato:**
+#### GET /compras/pesagens/{id}
 
 ```json
-
 {
-    "pesagem": [
-            {
-		"unidades": 777,
-                "peso": 5000.25,
-            },
-            {
-                "unidades": 333,
-                "peso": 5000.25,
-            }
-        ]
+  "id": 2,
+  "id_compra": 4,
+  "unidades": 10,
+  "peso": 1300.25,
+  "criado_em": "2024-03-31T07:35:15.000Z"
 }
-
 ```
 
+#### PUT /compras/pesagens/{id}
 
+**Exemplo de Requisição:**
+
+```json
+{
+  "unidades": 15
+}
+```

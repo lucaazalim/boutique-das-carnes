@@ -1,9 +1,17 @@
 const { Model } = require('sequelize');
+const { Op } = require('sequelize');
+
 const Compra = require('./compra.sequelize');
 
-async function getAllCompras(){
+async function getAllCompras(idComprasFirst, idComprasLast){
     try {
-        const compras = await Compra.findAll();
+        const compras = await Compra.findAll({
+            where: {
+                id_fornecedor: {
+                    [Op.between]: [idComprasFirst, idComprasLast]
+                }
+            }
+        });
         return compras;
     } catch (error) {
         throw new Error(`Erro ao obter todas as compras: ${error.message}`);

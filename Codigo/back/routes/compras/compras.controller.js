@@ -1,9 +1,17 @@
-const {getAllCompras, getCompraById, postCompra, updateCompraById} = require('../../models/compras/compra.model');
+const {
+    getAllCompras,
+    getCompraById, 
+    postCompra, 
+    updateCompraById
+} = require('../../models/compras/compra.model');
+
+const getPagination = require('../../services/query.service');
 
 
 async function httpGetAllCompras(req, res){
+    const { offset, limit } = getPagination(req.query);
     try{
-        const resultado = await getAllCompras();
+        const resultado = await getAllCompras(offset, limit);
         return res.status(200).json(resultado);
     }catch(error){
         return res.status(500).json({error: error.message})

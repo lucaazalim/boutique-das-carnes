@@ -62,14 +62,6 @@ async function updateContatos(id, nome, celular, cargo) {
     
 }
 
-async function getAllContatos() {
-    try {
-        return await FornecedorContato.findAll();
-    } catch (error) {
-        throw new Error(error);
-    }
-}
-
 async function deleteContatos(id) {
 
     try {
@@ -97,6 +89,5 @@ module.exports = {
     getAllFornecedorContatos,
     getByIdContatos,
     updateContatos,
-    getAllContatos,
     deleteContatos
 }

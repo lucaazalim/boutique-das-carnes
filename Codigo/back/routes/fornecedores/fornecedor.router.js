@@ -7,18 +7,18 @@ const {
     httpUpdateFornecedores
 } = require('./fornecedor.controller')
 const {
-    httpGetAllFornecedorContatos,
     httpPostFornecedorContatos,
     httpPutFornecedorContatos,
-    httpDeleteFornecedorContatos
+    httpDeleteFornecedorContatos,
+    httpGetByIdForncedorContatos
 } = require('./fornecedores-contatos/fornecedor-contato.controller');
 
 
 // Rotas para contatos de fornecedores => /fornecedores
-routerFornecedor.get('/contatos', httpGetAllFornecedorContatos);
-routerFornecedor.post('/:idFornecedor/contatos', httpPostFornecedorContatos);
-routerFornecedor.put('/:idFornecedor/contatos/:id', httpPutFornecedorContatos);
-routerFornecedor.delete('/:idFornecedor/contatos/:id', httpDeleteFornecedorContatos);
+routerFornecedor.post('/:id_fornecedor/contatos', httpPostFornecedorContatos);
+routerFornecedor.get('/contatos/:id', httpGetByIdForncedorContatos);
+routerFornecedor.put('/contatos/:id', httpPutFornecedorContatos);
+routerFornecedor.delete('/contatos/:id', httpDeleteFornecedorContatos);
 
 // Rotas para fornecedores
 routerFornecedor.get('/', httpGetAllFornecedores);

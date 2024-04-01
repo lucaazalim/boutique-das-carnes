@@ -1,14 +1,16 @@
 const {
-    getAllContatos,
+    getByIdContatos,
     createContatos,
     updateContatos,
     deleteContatos
 } = require('../../../models/fornecedores/contatos/fornecedor-contato.model');
 
 
-async function httpGetAllFornecedorContatos(req, res) {
+async function httpGetByIdForncedorContatos(req, res) {
     
-    getAllContatos()
+    const id = req.params.id;
+
+    getByIdContatos(id)
         .then(contatos => {
             res.status(200).json(contatos);
         })
@@ -20,7 +22,7 @@ async function httpGetAllFornecedorContatos(req, res) {
 
 async function httpPostFornecedorContatos(req, res) {
         
-    const id = req.params.idFornecedor;
+    const id = req.params.id_fornecedor;
     const contatos = req.body;
 
     contatos.contato.forEach(contato => {
@@ -67,7 +69,7 @@ async function httpDeleteFornecedorContatos(req, res) {
 }
 
 module.exports = {
-    httpGetAllFornecedorContatos,
+    httpGetByIdForncedorContatos,
     httpPostFornecedorContatos,
     httpPutFornecedorContatos,
     httpDeleteFornecedorContatos

@@ -56,7 +56,7 @@ async function postManyComprasPesagem(pesagens){
     }
 }
 
-async function deletComprasPesagensById(idPesagem){
+async function deleteComprasPesagensById(idPesagem){
     try{
         return CompraPesagens.destroy({
             where: {
@@ -73,5 +73,5 @@ module.exports = {
     postCompraPesagem,
     updateCompraPesagemById,
     postManyComprasPesagem,
-    deletComprasPesagensById
+    deleteComprasPesagensById
 };

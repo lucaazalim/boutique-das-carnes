@@ -63,6 +63,13 @@ async function postCompra(
 
 }
 
+async function compraExistOnDb(idCompra){
+    const compra = await Compra.findOne({where: {id: idCompra}});
+    if(!compra){
+        throw new Error (`O banco de dados nao possue compras com o id: ${idCompra}`); 
+    }
+}
+
 async function updateCompraById(
     id,
     id_fornecedor,
@@ -112,4 +119,5 @@ module.exports = {
     getCompraById,
     postCompra,
     updateCompraById,
+    compraExistOnDb
 } 

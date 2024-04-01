@@ -4,8 +4,12 @@ const {
     postCompraPesagem,
     updateCompraPesagemById,
     postManyComprasPesagem,
-    deletComprasPesagensById
+    deleteComprasPesagensById
 } = require('../../../models/compras/compras-pesagens/compras-pesagens.model');
+
+const {
+    compraExistOnDb
+} = require('../../../models/compras/compra.model');
 
 
 async function httpGetAllComprasPesagens(req, res) {
@@ -57,8 +61,10 @@ async function httpPostManyCompraPesagens(req, res){
             pesagem.id_compra = idCompra;
         });
 
+        await compraExistOnDb(idCompra);
         const result = await postManyComprasPesagem(pesagens.pesagem);
         return res.status(200).json(result);
+
     }catch(error){
         return res.status(400).json({error: error.message});
     }
@@ -67,7 +73,7 @@ async function httpPostManyCompraPesagens(req, res){
 async function httpDeleteCompraPesagensById(req, res){
     try{
         const idPesagem = req.params.id;
-        const result = await deletComprasPesagensById(idPesagem);
+        const result = await deleteComprasPesagensById(idPesagem);
         if(result){
             res.status(200).json({
                 "status": "success",

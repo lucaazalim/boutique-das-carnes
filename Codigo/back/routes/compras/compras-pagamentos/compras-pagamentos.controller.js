@@ -6,6 +6,10 @@ const {getAllComprasPagamentos,
     deleteCompraPagamentoById
 } = require('../../../models/compras/compras-pagamentos/compras-pagamentos.model');
 
+const {
+    compraExistOnDb
+} = require('../../../models/compras/compra.model');
+
 async function httpGetAllComprasPagamentos(req, res){
     try {
         const result = await getAllComprasPagamentos();
@@ -35,8 +39,13 @@ async function httpPostComprasPagamentos(req, res){
             id_documento_comprovante
         } = req.body;
 
-        const result = await postComprasPagamentos(id_compra, data, meio_pagamento, valor, id_documento_comprovante);
-        return res.status(201).json(result);
+        if(compraExistOnDb(id_compra)){
+            const result = await postComprasPagamentos(id_compra, data, meio_pagamento, valor, id_documento_comprovante);
+            return res.status(201).json(result);
+        }else{
+            throw new Error(`O banco de dados nao possue compras com o id: ${id_compra}`);
+        }
+
     } catch (error) {
         return res.status(400).json({ erro: error.message });
     }
@@ -49,14 +58,14 @@ async function httpPostManyComprasPagamentos(req, res){
         const idCompra = req.params.idCompra;
         const pagamentos =  req.body;
 
-        console.log("**req**", req);
-        console.log("**req.body**", req.body);
-
         pagamentos.pagamento.forEach( pagamento => {
             pagamento.id_compra = idCompra;
         });
+
+        await compraExistOnDb(idCompra);
         const result = await postManyComprasPagamentos(pagamentos.pagamento);
         return res.status(201).json(result);
+
     } catch (error) {
         return res.status(400).json({ erro: error.message });
     }
@@ -72,7 +81,6 @@ async function httpPutCompraPagamentoById(req, res){
             valor, 
             id_documento_comprovante
         } = req.body;
-        
         const result = await updateCompraPagamentoById(id, id_compra, data, meio_pagamento, valor, id_documento_comprovante);
         res.status(200).json(result);
     } catch (error) {
@@ -83,7 +91,7 @@ async function httpPutCompraPagamentoById(req, res){
 async function httpDeletePagamentoById(req, res){
     try{
         const idPagamento = req.params.id;
-        const result = deleteCompraPagamentoById(idPagamento);
+        const result = await deleteCompraPagamentoById(idPagamento);
         if(result){
             return res.status(200).json({
                 "status": "success",

@@ -85,7 +85,7 @@ async function updateCompraPagamentoById(
 
 async function deleteCompraPagamentoById(idPagamento){
     try{
-        await ComprasPagamentos.destroy({
+        return await ComprasPagamentos.destroy({
             where: {
                 id: idPagamento
             }

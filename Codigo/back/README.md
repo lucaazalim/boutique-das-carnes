@@ -484,7 +484,11 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 **Exemplo de Requisição:**
 
 ```json
-
+{
+  "unidades": 10,
+  "peso": 1300.25,
+  "criado_em": "2024-03-31T07:35:15.000Z"
+}
 ```
 
 #### GET /compras/pesagens/{id}

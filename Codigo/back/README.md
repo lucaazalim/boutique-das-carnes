@@ -17,7 +17,6 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 |  GET   | `/fornecedores/{id}`          | Consultar o fornecedor pelo ID        |
 |  POST  | `/fornecedores`               | Criar um novo fornecedor              |
 |  PUT   | `/fornecedores/{id}`          | Atualizar dados do fornecedor pelo ID |
-|  GET   | `/fornecedores/{id}/contatos` | Consultar contatos de um fornecedor   |
 |  POST  | `/fornecedores/{id}/contatos` | Criar novo contato para um fornecedor |
 |  GET   | `/fornecedores/contatos/{id}` | Consultar contato pelo ID             |
 |  PUT   | `/fornecedores/contatos/{id}` | Editar contato pelo ID                |
@@ -256,12 +255,10 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 |  GET   | `/compras/{id}`            | Consultar uma compra pelo ID            |
 |  POST  | `/compras`                 | Criar uma nova compra                   |
 |  PUT   | `/compras/{id}`            | Editar dados da compra pelo ID          |
-|  GET   | `/compras/{id}/pagamentos` | Consultar pagamentos de uma compra      |
 |  POST  | `/compras/{id}/pagamentos` | Criar um novo pagamento para uma compra |
 |  GET   | `/compras/pagamentos/{id}` | Consultar pagamento pelo ID             |
 |  PUT   | `/compras/pagamentos/{id}` | Editar um pagamento pelo ID             |
 | DELETE | `/compras/pagamentos/{id}` | Deletar um pagamento pelo ID            |
-|  GET   | `/compras/{id}/pesagens`   | Consultar pesagens de uma compra        |
 |  POST  | `/compras/{id}/pesagens`   | Criar nova pesagem para uma compra      |
 |  GET   | `/compras/pesagens/{id}`   | Consultar pesagem pelo ID               |
 |  PUT   | `/compras/pesagens/{id}`   | Editar pesagem pelo ID                  |

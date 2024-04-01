@@ -5,6 +5,10 @@ const ComprasPagamentos = sequelize.define('compra_pagamento', {
     id_compra: {
       type: DataTypes.BIGINT,
       allowNull: false,
+      references: {
+        model: 'compra',
+        key: 'id',
+      },
     },
     data: {
       type: DataTypes.DATEONLY,

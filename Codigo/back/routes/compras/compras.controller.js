@@ -26,20 +26,20 @@ async function httpGetCompraByID(req, res){
 async function httpPostCompra(req, res){
 
     const { 
-        idFornecedor: id_fornecedor, 
+        id_fornecedor: id_fornecedor, 
         status, 
-        unidadesMachos: unidades_macho,     
-        unidadeFemea: unidades_femea, 
-        precoArroba: preco_arroba, 
+        unidades_macho: unidades_macho,     
+        unidades_femea: unidades_femea, 
+        preco_arroba: preco_arroba, 
         desconto, 
-        animaisAbatidos: animais_abatidos, 
-        pesoTotalAbate: peso_total_abate, 
-        idDocumentoRomaneio: id_documento_romaneio, 
-        idDocumentoGta: id_documento_gta, 
-        idDocumentoNFCompra: id_documento_nf_compra, 
-        idDocumentoNFAbate: id_documento_nf_abate, 
-        idDocumentoNFsMatadouro: id_documento_nfs_matadouro, 
-        idDocumentoNFRetorno: id_documento_nf_retorno 
+        animais_abatidos: animais_abatidos, 
+        peso_total_abate: peso_total_abate, 
+        id_documento_romaneio: id_documento_romaneio, 
+        id_documento_gta: id_documento_gta, 
+        id_documento_nf_compra: id_documento_nf_compra, 
+        id_documento_nf_abate: id_documento_nf_abate, 
+        id_documento_nfs_matadouro: id_documento_nfs_matadouro, 
+        id_documento_nf_retorno: id_documento_nf_retorno 
     } = req.body;
 
     try{

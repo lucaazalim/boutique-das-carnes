@@ -5,7 +5,8 @@ const {
     httpGetComprasPagamentosById,
     httpPostComprasPagamentos,
     httpPutCompraPagamentoById,
-    httpPostManyComprasPagamentos
+    httpPostManyComprasPagamentos,
+    httpDeletePagamentoById
 } = require('./compras-pagamentos/compras-pagamentos.controller');
 
 const {
@@ -13,7 +14,8 @@ const {
     httpGetComprasPesagensById,
     httpPostComprasPesagens,
     httpPutCompraPesagensById,
-    httpPostManyCompraPesagens
+    httpPostManyCompraPesagens,
+    httpDeleteCompraPesagensById
 } = require('./compras-pesagens/compras-pesagens.controller');
 
 const {
@@ -25,17 +27,18 @@ const {
 
 const comprasRouter = express.Router();
 
-comprasRouter.get('/pesagens',httpGetAllComprasPesagens);
-comprasRouter.get('/:idCompra/pesagens/:id', httpGetComprasPesagensById);
-comprasRouter.post('/pesagens', httpPostComprasPesagens);
+comprasRouter.get('/pesagens/:id', httpGetComprasPesagensById);
 comprasRouter.post('/:idCompra/pesagens', httpPostManyCompraPesagens);
-comprasRouter.put('/:idCompra/pesagens/:id', httpPutCompraPesagensById);
+comprasRouter.put('/pesagens/:id', httpPutCompraPesagensById);
+comprasRouter.delete('/pesagens/:id', httpDeleteCompraPesagensById);
+//comprasRouter.post('/pesagens', httpPostComprasPesagens);
 
-comprasRouter.get('/pagamentos',httpGetAllComprasPagamentos);
-comprasRouter.get('/:idCompra/pagamentos/:id', httpGetComprasPagamentosById);
-comprasRouter.post('/pagamentos', httpPostComprasPagamentos);
+comprasRouter.get('/pagamentos/:id', httpGetComprasPagamentosById);
 comprasRouter.post('/:idCompra/pagamentos', httpPostManyComprasPagamentos);
-comprasRouter.put('/:idCompra/pagamentos/:id', httpPutCompraPagamentoById);
+comprasRouter.put('/pagamentos/:id', httpPutCompraPagamentoById);
+comprasRouter.delete('/pagamentos/:id', httpDeletePagamentoById);
+//comprasRouter.post('/pagamentos', httpPostComprasPagamentos);
+
 
 comprasRouter.get('/', httpGetAllCompras);
 comprasRouter.get('/:id', httpGetCompraByID);

@@ -49,6 +49,7 @@ async function postComprasPagamentos(
 async function postManyComprasPagamentos(pagamentos){  
     try{
         return await ComprasPagamentos.bulkCreate(pagamentos);
+
     }catch(error){
         throw new Error(`Erro ao criar pagamento: ${error.message}`);
     }
@@ -65,7 +66,7 @@ async function updateCompraPagamentoById(
     id_documento_comprovante
 ){
     try{
-        ComprasPagamentos.update({
+        await ComprasPagamentos.update({
                 id_compra,
                 data,
                 meio_pagamento,
@@ -82,11 +83,24 @@ async function updateCompraPagamentoById(
     }
  }
 
+async function deleteCompraPagamentoById(idPagamento){
+    try{
+        await ComprasPagamentos.destroy({
+            where: {
+                id: idPagamento
+            }
+        })
+    }catch(error){
+        throw new Error(`Erro ao deletar pagamento ${idPagamento}`);
+    }
+}
+
 
 module.exports = {
     getAllComprasPagamentos,
     getComprasPagamentosById,
     postComprasPagamentos,
     updateCompraPagamentoById,
-    postManyComprasPagamentos
+    postManyComprasPagamentos,
+    deleteCompraPagamentoById
 }

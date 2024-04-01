@@ -29,7 +29,7 @@ async function postCompraPesagem(id_compra, unidades, peso) {
         });
         return compraPesagem;
     } catch (error) {
-        throw new Error(`Erro ao criar a pesagem de compra: ${error.message}`);
+        throw new Error(`Erro ao criar a pesagem: ${error.message}`);
     }
 }
 
@@ -44,7 +44,7 @@ async function updateCompraPesagemById(id, id_compra, unidades, peso) {
         });
         return await getCompraPesagemById(id);
     } catch (error) {
-        throw new Error(`Erro ao atualizar a pesagem de compra: ${error.message}`);
+        throw new Error(`Erro ao atualizar a pesagem: ${error.message}`);
     }
 }
 
@@ -52,14 +52,26 @@ async function postManyComprasPesagem(pesagens){
     try{
         return await CompraPesagens.bulkCreate(pesagens);
     }catch(error){
-        throw new Error(`Erro ao criar a pesagem de compra: ${error.message}`);
+        throw new Error(`Erro ao criar a pesagem: ${error.message}`);
     }
 }
 
+async function deletComprasPesagensById(idPesagem){
+    try{
+        return CompraPesagens.destroy({
+            where: {
+                id: idPesagem,
+            }
+        });
+    }catch(error){
+        throw new Error(`Erro ao excluir a pesagem: ${erro.message}`)
+    }
+}
 module.exports = {
     getAllCompraPesagem,
     getCompraPesagemById,
     postCompraPesagem,
     updateCompraPesagemById,
-    postManyComprasPesagem
+    postManyComprasPesagem,
+    deletComprasPesagensById
 };

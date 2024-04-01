@@ -3,7 +3,8 @@ const {
     getCompraPesagemById,
     postCompraPesagem,
     updateCompraPesagemById,
-    postManyComprasPesagem
+    postManyComprasPesagem,
+    deletComprasPesagensById
 } = require('../../../models/compras/compras-pesagens/compras-pesagens.model');
 
 
@@ -63,10 +64,28 @@ async function httpPostManyCompraPesagens(req, res){
     }
 }
 
+async function httpDeleteCompraPesagensById(req, res){
+    try{
+        const idPesagem = req.params.id;
+        const result = await deletComprasPesagensById(idPesagem);
+        if(result){
+            res.status(200).json({
+                "status": "success",
+                "message": "O recurso foi excluído com sucesso."
+            });
+        }else{
+            throw new Error(`Pesagem nao encontrada`);
+        }
+    }catch(error){
+        return res.status(500).json({ erro: error.message });
+    }
+}
+
 module.exports = {
     httpGetAllComprasPesagens,
     httpGetComprasPesagensById,
     httpPostComprasPesagens,
     httpPutCompraPesagensById,
-    httpPostManyCompraPesagens
+    httpPostManyCompraPesagens,
+    httpDeleteCompraPesagensById
 };

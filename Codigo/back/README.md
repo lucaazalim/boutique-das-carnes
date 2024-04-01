@@ -11,16 +11,17 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 ### Fornecedores
 
-| Método | Rota                                         | Descrição                                       |
-| :----: | -------------------------------------------- | ----------------------------------------------- |
-|  GET   | `/fornecedores`                              | Consultar os fornecedores criados               |
-|  GET   | `/fornecedores/{id}`                         | Consultar o fornecedor pelo ID                  |
-|  POST  | `/fornecedores`                              | Criar um novo fornecedor                        |
-|  PUT   | `/fornecedores/{id}`                         | Atualizar dados do fornecedor pelo ID           |
-|  GET   | `/fornecedores/{idFornecedor}/contatos`      | Consultar todos os contatos de um fornecedor    |
-|  GET   | `/fornecedores/{idFornecedor}/contatos/{id}` | Consultar o contato do fornecedor pelo ID       |
-|  POST  | `/fornecedores/{idFornecedor}/contatos/{id}` | Criar um novo contato com o ID do fornecedor    |
-|  PUT   | `/fornecedores/{idFornecedor}/contatos/{id}` | Atualizar dados do contaot com ID do fornecedor |
+| Método | Rota                          | Descrição                             |
+| :----: | ----------------------------- | ------------------------------------- |
+|  GET   | `/fornecedores`               | Consultar os fornecedores criados     |
+|  GET   | `/fornecedores/{id}`          | Consultar o fornecedor pelo ID        |
+|  POST  | `/fornecedores`               | Criar um novo fornecedor              |
+|  PUT   | `/fornecedores/{id}`          | Atualizar dados do fornecedor pelo ID |
+|  GET   | `/fornecedores/{id}/contatos` | Consultar contatos de um fornecedor   |
+|  POST  | `/fornecedores/{id}/contatos` | Criar novo contato para um fornecedor |
+|  GET   | `/fornecedores/contatos/{id}` | Consultar contato pelo ID             |
+|  PUT   | `/fornecedores/contatos/{id}` | Editar contato pelo ID                |
+| DELETE | `/fornecedores/contatos/{id}` | Deletar uma pesagem pelo ID           |
 
 ---
 

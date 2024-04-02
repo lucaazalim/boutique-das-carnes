@@ -8,11 +8,11 @@ export default function Home() {
     const [page, setPage] = useState(1);
     const [open, setOpen] = useState(false);
     const [idEditar, setIdEditar] = useState('');
+    const [pessoa, setPessoa] = useState({})
 
-    const [formDataPF, setFormDataPF] = useState({
+    const [formData, setFormData] = useState({
         tipo: 'PF',
-        cpf: '',
-        nome: '',
+        pessoa: {},
         email: '',
         telefone: '',
         celular: '',
@@ -29,22 +29,42 @@ export default function Home() {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setFormDataPF((prevFormData) => ({
-            ...prevFormData,
-            [name]: value,
-        }));
+        setFormData((prevFormData) => {
+            const newFormData = {...prevFormData}
+            if (name === "tipo") {
+                if (value === 'PJ') {
+                    delete newFormData.pessoa.cpf;
+                    delete newFormData.pessoa.nome;
+                } else if (value === 'PF') {
+                    delete newFormData.pessoa.cnpj;
+                    delete newFormData.pessoa.razao_social;
+                    delete newFormData.pessoa.nome_fantasia;
+                }
+            }
+            if (name === "nome"
+                || name === "cpf"
+                || name === "cnpj"
+                || name === "razao_social"
+                || name === "nome_fantasia") {
+                newFormData.pessoa[name] = value;
+            } else {
+                newFormData[name] = value;
+            }
+            return newFormData;
+        });
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(JSON.stringify.formData)
         try {
             const res = await fetch('http://localhost:3001/fornecedores', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'aplication/json',
                 },
-                body: JSON.stringify(formDataPF),
+                body: JSON.stringify(formData),
+                redirect: 'follow'
             })
         } catch (error) {
             console.error('Erro ao inserir dado no banco')
@@ -117,87 +137,110 @@ export default function Home() {
                                 <option value='PF' defaultValue>Pessoa Física</option>
                                 <option value='PJ'>Pessoa Jurídica</option>
                             </select>
-                            <input className='text-lg p-2 bg-gray-300 rounded-md'
-                                   name='cpf'
-                                   value={formDataPF.cpf}
-                                   onChange={handleChange}
-                                   placeholder='CPF ou CNPJ'/>
-                            <input className='text-lg p-2 bg-gray-300 rounded-md'
-                                   name='nome'
-                                   value={formDataPF.nome}
-                                   onChange={handleChange}
-                                   placeholder='Razão Social ou Nome'/>
+                            {formData.tipo === 'PF' ? (
+                                <>
+                                    <input className='text-lg p-2 bg-gray-300 rounded-md'
+                                           name='cpf'
+                                           value={formData.pessoa.cpf}
+                                           onChange={handleChange}
+                                           placeholder='CPF'/>
+                                    <input className='text-lg p-2 bg-gray-300 rounded-md'
+                                           name='nome'
+                                           value={formData.pessoa.nome}
+                                           onChange={handleChange}
+                                           placeholder='Nome'/>
+                                </>
+                            ) : (
+                                <>
+                                    <input className='text-lg p-2 bg-gray-300 rounded-md'
+                                           name='cnpj'
+                                           value={formData.pessoa.cnpj}
+                                           onChange={handleChange}
+                                           placeholder='CNPJ'/>
+                                    <input className='text-lg p-2 bg-gray-300 rounded-md'
+                                           name='razao_social'
+                                           value={formData.pessoa.razao_social}
+                                           onChange={handleChange}
+                                           placeholder='Razão Social'/>
+                                    <input className='text-lg p-2 bg-gray-300 rounded-md'
+                                           name='nome_fantasia'
+                                           value={formData.pessoa.nome_fantasia}
+                                           onChange={handleChange}
+                                           placeholder='Nome Fantasia'/>
+                                </>
+                            )}
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='email'
-                                value={formDataPF.email}
+                                value={formData.email}
                                 onChange={handleChange}
                                 placeholder='E-mail'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='telefone'
-                                value={formDataPF.telefone}
+                                value={formData.telefone}
                                 onChange={handleChange}
                                 placeholder='Telefone'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='celular'
-                                value={formDataPF.celular}
+                                value={formData.celular}
                                 onChange={handleChange}
                                 placeholder='Celular'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='cep'
-                                value={formDataPF.cep}
+                                value={formData.cep}
                                 onChange={handleChange}
                                 placeholder='CEP'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='logradouro'
-                                value={formDataPF.logradouro}
+                                value={formData.logradouro}
                                 onChange={handleChange}
                                 placeholder='Logradouro'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='bairro'
-                                value={formDataPF.bairro}
+                                value={formData.bairro}
                                 onChange={handleChange}
                                 placeholder='Bairro'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='numero'
-                                value={formDataPF.numero}
+                                value={formData.numero}
                                 onChange={handleChange}
                                 placeholder='Número'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='complemento'
-                                value={formDataPF.complemento}
+                                value={formData.complemento}
                                 onChange={handleChange}
                                 placeholder='Complemento'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='estado'
-                                value={formDataPF.estado}
+                                value={formData.estado}
                                 onChange={handleChange}
                                 placeholder='Estado'/>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='cidade'
-                                value={formDataPF.cidade}
+                                value={formData.cidade}
                                 onChange={handleChange}
                                 placeholder='Cidade'/>
                             <textarea
                                 className='text-lg p-2 bg-gray-300 rounded-md col-span-2'
                                 name='notas'
-                                value={formDataPF.notas}
+                                value={formData.notas}
                                 onChange={handleChange}
                                 placeholder='Notas'/>
                         </div>
                         <div className='flex justify-between'>
                             <button
                                 className='bg-[#9e1616] p-2 rounded-md text-white font-semibold'
-                                onClick={() => {
+                                onClick={(e) => {
+                                    e.preventDefault();
                                     setOpen(!open);
                                     setIdEditar('');
                                 }}>Cancelar

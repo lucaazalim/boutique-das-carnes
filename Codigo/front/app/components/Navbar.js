@@ -4,9 +4,7 @@ import {useState} from "react";
 import Image from "next/image";
 import {useRouter} from "next/navigation";
 
-// type Props = Usuario;
-
-export default function Navbar(/* props: Props */) {
+export default function Navbar() {
     const [open, setOpen] = useState(false);
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");

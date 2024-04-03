@@ -3,7 +3,7 @@ const cors = require('cors');
 const package = require('./package.json');
 const mariadb = require('./services/mariadb.service');
 
-mariadb.connect();
+mariadb.authenticate();
 
 const app = express();
 const api = require('./routes/api');

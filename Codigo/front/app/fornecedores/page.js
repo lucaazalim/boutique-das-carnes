@@ -1,6 +1,7 @@
 'use client'
 
 import {useEffect, useState} from "react";
+import Link from "next/link";
 
 export default function Home() {
     const [pesquisa, setPesquisa] = useState('');
@@ -61,7 +62,7 @@ export default function Home() {
             const res = await fetch('http://localhost:3001/fornecedores', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'aplication/json',
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formData),
                 redirect: 'follow'
@@ -108,18 +109,14 @@ export default function Home() {
                     </thead>
                     <tbody>
                     {fornecedores.map(fornecedor => (
-                        <tr key={fornecedor.id} className='grid grid-cols-5 border-b-2 border-b-gray-100'>
+                        <tr key={fornecedor.id} className='grid grid-cols-5 border-b-2 border-b-gray-100 items-center'>
                             <td>{fornecedor.id}</td>
                             <td>{fornecedor.tipo}</td>
                             <td>{fornecedor.pessoa.cnpj || fornecedor.pessoa.cpf}</td>
                             <td>{fornecedor.pessoa.razao_social || fornecedor.pessoa.nome}</td>
                             <td className='flex justify-end'>
-                                <button className='w-[40px] h-[40px] rounded-xl bg-amber-300'
-                                        onClick={() => {
-                                            setOpen(!open);
-                                            setIdEditar(fornecedor.id);
-                                        }}>i
-                                </button>
+                                <Link href={`fornecedores/${fornecedor.id}`}
+                                      className='flex justify-center bg-yellow-400 p-2 rounded-md text-white font-semibold'>Editar</Link>
                             </td>
                         </tr>
                     ))}

@@ -1,22 +1,28 @@
 const express = require('express');
+const cors = require('cors');
+const package = require('./package.json');
+const mariadb = require('./services/mariadb.service');
+
+mariadb.connect();
+
 const app = express();
 const api = require('./routes/api');
-const cors = require('cors');
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
-app.use('/', (req, res, next) => {
-    console.log(`request made on: ${req.url}`);
-    next();
-});
-
+app.use('/', (req, res, next) => next());
 app.use(api);
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    const { description, version } = package;
+    res.json({ description, version })
 });
 
+const PORT = 3001;
 
+app.listen(PORT, () => {
+    console.log(`Boutique das Carnes API: http://localhost:${PORT}`)
+});
 
 module.exports = app;

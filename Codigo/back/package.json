@@ -1,11 +1,11 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Boutique das Carnes API",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "start.dev": "nodemon server.js -L"
+    "start": "node app",
+    "start.dev": "nodemon -L"
   },
   "author": "",
   "license": "ISC",

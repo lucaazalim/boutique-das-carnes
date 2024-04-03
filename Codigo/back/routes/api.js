@@ -7,5 +7,4 @@ const api = express();
 api.use('/fornecedores', routerFonecedor);
 api.use('/compras', routerCompra);
 
-
 module.exports = api;

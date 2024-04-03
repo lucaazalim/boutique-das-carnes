@@ -25,6 +25,10 @@ async function getAllForcedores(offset, limit) {
         limit: limit,
     });
 
+    if (fornecedor.length === 0) {
+        return [];
+    }
+
     const fornecedorFirst = fornecedor[0];
     const fornecedorLast = fornecedor[fornecedor.length - 1];
 

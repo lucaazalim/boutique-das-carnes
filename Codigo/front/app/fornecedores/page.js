@@ -10,7 +10,6 @@ export default function Home() {
     const [page, setPage] = useState(1);
     const [open, setOpen] = useState(false);
     const [idEditar, setIdEditar] = useState('');
-    const [pessoa, setPessoa] = useState({})
     const router = useRouter();
 
     const [formData, setFormData] = useState({
@@ -80,7 +79,6 @@ export default function Home() {
         fetch(`http://localhost:3001/fornecedores/${pesquisa === '' ? '' : `${pesquisa}`}`)
             .then(res => res.json())
             .then(data => setFornecedores(data))
-            .then(console.log(fornecedores))
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
     }, []);
 
@@ -240,7 +238,7 @@ export default function Home() {
                         </div>
                         <div className='flex justify-between'>
                             <button
-                                className='bg-[#9e1616] p-2 rounded-md text-white font-semibold'
+                                className='bg-[#9e1616] p-2 rounded-md text-white font-semibold  absolute bottom-[135px] left-[170px]'
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setOpen(!open);
@@ -248,9 +246,9 @@ export default function Home() {
                                 }}>Cancelar
                             </button>
                             <button
-                                className='bg-[#06BD18] p-2 rounded-md text-white font-semibold'
+                                className='bg-[#06BD18] p-2 rounded-md text-white font-semibold absolute bottom-[135px] right-[170px]'
                                 type='submit'>
-                                Enviar
+                                Criar
                             </button>
                         </div>
                     </form>

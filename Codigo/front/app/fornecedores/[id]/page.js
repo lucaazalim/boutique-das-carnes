@@ -52,8 +52,7 @@ export default function Page({ params }) {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(contatos),
-                redirect: 'follow'
+                body: JSON.stringify(contatos)
             })
         } catch (error) {
 
@@ -101,7 +100,7 @@ export default function Page({ params }) {
                             <label>Status: </label>
                             <input type='checkbox' className='w-4 h-4' name="ativo" checked={fornecedor.ativo} onChange={handleCheckboxChange} />
                         </div>
-                        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Enviar</button>
+                        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Salvar</button>
                     </div>
                 </form>
                 <div className="mt-2">

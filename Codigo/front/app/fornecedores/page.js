@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
     const [pesquisa, setPesquisa] = useState('');
@@ -10,6 +11,7 @@ export default function Home() {
     const [open, setOpen] = useState(false);
     const [idEditar, setIdEditar] = useState('');
     const [pessoa, setPessoa] = useState({})
+    const router = useRouter();
 
     const [formData, setFormData] = useState({
         tipo: 'PF',
@@ -67,6 +69,8 @@ export default function Home() {
                 body: JSON.stringify(formData),
                 redirect: 'follow'
             })
+            alert("Fornecedor criado com sucesso!");
+            router.push("/fornecedores");
         } catch (error) {
             console.error('Erro ao inserir dado no banco')
         }
@@ -76,6 +80,7 @@ export default function Home() {
         fetch(`http://localhost:3001/fornecedores/${pesquisa === '' ? '' : `${pesquisa}`}`)
             .then(res => res.json())
             .then(data => setFornecedores(data))
+            .then(console.log(fornecedores))
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
     }, []);
 

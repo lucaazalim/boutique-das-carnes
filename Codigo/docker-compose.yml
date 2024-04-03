@@ -5,7 +5,7 @@ services:
     image: mariadb:latest
     container_name: bc-mariadb
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: boutique_das_carnes

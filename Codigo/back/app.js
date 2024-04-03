@@ -15,7 +15,8 @@ app.use('/', (req, res, next) => next());
 app.use(api);
 
 app.get('/', (req, res) => {
-    res.json({ version: package.version })
+    const { description, version } = package;
+    res.json({ description, version })
 });
 
 const PORT = 3001;

@@ -148,7 +148,7 @@ DROP TABLE IF EXISTS `fornecedor_contato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor_contato` (
-  `id` bigint(20) NOT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_fornecedor` bigint(20) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `celular` varchar(11) DEFAULT NULL,

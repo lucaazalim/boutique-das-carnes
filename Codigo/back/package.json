@@ -1,16 +1,17 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "Boutique das Carnes API",
+  "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "start.dev": "nodemon server.js -L"
+    "start": "node app",
+    "start.dev": "nodemon -L"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "eslint": "^8.57.0",
     "express": "^4.19.0",
     "mariadb": "^3.3.0",
     "nodemon": "^3.1.0",

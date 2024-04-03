@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Build the Next.js app
-RUN npm run build
+# RUN npm run build
 
 # Command to run the Next.js app
 CMD ["npm", "run", "dev"]

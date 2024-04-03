@@ -2,13 +2,14 @@
 FROM node:18-alpine
 
 # Create app directory
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package*.json ./
 RUN npm install
 
-COPY . .
+# COPY . .
 
 # Exports
 CMD [ "npm", "run", "start.dev" ]

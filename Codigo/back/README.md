@@ -525,7 +525,6 @@ const options = {
   method: "POST",
   headers: {
     "Content-Type": "multipart/form-data",
-    "User-Agent": "insomnia/8.6.1",
   },
 };
 

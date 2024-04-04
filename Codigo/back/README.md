@@ -240,7 +240,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 |  PUT   | `/compras/pesagens/{id}`   | Editar pesagem pelo ID                  |
 | DELETE | `/compras/pesagens/{id}`   | Deletar uma pesagem pelo ID             |
 
-## GET /compras
+#### GET /compras
 
 **Exemplo de Resposta:**
 
@@ -355,7 +355,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "status": "CONCLUIDA",
   "unidades_macho": 10,
   "unidades_femea": 5,
-  "preco_arroba": 10.50,
+  "preco_arroba": 10.5,
   "desconto": null,
   "animais_abatidos": 15,
   "peso_total_abate": 200.75,
@@ -458,5 +458,75 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ```json
 {
   "unidades": 15
+}
+```
+
+### Documentos
+
+| Método | Rota                      | Descrição                   |
+| :----: | ------------------------- | --------------------------- |
+|  POST  | `/`                       | Criar novo documento        |
+|  GET   | `/{id}`                   | Consultar documento pelo ID |
+|  PUT   | `/{id}`                   | Editar documento pelo ID    |
+| DELETE | `/{id}`                   | Deletar documento pelo ID   |
+|  GET   | `/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
+
+#### POST /
+
+Esta rota deve ser utilizada com o Content-Type `multipart/form-data`.
+
+**Exemplo de Requisição:**
+
+```js
+const form = new FormData();
+form.append("file", "/Users/luca/Desktop/test.png");
+form.append("numero_referencia", "123");
+form.append("descricao", "Documento de teste.");
+
+const options = {
+  method: "POST",
+  headers: {
+    "Content-Type": "multipart/form-data; boundary=---011000010111000001101001",
+    "User-Agent": "insomnia/8.6.1",
+  },
+};
+
+options.body = form;
+
+fetch("http://localhost:3001/documentos", options);
+```
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "numero_referencia": "123",
+  "descricao": "Documento de teste.",
+  "nome_arquivo": "documento-1.png"
+}
+```
+
+#### GET /{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "numero_referencia": "123",
+  "descricao": "Documento de teste.",
+  "nome_arquivo": "documento-1.png"
+}
+```
+
+#### PUT /{id}
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "numero_referencia": "456",
+  "descricao": "Nova descrição do documento."
 }
 ```

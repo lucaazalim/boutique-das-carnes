@@ -72,6 +72,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ]
 ```
 
+---
+
 #### GET /fornecedores/{id}
 
 **Exemplo de Resposta:**
@@ -116,6 +118,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   ]
 }
 ```
+
+---
 
 #### POST /fornecedores
 
@@ -166,6 +170,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ]
 ```
 
+---
+
 #### PUT /fornecedores/{id}
 
 **Exemplo de Requisição:**
@@ -178,6 +184,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   }
 }
 ```
+
+---
 
 #### POST /fornecedores/{id}/contatos
 
@@ -199,6 +207,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ]
 ```
 
+---
+
 #### GET /fornecedores/contatos/{id}
 
 **Exemplo de Resposta:**
@@ -212,6 +222,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "cargo": "Cargo 1"
 }
 ```
+
+---
 
 #### PUT /fornecedores/contatos/{id}
 
@@ -239,6 +251,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 |  GET   | `/compras/pesagens/{id}`   | Consultar pesagem pelo ID               |
 |  PUT   | `/compras/pesagens/{id}`   | Editar pesagem pelo ID                  |
 | DELETE | `/compras/pesagens/{id}`   | Deletar uma pesagem pelo ID             |
+
+---
 
 #### GET /compras
 
@@ -294,6 +308,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 ]
 ```
 
+---
+
 #### GET /compras/{id}
 
 **Exemplo de Resposta:**
@@ -345,6 +361,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 #### POST /compras
 
 **Exemplo de Requisição:**
@@ -368,6 +386,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 #### PUT /compras/{id}
 
 **Exemplo de Requisição:**
@@ -378,6 +398,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "unidadesMachos": 5
 }
 ```
+
+---
 
 #### POST /compras/{id}/pagamentos
 
@@ -397,6 +419,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 #### GET /compras/pagamentos/{id}
 
 ```json
@@ -410,6 +434,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 #### PUT /compras/pagamentos/{id}
 
 **Exemplo de Requisição:**
@@ -419,6 +445,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "valor": 10000
 }
 ```
+
+---
 
 #### POST /compras/{id}/pesagens
 
@@ -437,6 +465,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 #### GET /compras/pesagens/{id}
 
 **Exemplo de Resposta:**
@@ -450,6 +480,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "criado_em": "2024-03-31T07:35:15.000Z"
 }
 ```
+
+---
 
 #### PUT /compras/pesagens/{id}
 
@@ -470,6 +502,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 |  PUT   | `/{id}`                   | Editar documento pelo ID    |
 | DELETE | `/{id}`                   | Deletar documento pelo ID   |
 |  GET   | `/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
+
+---
 
 #### POST /documentos
 
@@ -507,6 +541,8 @@ fetch("http://localhost:3001/documentos", options);
 }
 ```
 
+---
+
 #### GET /documentos/{id}
 
 **Exemplo de Resposta:**
@@ -519,6 +555,8 @@ fetch("http://localhost:3001/documentos", options);
   "nome_arquivo": "documento-1.png"
 }
 ```
+
+---
 
 #### PUT /documentos/{id}
 

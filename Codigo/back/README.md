@@ -235,6 +235,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 }
 ```
 
+---
+
 ### Compras
 
 | Método | Rota                       | Descrição                               |
@@ -492,6 +494,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "unidades": 15
 }
 ```
+
+---
 
 ### Documentos
 

@@ -524,7 +524,7 @@ form.append("descricao", "Documento de teste.");
 const options = {
   method: "POST",
   headers: {
-    "Content-Type": "multipart/form-data; boundary=---011000010111000001101001",
+    "Content-Type": "multipart/form-data",
     "User-Agent": "insomnia/8.6.1",
   },
 };

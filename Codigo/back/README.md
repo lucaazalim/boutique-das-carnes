@@ -521,16 +521,13 @@ form.append("file", "/Users/luca/Desktop/test.png");
 form.append("numero_referencia", "123");
 form.append("descricao", "Documento de teste.");
 
-const options = {
+fetch("http://localhost:3001/documentos", {
   method: "POST",
   headers: {
     "Content-Type": "multipart/form-data",
   },
-};
-
-options.body = form;
-
-fetch("http://localhost:3001/documentos", options);
+  body: form,
+});
 ```
 
 **Exemplo de Resposta:**

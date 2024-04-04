@@ -471,7 +471,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 | DELETE | `/{id}`                   | Deletar documento pelo ID   |
 |  GET   | `/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
 
-#### POST /
+#### POST /documentos
 
 Esta rota deve ser utilizada com o Content-Type `multipart/form-data`.
 
@@ -507,7 +507,7 @@ fetch("http://localhost:3001/documentos", options);
 }
 ```
 
-#### GET /{id}
+#### GET /documentos/{id}
 
 **Exemplo de Resposta:**
 
@@ -520,7 +520,7 @@ fetch("http://localhost:3001/documentos", options);
 }
 ```
 
-#### PUT /{id}
+#### PUT /documentos/{id}
 
 **Exemplo de Requisição:**
 

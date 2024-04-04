@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const multer = require('multer');
 const { v4: uuid } = require('uuid');
 const path = require('path');
@@ -15,6 +16,10 @@ const {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        // Cria a pasta se ela não existir
+        if (!fs.existsSync(UPLOADS_PATH)) {
+            fs.mkdirSync(UPLOADS_PATH);
+        }
         cb(null, UPLOADS_PATH);
     },
     filename: (req, file, cb) => {

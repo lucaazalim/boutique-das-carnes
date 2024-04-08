@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_fornecedor\": 4,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
+							"raw": "{\n  \"id_fornecedor\": 1,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"pagamento\": [\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 77777.00,\n                \"id_documento_comprovante\": null\n            },\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 8000.00,\n                \"id_documento_comprovante\": null\n            }\n        ]\n}",
+							"raw": "{\n    \"data\": \"2024-03-28\",\n    \"meio_pagamento\": \"PIX\",\n    \"valor\": 77777.00,\n    \"id_documento_comprovante\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,13 +103,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2/pagamentos",
+							"raw": "{{base_url}}/compras/1/pagamentos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2",
+								"1",
 								"pagamentos"
 							]
 						}
@@ -149,7 +149,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"pesagem\": [\n            {\n                \"unidades\": 777,\n                \"peso\": 5000.25,\n                \"criado_em\": \"2024-04-01T01:27:51.000Z\"\n            }\n        ]\n}",
+							"raw": "{\n    \"unidades\": 777,\n    \"peso\": 5000.25\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,13 +157,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2/pesagens",
+							"raw": "{{base_url}}/compras/1/pesagens",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2",
+								"1",
 								"pesagens"
 							]
 						}
@@ -256,13 +256,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2",
+							"raw": "{{base_url}}/compras/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -355,14 +355,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/compras/pesagens/2",
+							"raw": "{{base_url}}/compras/pesagens/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
 								"pesagens",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -401,7 +401,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"status\": \"CANCELADA\",\n  \"unidadesMachos\": 5\n}",
+							"raw": "{\n  \"status\": \"CANCELADA\",\n  \"unidades_machos\": 6\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,13 +409,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2",
+							"raw": "{{base_url}}/compras/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -454,7 +454,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"valor\": 10000\n}",
+							"raw": "{\n  \"valor\": 10002\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -508,7 +508,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"unidades\": 17\n}",
+							"raw": "{\n  \"unidades\": 18\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -657,7 +657,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838483\",\n    \"nome\": \"João Silva\"\n\t}\n}\n",
+							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838483\",\n        \"nome\": \"João Silva\"\n\t}\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -710,7 +710,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"contato\": [\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 1\",\n\t\t\t\t\"celular\": \"987654321\",\n\t\t\t\t\"cargo\": \"Cargo 1\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 2\",\n\t\t\t\t\"celular\": \"987654322\",\n\t\t\t\t\"cargo\": \"Cargo 2\"\n\t\t\t}\n\t\t]\n}",
+							"raw": "{\n    \"nome\": \"Contato 2\",\n    \"celular\": \"987654322\",\n    \"cargo\": \"Cargo 2\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -718,13 +718,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/4/contatos",
+							"raw": "{{base_url}}/fornecedores/5/contatos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"4",
+								"5",
 								"contatos"
 							]
 						}

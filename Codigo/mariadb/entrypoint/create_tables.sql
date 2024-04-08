@@ -1,4 +1,4 @@
--- MariaDB dump 10.19-11.2.2-MariaDB, for osx10.19 (arm64)
+-- MariaDB dump 10.19-11.3.2-MariaDB, for osx10.19 (arm64)
 --
 -- Host: localhost    Database: boutique_das_carnes
 -- ------------------------------------------------------
@@ -74,6 +74,8 @@ CREATE TABLE `compra_pagamento` (
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `compra_pagamento_id_documento_comprovante_FK` (`id_documento_comprovante`),
+  KEY `compra_pagamento_id_compra_FK` (`id_compra`),
+  CONSTRAINT `compra_pagamento_id_compra_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`),
   CONSTRAINT `compra_pagamento_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -108,7 +110,8 @@ CREATE TABLE `documento` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `numero_referencia` varchar(100) DEFAULT NULL,
   `descricao` text DEFAULT NULL,
-  `url_arquivo` text NOT NULL,
+  `nome_arquivo` varchar(100) DEFAULT NULL,
+  `criado_em` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -227,4 +230,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-28 16:47:29
+-- Dump completed on 2024-04-07 23:12:14

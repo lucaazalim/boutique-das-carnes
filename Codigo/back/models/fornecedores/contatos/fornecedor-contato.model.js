@@ -1,20 +1,24 @@
 const { Op } = require('sequelize');
 const FornecedorContato = require('./fornecedor-contato.sequelize');
 
-async function createContato(contato) {
+async function createFornecedorContato(contato) {
+
     try {
+
         return await FornecedorContato.create(contato);
+
     } catch (error) {
         throw new Error(error);
     }
+
 }
 
-async function getAllFornecedorContatos(idFornecedorFirt, idFornecedorLast) {
+async function getAllFornecedorContatos(idFornecedorFirst, idFornecedorLast) {
     try {
         return await FornecedorContato.findAll({
             where: {
                 id_fornecedor: {
-                    [Op.between]: [idFornecedorFirt, idFornecedorLast]
+                    [Op.between]: [idFornecedorFirst, idFornecedorLast]
                 }
             }
         });
@@ -23,61 +27,37 @@ async function getAllFornecedorContatos(idFornecedorFirt, idFornecedorLast) {
     }
 }
 
-async function getByIdContatos(id) {
-    const fornecedorContato = await FornecedorContato.findByPk(id);
-
-    if (!fornecedorContato) {
-        throw new Error('FornecedorContato não encontrado');
-    }
-
-    return fornecedorContato;
-}
-
-async function updateContatos(id, nome, celular, cargo) {
+async function getFornecedorContatoById(id) {
 
     try {
 
-        const fornecedorContato = await FornecedorContato.findByPk(id);
+        return await FornecedorContato.findByPk(id) || null;
 
-        if (!fornecedorContato) {
-            throw new Error('FornecedorContato não encontrado');
-        }
-
-        await FornecedorContato.update({
-            nome,
-            celular,
-            cargo
-        }, {
-            where: {
-                id
-            }
-        })
-
-        const fornecedorContatoAtualizado = await FornecedorContato.findByPk(id);
-
-        return fornecedorContatoAtualizado;
     } catch (error) {
         throw new Error(error);
     }
 
 }
 
-async function deleteContatos(id) {
+async function updateFornecedorContato(id, nome, celular, cargo) {
 
     try {
-        const fornecedorContato = await FornecedorContato.findByPk(id);
 
-        if (!fornecedorContato) {
-            throw new Error('FornecedorContato não encontrado');
-        }
+        await FornecedorContato.update({ nome, celular, cargo }, { where: { id } });
+        return await FornecedorContato.findByPk(id);
 
-        await FornecedorContato.destroy({
-            where: {
-                id
-            }
-        });
+    } catch (error) {
+        throw new Error(error);
+    }
 
-        return fornecedorContato;
+}
+
+async function deleteFornecedorContato(id) {
+
+    try {
+
+        return await FornecedorContato.destroy({ where: { id } });
+
     } catch (error) {
         throw new Error(error);
     }
@@ -85,9 +65,9 @@ async function deleteContatos(id) {
 }
 
 module.exports = {
-    createContato,
+    createFornecedorContato,
     getAllFornecedorContatos,
-    getByIdContatos,
-    updateContatos,
-    deleteContatos
+    getFornecedorContatoById,
+    updateFornecedorContato,
+    deleteFornecedorContato
 }

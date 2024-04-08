@@ -93,7 +93,7 @@ async function httpDeletePagamentoById(req, res) {
         const deletedRows = await deleteCompraPagamentoById(idPagamento);
 
         if (deletedRows > 0) {
-            return res.status(200).json();
+            return res.status(204).json();
         } else {
             return res.status(404).json({ erro: `Pagamento com id ${idPagamento} não encontrado` });
         }

@@ -27,6 +27,4 @@ const FornecedorPJ = sequelize.define('fornecedor_pj', {
     timestamps: false
 })
 
-FornecedorPJ.belongsTo(Fornecedor, { foreignKey: 'id_fornecedor' })
-
 module.exports = FornecedorPJ;

@@ -657,7 +657,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838483\",\n        \"nome\": \"João Silva\"\n\t}\n}\n",
+							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838481\",\n        \"nome\": \"João Silva\"\n\t}\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -718,13 +718,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/5/contatos",
+							"raw": "{{base_url}}/fornecedores/1/contatos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"5",
+								"1",
 								"contatos"
 							]
 						}
@@ -759,7 +759,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores?=",
+							"raw": "{{base_url}}/fornecedores",
 							"host": [
 								"{{base_url}}"
 							],
@@ -776,10 +776,6 @@
 									"key": "page_size",
 									"value": "5",
 									"disabled": true
-								},
-								{
-									"key": "",
-									"value": ""
 								}
 							]
 						}
@@ -814,13 +810,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/4",
+							"raw": "{{base_url}}/fornecedores/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -854,14 +850,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/8",
+							"raw": "{{base_url}}/fornecedores/contatos/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"8"
+								"1"
 							]
 						}
 					},
@@ -873,8 +869,11 @@
 						{
 							"listen": "test",
 							"script": {
+								"exec": [
+									""
+								],
 								"type": "text/javascript",
-								"exec": []
+								"packages": {}
 							}
 						}
 					],
@@ -897,7 +896,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"pessoa\": {\n\t\t\"nome\": \"Maria\"\n\t}\n}",
+							"raw": "{\n\t\"email\": \"teste4@example.com\",\n    \"pessoa\": {\n        \"nome\": \"Luca2\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -905,13 +904,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{ _.baseURL }}/fornecedores/4",
+							"raw": "{{base_url}}/fornecedores/1",
 							"host": [
-								"{{ _.baseURL }}"
+								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -958,14 +957,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/8",
+							"raw": "{{base_url}}/fornecedores/contatos/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"8"
+								"1"
 							]
 						}
 					},
@@ -999,14 +998,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/7",
+							"raw": "{{base_url}}/fornecedores/contatos/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"7"
+								"1"
 							]
 						}
 					},

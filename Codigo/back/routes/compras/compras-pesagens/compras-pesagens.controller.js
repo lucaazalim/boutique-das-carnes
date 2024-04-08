@@ -94,7 +94,7 @@ async function httpDeleteCompraPesagensById(req, res) {
         const deletedRows = await deleteComprasPesagensById(idPesagem);
 
         if (deletedRows > 0) {
-            res.status(200).json();
+            res.status(204).json();
         } else {
             res.status(404).json({ erro: `Pesagem com id ${idPesagem} não encontrada` });
         }

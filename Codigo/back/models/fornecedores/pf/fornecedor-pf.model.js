@@ -1,7 +1,7 @@
 const { Op } = require('sequelize');
 const FornecedorPF = require('./fornecedor-pf.sequelize');
 
-async function addFornecedoresPF(id_fornecedor, cpf, nome) {
+async function createFornecedorPF(id_fornecedor, cpf, nome) {
     try {
         await FornecedorPF.create({
             id_fornecedor,
@@ -9,7 +9,7 @@ async function addFornecedoresPF(id_fornecedor, cpf, nome) {
             nome
         })
     } catch (error) {
-        
+
     }
 }
 
@@ -39,9 +39,7 @@ async function getAllFornecedorPF(idFornecedorFirst, idFornecedorLast) {
     });
 }
 
-// Função para verificar se o cpf já existe
-
-async function verificarSeCpfExiste(cpf) {
+async function checkIfCPFExists(cpf) {
     const fornecedor = await FornecedorPF.findOne({
         where: { cpf }
     });
@@ -49,9 +47,9 @@ async function verificarSeCpfExiste(cpf) {
 }
 
 module.exports = {
-    addFornecedoresPF,
+    createFornecedorPF,
     updateFornecedorPF,
-    verificarSeCpfExiste,
     getFornecedorPFById,
-    getAllFornecedorPF
+    getAllFornecedorPF,
+    checkIfCPFExists
 }

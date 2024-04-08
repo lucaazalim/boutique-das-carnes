@@ -56,9 +56,7 @@ async function updateFornecedorPJ(id_fornecedor, razao_social, nome_fantasia) {
     }
 }
 
-// Função para verificar se o cnpj já existe
-
-async function verificarSeCnpjExiste(cnpj) {
+async function checkIfCNPJExists(cnpj) {
     const fornecedor = await FornecedorPJ.findOne({
         where: { cnpj }
     });
@@ -70,6 +68,6 @@ module.exports = {
     createFornecedorPJ,
     getFornecedorPJById,
     getAllFornecedorPJ,
-    verificarSeCnpjExiste,
-    updateFornecedorPJ
+    updateFornecedorPJ,
+    checkIfCNPJExists,
 }

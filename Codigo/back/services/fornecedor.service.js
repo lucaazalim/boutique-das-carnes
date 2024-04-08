@@ -1,4 +1,4 @@
-module.exports = function respostaFornecedor(fornecedor, updateValue, contatos) {
+module.exports = function respostaFornecedor(fornecedor, updateValue) {
 
     let pessoa = null;
     let resposta = fornecedor.dataValues;
@@ -10,7 +10,6 @@ module.exports = function respostaFornecedor(fornecedor, updateValue, contatos) 
     }
 
     resposta.pessoa = pessoa;
-    resposta.contato = contatos;
 
     return resposta;
 }

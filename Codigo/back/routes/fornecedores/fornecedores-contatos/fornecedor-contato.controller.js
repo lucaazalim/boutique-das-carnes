@@ -1,8 +1,8 @@
 const {
-    getByIdContatos,
-    createContato,
-    updateContatos,
-    deleteContatos
+    getFornecedorContatoById,
+    createFornecedorContato,
+    updateFornecedorContato,
+    deleteFornecedorContato
 } = require('../../../models/fornecedores/contatos/fornecedor-contato.model');
 
 async function httpPostFornecedorContato(req, res) {
@@ -16,7 +16,7 @@ async function httpPostFornecedorContato(req, res) {
 
     contato.id_fornecedor = id;
 
-    createContato(contato)
+    createFornecedorContato(contato)
         .then(createdContato => {
             res.status(201).json(createdContato);
         })
@@ -30,7 +30,7 @@ async function httpGetByIdForncedorContatos(req, res) {
 
     const id = req.params.id;
 
-    getByIdContatos(id)
+    getFornecedorContatoById(id)
         .then(contatos => {
             res.status(200).json(contatos);
         })
@@ -45,7 +45,7 @@ async function httpPutFornecedorContatos(req, res) {
     const { id } = req.params;
     const { nome, celular, cargo } = req.body;
 
-    updateContatos(id, nome, celular, cargo)
+    updateFornecedorContato(id, nome, celular, cargo)
         .then(contato => {
             res.status(200).json(contato);
         })
@@ -59,13 +59,20 @@ async function httpDeleteFornecedorContatos(req, res) {
 
     const { id } = req.params;
 
-    deleteContatos(id)
-        .then(() => {
-            res.status(204).json({ message: 'Contato deletado com sucesso' });
-        })
-        .catch(error => {
-            res.status(500).json({ message: error.message });
-        });
+    try {
+
+        const deletedRows = await deleteFornecedorContato(id);
+
+        if (deletedRows > 0) {
+            return res.status(204).json();
+        } else {
+            return res.status(404).json({ message: `Contato com id ${id} não encontrado` });
+        }
+
+
+    } catch (error) {
+        throw new Error(error);
+    }
 
 }
 

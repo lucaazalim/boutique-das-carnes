@@ -64,13 +64,14 @@ async function updateCompraPagamentoById(
 ) {
     try {
 
-        await ComprasPagamentos.update({
-            id_compra,
-            data,
-            meio_pagamento,
-            valor,
-            id_documento_comprovante,
-        },
+        await ComprasPagamentos.update(
+            {
+                id_compra,
+                data,
+                meio_pagamento,
+                valor,
+                id_documento_comprovante,
+            },
             {
                 where: { id }
             }

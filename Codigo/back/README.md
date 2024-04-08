@@ -51,7 +51,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
       "razao_social": "Empresa 123",
       "nome_fantasia": "Empresa Number"
     },
-    "contato": [
+    "contatos": [
       {
         "id": 1,
         "id_fornecedor": 28,
@@ -100,7 +100,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
     "razao_social": "Empresa 123",
     "nome_fantasia": "Empresa Number"
   },
-  "contato": [
+  "contatos": [
     {
       "id": 1,
       "id_fornecedor": 28,

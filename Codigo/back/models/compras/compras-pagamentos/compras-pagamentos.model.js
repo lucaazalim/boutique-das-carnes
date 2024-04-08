@@ -1,35 +1,33 @@
 const ComprasPagamentos = require('./compras-pagamentos.sequelize');
 
-async function  getAllComprasPagamentos(){
+async function getAllComprasPagamentos() {
     try {
-       return await ComprasPagamentos.findAll();
+        return await ComprasPagamentos.findAll();
     } catch (error) {
         throw new Error(`Erro ao obter todos os pagamentos: ${error.message}`);
     }
-    
+
 }
 
-async function getComprasPagamentosById(id){
+async function getComprasPagamentosById(id) {
     try {
-        const comprasPagamentos = await ComprasPagamentos.findByPk(id);
-        if (!comprasPagamentos) {
-            throw new Error(`${id}`);
-        }
-        return comprasPagamentos;
+        return await ComprasPagamentos.findByPk(id) || null;
     } catch (error) {
         throw new Error(`Erro ao obter pagamento por id: ${error.message}`);
     }
 }
 
-async function postComprasPagamentos(
-    id_compra, 
-    data, 
-    meio_pagamento, 
-    valor, 
+async function createCompraPagamento(
+    id_compra,
+    data,
+    meio_pagamento,
+    valor,
     id_documento_comprovante
-){  
-    try{
-        const compra =  ComprasPagamentos.create({
+) {
+
+    try {
+
+        return await ComprasPagamentos.create({
             id_compra,
             data,
             meio_pagamento,
@@ -37,8 +35,7 @@ async function postComprasPagamentos(
             id_documento_comprovante,
         });
 
-        return compra;
-    }catch(error){
+    } catch (error) {
         throw new Error(`Erro ao criar pagamento: ${error.message}`);
     }
 
@@ -46,11 +43,11 @@ async function postComprasPagamentos(
 
 
 
-async function postManyComprasPagamentos(pagamentos){  
-    try{
+async function postManyComprasPagamentos(pagamentos) {
+    try {
         return await ComprasPagamentos.bulkCreate(pagamentos);
 
-    }catch(error){
+    } catch (error) {
         throw new Error(`Erro ao criar pagamento: ${error.message}`);
     }
 
@@ -58,40 +55,43 @@ async function postManyComprasPagamentos(pagamentos){
 
 
 async function updateCompraPagamentoById(
-    id,    
-    id_compra, 
-    data, 
-    meio_pagamento, 
-    valor, 
+    id,
+    id_compra,
+    data,
+    meio_pagamento,
+    valor,
     id_documento_comprovante
-){
-    try{
+) {
+    try {
+
         await ComprasPagamentos.update({
-                id_compra,
-                data,
-                meio_pagamento,
-                valor,
-                id_documento_comprovante,
-            },
+            id_compra,
+            data,
+            meio_pagamento,
+            valor,
+            id_documento_comprovante,
+        },
             {
-                where: {id}
+                where: { id }
             }
         );
+
         return await getComprasPagamentosById(id);
-    }catch(error){
+
+    } catch (error) {
         throw new Error(`Erro ao atualizar pagamento: ${error.message}`);
     }
- }
+}
 
-async function deleteCompraPagamentoById(idPagamento){
-    try{
+async function deleteCompraPagamentoById(id) {
+    try {
         return await ComprasPagamentos.destroy({
             where: {
-                id: idPagamento
+                id
             }
-        })
-    }catch(error){
-        throw new Error(`Erro ao deletar pagamento ${idPagamento}`);
+        });
+    } catch (error) {
+        throw new Error(`Erro ao deletar pagamento ${id}`);
     }
 }
 
@@ -99,7 +99,7 @@ async function deleteCompraPagamentoById(idPagamento){
 module.exports = {
     getAllComprasPagamentos,
     getComprasPagamentosById,
-    postComprasPagamentos,
+    createCompraPagamento,
     updateCompraPagamentoById,
     postManyComprasPagamentos,
     deleteCompraPagamentoById

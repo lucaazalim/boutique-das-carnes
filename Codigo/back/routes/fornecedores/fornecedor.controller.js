@@ -1,6 +1,6 @@
 const {
     getAllForcedores,
-    getByIdFornecedores,
+    getFornecedorById,
     addFornecedores,
     updateFornecedores,
 } = require('../../models/fornecedores/fornecedor.model');
@@ -19,7 +19,7 @@ async function httpGetByIdFornecedores(req, res) {
     
     const id = req.params.id;
     
-    const data = await getByIdFornecedores(id)
+    const data = await getFornecedorById(id)
     
     if(data === null) {
         return res.status(404).json({erro: 'Fornecedor não encontrado'});

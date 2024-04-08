@@ -1,18 +1,24 @@
 const {
     getByIdContatos,
-    createContatos,
+    createContato,
     updateContatos,
     deleteContatos
 } = require('../../../models/fornecedores/contatos/fornecedor-contato.model');
 
+async function httpPostFornecedorContato(req, res) {
 
-async function httpGetByIdForncedorContatos(req, res) {
-    
-    const id = req.params.id;
+    const id = req.params.id_fornecedor;
+    const contato = req.body;
 
-    getByIdContatos(id)
-        .then(contatos => {
-            res.status(200).json(contatos);
+    if (!contato.nome) {
+        return res.status(400).json({ message: 'Nome é obrigatório' });
+    }
+
+    contato.id_fornecedor = id;
+
+    createContato(contato)
+        .then(createdContato => {
+            res.status(201).json(createdContato);
         })
         .catch(error => {
             res.status(500).json({ message: error.message });
@@ -20,18 +26,13 @@ async function httpGetByIdForncedorContatos(req, res) {
 
 }
 
-async function httpPostFornecedorContatos(req, res) {
-        
-    const id = req.params.id_fornecedor;
-    const contatos = req.body;
+async function httpGetByIdForncedorContatos(req, res) {
 
-    contatos.contato.forEach(contato => {
-        contato.id_fornecedor = id;
-    });
+    const id = req.params.id;
 
-    createContatos(contatos.contato)
+    getByIdContatos(id)
         .then(contatos => {
-            res.status(201).json(contatos);
+            res.status(200).json(contatos);
         })
         .catch(error => {
             res.status(500).json({ message: error.message });
@@ -51,11 +52,11 @@ async function httpPutFornecedorContatos(req, res) {
         .catch(error => {
             res.status(500).json({ message: error.message });
         });
-    
+
 }
 
 async function httpDeleteFornecedorContatos(req, res) {
-    
+
     const { id } = req.params;
 
     deleteContatos(id)
@@ -65,12 +66,12 @@ async function httpDeleteFornecedorContatos(req, res) {
         .catch(error => {
             res.status(500).json({ message: error.message });
         });
-    
+
 }
 
 module.exports = {
     httpGetByIdForncedorContatos,
-    httpPostFornecedorContatos,
+    httpPostFornecedorContato,
     httpPutFornecedorContatos,
     httpDeleteFornecedorContatos
 }

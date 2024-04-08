@@ -20,8 +20,8 @@ export default function Home() {
         id_documento_nf_abate: null,
         id_documento_nfs_matadouro: null,
         id_documento_nf_retorno: null,
-        compra_pagamentos: {},
-        compras_pesagens: {}
+        pagamentos: {},
+        pesagens: {}
     });
 
     const [compras, setCompras] = useState([]);

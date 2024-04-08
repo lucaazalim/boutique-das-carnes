@@ -1,6 +1,6 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
 const respostaFornecedor = require('../../services/fornecedor.service');
-const { 
+const {
     getAllFornecedorPJ,
     verificarSeCnpjExiste,
     updateFornecedorPJ,
@@ -14,9 +14,9 @@ const {
     getFornecedorPFById,
     getAllFornecedorPF
 } = require('../fornecedores/pf/fornecedor-pf.model');
-const { 
+const {
     getAllFornecedorContatos
- } = require('../fornecedores/contatos/fornecedor-contato.model');
+} = require('../fornecedores/contatos/fornecedor-contato.model');
 
 async function getAllForcedores(offset, limit) {
 
@@ -39,7 +39,7 @@ async function getAllForcedores(offset, limit) {
     const fornecedores = [];
 
     fornecedor.forEach(fornecedor => {
-        
+
         var updateValue;
 
         if (fornecedor.tipo === 'PF') {
@@ -56,23 +56,27 @@ async function getAllForcedores(offset, limit) {
     return fornecedores;
 }
 
-async function getByIdFornecedores(id) {
+async function getFornecedorById(id) {
 
     const fornecedor = await Fornecedor.findByPk(id);
 
-    var updateValue;
+    if (!fornecedor) {
+        return null;
+    }
+
+    var pessoa;
 
     if (fornecedor.tipo === 'PF') {
-        updateValue = await getFornecedorPFById(id);
+        pessoa = await getFornecedorPFById(id);
     } else if (fornecedor.tipo === 'PJ') {
-        updateValue = await getFornecedorPJById(id);
+        pessoa = await getFornecedorPJById(id);
     }
 
     const contatos = await getAllFornecedorContatos(id, id);
 
     const data = [];
 
-    data.push(respostaFornecedor(fornecedor, updateValue, contatos));
+    data.push(respostaFornecedor(fornecedor, pessoa, contatos));
 
     return data;
 }
@@ -92,9 +96,9 @@ async function addFornecedores(
     ativo,
     notas,
     pessoa) {
-    
+
     // verificar se existe cnpj ou cpf cadastrado no banco de dados
-    
+
     if (tipo === 'PF' && await verificarSeCpfExiste(pessoa.cpf)) {
         return {
             erro: "CPF já cadastrado"
@@ -218,7 +222,7 @@ async function updateFornecedores(
 
 module.exports = {
     getAllForcedores,
-    getByIdFornecedores,
+    getFornecedorById,
     addFornecedores,
     updateFornecedores,
 }

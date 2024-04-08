@@ -1,13 +1,13 @@
 const express = require('express');
 const routerFornecedor = express.Router();
 const {
-    httpGetAllFornecedores, 
+    httpGetAllFornecedores,
     httpGetByIdFornecedores,
     httpPostFornecedores,
     httpUpdateFornecedores
 } = require('./fornecedor.controller')
 const {
-    httpPostFornecedorContatos,
+    httpPostFornecedorContato,
     httpPutFornecedorContatos,
     httpDeleteFornecedorContatos,
     httpGetByIdForncedorContatos
@@ -15,7 +15,7 @@ const {
 
 
 // Rotas para contatos de fornecedores => /fornecedores
-routerFornecedor.post('/:id_fornecedor/contatos', httpPostFornecedorContatos);
+routerFornecedor.post('/:id_fornecedor/contatos', httpPostFornecedorContato);
 routerFornecedor.get('/contatos/:id', httpGetByIdForncedorContatos);
 routerFornecedor.put('/contatos/:id', httpPutFornecedorContatos);
 routerFornecedor.delete('/contatos/:id', httpDeleteFornecedorContatos);

@@ -1,9 +1,9 @@
 const { Op } = require('sequelize');
 const FornecedorContato = require('./fornecedor-contato.sequelize');
 
-async function createContatos(contatos) {
+async function createContato(contato) {
     try {
-        return await FornecedorContato.bulkCreate(contatos);
+        return await FornecedorContato.create(contato);
     } catch (error) {
         throw new Error(error);
     }
@@ -34,7 +34,7 @@ async function getByIdContatos(id) {
 }
 
 async function updateContatos(id, nome, celular, cargo) {
-    
+
     try {
 
         const fornecedorContato = await FornecedorContato.findByPk(id);
@@ -59,7 +59,7 @@ async function updateContatos(id, nome, celular, cargo) {
     } catch (error) {
         throw new Error(error);
     }
-    
+
 }
 
 async function deleteContatos(id) {
@@ -85,7 +85,7 @@ async function deleteContatos(id) {
 }
 
 module.exports = {
-    createContatos,
+    createContato,
     getAllFornecedorContatos,
     getByIdContatos,
     updateContatos,

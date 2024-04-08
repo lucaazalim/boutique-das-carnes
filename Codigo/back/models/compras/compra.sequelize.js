@@ -1,10 +1,10 @@
-const {sequelize} = require('../../services/mariadb.service');
+const { sequelize } = require('../../services/mariadb.service');
 const { DataTypes } = require('sequelize');
 
 const CompraPagamento = require('../compras/compras-pagamentos/compras-pagamentos.sequelize');
-const CompraPesagens = require('../compras/compras-pesagens/compras-pesagens.sequelize');
+const CompraPesagem = require('../compras/compras-pesagens/compras-pesagens.sequelize');
 
-const Compra = sequelize.define('compra', 
+const Compra = sequelize.define('compra',
     {
         id_fornecedor: {
             type: DataTypes.BIGINT,
@@ -53,17 +53,19 @@ const Compra = sequelize.define('compra',
         id_documento_nf_retorno: {
             type: DataTypes.BIGINT
         }
-    }, 
-    { 
-        timestamps: false, 
+    },
+    {
+        timestamps: false,
         defaultScope: {
-            include: [{ model: CompraPagamento },{ model: CompraPesagens }]
+            include: [
+                { model: CompraPagamento, as: 'pagamentos' },
+                { model: CompraPesagem, as: 'pesagens' }
+            ]
         }
-   }
+    }
 );
 
-Compra.hasMany(CompraPagamento, { foreignKey: 'id_compra'});
-Compra.hasMany(CompraPesagens, { foreignKey: 'id_compra' });
-
+Compra.hasMany(CompraPagamento, { foreignKey: 'id_compra', as: 'pagamentos' });
+Compra.hasMany(CompraPesagem, { foreignKey: 'id_compra', as: 'pesagens' });
 
 module.exports = Compra;

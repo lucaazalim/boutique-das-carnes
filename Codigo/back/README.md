@@ -192,19 +192,11 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 **Exemplo de Requisição:**
 
 ```json
-[
-  {
-    "nome": "Contato 1",
-    "celular": "987654321",
-    "cargo": "Cargo 1"
-  },
-  {
-    "nome": "Contato 2",
-    "celular": "987654322",
-    "cargo": "Cargo 2"
-  },
-  ...
-]
+{
+  "nome": "Contato 1",
+  "celular": "987654321",
+  "cargo": "Cargo 1"
+}
 ```
 
 ---
@@ -278,7 +270,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
     "id_documento_nf_abate": null,
     "id_documento_nfs_matadouro": null,
     "id_documento_nf_retorno": null,
-    "compra_pagamentos": [
+    "pagamentos": [
       {
         "id": 2,
         "id_compra": 1,
@@ -296,7 +288,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
         "id_documento_comprovante": null
       }
     ],
-    "compra_pesagems": [
+    "pesagens": [
       {
         "id": 2,
         "id_compra": 1,
@@ -333,7 +325,7 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
   "id_documento_nf_abate": null,
   "id_documento_nfs_matadouro": null,
   "id_documento_nf_retorno": null,
-  "compra_pagamentos": [
+  "pagamentos": [
     {
       "id": 3,
       "id_compra": 3,
@@ -409,15 +401,10 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 ```json
 {
-    "pagamento": [
-            {
-                "data": "2024-03-28",
-                "meio_pagamento": "PIX",
-                "valor": 66666.00,
-                "id_documento_comprovante": null
-            },
-            ...
-        ]
+  "data": "2024-03-28",
+  "meio_pagamento": "PIX",
+  "valor": 66666.0,
+  "id_documento_comprovante": null
 }
 ```
 
@@ -456,14 +443,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 ```json
 {
-    "pesagem": [
-            {
-                "unidades": 777,
-                "peso": 5000.25,
-                "criado_em": "2024-04-01T01:27:51.000Z"
-            },
-            ...
-        ]
+  "unidades": 777,
+  "peso": 5000.25
 }
 ```
 

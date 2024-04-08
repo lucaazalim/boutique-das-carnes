@@ -22,7 +22,7 @@ async function getDocumentoById(id) {
 async function updateDocumentoById(id, numero_referencia, descricao, nome_arquivo) {
     try {
 
-        const [affectedRowsCount] = await Documento.update({
+        await Documento.update({
             numero_referencia,
             descricao,
             nome_arquivo
@@ -30,7 +30,7 @@ async function updateDocumentoById(id, numero_referencia, descricao, nome_arquiv
             where: { id }
         });
 
-        return affectedRowsCount > 0 && getDocumentoById(id) || null;
+        return await getDocumentoById(id);
 
     } catch (error) {
         throw new Error(`Erro ao atualizar documento por id: ${error.message}`);

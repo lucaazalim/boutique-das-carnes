@@ -1,5 +1,4 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
-const respostaFornecedor = require('../../services/fornecedor.service');
 
 const {
     checkIfCNPJExists,
@@ -17,12 +16,8 @@ const {
 
 async function getAllForcedores(offset, limit) {
 
-    const fornecedores = await Fornecedor.findAll({
-        offset: offset,
-        limit: limit,
-    });
-
-    fornecedores.forEach(fornecedor => rearrangePessoa(fornecedor));
+    const fornecedores = await Fornecedor.findAll({ offset, limit });
+    fornecedores.forEach(rearrangePessoa);
     return fornecedores;
 
 }
@@ -31,7 +26,7 @@ async function getFornecedorById(id) {
 
     const fornecedor = await Fornecedor.findByPk(id);
 
-    if (result) {
+    if (fornecedor) {
         rearrangePessoa(fornecedor);
     }
 

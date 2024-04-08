@@ -45,11 +45,7 @@ async function createCompra(
 
 async function getAllCompras(offset, limit) {
     try {
-        const compras = await Compra.findAll({
-            offset: offset,
-            limit: limit,
-        });
-        return compras;
+        return await Compra.findAll({ offset, limit });
     } catch (error) {
         throw new Error(`Erro ao obter todas as compras: ${error.message}`);
     }

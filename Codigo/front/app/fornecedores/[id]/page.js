@@ -7,8 +7,14 @@ import { useEffect, useState } from "react";
 export default function Page({ params }) {
 
     const [fornecedor, setFornecedor] = useState({});
-    const [contatos, setContatos] = useState([{ nome: '', celular: '', cargo: '' }])
+    const [contatoData, setContatoData] = useState({
+        nome: '',
+        celular: '',
+        cargo: ''
+    })
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
+    var contatos = fornecedor.contatos
 
     useEffect(() => {
         fetch(`http://localhost:3001/fornecedores/${params.id}`)
@@ -27,13 +33,9 @@ export default function Page({ params }) {
 
     const handleContatoChange = (index, e) => {
         const { name, value } = e.target;
-        const newContatos = [...contatos];
-        newContatos[index][name] = value;
-        setContatos(newContatos);
-    };
-
-    const handleAddContact = () => {
-        setContatos([...contatos, { nome: '', celular: '', cargo: '' }]);
+        const newContato = [...contatos];
+        newContato[index][name] = value;
+        setContatoData(newContato);
     };
 
     const handleCheckboxChange = (e) => {
@@ -104,36 +106,7 @@ export default function Page({ params }) {
                     </div>
                 </form>
                 <div className="mt-2">
-                    <h1 className="text-4xl font-semibold">Contatos</h1>
-                    <form className="grid grid-cols-11 gap-2 mt-2" onSubmit={handleSubmitContato}>
-                        {contatos.map((contact, index) => (
-                            <div key={index} className="grid grid-cols-3 col-span-9 gap-2">
-                                <input
-                                    className="bg-gray-300 rounded-md p-2 text-lg"
-                                    placeholder="Nome"
-                                    name="nome"
-                                    value={contact.nome}
-                                    onChange={(e) => handleContatoChange(index, e)}
-                                />
-                                <input
-                                    className="bg-gray-300 rounded-md p-2 text-lg"
-                                    placeholder="Celular"
-                                    name="celular"
-                                    value={contact.celular}
-                                    onChange={(e) => handleContatoChange(index, e)}
-                                />
-                                <input
-                                    className="bg-gray-300 rounded-md p-2 text-lg"
-                                    placeholder="Cargo"
-                                    name="cargo"
-                                    value={contact.cargo}
-                                    onChange={(e) => handleContatoChange(index, e)}
-                                />
-                            </div>
-                        ))}
-                        <button className="bg-green-400 rounded-md col-span-1" onClick={handleAddContact}>+</button>
-                        <button onClick={handleSubmitContato} className="col-span-1">Enviar</button>
-                    </form>
+                    <button onClick={() => console.log(contatos)}>TESTE</button>
                 </div>
                 <Link href="/fornecedores"
                     className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white"

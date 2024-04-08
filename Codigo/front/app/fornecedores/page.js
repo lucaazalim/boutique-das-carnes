@@ -5,12 +5,42 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const [pesquisa, setPesquisa] = useState('');
+    const [pesquisa, setPesquisa] = useState(null);
     const [fornecedores, setFornecedores] = useState([]);
     const [page, setPage] = useState(1);
     const [open, setOpen] = useState(false);
     const [idEditar, setIdEditar] = useState('');
     const router = useRouter();
+
+    const estados = [
+        {sigla: 'AC', nome: 'Acre'},
+        {sigla: 'AL', nome: 'Alagoas'},
+        {sigla: 'AP', nome: 'Amapá'},
+        {sigla: 'AM', nome: 'Amazonas'},
+        {sigla: 'BA', nome: 'Bahia'},
+        {sigla: 'CE', nome: 'Ceará'},
+        {sigla: 'DF', nome: 'Distrito Federal'},
+        {sigla: 'ES', nome: 'Espírito Santo'},
+        {sigla: 'GO', nome: 'Goiás'},
+        {sigla: 'MA', nome: 'Maranhão'},
+        {sigla: 'MT', nome: 'Mato Grosso'},
+        {sigla: 'MS', nome: 'Mato Grosso do Sul'},
+        {sigla: 'MG', nome: 'Minas Gerais'},
+        {sigla: 'PA', nome: 'Pará'},
+        {sigla: 'PB', nome: 'Paraíba'},
+        {sigla: 'PR', nome: 'Paraná'},
+        {sigla: 'PE', nome: 'Pernambuco'},
+        {sigla: 'PI', nome: 'Piauí'},
+        {sigla: 'RJ', nome: 'Rio de Janeiro'},
+        {sigla: 'RN', nome: 'Rio Grande do Norte'},
+        {sigla: 'RS', nome: 'Rio Grande do Sul'},
+        {sigla: 'RO', nome: 'Rondônia'},
+        {sigla: 'RR', nome: 'Roraima'},
+        {sigla: 'SC', nome: 'Santa Catarina'},
+        {sigla: 'SP', nome: 'São Paulo'},
+        {sigla: 'SE', nome: 'Sergipe'},
+        {sigla: 'TO', nome: 'Tocantins'}
+    ]
 
     const [formData, setFormData] = useState({
         tipo: 'PF',
@@ -76,11 +106,11 @@ export default function Home() {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:3001/fornecedores/${pesquisa === '' ? '' : `${pesquisa}`}`)
+        fetch(`http://localhost:3001/fornecedores/${pesquisa === null ? '' : `${pesquisa}`}`)
             .then(res => res.json())
             .then(data => setFornecedores(data))
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
-    }, []);
+    }, [pesquisa]);
 
     return (
         <>
@@ -91,7 +121,8 @@ export default function Home() {
                            className="col-span-2 bg-[#d9d9d9] rounded-md p-2 border-0"
                            placeholder='CNPJ, CPF, nome, razão socia ou nome fantasia'/>
                     <button
-                        className='col-span-1 flex justify-center bg-[#7D1111] hover:bg-[#a12222] p-2 rounded-md text-white font-semibold'>
+                        className='col-span-1 flex justify-center bg-[#7D1111] hover:bg-[#a12222] p-2 rounded-md text-white font-semibold'
+                        onChange={(e) =>  setPesquisa(e.target.value)}>
                         Buscar
                     </button>
                     <button
@@ -217,12 +248,11 @@ export default function Home() {
                                 value={formData.complemento}
                                 onChange={handleChange}
                                 placeholder='Complemento'/>
-                            <input
-                                className='text-lg p-2 bg-gray-300 rounded-md'
-                                name='estado'
-                                value={formData.estado}
-                                onChange={handleChange}
-                                placeholder='Estado'/>
+                            <select onChange={handleChange} className="text-lg p-2 bg-gray-300 rounded-md">
+                                {estados.map(estado => (
+                                    <option key={estado.sigla} value={estado.sigla}>{estado.nome}</option>
+                                ))}
+                            </select>
                             <input
                                 className='text-lg p-2 bg-gray-300 rounded-md'
                                 name='cidade'
@@ -236,9 +266,9 @@ export default function Home() {
                                 onChange={handleChange}
                                 placeholder='Notas'/>
                         </div>
-                        <div className='flex justify-between'>
+                        <div className='flex justify-between mt-[210px]'>
                             <button
-                                className='bg-[#9e1616] p-2 rounded-md text-white font-semibold  absolute bottom-[135px] left-[170px]'
+                                className='bg-[#9e1616] p-2 rounded-md text-white font-semibold'
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setOpen(!open);
@@ -246,7 +276,7 @@ export default function Home() {
                                 }}>Cancelar
                             </button>
                             <button
-                                className='bg-[#06BD18] p-2 rounded-md text-white font-semibold absolute bottom-[135px] right-[170px]'
+                                className='bg-[#06BD18] p-2 rounded-md text-white font-semibold'
                                 type='submit'>
                                 Criar
                             </button>

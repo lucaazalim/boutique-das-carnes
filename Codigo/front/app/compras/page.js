@@ -11,7 +11,7 @@ export default function Home() {
         unidades_macho: 0,
         unidades_femea: 0,
         preco_arroba: 0,
-        desconto: null,
+        desconto: 0,
         animais_abatidos: 0,
         peso_total_abate: 0,
         id_documento_romaneio: null,
@@ -32,7 +32,7 @@ export default function Home() {
         fetch(`http://localhost:3001/compras`)
             .then(res => res.json())
             .then(data => setCompras(data))
-            .then(console.log(compras))
+            .then(() => console.log('Dados solicitados com sucesso'))
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
     }, [])
 
@@ -95,7 +95,8 @@ export default function Home() {
                             <tr key={compra.id} className='grid grid-cols-4 border-b-2 border-b-gray-100 items-center'>
                                 <td>{compra.id}</td>
                                 <td>{compra.id_fornecedor}</td>
-                                <td>Fêmeas: {compra.unidades_femea} Machos: {compra.unidades_macho}</td>
+                                <td>{compra.unidades_femea + compra.unidades_macho}</td>
+                                <td>{compra.peso_total_abate * compra.preco_arroba}</td>
                                 <td className='flex justify-end'>
                                     <Link href={`compras/${compra.id}`}
                                         className='flex justify-center bg-yellow-400 p-2 rounded-md text-white font-semibold'>Editar</Link>
@@ -165,7 +166,6 @@ export default function Home() {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setOpen(!open);
-                                    setIdEditar('');
                                 }}>Cancelar
                             </button>
                             <button

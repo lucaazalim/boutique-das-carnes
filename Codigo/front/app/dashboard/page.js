@@ -8,6 +8,11 @@ export default function Home() {
                     <h1 className="text-2xl font-semibold">Consultar fornecedores</h1>
                 </div>
             </Link>
+            <Link href="/compras">
+                <div className="bg-slate-400 rounded-md p-3 text-white">
+                    <h1 className="text-2xl font-semibold">Consultar compras</h1>
+                </div>
+            </Link>
         </div>
     )
 }

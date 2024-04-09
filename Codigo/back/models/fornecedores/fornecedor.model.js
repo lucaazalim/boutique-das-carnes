@@ -1,6 +1,4 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
-const FornecedorPF = require('../fornecedores/pf/fornecedor-pf.sequelize');
-const FornecedorPJ = require('../fornecedores/pj/fornecedor-pj.sequelize');
 
 const { Op } = require('sequelize');
 
@@ -18,11 +16,11 @@ const {
 
 async function getAllForcedores(offset, limit, search = null) {
 
-    var query = {};
+    var options = {};
 
     if (search) {
 
-        query = {
+        options = {
             where: {
                 [Op.or]: [
                     { '$pf.cpf$': { [Op.eq]: `${search}` } },
@@ -32,21 +30,15 @@ async function getAllForcedores(offset, limit, search = null) {
                     { '$pj.nome_fantasia$': { [Op.like]: `%${search}%` } },
                 ]
             },
-            include: [
-                {
-                    model: FornecedorPF,
-                    as: 'pf'
-                },
-                {
-                    model: FornecedorPJ,
-                    as: 'pj'
-                }
-            ],
         }
+
+    } else {
+
+        options = { offset, limit };
 
     }
 
-    const fornecedores = await Fornecedor.findAll({ query, offset, limit });
+    const fornecedores = await Fornecedor.findAll(options);
     fornecedores.forEach(rearrangePessoa);
     return fornecedores;
 

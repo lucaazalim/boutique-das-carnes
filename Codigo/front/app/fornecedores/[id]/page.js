@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 export default function Page({ params }) {
 
     let [fornecedor, setFornecedor] = useState({});
+    let [contatos, setContatos] = useState([]);
+    let [open, setOpen] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
@@ -14,6 +16,7 @@ export default function Page({ params }) {
             .then(res => res.json())
             .then(data => {
                 setFornecedor(data)
+                setContatos(data.contatos)
             })
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
     }, [params.id]);
@@ -56,7 +59,7 @@ export default function Page({ params }) {
         <>
             <div className="p-5">
                 <h1 className="text-4xl font-semibold">Editar fornecedor</h1>
-                <form className="mt-[120px]"
+                <form
                     onSubmit={handleSubmit}>
                     <div className='mt-2 grid grid-cols-2 gap-2'>
                         <input className='text-lg p-2 bg-gray-300 rounded-md' name="email" value={fornecedor.email || ''} onChange={handleInputChange} />
@@ -86,13 +89,27 @@ export default function Page({ params }) {
                     </div>
                 </form>
                 <div className="mt-2">
+                    <h1 className="text-4xl font-semibold">Contatos</h1>
+                    {contatos && contatos.map((contato) => {
+                        return (
+                            <div className="mt-2 grid grid-cols-10 gap-2">
+                                <input className='text-lg p-2 bg-gray-300 rounded-md col-span-3' name="nome" value={contato.nome || ''} onChange={handleInputChange} />
+                                <input className='text-lg p-2 bg-gray-300 rounded-md col-span-3' name="celular" value={contato.celular || ''} onChange={handleInputChange} />
+                                <input className='text-lg p-2 bg-gray-300 rounded-md col-span-3' name="cargo" value={contato.cargo || ''} onChange={handleInputChange} />
+                                <button className="col-span-1 bg-yellow-300 rounded-md" onClick={setOpen(!open)}>Editar</button>
+                            </div>
+                        )
+                    })}
+                </div>
+
+                {/* <div className="mt-2">
                     <Link href={`/fornecedores/${params.id}/contatos`}
                         className="flex justify-center py-2 px-4 bg-slate-400 rounded-md text-white font-semibold">Consultar contatos</Link>
-                </div>
+                </div> */}
                 <Link href="/fornecedores"
                     className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white"
                 >Voltar</Link>
-            </div>
+            </div >
         </>
     )
 }

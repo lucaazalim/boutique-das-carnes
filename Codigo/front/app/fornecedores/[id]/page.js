@@ -71,17 +71,23 @@ export default function Page({ params }) {
                         <input className='text-lg p-2 bg-gray-300 rounded-md' name="cidade" value={fornecedor.cidade || ''} onChange={handleInputChange} />
                         <textarea className='text-lg p-2 bg-gray-300 rounded-md col-span-2' name="notas" value={fornecedor.notas || ''} onChange={handleInputChange} />
                     </div>
-                    <div className="flex justify-between">
-                        <div className="text-lg p-2">
+                    <div className="flex justify-between mt-2">
+                        <div className="text-lg p-2 bg-gray-300 rounded-md">
                             <label>Status: </label>
-                            <input type='checkbox' className='w-4 h-4' name="ativo" checked={fornecedor.ativo} onChange={handleCheckboxChange} />
+                            <select name="ativo"
+                                className="bg-gray-300 rounded-md"
+                                value={fornecedor.ativo}
+                                onChange={handleInputChange}>
+                                <option value='true'>Ativo</option>
+                                <option value='false'>Inativo</option>
+                            </select>
                         </div>
-                        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Salvar</button>
+                        <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Salvar</button>
                     </div>
                 </form>
                 <div className="mt-2">
                     <Link href={`/fornecedores/${params.id}/contatos`}
-                        className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white">Consultar contatos</Link>
+                        className="flex justify-center py-2 px-4 bg-slate-400 rounded-md text-white font-semibold">Consultar contatos</Link>
                 </div>
                 <Link href="/fornecedores"
                     className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white"

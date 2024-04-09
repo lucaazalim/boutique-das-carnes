@@ -7,14 +7,14 @@ import Table from "../components/Table";
 
 export default function Home() {
     const [formData, setFormData] = useState({
-        id_fornecedor: null,
+        id_fornecedor: '',
         status: '',
-        unidades_macho: null,
-        unidades_femea: null,
-        preco_arroba: null,
-        desconto: null,
-        animais_abatidos: null,
-        peso_total_abate: null,
+        unidades_macho: '',
+        unidades_femea: '',
+        preco_arroba: '',
+        desconto: '',
+        animais_abatidos: '',
+        peso_total_abate: '',
         id_documento_romaneio: null,
         id_documento_gta: null,
         id_documento_nf_compra: null,
@@ -32,10 +32,10 @@ export default function Home() {
     const headers = ['ID', 'Fornecedor', 'Número de animais', 'Preço total', 'Editar'];
 
     useEffect(() => {
-        fetch(`http://localhost:3001/compras`)
+        fetch(`http://localhost:3001/compras/`)
             .then(res => res.json())
             .then(data => setCompras(data))
-            .then(() => console.log('Dados solicitados com sucesso'))
+            .then(() => console.log(compras))
             .catch(e => console.error('Erro ao solicitar os dados: ' + e))
     }, [])
 
@@ -157,6 +157,9 @@ export default function Home() {
                     </form>
                 </div>
             </div>
+            <Link href="/dashboard"
+                className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white"
+            >Voltar</Link>
         </>
     );
 }

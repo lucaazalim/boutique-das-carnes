@@ -3,8 +3,6 @@ const cors = require('cors');
 const package = require('./package.json');
 const mariadb = require('./services/mariadb.service');
 
-mariadb.authenticate();
-
 const app = express();
 const api = require('./routes/api');
 
@@ -24,5 +22,7 @@ const PORT = 3001;
 app.listen(PORT, () => {
     console.log(`Boutique das Carnes API: http://localhost:${PORT}`)
 });
+
+mariadb.authenticate();
 
 module.exports = app;

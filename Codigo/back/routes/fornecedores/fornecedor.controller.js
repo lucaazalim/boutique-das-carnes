@@ -9,10 +9,11 @@ const getPagination = require('../../services/query.service');
 async function httpGetAllFornecedores(req, res) {
 
     const { offset, limit } = getPagination(req.query);
+    const search = req.query.search;
 
     try {
 
-        const data = await getAllForcedores(offset, limit);
+        const data = await getAllForcedores(offset, limit, search);
         return res.status(200).json(data);
 
     } catch (error) {

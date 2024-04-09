@@ -26,6 +26,8 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 #### GET /fornecedores
 
+Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtrar fornecedores pelo CPF, nome, CNPJ, razão social e nome fantasia.
+
 **Exemplo de Resposta:**
 
 ```json

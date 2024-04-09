@@ -1,22 +1,52 @@
 const Fornecedor = require('../fornecedores/fornecedor.sequelize');
+const FornecedorPF = require('../fornecedores/pf/fornecedor-pf.sequelize');
+const FornecedorPJ = require('../fornecedores/pj/fornecedor-pj.sequelize');
+
+const { Op } = require('sequelize');
 
 const {
     checkIfCNPJExists,
     updateFornecedorPJ,
     createFornecedorPJ,
-    getFornecedorPJById
 } = require('../fornecedores/pj/fornecedor-pj.model');
 
 const {
     checkIfCPFExists,
     createFornecedorPF,
-    getFornecedorPFById,
     updateFornecedorPF,
 } = require('../fornecedores/pf/fornecedor-pf.model');
 
-async function getAllForcedores(offset, limit) {
+async function getAllForcedores(offset, limit, search = null) {
 
-    const fornecedores = await Fornecedor.findAll({ offset, limit });
+    var query = {};
+
+    if (search) {
+
+        query = {
+            where: {
+                [Op.or]: [
+                    { '$pf.cpf$': { [Op.eq]: `${search}` } },
+                    { '$pf.nome$': { [Op.like]: `%${search}%` } },
+                    { '$pj.cnpj$': { [Op.eq]: `${search}` } },
+                    { '$pj.razao_social$': { [Op.like]: `%${search}%` } },
+                    { '$pj.nome_fantasia$': { [Op.like]: `%${search}%` } },
+                ]
+            },
+            include: [
+                {
+                    model: FornecedorPF,
+                    as: 'pf'
+                },
+                {
+                    model: FornecedorPJ,
+                    as: 'pj'
+                }
+            ],
+        }
+
+    }
+
+    const fornecedores = await Fornecedor.findAll({ query, offset, limit });
     fornecedores.forEach(rearrangePessoa);
     return fornecedores;
 
@@ -149,6 +179,7 @@ async function updateFornecedor(
 function rearrangePessoa(fornecedor) {
     const { dataValues } = fornecedor;
     dataValues.pessoa = dataValues.pf ? dataValues.pf : dataValues.pj;
+    delete dataValues.pessoa.dataValues.id_fornecedor;
     delete dataValues.pf;
     delete dataValues.pj;
 }

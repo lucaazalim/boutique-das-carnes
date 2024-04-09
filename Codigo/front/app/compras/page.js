@@ -3,17 +3,18 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import Table from "../components/Table";
 
 export default function Home() {
     const [formData, setFormData] = useState({
-        id_fornecedor: 0,
+        id_fornecedor: null,
         status: '',
-        unidades_macho: 0,
-        unidades_femea: 0,
-        preco_arroba: 0,
-        desconto: 0,
-        animais_abatidos: 0,
-        peso_total_abate: 0,
+        unidades_macho: null,
+        unidades_femea: null,
+        preco_arroba: null,
+        desconto: null,
+        animais_abatidos: null,
+        peso_total_abate: null,
         id_documento_romaneio: null,
         id_documento_gta: null,
         id_documento_nf_compra: null,
@@ -27,6 +28,8 @@ export default function Home() {
     const [compras, setCompras] = useState([]);
     const [open, setOpen] = useState(false);
     const router = useRouter();
+
+    const headers = ['ID', 'Fornecedor', 'Número de animais', 'Preço total', 'Editar'];
 
     useEffect(() => {
         fetch(`http://localhost:3001/compras`)
@@ -50,7 +53,7 @@ export default function Home() {
             })
             router.push("/compras");
         } catch (error) {
-            console.error('Erro ao inserir dado no banco')
+            console.error('Erro ao inserir dado no banco.');
         }
     }
 
@@ -81,30 +84,7 @@ export default function Home() {
                         Criar nova compra
                     </button>
                 </div>
-                <table className="w-full">
-                    <thead className='border-b-2 border-b-gray-300'>
-                        <tr className='grid grid-cols-5'>
-                            <th>ID</th>
-                            <th>Fornecedor</th>
-                            <th>Número de animais</th>
-                            <th>Preço total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {compras.map(compra => {
-                            <tr key={compra.id} className='grid grid-cols-4 border-b-2 border-b-gray-100 items-center'>
-                                <td>{compra.id}</td>
-                                <td>{compra.id_fornecedor}</td>
-                                <td>{compra.unidades_femea + compra.unidades_macho}</td>
-                                <td>{compra.peso_total_abate * compra.preco_arroba}</td>
-                                <td className='flex justify-end'>
-                                    <Link href={`compras/${compra.id}`}
-                                        className='flex justify-center bg-yellow-400 p-2 rounded-md text-white font-semibold'>Editar</Link>
-                                </td>
-                            </tr>
-                        })}
-                    </tbody>
-                </table>
+                <Table headers={headers} data={compras} />               
             </div>
             <div
                 className={(open ? `` : `hidden`) + ` fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50`}>

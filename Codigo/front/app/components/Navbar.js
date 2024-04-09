@@ -1,8 +1,8 @@
 "use client";
 
-import {useState} from "react";
+import { useState } from "react";
 import Image from "next/image";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
     const [open, setOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function Navbar() {
             </div>
             {open && (
                 <div className="absolute top-[120px] right-0 bg-gray-200 p-4 rounded-bl-md">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <input
                             type="text"
                             placeholder="Usuário"
@@ -77,9 +77,8 @@ export default function Navbar() {
                             onChange={(e) => setSenha(e.target.value)}
                         />
                         <button
-                            type="button"
+                            type="submit"
                             className="bg-[#792e2e] text-white mr-2 p-2 rounded-md"
-                            onClick={handleSubmit}
                         >
                             Entrar
                         </button>

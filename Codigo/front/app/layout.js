@@ -14,7 +14,7 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={inter.className + " bg-[#d9d9d9]"}>
         <Navbar/>
-        <div className="mx-[120px] bg-white h-[calc(100vh-120px)]">
+        <div className="mx-[120px] bg-white h-[calc(100vh-120px)] overflow-auto">
             {children}
         </div>
         </body>

@@ -72,6 +72,18 @@ async function createFornecedor(
     notas,
     pessoa) {
 
+    if (!pessoa) {
+        throw new Error('Pessoa não informada');
+    }
+
+    if (pessoa) {
+        if (tipo === 'PF' && (!pessoa.nome || !pessoa.cpf)) {
+            throw new Error('Nome e CPF são obrigatórios para pessoa física');
+        } else if (tipo === 'PJ' && (!pessoa.razao_social || !pessoa.cnpj)) {
+            throw new Error('Razão social e CNPJ são obrigatórios para pessoa jurídica');
+        }
+    }
+
     if (tipo === 'PF' && await checkIfCPFExists(pessoa.cpf)) {
         throw new Error('CPF já cadastrado');
     } else if (tipo === 'PJ' && await checkIfCNPJExists(pessoa.cnpj)) {

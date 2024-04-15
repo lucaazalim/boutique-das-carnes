@@ -27,11 +27,10 @@ export default function Page({ params }) {
         setContatos(data.contatos);
       })
       .catch((e) => console.error("Erro ao solicitar os dados: " + e));
-  }, []);
+  }, [params.id]);
 
   useEffect(() => {
     setContatoEditar(contatos[idEditar - 1]);
-    console.log(contatoEditar);
   }, [contatos, idEditar]);
 
   const handleInputChange = (e) => {
@@ -374,7 +373,7 @@ export default function Page({ params }) {
           {contatos &&
             contatos.map((contato) => {
               return (
-                <div className="mt-2 grid grid-cols-11 gap-2">
+                <div key={contato.id} className="mt-2 grid grid-cols-11 gap-2">
                   <input
                     className="text-lg p-2 bg-gray-200 rounded-md col-span-3"
                     name="nome"
@@ -498,7 +497,7 @@ export default function Page({ params }) {
                   contatos.map((contato) => {
                     if (contato.id === idEditar) {
                       return (
-                        <div className="grid grid-cols-3 gap-2">
+                        <div key={contato.id} className="grid grid-cols-3 gap-2">
                           <input
                             className="text-lg p-2 bg-gray-200 rounded-md col-span-3"
                             name="nome"

@@ -39,7 +39,7 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:3001/compras${pesquisa ? `/${pesquisa}` : ``}`)
+    fetch(`http://localhost:3001/compras`)
       .then((res) => res.json())
       .then((data) => {
         setCompras(data);

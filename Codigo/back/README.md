@@ -626,12 +626,19 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
-#### DELETE /usuarios/{id}
+### Login
 
-**Exemplo de Resposta:**
+| Método | Rota             | Descrição                 |
+| :----: | ---------------- | ------------------------- |
+|  POST  | `/login`      | Criar novo usuairo        |
+
+#### POST /login
+
+**Exemplo de Requisição:**
 
 ```json
 {
-    "message": "Usuario deletado com sucesso"
+  "usuario": "joao_silva",
+  "senha": "12345"
 }
 ```

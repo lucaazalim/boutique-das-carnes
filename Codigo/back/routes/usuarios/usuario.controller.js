@@ -84,7 +84,7 @@ async function httpDeleteUsuario(req, res) {
 
     try {
         await deleteUsuario(id);
-        res.status(200).json({ message: 'Usuario deletado com sucesso' })
+        res.status(204).end();
     } catch (error) {
         res.status(500).json({ erro: error.message })
     }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Table from "../components/Table";
+import InputMask from "react-input-mask";
 
 export const estados = [
   { sigla: "AC", nome: "Acre" },
@@ -177,13 +178,14 @@ export default function Home() {
               </select>
               {formData.tipo === "PF" ? (
                 <>
-                  <input
+                  <InputMask
                     className="text-lg p-2 bg-gray-300 rounded-md"
                     required
                     name="cpf"
                     value={formData.pessoa.cpf}
                     onChange={handleChange}
                     placeholder="CPF"
+                    mask={"999.999.999-99"}
                   />
                   <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
@@ -196,13 +198,14 @@ export default function Home() {
                 </>
               ) : (
                 <>
-                  <input
+                  <InputMask
                     className="text-lg p-2 bg-gray-300 rounded-md"
                     required
                     name="cnpj"
                     value={formData.pessoa.cnpj}
                     onChange={handleChange}
                     placeholder="CNPJ"
+                    mask={"99.999.999/9999-99"}
                   />
                   <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
@@ -228,27 +231,30 @@ export default function Home() {
                 onChange={handleChange}
                 placeholder="E-mail"
               />
-              <input
+              <InputMask
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 name="telefone"
                 value={formData.telefone}
                 onChange={handleChange}
                 placeholder="Telefone"
+                mask={"(99) 9999-9999"}
               />
-              <input
+              <InputMask
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 name="celular"
                 value={formData.celular}
                 onChange={handleChange}
                 placeholder="Celular"
+                mask={"(99) 99999-9999"}
               />
-              <input
+              <InputMask
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 required
                 name="cep"
                 value={formData.cep}
                 onChange={handleChange}
                 placeholder="CEP"
+                mask={"99999-999"}
               />
               <input
                 className="text-lg p-2 bg-gray-300 rounded-md"
@@ -281,11 +287,11 @@ export default function Home() {
                 placeholder="Complemento"
               />
               <select
-                onChange={(e) => handleChange(e)}
                 className="text-lg p-2 bg-gray-300 rounded-md"
-                value={formData.estado} // Define o valor selecionado como o estado atual
-                required
                 name="estado"
+                value={formData.estado}
+                onChange={(e) => handleChange(e)}
+                required
               >
                 {estados.map((estado) => (
                   <option key={estado.sigla} value={estado.sigla}>

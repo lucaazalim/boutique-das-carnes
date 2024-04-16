@@ -43,14 +43,12 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         setCompras(data);
-        console.log(data);
       })
       .catch((e) => console.error("Erro ao solicitar os dados: " + e));
   }, [pesquisa]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(JSON.stringify.formData);
     try {
       const res = await fetch("http://localhost:3001/compras", {
         method: "POST",

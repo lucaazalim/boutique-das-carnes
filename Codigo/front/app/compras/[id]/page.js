@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import InputMask from "react-input-mask";
+import "./style.css";
 
 export default function Page({ params }) {
   const [compra, setCompra] = useState({});
@@ -98,6 +100,7 @@ export default function Page({ params }) {
 
   return (
     <div className="p-5">
+
       <h1 className="text-4xl font-semibold">Editar compra</h1>
       <form className="mt-5 grid grid-cols-2 gap-2">
         <div className="p-2 bg-gray-200 rounded-md align-middle">
@@ -186,8 +189,8 @@ export default function Page({ params }) {
       <h1 className="text-4xl font-semibold mt-10">Pesagens</h1>
       {pesagens.map((pesagem) => {
         return (
-          <div key={pesagem.id} className="mt-5 grid grid-cols-7 gap-2">
-            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-3">
+          <div key={pesagem.id} className="mt-5 grid grid-cols-9 gap-2">
+            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-4">
               <label>Peso: </label>
               <input
                 readOnly
@@ -196,7 +199,7 @@ export default function Page({ params }) {
                 className="text-lg bg-gray-200 rounded-md w-full cursor-default"
               />
             </div>
-            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-3">
+            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-4">
               <label>Unidades: </label>
               <input
                 readOnly
@@ -207,7 +210,7 @@ export default function Page({ params }) {
             </div>
             <button
               onClick={handleExcludePesagem(pesagem.id)}
-              className="bg-red-500 text-white rounded-md p-2 font-semibold text-xl"
+              className="bg-red-500 hover:bg-red-400 text-white rounded-md p-2 font-semibold text-xl"
             >
               Excluir
             </button>
@@ -307,7 +310,7 @@ export default function Page({ params }) {
             </div>
             <button
               onClick={handleExcludePagamento(pagamento.id)}
-              className="bg-red-500 text-white rounded-md p-2 font-semibold text-xl"
+              className="bg-red-500 hover:bg-red-400 text-white rounded-md p-2 font-semibold text-xl"
             >
               Excluir
             </button>
@@ -333,12 +336,13 @@ export default function Page({ params }) {
         >
           <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">
             <label>Data: </label>
-            <input
+            <InputMask
               type="text"
               onChange={handleChangeCreatePagamento}
               name="data"
               value={pagamentoCreate.data || ""}
               className="text-lg bg-gray-200 rounded-md w-full cursor-default"
+              mask="99-99-9999"
             />
           </div>
           <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">

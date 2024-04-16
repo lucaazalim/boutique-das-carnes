@@ -83,8 +83,12 @@ async function httpDeleteUsuario(req, res) {
     const { id } = req.params;
 
     try {
-        await deleteUsuario(id);
-        res.status(204).end();
+        const deletedRows = await deleteUsuario(id);
+        if (deletedRows > 0) {
+            res.status(204).end();
+        } else {
+            res.status(404).json({ erro: 'Usuario não encontrado' });
+        }
     } catch (error) {
         res.status(500).json({ erro: error.message })
     }

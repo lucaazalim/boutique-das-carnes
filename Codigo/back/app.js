@@ -5,12 +5,14 @@ const mariadb = require('./services/mariadb.service');
 
 const app = express();
 const api = require('./routes/api');
+const routerUsuario = require('./routes/usuario/usuario.router')
 
 app.use(express.json());
 app.use(cors());
 
 app.use('/', (req, res, next) => next());
 app.use(api);
+app.use('/usuarios', routerUsuario);
 
 app.get('/', (req, res) => {
     const { description, version } = package;

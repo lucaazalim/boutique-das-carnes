@@ -552,6 +552,8 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
+---
+
 ### Usuários
 
 | Método | Rota             | Descrição                 |

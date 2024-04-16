@@ -630,7 +630,7 @@ fetch("http://localhost:3001/documentos", {
 
 | Método | Rota             | Descrição                 |
 | :----: | ---------------- | ------------------------- |
-|  POST  | `/login`      | Criar novo usuairo        |
+|  POST  | `/login`         | Fazer login        |
 
 #### POST /login
 

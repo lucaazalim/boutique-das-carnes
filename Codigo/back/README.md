@@ -551,3 +551,51 @@ fetch("http://localhost:3001/documentos", {
   "descricao": "Nova descrição do documento."
 }
 ```
+
+
+### Usuario
+
+| Método | Rota                      | Descrição                   |
+| :----: | ------------------------- | --------------------------- |
+|  POST  | `/`                       | Criar novo usuairo          |
+|  GET   | `/{id}`                   | Consultar usuario pelo ID   |
+|  PUT   | `/{id}`                   | Editar usuario pelo ID      |
+
+#### POST /usuario
+
+**Exemplo de Requisição:**
+
+```json
+{
+    "usuario": "novoUsuario",
+    "nome": "novoNome",
+    "email": "email@email.com",
+    "cargo": "GERENTE",
+    "senha": "12345"
+}
+```
+
+#### GET /usuario/{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+    "id": 1,
+    "usuario": "novoUsuario",
+    "nome": "novoNome",
+    "email": "email@email.com",
+    "cargo": "GERENTE",
+    "senha": "12345"
+}
+```
+
+#### PUT /usuario/{id}
+
+**Exemplo de Requisição:**
+
+```json
+{
+    "usuario": "autualizandoNomeDoUsuario"
+}
+```

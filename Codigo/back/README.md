@@ -556,13 +556,15 @@ fetch("http://localhost:3001/documentos", {
 
 ### Usuários
 
-| Método | Rota             | Descrição                 |
-| :----: | ---------------- | ------------------------- |
-|  POST  | `/usuarios`      | Criar novo usuairo        |
+| Método | Rota             | Descrição                   |
+| :----: | ---------------- | --------------------------- |
+|  POST  | `/usuarios`      | Criar novo usuairo          |
 |  GET   | `/usuarios`      | Consultar todos os usuarios |
-|  GET   | `/usuarios/{id}` | Consultar usuario pelo ID |
-|  PUT   | `/usuarios/{id}` | Editar usuario pelo ID    |
-|  DELETE | `/usuarios/{id}` | Deletar usuario pelo ID    |
+|  GET   | `/usuarios/{id}` | Consultar usuario pelo ID   |
+|  PUT   | `/usuarios/{id}` | Editar usuario pelo ID      |
+| DELETE | `/usuarios/{id}` | Deletar usuario pelo ID     |
+
+---
 
 #### POST /usuarios
 
@@ -577,6 +579,8 @@ fetch("http://localhost:3001/documentos", {
   "senha": "12345"
 }
 ```
+
+---
 
 #### GET /usuarios
 
@@ -600,6 +604,8 @@ fetch("http://localhost:3001/documentos", {
   ...
 ```
 
+---
+
 #### GET /usuarios/{id}
 
 **Exemplo de Resposta:**
@@ -615,6 +621,8 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
+---
+
 #### PUT /usuarios/{id}
 
 **Exemplo de Requisição:**
@@ -626,11 +634,15 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
+---
+
 ### Login
 
-| Método | Rota             | Descrição                 |
-| :----: | ---------------- | ------------------------- |
-|  POST  | `/login`         | Fazer login        |
+| Método | Rota     | Descrição   |
+| :----: | -------- | ----------- |
+|  POST  | `/login` | Fazer login |
+
+---
 
 #### POST /login
 
@@ -642,3 +654,5 @@ fetch("http://localhost:3001/documentos", {
   "senha": "12345"
 }
 ```
+
+**Exemplo de Resposta:**

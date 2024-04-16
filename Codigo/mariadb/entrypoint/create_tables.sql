@@ -213,7 +213,9 @@ CREATE TABLE `usuario` (
   `cargo` enum('ADMINISTRADOR','GERENTE') NOT NULL,
   `senha` text NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `usuario_UN` (`usuario`),
+  UNIQUE KEY `email_UN` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -230,4 +232,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-07 23:12:14
+-- Dump completed on 2024-04-16 16:08:35

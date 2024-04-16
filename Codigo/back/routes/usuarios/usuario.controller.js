@@ -2,7 +2,7 @@ const {
     getByIdUsuario, 
     createUsuario,
     updateUsuario 
-} = require("../../models/usuario/usuario.model");
+} = require("../../models/usuarios/usuario.model");
 
 async function httpGetByIdUsuario(req, res) {
     const { id } = req.params;
@@ -34,6 +34,9 @@ async function httpPostUsuario(req, res) {
 
         res.status(201).json(data);
     } catch (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+            res.status(400).json({ erro: 'Usuario ou email já existe' });
+        }
         res.status(500).json({ erro: error.message });
     }
 

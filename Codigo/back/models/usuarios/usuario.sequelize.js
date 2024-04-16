@@ -10,7 +10,8 @@ const Usuario = sequelize.define('usuario', {
     },
     usuario: {
         type: DataTypes.STRING(50),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     nome: {
         type: DataTypes.STRING(255),
@@ -18,7 +19,8 @@ const Usuario = sequelize.define('usuario', {
     },
     email: {
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     cargo: {
         type: DataTypes.ENUM('ADMINISTRADOR','GERENTE'),

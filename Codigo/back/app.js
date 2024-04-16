@@ -5,7 +5,7 @@ const mariadb = require('./services/mariadb.service');
 
 const app = express();
 const api = require('./routes/api');
-const routerUsuario = require('./routes/usuario/usuario.router')
+const routerUsuario = require('./routes/usuarios/usuario.router')
 
 app.use(express.json());
 app.use(cors());

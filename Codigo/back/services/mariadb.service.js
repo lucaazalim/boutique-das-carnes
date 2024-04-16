@@ -4,7 +4,7 @@ const sequelize = new Sequelize('boutique_das_carnes', 'root', 'password', {
     define: {
         freezeTableName: true
     },
-    host: 'mariadb',
+    host: 'localhost',
     dialect: 'mariadb',
     port: 3306
 });

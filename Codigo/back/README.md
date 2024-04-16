@@ -561,36 +561,36 @@ fetch("http://localhost:3001/documentos", {
 |  GET   | `/{id}`                   | Consultar usuario pelo ID   |
 |  PUT   | `/{id}`                   | Editar usuario pelo ID      |
 
-#### POST /usuario
+#### POST /usuarios
 
 **Exemplo de Requisição:**
 
 ```json
 {
-    "usuario": "novoUsuario",
-    "nome": "novoNome",
+    "usuario": "Novo Usuario",
+    "nome": "Novo Nome",
     "email": "email@email.com",
     "cargo": "GERENTE",
     "senha": "12345"
 }
 ```
 
-#### GET /usuario/{id}
+#### GET /usuarios/{id}
 
 **Exemplo de Resposta:**
 
 ```json
 {
     "id": 1,
-    "usuario": "novoUsuario",
-    "nome": "novoNome",
+    "usuario": "Novo Usuario",
+    "nome": "Novo Nome",
     "email": "email@email.com",
     "cargo": "GERENTE",
     "senha": "12345"
 }
 ```
 
-#### PUT /usuario/{id}
+#### PUT /usuarios/{id}
 
 **Exemplo de Requisição:**
 

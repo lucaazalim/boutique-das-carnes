@@ -3,6 +3,10 @@ const bycrypt = require('bcryptjs');
 
 const SALT = bycrypt.genSaltSync(10);
 
+async function getAllUsuario() {
+    return await Usuario.findAll();
+}
+
 async function getByIdUsuario(id) {
     return await Usuario.findByPk(id);
 }
@@ -28,8 +32,29 @@ async function updateUsuario(usuario, id) {
     return await Usuario.findByPk(id);
 }
 
+async function deleteUsuario(id) {
+    await Usuario.destroy({
+        where: { id }
+    });
+}
+
+async function verifySenha(usuario, senha) {
+
+    const data = await Usuario.findOne({ where: { usuario } });
+        
+    if (!data) {
+        return false;
+    }
+    
+    return await bycrypt.compare(senha, data.senha);
+
+}
+
 module.exports = {
+    getAllUsuario,
     getByIdUsuario,
     createUsuario,
-    updateUsuario
+    updateUsuario,
+    deleteUsuario,
+    verifySenha,
 }

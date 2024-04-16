@@ -559,8 +559,10 @@ fetch("http://localhost:3001/documentos", {
 | Método | Rota             | Descrição                 |
 | :----: | ---------------- | ------------------------- |
 |  POST  | `/usuarios`      | Criar novo usuairo        |
+|  GET   | `/usuarios`      | Consultar todos os usuarios |
 |  GET   | `/usuarios/{id}` | Consultar usuario pelo ID |
 |  PUT   | `/usuarios/{id}` | Editar usuario pelo ID    |
+|  DELETE | `/usuarios/{id}` | Deletar usuario pelo ID    |
 
 #### POST /usuarios
 
@@ -574,6 +576,28 @@ fetch("http://localhost:3001/documentos", {
   "cargo": "GERENTE",
   "senha": "12345"
 }
+```
+
+#### GET /usuarios
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "usuario": "joao_silva",
+  "nome": "João da Silva",
+  "email": "email@email.com",
+  "cargo": "GERENTE",
+},
+{
+  "id": 2,
+  "usuario": "maria_silva",
+  "nome": "Maria da Silva",
+  "email": "email@email.com",
+  "cargo": "ADMINISTRADOR",
+},
+  ...
 ```
 
 #### GET /usuarios/{id}
@@ -599,5 +623,15 @@ fetch("http://localhost:3001/documentos", {
 {
     "usuario": "joao_silva_oliveira",
     ...
+}
+```
+
+#### DELETE /usuarios/{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+    "message": "Usuario deletado com sucesso"
 }
 ```

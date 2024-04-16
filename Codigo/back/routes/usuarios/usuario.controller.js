@@ -1,8 +1,22 @@
 const { 
+    getAllUsuario,
     getByIdUsuario, 
     createUsuario,
-    updateUsuario 
+    updateUsuario,
+    deleteUsuario
 } = require("../../models/usuarios/usuario.model");
+
+async function httpGetAllUsuario(req, res) {
+    try {
+        const usuarios = (await getAllUsuario()).map(usuario => {
+            delete usuario.dataValues.senha;
+            return usuario;
+        })
+        res.status(200).json(usuarios);
+    } catch (error) {
+        res.status(500).json({ erro: error.message })
+    }
+}
 
 async function httpGetByIdUsuario(req, res) {
     const { id } = req.params;
@@ -10,6 +24,8 @@ async function httpGetByIdUsuario(req, res) {
     try {
 
         const usuario = await getByIdUsuario(id);
+
+        delete usuario.dataValues.senha;
 
         if (usuario === null) {
             res.status(404).json({ erro: 'Usuario não encontrado' })
@@ -59,12 +75,26 @@ async function httpPutUsuario(req, res) {
         res.status(200).json(updatedUsuario);
 
     } catch (error) {
-        
+        res.status(500).json({ erro: error.message });
     }
 }
 
+async function httpDeleteUsuario(req, res) {
+    const { id } = req.params;
+
+    try {
+        await deleteUsuario(id);
+        res.status(200).json({ message: 'Usuario deletado com sucesso' })
+    } catch (error) {
+        res.status(500).json({ erro: error.message })
+    }
+
+}
+
 module.exports = {
+    httpGetAllUsuario,
     httpGetByIdUsuario,
     httpPostUsuario,
-    httpPutUsuario
+    httpPutUsuario,
+    httpDeleteUsuario
 }

@@ -482,13 +482,13 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 
 ### Documentos
 
-| Método | Rota                      | Descrição                   |
-| :----: | ------------------------- | --------------------------- |
-|  POST  | `/`                       | Criar novo documento        |
-|  GET   | `/{id}`                   | Consultar documento pelo ID |
-|  PUT   | `/{id}`                   | Editar documento pelo ID    |
-| DELETE | `/{id}`                   | Deletar documento pelo ID   |
-|  GET   | `/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
+| Método | Rota                                 | Descrição                   |
+| :----: | ------------------------------------ | --------------------------- |
+|  POST  | `/documentos`                        | Criar novo documento        |
+|  GET   | `/documentos/{id}`                   | Consultar documento pelo ID |
+|  PUT   | `/documentos/{id}`                   | Editar documento pelo ID    |
+| DELETE | `/documentos/{id}`                   | Deletar documento pelo ID   |
+|  GET   | `/documentos/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
 
 ---
 
@@ -552,14 +552,13 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
+### Usuários
 
-### Usuario
-
-| Método | Rota                      | Descrição                   |
-| :----: | ------------------------- | --------------------------- |
-|  POST  | `/`                       | Criar novo usuairo          |
-|  GET   | `/{id}`                   | Consultar usuario pelo ID   |
-|  PUT   | `/{id}`                   | Editar usuario pelo ID      |
+| Método | Rota             | Descrição                 |
+| :----: | ---------------- | ------------------------- |
+|  POST  | `/usuarios`      | Criar novo usuairo        |
+|  GET   | `/usuarios/{id}` | Consultar usuario pelo ID |
+|  PUT   | `/usuarios/{id}` | Editar usuario pelo ID    |
 
 #### POST /usuarios
 
@@ -567,11 +566,11 @@ fetch("http://localhost:3001/documentos", {
 
 ```json
 {
-    "usuario": "Novo Usuario",
-    "nome": "Novo Nome",
-    "email": "email@email.com",
-    "cargo": "GERENTE",
-    "senha": "12345"
+  "usuario": "joao_silva",
+  "nome": "João da Silva",
+  "email": "email@email.com",
+  "cargo": "GERENTE",
+  "senha": "12345"
 }
 ```
 
@@ -581,12 +580,12 @@ fetch("http://localhost:3001/documentos", {
 
 ```json
 {
-    "id": 1,
-    "usuario": "Novo Usuario",
-    "nome": "Novo Nome",
-    "email": "email@email.com",
-    "cargo": "GERENTE",
-    "senha": "12345"
+  "id": 1,
+  "usuario": "joao_silva",
+  "nome": "João da Silva",
+  "email": "email@email.com",
+  "cargo": "GERENTE",
+  "senha": "12345"
 }
 ```
 
@@ -596,6 +595,7 @@ fetch("http://localhost:3001/documentos", {
 
 ```json
 {
-    "usuario": "autualizandoNomeDoUsuario"
+    "usuario": "joao_silva_oliveira",
+    ...
 }
 ```

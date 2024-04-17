@@ -142,7 +142,7 @@ export default function Home() {
           <input
             onChange={(e) => setPesquisa(e.target.value)}
             className="col-span-3 bg-[#d9d9d9] rounded-md p-2 border-0"
-            placeholder="Pesquise o ID do fornecedor"
+            placeholder="Pesquise o nome do fornecedor"
           />
           <button
             onClick={() => setOpen(!open)}

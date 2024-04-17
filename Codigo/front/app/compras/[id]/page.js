@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
-import "./style.css";
 import Link from "next/link";
 
 export default function Page({ params }) {
@@ -396,7 +395,7 @@ export default function Page({ params }) {
 
       <div className="absolute bottom-0 w-[calc(100vw-240px)] left-[120px] bg-white p-2">
         <Link
-          href="/fornecedores"
+          href="/compras"
           className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md text-white"
         >
           Voltar

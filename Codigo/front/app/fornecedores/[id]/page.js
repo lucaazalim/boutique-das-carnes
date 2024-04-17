@@ -135,14 +135,10 @@ export default function Page({ params }) {
   function handleDeleteContato(id) {
     fetch(`http://localhost:3001/fornecedores/contatos/${id}`, {
       method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setContatos(contatos.filter((contato) => contato.id !== id));
-        alert("Contato deletado com sucesso!");
-        router.refresh();
-      })
-      .catch((e) => console.error("Erro ao deletar contato: " + e));
+    });
+    setContatos(contatos.filter((contato) => contato.id !== id));
+    alert("Contato deletado com sucesso!");
+    router.push(`/fornecedores/${params.id}`);
   }
 
   return (
@@ -497,7 +493,10 @@ export default function Page({ params }) {
                   contatos.map((contato) => {
                     if (contato.id === idEditar) {
                       return (
-                        <div key={contato.id} className="grid grid-cols-3 gap-2">
+                        <div
+                          key={contato.id}
+                          className="grid grid-cols-3 gap-2"
+                        >
                           <input
                             className="text-lg p-2 bg-gray-200 rounded-md col-span-3"
                             name="nome"
@@ -542,7 +541,7 @@ export default function Page({ params }) {
           </div>
         </div>
       </div>
-      
+
       {/* Botão de voltar */}
       <div className="absolute bottom-0 w-[calc(100vw-240px)] left-[120px] bg-white p-2">
         <Link

@@ -58,6 +58,9 @@ export default function Home() {
         body: JSON.stringify(formData),
         redirect: "follow",
       });
+      alert("Compra inserida com sucesso.");
+      setOpen(!open);
+      router.push("/compras");
     } catch (error) {
       console.error("Erro ao inserir dado no banco.");
     }

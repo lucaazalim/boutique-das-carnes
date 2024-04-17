@@ -1,24 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import InputMask from "react-input-mask";
 import Link from "next/link";
+import ModalCriarDoc from "../../components/ModalCriarDoc";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }) {
   const [compra, setCompra] = useState({});
   const [pesagens, setPesagens] = useState([]);
   const [pagamentos, setPagamentos] = useState([]);
   const [criarPesagemOpen, setCriarPesagemOpen] = useState(false);
+  const [criarPagamentosOpenDoc, setCriarPagamentosOpenDoc] = useState(false);
   const [pesagemCreate, setPesagemCreate] = useState({
     unidades: "",
     peso: "",
   });
   const [criarPagamentosOpen, setCriarPagamentosOpen] = useState(false);
   const [pagamentoCreate, setPagamentoCreate] = useState({
-    valor: "",
+    valor: null,
     meio_pagamento: "",
-    id_documento_comprovante: "",
+    id_documento_comprovante: null,
   });
+  const router = useRouter();
 
   useEffect(() => {
     fetch(`http://localhost:3001/compras/${params.id}`)
@@ -184,6 +187,77 @@ export default function Page({ params }) {
               className="text-lg bg-gray-200 rounded-md w-full"
             />
           </div>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar documento de Romaneio
+          </button>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar GTA
+          </button>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar NF de compra
+          </button>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar NF de abate
+          </button>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar NFS do matadouro
+          </button>
+          <button
+            className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+            onClick={(e) => {
+              e.preventDefault();
+              setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc);
+            }}
+          >
+            Adicionar NF de retorno
+          </button>
+          <div className="flex justify-end col-span-2">
+            <button
+              className="bg-green-600 hover:bg-green-500 rounded-md p-2 text-white font-semibold text-xl"
+              onClick={() => {
+                fetch(`http://localhost:3001/compras/${params.id}`, {
+                  method: "PUT",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(compra),
+                });
+                router.replace("/compras");
+              }}
+            >
+              Salvar
+            </button>
+          </div>
         </form>
 
         <h1 className="text-4xl font-semibold mt-10">Pesagens</h1>
@@ -336,13 +410,12 @@ export default function Page({ params }) {
           >
             <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">
               <label>Data: </label>
-              <InputMask
-                type="text"
+              <input
+                type="date"
                 onChange={handleChangeCreatePagamento}
                 name="data"
                 value={pagamentoCreate.data || ""}
                 className="text-lg bg-gray-200 rounded-md w-full cursor-default"
-                mask="99-99-9999"
               />
             </div>
             <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">
@@ -355,26 +428,22 @@ export default function Page({ params }) {
                 className="text-lg bg-gray-200 rounded-md w-full cursor-default"
               />
             </div>
-            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">
-              <label>ID do comprovante: </label>
-              <input
-                type="text"
-                name="id_documento_comprovante"
-                onChange={handleChangeCreatePagamento}
-                value={pagamentoCreate.id_documento_comprovante || ""}
-                className="text-lg bg-gray-200 rounded-md w-full cursor-default"
-              />
-            </div>
-            <div className="p-2 bg-gray-200 rounded-md align-middle col-span-2">
+            <div className="p-2 bg-gray-200 align-middle col-span-2 rounded-md">
               <label>Valor: </label>
               <input
-                type="text"
+                type="float"
                 name="valor"
                 onChange={handleChangeCreatePagamento}
                 value={pagamentoCreate.valor || ""}
                 className="text-lg bg-gray-200 rounded-md w-full cursor-default"
               />
             </div>
+            <button
+              className="p-2 bg-gray-200 text-center col-span-2 rounded-md"
+              onClick={() => setCriarPagamentosOpenDoc(!criarPagamentosOpenDoc)}
+            >
+              Adicionar comprovante
+            </button>
             <div className="flex justify-around p-2 rounded-md col-span-8">
               <button
                 onClick={() => setCriarPagamentosOpen(!criarPagamentosOpen)}
@@ -401,6 +470,10 @@ export default function Page({ params }) {
           Voltar
         </Link>
       </div>
+      <ModalCriarDoc
+        isOpen={criarPagamentosOpenDoc}
+        setIsOpen={setCriarPagamentosOpenDoc}
+      />
     </div>
   );
 }

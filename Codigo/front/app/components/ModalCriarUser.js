@@ -15,20 +15,22 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(JSON.stringify.formData);
     try {
-        fetch('http://localhost:3001/usuarios', {
-        method: 'POST',
+      const res = await fetch("http://localhost:3001/usuarios", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(user)
-        })
-        alert('Usuário criado com sucesso!')
-        setIsOpen(false)
+        body: JSON.stringify(user),
+        redirect: "follow",
+      });
+      alert("Usuario criado com sucesso!");
+      setIsOpen(!isOpen);
     } catch (error) {
-        console.error('Erro ao criar usuário', error)
+      console.error("Erro ao inserir dado no banco");
     }
   };
 

@@ -178,14 +178,14 @@ export default function Home() {
               </select>
               {formData.tipo === "PF" ? (
                 <>
-                  <InputMask
+                  <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
                     required
+                    pattern="[0-9]{11}"
                     name="cpf"
                     value={formData.pessoa.cpf}
                     onChange={handleChange}
                     placeholder="CPF"
-                    mask={"999.999.999-99"}
                   />
                   <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
@@ -198,14 +198,14 @@ export default function Home() {
                 </>
               ) : (
                 <>
-                  <InputMask
+                  <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
                     required
+                    pattern="[0-9]{14}"
                     name="cnpj"
                     value={formData.pessoa.cnpj}
                     onChange={handleChange}
                     placeholder="CNPJ"
-                    mask={"99.999.999/9999-99"}
                   />
                   <input
                     className="text-lg p-2 bg-gray-300 rounded-md"
@@ -226,35 +226,36 @@ export default function Home() {
               )}
               <input
                 className="text-lg p-2 bg-gray-300 rounded-md"
+                type="email"
                 name="email"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="E-mail"
               />
-              <InputMask
+              <input
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 name="telefone"
+                type="tel"
+                maxLength={11}
                 value={formData.telefone}
                 onChange={handleChange}
                 placeholder="Telefone"
-                mask={"(99) 9999-9999"}
               />
-              <InputMask
+              <input
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 name="celular"
                 value={formData.celular}
                 onChange={handleChange}
                 placeholder="Celular"
-                mask={"(99) 99999-9999"}
               />
-              <InputMask
+              <input
                 className="text-lg p-2 bg-gray-300 rounded-md"
                 required
                 name="cep"
                 value={formData.cep}
                 onChange={handleChange}
                 placeholder="CEP"
-                mask={"99999-999"}
               />
               <input
                 className="text-lg p-2 bg-gray-300 rounded-md"

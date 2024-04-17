@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: boutique_das_carnes
 -- ------------------------------------------------------
--- Server version	11.1.2-MariaDB-1:11.1.2+maria~ubu2204
+-- Server version	11.3.2-MariaDB-1:11.3.2+maria~ubu2204
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,6 +14,68 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cliente`
+--
+
+DROP TABLE IF EXISTS `cliente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cliente` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `tipo` enum('PJ','PF') NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefone` varchar(10) DEFAULT NULL,
+  `celular` varchar(11) DEFAULT NULL,
+  `cep` varchar(10) NOT NULL,
+  `logradouro` varchar(150) NOT NULL,
+  `bairro` varchar(50) DEFAULT NULL,
+  `numero` varchar(5) DEFAULT NULL,
+  `complemento` varchar(10) DEFAULT NULL,
+  `estado` enum('AC','AL','AM','AP','BA','CE','DF','ES','GO','MA','MG','MS','MT','PA','PB','PE','PI','PR','RJ','RN','RO','RR','RS','SC','SE','SP','TO') NOT NULL,
+  `cidade` varchar(50) NOT NULL,
+  `ativo` tinyint(1) NOT NULL,
+  `notas` text DEFAULT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cliente_pf`
+--
+
+DROP TABLE IF EXISTS `cliente_pf`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cliente_pf` (
+  `id_cliente` bigint(20) NOT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `cliente_pf_cpf_UN` (`cpf`),
+  CONSTRAINT `cliente_pf_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `cliente_pj`
+--
+
+DROP TABLE IF EXISTS `cliente_pj`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cliente_pj` (
+  `id_cliente` bigint(20) NOT NULL,
+  `cnpj` varchar(12) NOT NULL,
+  `razao_social` varchar(255) NOT NULL,
+  `nome_fantasia` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_cliente`),
+  UNIQUE KEY `cliente_pj_cnpj_UN` (`cnpj`),
+  CONSTRAINT `cliente_pj_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `compra`
@@ -47,12 +109,12 @@ CREATE TABLE `compra` (
   KEY `compra_id_documento_nf_abate_FK` (`id_documento_nf_abate`),
   KEY `compra_id_documento_nfs_matadouro_FK` (`id_documento_nfs_matadouro`),
   KEY `compra_id_documento_nf_retorno_FK` (`id_documento_nf_retorno`),
-  CONSTRAINT `compra_id_documento_gta_FK` FOREIGN KEY (`id_documento_gta`) REFERENCES `documento` (`id`),
-  CONSTRAINT `compra_id_documento_nf_abate_FK` FOREIGN KEY (`id_documento_nf_abate`) REFERENCES `documento` (`id`),
-  CONSTRAINT `compra_id_documento_nf_compra_FK` FOREIGN KEY (`id_documento_nf_compra`) REFERENCES `documento` (`id`),
-  CONSTRAINT `compra_id_documento_nf_retorno_FK` FOREIGN KEY (`id_documento_nf_retorno`) REFERENCES `documento` (`id`),
-  CONSTRAINT `compra_id_documento_nfs_matadouro_FK` FOREIGN KEY (`id_documento_nfs_matadouro`) REFERENCES `documento` (`id`),
-  CONSTRAINT `compra_id_documento_romaneio_FK` FOREIGN KEY (`id_documento_romaneio`) REFERENCES `documento` (`id`),
+  CONSTRAINT `compra_id_documento_gta_FK` FOREIGN KEY (`id_documento_gta`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `compra_id_documento_nf_abate_FK` FOREIGN KEY (`id_documento_nf_abate`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `compra_id_documento_nf_compra_FK` FOREIGN KEY (`id_documento_nf_compra`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `compra_id_documento_nf_retorno_FK` FOREIGN KEY (`id_documento_nf_retorno`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `compra_id_documento_nfs_matadouro_FK` FOREIGN KEY (`id_documento_nfs_matadouro`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `compra_id_documento_romaneio_FK` FOREIGN KEY (`id_documento_romaneio`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
   CONSTRAINT `compra_id_fornecedor_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -76,7 +138,7 @@ CREATE TABLE `compra_pagamento` (
   KEY `compra_pagamento_id_documento_comprovante_FK` (`id_documento_comprovante`),
   KEY `compra_pagamento_id_compra_FK` (`id_compra`),
   CONSTRAINT `compra_pagamento_id_compra_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`),
-  CONSTRAINT `compra_pagamento_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
+  CONSTRAINT `compra_pagamento_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -232,4 +294,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-16 16:08:35
+-- Dump completed on 2024-04-17 13:02:03

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cfb32743-50f1-4dba-aa47-b4488e5ef8af",
+		"_postman_id": "cb3bdb95-1123-4acd-ad81-7cbfa14cc6a0",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27457409"
+		"_exporter_id": "1830422"
 	},
 	"item": [
 		{
@@ -1256,7 +1256,7 @@
 			]
 		},
 		{
-			"name": "Usuario",
+			"name": "Usuários",
 			"item": [
 				{
 					"name": "/usuarios/{id}",

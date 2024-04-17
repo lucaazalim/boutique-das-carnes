@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "58554c15-49fc-4125-af7f-df907cb84519",
+		"_postman_id": "cfb32743-50f1-4dba-aa47-b4488e5ef8af",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1830422"
+		"_exporter_id": "27457409"
 	},
 	"item": [
 		{
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_fornecedor\": 1,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
+							"raw": "{\n  \"id_fornecedor\": 4,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"data\": \"2024-03-28\",\n    \"meio_pagamento\": \"PIX\",\n    \"valor\": 77777.00,\n    \"id_documento_comprovante\": null\n}",
+							"raw": "{\n\t\"pagamento\": [\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 77777.00,\n                \"id_documento_comprovante\": null\n            },\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 8000.00,\n                \"id_documento_comprovante\": null\n            }\n        ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,13 +103,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/1/pagamentos",
+							"raw": "{{base_url}}/compras/2/pagamentos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"1",
+								"2",
 								"pagamentos"
 							]
 						}
@@ -149,7 +149,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"unidades\": 777,\n    \"peso\": 5000.25\n}",
+							"raw": "{\n    \"pesagem\": [\n            {\n                \"unidades\": 777,\n                \"peso\": 5000.25,\n                \"criado_em\": \"2024-04-01T01:27:51.000Z\"\n            }\n        ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,13 +157,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/1/pesagens",
+							"raw": "{{base_url}}/compras/2/pesagens",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"1",
+								"2",
 								"pesagens"
 							]
 						}
@@ -256,13 +256,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/1",
+							"raw": "{{base_url}}/compras/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -355,14 +355,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/compras/pesagens/1",
+							"raw": "{{base_url}}/compras/pesagens/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
 								"pesagens",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -401,7 +401,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"status\": \"CANCELADA\",\n  \"unidades_machos\": 6\n}",
+							"raw": "{\n  \"status\": \"CANCELADA\",\n  \"unidadesMachos\": 5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -409,13 +409,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/1",
+							"raw": "{{base_url}}/compras/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -454,7 +454,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"valor\": 10002\n}",
+							"raw": "{\n  \"valor\": 10000\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -508,7 +508,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"unidades\": 18\n}",
+							"raw": "{\n  \"unidades\": 17\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -657,7 +657,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838481\",\n        \"nome\": \"João Silva\"\n\t}\n}\n",
+							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"exemplo@empresa.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do fornecedor\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12304838483\",\n    \"nome\": \"João Silva\"\n\t}\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -710,7 +710,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"nome\": \"Contato 2\",\n    \"celular\": \"987654322\",\n    \"cargo\": \"Cargo 2\"\n}",
+							"raw": "{\n\t\"contato\": [\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 1\",\n\t\t\t\t\"celular\": \"987654321\",\n\t\t\t\t\"cargo\": \"Cargo 1\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 2\",\n\t\t\t\t\"celular\": \"987654322\",\n\t\t\t\t\"cargo\": \"Cargo 2\"\n\t\t\t}\n\t\t]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -718,13 +718,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/1/contatos",
+							"raw": "{{base_url}}/fornecedores/4/contatos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"1",
+								"4",
 								"contatos"
 							]
 						}
@@ -776,6 +776,11 @@
 									"key": "page_size",
 									"value": "5",
 									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
 								}
 							]
 						}
@@ -810,13 +815,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/1",
+							"raw": "{{base_url}}/fornecedores/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -850,14 +855,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/1",
+							"raw": "{{base_url}}/fornecedores/contatos/8",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"1"
+								"8"
 							]
 						}
 					},
@@ -869,11 +874,8 @@
 						{
 							"listen": "test",
 							"script": {
-								"exec": [
-									""
-								],
 								"type": "text/javascript",
-								"packages": {}
+								"exec": []
 							}
 						}
 					],
@@ -896,7 +898,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"email\": \"teste4@example.com\",\n    \"pessoa\": {\n        \"nome\": \"Luca2\"\n    }\n}",
+							"raw": "{\n\t\"pessoa\": {\n\t\t\"nome\": \"Maria\"\n\t}\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -904,13 +906,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/1",
+							"raw": "{{ _.baseURL }}/fornecedores/4",
 							"host": [
-								"{{base_url}}"
+								"{{ _.baseURL }}"
 							],
 							"path": [
 								"fornecedores",
-								"1"
+								"4"
 							]
 						}
 					},
@@ -957,14 +959,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/1",
+							"raw": "{{base_url}}/fornecedores/contatos/8",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"1"
+								"8"
 							]
 						}
 					},
@@ -998,14 +1000,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/fornecedores/contatos/1",
+							"raw": "{{base_url}}/fornecedores/contatos/7",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
 								"contatos",
-								"1"
+								"7"
 							]
 						}
 					},
@@ -1246,6 +1248,143 @@
 							],
 							"path": [
 								"documentos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuario",
+			"item": [
+				{
+					"name": "/usuarios/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"senha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/usuarios/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/usuarios/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/13",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/usuarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/usuarios/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/usuarios/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/usuarios",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"jhonE\",\r\n    \"nome\": \"jhonata\",\r\n    \"email\": \"jhonata123h@gmail.com\",\r\n    \"cargo\": \"ADMINISTRADOR\",\r\n    \"senha\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/usuarios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"usuarioJhon\",\r\n    \"senha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"login"
 							]
 						}
 					},

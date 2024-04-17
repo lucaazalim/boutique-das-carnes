@@ -41,14 +41,12 @@ function Page() {
         <TableUsuarios data={data} />
       </div>
 
-      <div className="absolute bottom-0 w-[calc(100vw-240px)] left-[120px] bg-white p-2">
-        <Link
-          href="/dashboard"
-          className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md text-white"
-        >
-          Voltar
-        </Link>
-      </div>
+      <Link
+        href="/dashboard"
+        className="flex justify-center w-[80px] p-2 bg-slate-400 rounded-md absolute bottom-5 left-[140px] text-white"
+      >
+        Voltar
+      </Link>
 
       <ModalCriarUser isOpen={isOpen} setIsOpen={setIsOpen} />
     </>

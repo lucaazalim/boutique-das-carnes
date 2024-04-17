@@ -17,7 +17,6 @@ function ModalCriarDoc({ isOpen, setIsOpen }) {
     form.append("file", documento);
     try {
       fetch("http://localhost:3001/documentos", {
-
         method: "POST",
         headers: {
           "Content-Type": "multipart/form-data; boundary=???",
@@ -46,37 +45,43 @@ function ModalCriarDoc({ isOpen, setIsOpen }) {
           Criar Documento
         </h1>
         <div className="bg-gray-300 p-2 rounded-md">
-          <label>Numero de referência: </label>
-          <input
-            type="number"
-            min={0}
-            id="nome"
-            className="w-full bg-gray-200 p-2 rounded-md"
-            onChange={(e) => {
-              dados.numero_referencia = e.target.value;
-            }}
-          />
+          <label>
+            Numero de referência:
+            <input
+              type="number"
+              min={0}
+              id="nome"
+              className="w-full bg-gray-200 p-2 rounded-md"
+              onChange={(e) => {
+                dados.numero_referencia = e.target.value;
+              }}
+            />
+          </label>
         </div>
         <div className="bg-gray-300 p-2 rounded-md">
-          <label>Descrição: </label>
-          <textarea
-            id="descricao"
-            className="w-full h-[150px] bg-gray-200 p-2 rounded-md"
-            onChange={(e) => {
-              dados.descricao = e.target.value;
-            }}
-          />
+          <label>
+            Descrição:
+            <textarea
+              id="descricao"
+              className="w-full h-[150px] bg-gray-200 p-2 rounded-md"
+              onChange={(e) => {
+                dados.descricao = e.target.value;
+              }}
+            />
+          </label>
         </div>
         <div className="bg-gray-300 p-2 rounded-md">
-          <label>File input: </label>
-          <input
-            type="file"
-            id="documento"
-            className="w-full p-2"
-            onChange={(e) => {
-              documento = e.target.files[0];
-            }}
-          />
+          <label>
+            File input:
+            <input
+              type="file"
+              id="documento"
+              className="w-full p-2"
+              onChange={(e) => {
+                documento = e.target.files[0];
+              }}
+            />
+          </label>
         </div>
         <div className="flex justify-between">
           <button

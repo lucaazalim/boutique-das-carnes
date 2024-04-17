@@ -7,19 +7,20 @@ function ModalCriarDoc({ isOpen, setIsOpen }) {
   const [dados, setDados] = useState({
     numero_referencia: null,
     descricao: "",
-    documento: null,
   });
+  var documento = null;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     form.append("numero_referencia", dados.numero_referencia);
     form.append("descricao", dados.descricao);
-    form.append("documento", dados.documento);
+    form.append("file", documento);
     try {
       fetch("http://localhost:3001/documentos", {
+
         method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "multipart/form-data; boundary=???",
         },
         body: form,
       });
@@ -73,7 +74,7 @@ function ModalCriarDoc({ isOpen, setIsOpen }) {
             id="documento"
             className="w-full p-2"
             onChange={(e) => {
-              dados.documento = e.target.files[0];
+              documento = e.target.files[0];
             }}
           />
         </div>

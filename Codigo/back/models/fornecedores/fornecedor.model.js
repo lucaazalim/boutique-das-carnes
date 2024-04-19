@@ -23,9 +23,9 @@ async function getAllForcedores(offset, limit, search = null) {
         options = {
             where: {
                 [Op.or]: [
-                    { '$pf.cpf$': { [Op.eq]: `${search}` } },
+                    { '$pf.cpf$': { [Op.like]: `${search}%` } },
                     { '$pf.nome$': { [Op.like]: `%${search}%` } },
-                    { '$pj.cnpj$': { [Op.eq]: `${search}` } },
+                    { '$pj.cnpj$': { [Op.like]: `${search}%` } },
                     { '$pj.razao_social$': { [Op.like]: `%${search}%` } },
                     { '$pj.nome_fantasia$': { [Op.like]: `%${search}%` } },
                 ]

@@ -42,11 +42,11 @@ async function verifySenha(usuario, senha) {
 
     const data = await Usuario.findOne({ where: { usuario } });
         
-    if (!data) {
-        return false;
+    if (await bycrypt.compare(senha, data.senha)) {
+        return data;
     }
     
-    return await bycrypt.compare(senha, data.senha);
+    return null;
 
 }
 

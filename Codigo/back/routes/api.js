@@ -4,8 +4,14 @@ const routerCompra = require('./compras/compras.router');
 const routerDocumentos = require('./documentos/documentos.router');
 const routerUsuario = require('../routes/usuarios/usuario.router');
 const routerLogin = require('../routes/login/login.router');
+const tokenValidated = require('../middlewares/authentication.middleware');
 
 const api = express();
+
+// Rota para teste
+api.get('/teste', tokenValidated, (req, res) => {
+    res.status(200).send('<h1>Acessado com sucesso</h1>');
+})
 
 api.use('/fornecedores', routerFonecedor);
 api.use('/compras', routerCompra);

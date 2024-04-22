@@ -4,6 +4,8 @@ const routerCompra = require('./compras/compras.router');
 const routerDocumentos = require('./documentos/documentos.router');
 const routerUsuario = require('../routes/usuarios/usuario.router');
 const routerLogin = require('../routes/login/login.router');
+const routerCliente = require('../routes/clientes/cliente.router');
+
 const tokenValidated = require('../middlewares/authentication.middleware');
 
 const api = express();
@@ -18,5 +20,6 @@ api.use('/compras', routerCompra);
 api.use('/documentos', routerDocumentos);
 api.use('/usuarios', routerUsuario);
 api.use('/login', routerLogin);
+api.use('/clientes', routerCliente);
 
 module.exports = api;

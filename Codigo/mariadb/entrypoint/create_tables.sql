@@ -206,6 +206,7 @@ CREATE TABLE `estoque` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_compra_carcaca` bigint(20) NOT NULL,
   `tipo` enum('FIGADO','DIANTEIRO_SEM_CUPIM','CUPIM','SERROTE_SEM_RABADA','COSTELA','RABADA') NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `estoque_id_compra_carcaca_FK` (`id_compra_carcaca`),
   CONSTRAINT `estoque_id_compra_carcaca_FK` FOREIGN KEY (`id_compra_carcaca`) REFERENCES `compra_carcaca` (`id`)
@@ -328,4 +329,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-23 17:44:28
+-- Dump completed on 2024-04-23 18:10:26

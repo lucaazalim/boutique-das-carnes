@@ -1,4 +1,5 @@
 const Cliente = require('./clientes.sequelize');
+const { Op } = require('sequelize');
 
 const {
     createClientePJ,
@@ -9,6 +10,50 @@ const {
     createClientePF,
     checkIfCPFExists
 } = require('./pf/cliente-pf.model');
+
+
+async function getAllClientes(offset, limit, search = null){
+
+    var options = {};
+
+    if (search) {
+
+        options = {
+            where: {
+                [Op.or]: [
+                    { '$pf.cpf$': { [Op.like]: `${search}%` } },
+                    { '$pf.nome$': { [Op.like]: `%${search}%` } },
+                    { '$pj.cnpj$': { [Op.like]: `${search}%` } },
+                    { '$pj.razao_social$': { [Op.like]: `%${search}%` } },
+                    { '$pj.nome_fantasia$': { [Op.like]: `%${search}%` } },
+                ]
+            },
+        }
+
+    } else {
+
+        options = { offset, limit };
+        
+    }
+
+    const clientes = await Cliente.findAll(options);
+    clientes.forEach(rearrangePessoa);
+    return clientes
+
+}
+
+
+
+async function getClienteById(id){
+
+    const cliente = await Cliente.findByPk(id);
+
+    if(cliente){
+        rearrangePessoa(cliente);
+    }
+
+    return cliente;
+}
 
 
 
@@ -75,17 +120,6 @@ async function createCliente(
 
 }
 
-async function getClienteById(id){
-
-    const cliente = await Cliente.findByPk(id);
-
-    if(cliente){
-        rearrangePessoa(cliente);
-    }
-
-    return cliente;
-}
-
 
 function rearrangePessoa(cliente) {
     const { dataValues } = cliente;
@@ -97,5 +131,6 @@ function rearrangePessoa(cliente) {
 
 module.exports = {
     createCliente,
-    getClienteById
+    getClienteById,
+    getAllClientes
 }

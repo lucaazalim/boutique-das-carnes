@@ -1,12 +1,13 @@
 const express = require('express');
 const {
     httpPostClientes,
-    httpGetByIdClientes
+    httpGetByIdClientes,
+    httpGetAllClientes
 } = require('./cliente.controller');
 
 const routerCliente = express.Router();
 
-routerCliente.get('/', );
+routerCliente.get('/', httpGetAllClientes);
 routerCliente.get('/:id', httpGetByIdClientes );
 routerCliente.post('/', httpPostClientes );
 routerCliente.put('/:id',);

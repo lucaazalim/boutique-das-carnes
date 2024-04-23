@@ -249,6 +249,32 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 |  GET   | `/compras/pesagens/{id}`   | Consultar pesagem pelo ID               |
 |  PUT   | `/compras/pesagens/{id}`   | Editar pesagem pelo ID                  |
 | DELETE | `/compras/pesagens/{id}`   | Deletar uma pesagem pelo ID             |
+|  POST  | `/compras/{id}/carcacas`   | Criar nova carcaça para uma compra      |
+|  GET   | `/compras/carcacas/{id}`   | Consultar carcaça pelo ID               |
+|  PUT   | `/compras/carcacas/{id}`   | Editar carcaça pelo ID                  |
+| DELETE | `/compras/carcacas/{id}`   | Deletar uma carcaça pelo ID             |
+
+---
+
+#### POST /compras
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "id_fornecedor": 1,
+  "unidades_macho": 10,
+  "unidades_femea": 5,
+  "preco_arroba": 10.5,
+  "desconto": null,
+  "id_documento_romaneio": null,
+  "id_documento_gta": null,
+  "id_documento_nf_compra": null,
+  "id_documento_nf_abate": null,
+  "id_documento_nfs_matadouro": null,
+  "id_documento_nf_retorno": null
+}
+```
 
 ---
 
@@ -261,13 +287,10 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
   {
     "id": 1,
     "id_fornecedor": 1,
-    "status": "CONCLUIDA",
     "unidades_macho": 10,
     "unidades_femea": 5,
     "preco_arroba": 150.5,
     "desconto": null,
-    "animais_abatidos": 15,
-    "peso_total_abate": null,
     "id_documento_romaneio": null,
     "id_documento_gta": null,
     "id_documento_nf_compra": null,
@@ -300,6 +323,16 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
         "peso": 10.25,
         "criado_em": "2024-03-31T07:35:15.000Z"
       }
+    ],
+    "carcacas": [
+      {
+        "id": 1,
+        "id_compra": 1,
+        "sequencial": 1,
+        "carregado": true,
+        "peso_total": 30.5,
+        "criado_em": "2024-04-23T20:35:47.000Z"
+      }
     ]
   },
   ...
@@ -316,13 +349,10 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 {
   "id": 3,
   "id_fornecedor": 1,
-  "status": "CONCLUIDA",
   "unidades_macho": 10,
   "unidades_femea": 5,
   "preco_arroba": 150.5,
   "desconto": null,
-  "animais_abatidos": 15,
-  "peso_total_abate": 200.75,
   "id_documento_romaneio": null,
   "id_documento_gta": null,
   "id_documento_nf_compra": null,
@@ -347,7 +377,7 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
       "id_documento_comprovante": null
     }
   ],
-  "compra_pesagems": [
+  "pesagems": [
     {
       "id": 2,
       "id_compra": 4,
@@ -355,32 +385,17 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
       "peso": 10.25,
       "criado_em": "2024-03-31T07:35:15.000Z"
     }
+  ],
+  "carcacas": [
+    {
+      "id": 1,
+      "id_compra": 2,
+      "sequencial": 1,
+      "carregado": true,
+      "peso_total": 30.5,
+      "criado_em": "2024-04-23T20:35:47.000Z"
+    }
   ]
-}
-```
-
----
-
-#### POST /compras
-
-**Exemplo de Requisição:**
-
-```json
-{
-  "id_fornecedor": 1,
-  "status": "CONCLUIDA",
-  "unidades_macho": 10,
-  "unidades_femea": 5,
-  "preco_arroba": 10.5,
-  "desconto": null,
-  "animais_abatidos": 15,
-  "peso_total_abate": 200.75,
-  "id_documento_romaneio": null,
-  "id_documento_gta": null,
-  "id_documento_nf_compra": null,
-  "id_documento_nf_abate": null,
-  "id_documento_nfs_matadouro": null,
-  "id_documento_nf_retorno": null
 }
 ```
 
@@ -477,6 +492,51 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 ```json
 {
   "unidades": 15
+}
+```
+
+---
+
+#### POST /compras/{id}/carcacas
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "sequencial": 10,
+  "carregado": true,
+  "peso_total": 210.45
+}
+```
+
+---
+
+#### GET /compras/carcacas/{id}
+
+**Exemplo de Resposta:**
+
+```json
+{
+  "id": 1,
+  "id_compra": 2,
+  "sequencial": 1,
+  "carregado": true,
+  "peso_total": 30.5,
+  "criado_em": "2024-04-23T20:35:47.000Z"
+}
+```
+
+---
+
+#### PUT /compras/carcacas/{id}
+
+**Exemplo de Requisição:**
+
+```json
+{
+  "sequencial": 15,
+  "carregado": false,
+  "peso_total": 300.53
 }
 ```
 

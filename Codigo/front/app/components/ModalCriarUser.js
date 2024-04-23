@@ -42,7 +42,7 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
       }
     >
       <form
-        className="bg-white p-8 rounded-lg w-[calc(100vw-240px-30%)] grid grid-cols-2 gap-2"
+        className="bg-white p-8 rounded-lg w-[calc(100vw-35%)] grid grid-cols-2 gap-2"
         onSubmit={handleSubmit}
       >
         <h1 className="text-4xl font-semibold mb-2 col-span-2">
@@ -54,6 +54,7 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
             type="text"
             id="usuario"
             name="usuario"
+            placeholder="Usuário"
             className="w-full bg-gray-200 p-2 rounded-md col-span-1"
             onChange={handleChange}
           />
@@ -64,6 +65,7 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
             type="text"
             id="nome"
             name="nome"
+            placeholder="Nome"
             className="w-full bg-gray-200 p-2 rounded-md col-span-1"
             onChange={handleChange}
           />
@@ -74,6 +76,7 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
             type="email"
             id="email"
             name="email"
+            placeholder="Email"
             className="w-full bg-gray-200 p-2 rounded-md col-span-1"
             onChange={handleChange}
           />
@@ -91,6 +94,7 @@ function ModalCriarUser({ isOpen, setIsOpen }) {
             type="password"
             id="senha"
             name="senha"
+            placeholder="Senha"
             className="w-full bg-gray-200 p-2 rounded-md col-span-1"
             onChange={handleChange}
           />

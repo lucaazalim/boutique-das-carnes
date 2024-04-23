@@ -39,13 +39,21 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
     });
   };
 
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFornecedor((prevFormData) => ({
+  //     ...prevFormData,
+  //     [name]: value,
+  //   }));
+  // };
+
   return (
     <form onSubmit={handleSubmit}>
       <div className="mt-2 grid grid-cols-2 gap-2">
         {fornecedor.tipo === "PF" && (
           <>
             <label className="bg-gray-300 p-2 rounded-md font-semibold text-gray-400 text-lg">
-              CPF:{" "}
+              CPF:
               <input
                 className="p-1 bg-gray-300 rounded-md w-full font-normal text-gray-400 cursor-default"
                 name="cpf"
@@ -55,7 +63,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
               />
             </label>
             <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-              Nome:{" "}
+              Nome:
               <input
                 className="p-1 bg-gray-200 rounded-md w-full font-normal"
                 name="nome"
@@ -68,7 +76,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
         {fornecedor.tipo === "PJ" && (
           <>
             <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-              CNPJ:{" "}
+              CNPJ:
               <input
                 className="p-1 bg-gray-300 rounded-md w-full font-normal text-gray-400 cursor-default"
                 name="nome"
@@ -78,7 +86,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
               />
             </label>
             <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-              Razao Social:{" "}
+              Razao Social:
               <input
                 className="p-1 bg-gray-200 rounded-md w-full font-normal"
                 name="razao_social"
@@ -87,7 +95,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
               />
             </label>
             <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-              Nome Fantasia:{" "}
+              Nome Fantasia:
               <input
                 className="p-1 bg-gray-200 rounded-md w-full font-normal"
                 name="nome_fantasia"
@@ -98,7 +106,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           </>
         )}
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Email:{" "}
+          Email:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="email"
@@ -107,7 +115,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Telefone:{" "}
+          Telefone:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="telefone"
@@ -116,7 +124,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Celular:{" "}
+          Celular:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="celular"
@@ -125,7 +133,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          CEP:{" "}
+          CEP:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="cep"
@@ -134,7 +142,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Logradouro:{" "}
+          Logradouro:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="logradouro"
@@ -143,7 +151,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Bairro:{" "}
+          Bairro:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="bairro"
@@ -152,7 +160,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Número:{" "}
+          Número:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="numero"
@@ -161,7 +169,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Complemento:{" "}
+          Complemento:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="complemento"
@@ -170,11 +178,11 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Estado:{" "}
+          Estado:
           <select
-            onChange={handleInputChange}
-            name="estado"
             className="p-1 bg-gray-200 rounded-md w-full font-normal h-[36px]"
+            name="estado"
+            onChange={handleInputChange}
           >
             {estados.map((estado) => (
               <option key={estado.sigla} value={fornecedor.estado}>
@@ -184,7 +192,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           </select>
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg">
-          Cidade:{" "}
+          Cidade:
           <input
             className="p-1 bg-gray-200 rounded-md w-full font-normal"
             name="cidade"
@@ -193,7 +201,7 @@ function FormEdicaoFornecedor({ fornecedor, setFornecedor, id }) {
           />
         </label>
         <label className="bg-gray-300 p-2 rounded-md font-semibold text-lg col-span-2">
-          Notas:{" "}
+          Notas:
           <textarea
             className="p-1 bg-gray-200 rounded-md w-full font-normal h-[100px]"
             name="notas"

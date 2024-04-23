@@ -19,7 +19,7 @@ function ModalCriarDoc({ isOpen, setIsOpen }) {
       fetch("http://localhost:3001/documentos", {
         method: "POST",
         headers: {
-          "Content-Type": "multipart/form-data; boundary=???",
+          "Content-Type": "multipart/form-data",
         },
         body: form,
       });

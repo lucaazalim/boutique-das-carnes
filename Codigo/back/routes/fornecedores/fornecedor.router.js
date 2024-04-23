@@ -4,7 +4,8 @@ const {
     httpGetAllFornecedores,
     httpGetByIdFornecedores,
     httpPostFornecedores,
-    httpUpdateFornecedores
+    httpUpdateFornecedores,
+    httpDeleteFornecedorById
 } = require('./fornecedor.controller')
 const {
     httpPostFornecedorContato,
@@ -25,6 +26,6 @@ routerFornecedor.get('/', httpGetAllFornecedores);
 routerFornecedor.get('/:id', httpGetByIdFornecedores);
 routerFornecedor.post('/', httpPostFornecedores);
 routerFornecedor.put('/:id', httpUpdateFornecedores);
-
+routerFornecedor.delete('/:id', httpDeleteFornecedorById);
 
 module.exports = routerFornecedor;

@@ -13,10 +13,11 @@ As rotas de consulta de dados possuem suporte à parâmetros de paginação.
 
 | Método | Rota                          | Descrição                             |
 | :----: | ----------------------------- | ------------------------------------- |
+|  POST  | `/fornecedores`               | Criar um novo fornecedor              |
 |  GET   | `/fornecedores`               | Consultar os fornecedores criados     |
 |  GET   | `/fornecedores/{id}`          | Consultar o fornecedor pelo ID        |
-|  POST  | `/fornecedores`               | Criar um novo fornecedor              |
 |  PUT   | `/fornecedores/{id}`          | Atualizar dados do fornecedor pelo ID |
+| DELETE | `/fornecedores/{id}`          | Deletar fornecedor pelo ID            |
 |  POST  | `/fornecedores/{id}/contatos` | Criar novo contato para um fornecedor |
 |  GET   | `/fornecedores/contatos/{id}` | Consultar contato pelo ID             |
 |  PUT   | `/fornecedores/contatos/{id}` | Editar contato pelo ID                |
@@ -235,10 +236,11 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 
 | Método | Rota                       | Descrição                               |
 | :----: | -------------------------- | --------------------------------------- |
+|  POST  | `/compras`                 | Criar uma nova compra                   |
 |  GET   | `/compras`                 | Consultar as compras criadas            |
 |  GET   | `/compras/{id}`            | Consultar uma compra pelo ID            |
-|  POST  | `/compras`                 | Criar uma nova compra                   |
 |  PUT   | `/compras/{id}`            | Editar dados da compra pelo ID          |
+| DELETE | `/compras/{id}`            | Deletar uma compra pelo ID              |
 |  POST  | `/compras/{id}/pagamentos` | Criar um novo pagamento para uma compra |
 |  GET   | `/compras/pagamentos/{id}` | Consultar pagamento pelo ID             |
 |  PUT   | `/compras/pagamentos/{id}` | Editar um pagamento pelo ID             |

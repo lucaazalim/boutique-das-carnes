@@ -3,15 +3,12 @@ const { DataTypes } = require('sequelize');
 
 const CompraPagamento = require('../compras/compras-pagamentos/compras-pagamentos.sequelize');
 const CompraPesagem = require('../compras/compras-pesagens/compras-pesagens.sequelize');
+const CompraCarcaca = require('../compras/compras-carcacas/compras-carcacas.sequelize');
 
 const Compra = sequelize.define('compra',
     {
         id_fornecedor: {
             type: DataTypes.BIGINT,
-            allowNull: false
-        },
-        status: {
-            type: DataTypes.ENUM('PENDENTE', 'CONCLUIDA', 'CANCELADA'),
             allowNull: false
         },
         unidades_macho: {
@@ -28,12 +25,6 @@ const Compra = sequelize.define('compra',
         },
         desconto: {
             type: DataTypes.DECIMAL(15, 2)
-        },
-        animais_abatidos: {
-            type: DataTypes.SMALLINT.UNSIGNED
-        },
-        peso_total_abate: {
-            type: DataTypes.DECIMAL(7, 2)
         },
         id_documento_romaneio: {
             type: DataTypes.BIGINT
@@ -59,7 +50,8 @@ const Compra = sequelize.define('compra',
         defaultScope: {
             include: [
                 { model: CompraPagamento, as: 'pagamentos' },
-                { model: CompraPesagem, as: 'pesagens' }
+                { model: CompraPesagem, as: 'pesagens' },
+                { model: CompraCarcaca, as: 'carcacas' }
             ]
         }
     }
@@ -67,5 +59,6 @@ const Compra = sequelize.define('compra',
 
 Compra.hasMany(CompraPagamento, { foreignKey: 'id_compra', as: 'pagamentos' });
 Compra.hasMany(CompraPesagem, { foreignKey: 'id_compra', as: 'pesagens' });
+Compra.hasMany(CompraCarcaca, { foreignKey: 'id_compra', as: 'carcacas' });
 
 module.exports = Compra;

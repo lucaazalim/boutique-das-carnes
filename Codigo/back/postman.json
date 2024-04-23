@@ -171,6 +171,60 @@
 					"response": []
 				},
 				{
+					"name": "/compras/{id}/carcacas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sequencial\": 1,\n    \"carregado\": true,\n    \"peso_total\": 30.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/compras/2/carcacas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compras",
+								"2",
+								"carcacas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/compras",
 					"event": [
 						{
@@ -369,6 +423,51 @@
 					"response": []
 				},
 				{
+					"name": "/compras/carcacas/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/compras/carcacas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compras",
+								"carcacas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/compras/{id}",
 					"event": [
 						{
@@ -530,6 +629,60 @@
 					"response": []
 				},
 				{
+					"name": "/compras/carcacas/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"unidades\": 17\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/compras/carcacas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compras",
+								"carcacas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/compras/pagamentos/{id}",
 					"event": [
 						{
@@ -613,6 +766,95 @@
 							"path": [
 								"compras",
 								"pesagens",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/compras/carcacas/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/compras/carcacas/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compras",
+								"carcacas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/compras/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/compras/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"compras",
 								"1"
 							]
 						}
@@ -1008,6 +1250,46 @@
 								"fornecedores",
 								"contatos",
 								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/fornecedores/{id}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/fornecedores/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"fornecedores",
+								"1"
 							]
 						}
 					},

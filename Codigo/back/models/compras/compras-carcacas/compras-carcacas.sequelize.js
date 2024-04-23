@@ -12,7 +12,7 @@ const CompraCarcacas = sequelize.define('compra_carcaca',
             },
         },
         sequencial: {
-            type: DataTypes.SMALLINT(2),
+            type: DataTypes.TINYINT(2),
             allowNull: false,
         },
         carregado: {
@@ -20,7 +20,7 @@ const CompraCarcacas = sequelize.define('compra_carcaca',
             allowNull: false,
         },
         peso_total: {
-            type: DataTypes.DECIMAL(3, 2),
+            type: DataTypes.DECIMAL(5, 2),
             allowNull: false,
         },
         criado_em: {

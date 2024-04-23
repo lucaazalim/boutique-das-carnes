@@ -180,6 +180,14 @@ async function updateFornecedor(
 
 }
 
+async function deleteFornecedorById(id) {
+    try {
+        await Fornecedor.destroy({ where: { id } });
+    } catch (error) {
+        throw new Error(`Erro ao deletar fornecedor por id: ${error.message}`);
+    }
+}
+
 function rearrangePessoa(fornecedor) {
     const { dataValues } = fornecedor;
     dataValues.pessoa = dataValues.pf ? dataValues.pf : dataValues.pj;
@@ -193,4 +201,5 @@ module.exports = {
     getFornecedorById,
     createFornecedor,
     updateFornecedor,
+    deleteFornecedorById
 }

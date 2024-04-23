@@ -3,6 +3,7 @@ const {
     getFornecedorById,
     createFornecedor,
     updateFornecedor,
+    deleteFornecedorById
 } = require('../../models/fornecedores/fornecedor.model');
 const getPagination = require('../../services/query.service');
 
@@ -131,9 +132,31 @@ async function httpUpdateFornecedores(req, res) {
 
 }
 
+async function httpDeleteFornecedorById(req, res) {
+
+    const id = req.params.id;
+
+    try {
+
+        const fornecedor = await getFornecedorById(id);
+
+        if (!fornecedor) {
+            return res.status(404).json({ error: 'Fornecedor não encontrado' });
+        }
+
+        await deleteFornecedorById(id);
+        return res.status(204).end();
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+}
+
 module.exports = {
     httpGetAllFornecedores,
     httpGetByIdFornecedores,
     httpPostFornecedores,
     httpUpdateFornecedores,
+    httpDeleteFornecedorById
 }

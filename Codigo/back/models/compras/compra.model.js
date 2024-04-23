@@ -107,10 +107,18 @@ async function updateCompraById(
 
 };
 
+async function deleteCompraById(id) {
+    try {
+        await Compra.destroy({ where: { id } });
+    } catch (error) {
+        throw new Error(`Erro ao deletar compra por id: ${error.message}`);
+    }
+}
 
 module.exports = {
     createCompra,
     getAllCompras,
     getCompraById,
-    updateCompraById
+    updateCompraById,
+    deleteCompraById
 } 

@@ -2,7 +2,8 @@ const {
     getAllCompras,
     getCompraById,
     createCompra,
-    updateCompraById
+    updateCompraById,
+    deleteCompraById
 } = require('../../models/compras/compra.model');
 
 const {
@@ -150,9 +151,31 @@ async function httpPutCompraById(req, res) {
 
 }
 
+async function httpDeleteCompraById(req, res) {
+
+    const id = req.params.id;
+
+    try {
+
+        const compra = await getCompraById(id);
+
+        if (!compra) {
+            return res.status(404).json({ error: 'Compra não encontrada' });
+        }
+
+        await deleteCompraById(id);
+        return res.status(204).end();
+
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
+    }
+
+}
+
 module.exports = {
     httpGetAllCompras,
     httpGetCompraByID,
     httpPostCompra,
     httpPutCompraById,
+    httpDeleteCompraById
 }

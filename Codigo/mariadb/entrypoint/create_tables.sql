@@ -87,13 +87,10 @@ DROP TABLE IF EXISTS `compra`;
 CREATE TABLE `compra` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_fornecedor` bigint(20) NOT NULL,
-  `status` enum('PENDENTE','CONCLUIDA','CANCELADA') NOT NULL,
   `unidades_macho` smallint(5) unsigned NOT NULL,
   `unidades_femea` smallint(5) unsigned NOT NULL,
   `preco_arroba` decimal(15,2) NOT NULL,
   `desconto` decimal(15,2) DEFAULT NULL,
-  `animais_abatidos` smallint(5) unsigned DEFAULT NULL,
-  `peso_total_abate` decimal(7,2) DEFAULT NULL,
   `id_documento_romaneio` bigint(20) DEFAULT NULL,
   `id_documento_gta` bigint(20) DEFAULT NULL,
   `id_documento_nf_compra` bigint(20) DEFAULT NULL,
@@ -117,6 +114,26 @@ CREATE TABLE `compra` (
   CONSTRAINT `compra_id_documento_romaneio_FK` FOREIGN KEY (`id_documento_romaneio`) REFERENCES `documento` (`id`) ON DELETE SET NULL,
   CONSTRAINT `compra_id_fornecedor_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `compra_carcaca`
+--
+
+DROP TABLE IF EXISTS `compra_carcaca`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `compra_carcaca` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_compra` bigint(20) NOT NULL,
+  `sequencial` tinyint(2) NOT NULL,
+  `carregado` tinyint(1) NOT NULL,
+  `peso_total` decimal(5,2) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `compra_carcaca_id_compra_FK` (`id_compra`),
+  CONSTRAINT `compra_carcaca_id_compra_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +192,23 @@ CREATE TABLE `documento` (
   `nome_arquivo` varchar(100) DEFAULT NULL,
   `criado_em` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `estoque`
+--
+
+DROP TABLE IF EXISTS `estoque`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estoque` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_compra_carcaca` bigint(20) NOT NULL,
+  `tipo` enum('FIGADO','DIANTEIRO_SEM_CUPIM','CUPIM','SERROTE_SEM_RABADA','COSTELA','RABADA') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `estoque_id_compra_carcaca_FK` (`id_compra_carcaca`),
+  CONSTRAINT `estoque_id_compra_carcaca_FK` FOREIGN KEY (`id_compra_carcaca`) REFERENCES `compra_carcaca` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -294,4 +328,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-17 13:02:03
+-- Dump completed on 2024-04-23 17:44:28

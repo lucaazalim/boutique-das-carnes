@@ -4,13 +4,15 @@ const { Op } = require('sequelize');
 const {
     createClientePJ,
     checkIfCNPJExists,
-    updateClientePJ
+    updateClientePJ,
+    deleteClientePJ
 } = require('./pj/cliente-pj.model');
 
 const {
     createClientePF,
     checkIfCPFExists,
-    updateClientePF
+    updateClientePF,
+    deleteClientePF
 } = require('./pf/cliente-pf.model');
 const { updateFornecedor } = require('../fornecedores/fornecedor.model');
 
@@ -124,6 +126,7 @@ async function createCliente(
 
 }
 
+
 async function updateCliente(
     id,
     email,
@@ -166,12 +169,12 @@ async function updateCliente(
 
         if(pessoa){
 
-            if(cliente.tipo === 'PF' && pessoa.nome){
+            if(cliente.tipo === 'PF'){
                 await updateClientePF(id, pessoa.nome);
             }
 
-            else if(cliente.tipo === 'PJ' && pessoa.nome_fantasia){
-                await updateClientePJ(id, pessoa.nome_fantasia. pessoa.razao_social);
+            else if(cliente.tipo === 'PJ'){
+                await updateClientePJ(id, pessoa.nome_fantasia, pessoa.razao_social);
             }
 
         }
@@ -181,6 +184,28 @@ async function updateCliente(
         rearrangePessoa(cliente);
 
         return cliente;
+}
+
+
+
+async function deleteCliente(id){
+    const cliente = await Cliente.findByPk(id);
+    
+    if(!cliente)
+        throw new Error('Cliente não encontrado');
+
+    if(cliente.tipo === 'PJ'){
+
+        deleteClientePJ(cliente.id);
+
+    }else if(cliente.tipo === 'PF'){
+
+        deleteClientePF(cliente.id);
+
+    }
+
+    await Cliente.destroy({where: {id}});
+
 }
 
 
@@ -198,5 +223,6 @@ module.exports = {
     getAllClientes,
     getClienteById,
     createCliente,
-    updateCliente
+    updateCliente,
+    deleteCliente
 }

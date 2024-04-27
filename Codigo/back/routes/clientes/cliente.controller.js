@@ -2,7 +2,8 @@ const {
     createCliente,
     getClienteById,
     getAllClientes,
-    updateCliente
+    updateCliente,
+    deleteCliente
 } = require('../../models/clientes/clientes.model');
 
 const getPagination = require('../../services/query.service');
@@ -129,6 +130,18 @@ async function httpPutCliente(req, res){
 }
 
 
+async function httpDeleteCliente(req, res){
+    const id = req.params.id;
+
+    try{
+        await deleteCliente(id);
+        res.status(204).end();
+    }catch(erro){
+        res.status(404).json({error : erro.message});
+    }
+}   
+
+
 
 
 
@@ -138,5 +151,6 @@ module.exports = {
     httpPostClientes,
     httpGetByIdClientes,
     httpGetAllClientes,
-    httpPutCliente
+    httpPutCliente,
+    httpDeleteCliente
 }

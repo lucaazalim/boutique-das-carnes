@@ -27,8 +27,15 @@ async function updateClientePF(id_cliente, nome){
     })
 }
 
+async function deleteClientePF(id){
+    await ClientePF.destroy({where : {id_cliente: id}});
+}
+
+
+
 module.exports = {
     createClientePF,    
     checkIfCPFExists,
-    updateClientePF
+    updateClientePF,
+    deleteClientePF
 }

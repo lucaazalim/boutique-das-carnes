@@ -5,11 +5,6 @@ const ClientePF = require('./pf/cliente-pf.sequelize');
 const ClientePJ = require('./pj/cliente-pj.sequelize');
 
 const Cliente = sequelize.define('cliente', {
-    id: {
-      type: DataTypes.BIGINT,
-      primaryKey: true,
-      autoIncrement: true
-    },
     tipo: {
       type: DataTypes.ENUM('PJ', 'PF'),
       allowNull: false
@@ -20,8 +15,8 @@ const Cliente = sequelize.define('cliente', {
     },
     telefone: {
       type: DataTypes.STRING(10),
-      allowNull: true
-    },
+      allowNull: true  
+    },  
     celular: {
       type: DataTypes.STRING(11),
       allowNull: true

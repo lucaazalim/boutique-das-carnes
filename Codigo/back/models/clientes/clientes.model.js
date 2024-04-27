@@ -3,13 +3,16 @@ const { Op } = require('sequelize');
 
 const {
     createClientePJ,
-    checkIfCNPJExists
+    checkIfCNPJExists,
+    updateClientePJ
 } = require('./pj/cliente-pj.model');
 
 const {
     createClientePF,
-    checkIfCPFExists
+    checkIfCPFExists,
+    updateClientePF
 } = require('./pf/cliente-pf.model');
+const { updateFornecedor } = require('../fornecedores/fornecedor.model');
 
 
 async function getAllClientes(offset, limit, search = null){
@@ -114,23 +117,86 @@ async function createCliente(
     }
 
     const cliente = await Cliente.findByPk(createdCliente.id);
+
     rearrangePessoa(cliente);
     
     return cliente;
 
 }
 
+async function updateCliente(
+    id,
+    email,
+    telefone,
+    celular,
+    cep,
+    logradouro,
+    bairro,
+    numero,
+    complemento,
+    estado,
+    cidade,
+    ativo,
+    notas,
+    pessoa){
+
+    await Cliente.update({
+        email,
+        telefone,
+        celular,
+        cep,
+        logradouro,
+        bairro,
+        numero,
+        complemento,
+        estado,
+        cidade,
+        ativo,
+        notas,
+    }, 
+    {
+        where : { id }
+    });
+
+
+        var cliente = await Cliente.findByPk(id);
+
+        if(!cliente)
+            throw Error('Cliente não encontrado');
+
+        if(pessoa){
+
+            if(cliente.tipo === 'PF' && pessoa.nome){
+                await updateClientePF(id, pessoa.nome);
+            }
+
+            else if(cliente.tipo === 'PJ' && pessoa.nome_fantasia){
+                await updateClientePJ(id, pessoa.nome_fantasia. pessoa.razao_social);
+            }
+
+        }
+
+        cliente = await Cliente.findByPk(id);
+
+        rearrangePessoa(cliente);
+
+        return cliente;
+}
+
 
 function rearrangePessoa(cliente) {
+
     const { dataValues } = cliente;
     dataValues.pessoa = dataValues.pf ? dataValues.pf : dataValues.pj;
     delete dataValues.pessoa.dataValues.id_cliente;
     delete dataValues.pf;
     delete dataValues.pj;
+
 }
 
 module.exports = {
-    createCliente,
+    getAllClientes,
     getClienteById,
-    getAllClientes
+    createCliente,
+    updateCliente
 }

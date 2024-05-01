@@ -68,7 +68,7 @@ DROP TABLE IF EXISTS `cliente_pj`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente_pj` (
   `id_cliente` bigint(20) NOT NULL,
-  `cnpj` varchar(12) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
   `razao_social` varchar(255) NOT NULL,
   `nome_fantasia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
@@ -286,7 +286,7 @@ DROP TABLE IF EXISTS `fornecedor_pj`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor_pj` (
   `id_fornecedor` bigint(20) NOT NULL,
-  `cnpj` varchar(12) NOT NULL,
+  `cnpj` varchar(14) NOT NULL,
   `razao_social` varchar(255) NOT NULL,
   `nome_fantasia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_fornecedor`),
@@ -329,4 +329,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-23 18:10:26
+-- Dump completed on 2024-05-01 16:42:29

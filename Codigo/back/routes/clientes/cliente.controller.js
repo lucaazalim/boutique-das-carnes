@@ -4,7 +4,7 @@ const {
     getAllClientes,
     updateCliente,
     deleteCliente
-} = require('../../models/clientes/clientes.model');
+} = require('../../models/clientes/cliente.model');
 
 const getPagination = require('../../services/query.service');
 
@@ -85,6 +85,7 @@ async function httpPostClientes (req, res) {
 
 
 async function httpPutCliente(req, res){
+    
     const {
         email,
         telefone,
@@ -125,19 +126,26 @@ async function httpPutCliente(req, res){
         res.status(200).json(updatedCliente);
 
     }catch(error){
+
         return res.status(500).json({ erro: error.message });
+
     }
 }
 
 
 async function httpDeleteCliente(req, res){
+
     const id = req.params.id;
 
     try{
+
         await deleteCliente(id);
         res.status(204).end();
+
     }catch(erro){
+
         res.status(404).json({error : erro.message});
+
     }
 }   
 

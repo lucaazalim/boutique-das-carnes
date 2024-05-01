@@ -1,4 +1,4 @@
-const Cliente = require('./clientes.sequelize');
+const Cliente = require('./cliente.sequelize');
 const { Op } = require('sequelize');
 
 const {
@@ -14,7 +14,7 @@ const {
     updateClientePF,
     deleteClientePF
 } = require('./pf/cliente-pf.model');
-const { updateFornecedor } = require('../fornecedores/fornecedor.model');
+
 
 
 async function getAllClientes(offset, limit, search = null) {

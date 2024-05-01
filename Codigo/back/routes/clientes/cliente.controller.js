@@ -1,7 +1,9 @@
 const {
     createCliente,
     getClienteById,
-    getAllClientes
+    getAllClientes,
+    updateCliente,
+    deleteCliente
 } = require('../../models/clientes/clientes.model');
 
 const getPagination = require('../../services/query.service');
@@ -26,11 +28,12 @@ async function httpGetByIdClientes(req, res){
 
     const data = await getClienteById(id);
 
-    if(data == null){
+    if(!data){
         res.status(404).json({erro: 'Cliente não encontrado'});
+    }else{
+        res.status(200).json(data);
     }
 
-    res.status(200).json(data);
 }
 
 
@@ -81,10 +84,73 @@ async function httpPostClientes (req, res) {
 }
 
 
+async function httpPutCliente(req, res){
+    const {
+        email,
+        telefone,
+        celular,
+        cep,
+        logradouro,
+        bairro,
+        numero,
+        complemento,
+        estado,
+        cidade,
+        ativo,
+        notas,
+        pessoa
+    } = req.body;
+
+    const id = req.params.id;
+
+    try{
+
+        const updatedCliente = await updateCliente(        
+            id,
+            email,
+            telefone,
+            celular,
+            cep,
+            logradouro,
+            bairro,
+            numero,
+            complemento,
+            estado,
+            cidade,
+            ativo,
+            notas,
+            pessoa
+        );
+
+        res.status(200).json(updatedCliente);
+
+    }catch(error){
+        return res.status(500).json({ erro: error.message });
+    }
+}
+
+
+async function httpDeleteCliente(req, res){
+    const id = req.params.id;
+
+    try{
+        await deleteCliente(id);
+        res.status(204).end();
+    }catch(erro){
+        res.status(404).json({error : erro.message});
+    }
+}   
+
+
+
+
+
 
 
 module.exports = {
     httpPostClientes,
     httpGetByIdClientes,
-    httpGetAllClientes
+    httpGetAllClientes,
+    httpPutCliente,
+    httpDeleteCliente
 }

@@ -12,14 +12,30 @@ async function createClientePF(id_cliente, cpf, nome){
     }
 };
 
-async function checkIfCPFExists(cpf) {
+async function checkIfCPFExists(cpf) { 
     const cliente = await ClientePF.findOne({
         where: { cpf }
     });
     return cliente !== null;
+}  
+
+async function updateClientePF(id_cliente, nome){
+    await ClientePF.update({
+        nome
+    }, {
+        where: { id_cliente }
+    })
 }
+
+async function deleteClientePF(id){
+    await ClientePF.destroy({where : {id_cliente: id}});
+}
+
+
 
 module.exports = {
     createClientePF,    
-    checkIfCPFExists
+    checkIfCPFExists,
+    updateClientePF,
+    deleteClientePF
 }

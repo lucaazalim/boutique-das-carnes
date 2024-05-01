@@ -21,10 +21,24 @@ async function checkIfCNPJExists(cnpj) {
     return cliente !== null;
 }
 
+async function updateClientePJ(id_cliente, nome_fantasia, razao_social){
+    await ClientePJ.update({
+        nome_fantasia,
+        razao_social
+    },
+    {
+        where: {id_cliente},
+    });
+}
 
+async function deleteClientePJ(id){
+    await ClientePJ.destroy({where : {id_cliente: id}});
+}
 
 module.exports = {
     createClientePJ,
-    checkIfCNPJExists
+    checkIfCNPJExists,
+    updateClientePJ,
+    deleteClientePJ
 }
 

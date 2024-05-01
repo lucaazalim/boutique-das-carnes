@@ -2,7 +2,9 @@ const express = require('express');
 const {
     httpPostClientes,
     httpGetByIdClientes,
-    httpGetAllClientes
+    httpGetAllClientes,
+    httpPutCliente,
+    httpDeleteCliente
 } = require('./cliente.controller');
 
 const routerCliente = express.Router();
@@ -10,6 +12,7 @@ const routerCliente = express.Router();
 routerCliente.get('/', httpGetAllClientes);
 routerCliente.get('/:id', httpGetByIdClientes );
 routerCliente.post('/', httpPostClientes );
-routerCliente.put('/:id',);
+routerCliente.put('/:id',httpPutCliente);
+routerCliente.delete('/:id', httpDeleteCliente);
 
 module.exports = routerCliente;

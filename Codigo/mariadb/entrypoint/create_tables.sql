@@ -55,7 +55,7 @@ CREATE TABLE `cliente_pf` (
   `nome` varchar(255) NOT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `cliente_pf_cpf_UN` (`cpf`),
-  CONSTRAINT `cliente_pf_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
+  CONSTRAINT `cliente_pf_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,7 +73,7 @@ CREATE TABLE `cliente_pj` (
   `nome_fantasia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_cliente`),
   UNIQUE KEY `cliente_pj_cnpj_UN` (`cnpj`),
-  CONSTRAINT `cliente_pj_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`)
+  CONSTRAINT `cliente_pj_id_cliente_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -273,7 +273,7 @@ CREATE TABLE `fornecedor_pf` (
   `nome` varchar(255) NOT NULL,
   PRIMARY KEY (`id_fornecedor`),
   UNIQUE KEY `fornecedor_pf_UN` (`cpf`),
-  CONSTRAINT `fornecedor_pf_id_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`)
+  CONSTRAINT `fornecedor_pf_id_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -291,7 +291,7 @@ CREATE TABLE `fornecedor_pj` (
   `nome_fantasia` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_fornecedor`),
   UNIQUE KEY `fornecedor_pj_UN` (`cnpj`),
-  CONSTRAINT `fornecedor_pj_id_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`)
+  CONSTRAINT `fornecedor_pj_id_FK` FOREIGN KEY (`id_fornecedor`) REFERENCES `fornecedor` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -329,4 +329,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-01 16:42:29
+-- Dump completed on 2024-05-01 17:03:39

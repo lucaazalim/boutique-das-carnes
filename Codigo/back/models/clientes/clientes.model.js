@@ -17,7 +17,7 @@ const {
 const { updateFornecedor } = require('../fornecedores/fornecedor.model');
 
 
-async function getAllClientes(offset, limit, search = null){
+async function getAllClientes(offset, limit, search = null) {
 
     var options = {};
 
@@ -38,7 +38,7 @@ async function getAllClientes(offset, limit, search = null){
     } else {
 
         options = { offset, limit };
-        
+
     }
 
     const clientes = await Cliente.findAll(options);
@@ -49,11 +49,11 @@ async function getAllClientes(offset, limit, search = null){
 
 
 
-async function getClienteById(id){
+async function getClienteById(id) {
 
     const cliente = await Cliente.findByPk(id);
 
-    if(cliente){
+    if (cliente) {
         rearrangePessoa(cliente);
     }
 
@@ -83,11 +83,25 @@ async function createCliente(
     }
 
     if (pessoa) {
-        if (tipo === 'PF' && (!pessoa.nome || !pessoa.cpf)) {
-            throw new Error('Nome e CPF são obrigatórios para pessoa física');
-        } else if (tipo === 'PJ' && (!pessoa.razao_social || !pessoa.cnpj)) {
-            throw new Error('Razão social e CNPJ são obrigatórios para pessoa jurídica');
+
+        if (tipo === 'PF') {
+
+            if (!pessoa.nome || !pessoa.cpf) {
+                throw new Error('Nome e CPF são obrigatórios para pessoa física');
+            }
+
+            pessoa.cpf = pessoa.cpf.replace(/\D/g, '');
+
+        } else if (tipo === 'PJ') {
+
+            if (!pessoa.razao_social || !pessoa.cnpj) {
+                throw new Error('Razão social e CNPJ são obrigatórios para pessoa jurídica');
+            }
+
+            pessoa.cnpj = pessoa.cnpj.replace(/\D/g, '');
+
         }
+
     }
 
     if (tipo === 'PF' && await checkIfCPFExists(pessoa.cpf)) {
@@ -121,7 +135,7 @@ async function createCliente(
     const cliente = await Cliente.findByPk(createdCliente.id);
 
     rearrangePessoa(cliente);
-    
+
     return cliente;
 
 }
@@ -141,7 +155,7 @@ async function updateCliente(
     cidade,
     ativo,
     notas,
-    pessoa){
+    pessoa) {
 
     await Cliente.update({
         email,
@@ -156,55 +170,55 @@ async function updateCliente(
         cidade,
         ativo,
         notas,
-    }, 
-    {
-        where : { id }
-    });
+    },
+        {
+            where: { id }
+        });
 
 
-        var cliente = await Cliente.findByPk(id);
+    var cliente = await Cliente.findByPk(id);
 
-        if(!cliente)
-            throw Error('Cliente não encontrado');
+    if (!cliente)
+        throw Error('Cliente não encontrado');
 
-        if(pessoa){
+    if (pessoa) {
 
-            if(cliente.tipo === 'PF'){
-                await updateClientePF(id, pessoa.nome);
-            }
-
-            else if(cliente.tipo === 'PJ'){
-                await updateClientePJ(id, pessoa.nome_fantasia, pessoa.razao_social);
-            }
-
+        if (cliente.tipo === 'PF') {
+            await updateClientePF(id, pessoa.nome);
         }
 
-        cliente = await Cliente.findByPk(id);
+        else if (cliente.tipo === 'PJ') {
+            await updateClientePJ(id, pessoa.nome_fantasia, pessoa.razao_social);
+        }
 
-        rearrangePessoa(cliente);
+    }
 
-        return cliente;
+    cliente = await Cliente.findByPk(id);
+
+    rearrangePessoa(cliente);
+
+    return cliente;
 }
 
 
 
-async function deleteCliente(id){
+async function deleteCliente(id) {
     const cliente = await Cliente.findByPk(id);
-    
-    if(!cliente)
+
+    if (!cliente)
         throw new Error('Cliente não encontrado');
 
-    if(cliente.tipo === 'PJ'){
+    if (cliente.tipo === 'PJ') {
 
         deleteClientePJ(cliente.id);
 
-    }else if(cliente.tipo === 'PF'){
+    } else if (cliente.tipo === 'PF') {
 
         deleteClientePF(cliente.id);
 
     }
 
-    await Cliente.destroy({where: {id}});
+    await Cliente.destroy({ where: { id } });
 
 }
 

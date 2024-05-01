@@ -77,11 +77,25 @@ async function createFornecedor(
     }
 
     if (pessoa) {
-        if (tipo === 'PF' && (!pessoa.nome || !pessoa.cpf)) {
-            throw new Error('Nome e CPF são obrigatórios para pessoa física');
-        } else if (tipo === 'PJ' && (!pessoa.razao_social || !pessoa.cnpj)) {
-            throw new Error('Razão social e CNPJ são obrigatórios para pessoa jurídica');
+
+        if (tipo === 'PF') {
+
+            if (!pessoa.nome || !pessoa.cpf) {
+                throw new Error('Nome e CPF são obrigatórios para pessoa física');
+            }
+
+            pessoa.cpf = pessoa.cpf.replace(/\D/g, '');
+
+        } else if (tipo === 'PJ') {
+
+            if (!pessoa.razao_social || !pessoa.cnpj) {
+                throw new Error('Razão social e CNPJ são obrigatórios para pessoa jurídica');
+            }
+
+            pessoa.cnpj = pessoa.cnpj.replace(/\D/g, '');
+
         }
+
     }
 
     if (tipo === 'PF' && await checkIfCPFExists(pessoa.cpf)) {

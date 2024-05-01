@@ -13,7 +13,7 @@ const FornecedorPJ = sequelize.define('fornecedor_pj', {
         }
     },
     cnpj: {
-        type: DataTypes.STRING(12),
+        type: DataTypes.STRING(14),
         allowNull: false
     },
     razao_social: {

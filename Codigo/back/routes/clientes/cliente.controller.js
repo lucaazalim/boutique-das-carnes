@@ -84,7 +84,7 @@ async function httpPostClientes (req, res) {
 }
 
 
-async function httpPutCliente(req, res){
+async function httpPutClientes(req, res){
     
     const {
         email,
@@ -133,7 +133,7 @@ async function httpPutCliente(req, res){
 }
 
 
-async function httpDeleteCliente(req, res){
+async function httpDeleteClientes(req, res){
 
     const id = req.params.id;
 
@@ -159,6 +159,6 @@ module.exports = {
     httpPostClientes,
     httpGetByIdClientes,
     httpGetAllClientes,
-    httpPutCliente,
-    httpDeleteCliente
+    httpPutClientes,
+    httpDeleteClientes
 }

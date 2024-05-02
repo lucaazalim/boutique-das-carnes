@@ -3,16 +3,16 @@ const {
     httpPostClientes,
     httpGetByIdClientes,
     httpGetAllClientes,
-    httpPutCliente,
-    httpDeleteCliente
+    httpPutClientes,
+    httpDeleteClientes
 } = require('./cliente.controller');
 
 const routerCliente = express.Router();
 
 routerCliente.get('/', httpGetAllClientes);
 routerCliente.get('/:id', httpGetByIdClientes );
-routerCliente.post('/', httpPostClientes );
-routerCliente.put('/:id',httpPutCliente);
-routerCliente.delete('/:id', httpDeleteCliente);
+routerCliente.post('/', httpPostClientes);
+routerCliente.put('/:id',httpPutClientes);
+routerCliente.delete('/:id', httpDeleteClientes);
 
 module.exports = routerCliente;

@@ -5,14 +5,12 @@ const {
     createClientePJ,
     checkIfCNPJExists,
     updateClientePJ,
-    deleteClientePJ
 } = require('./pj/cliente-pj.model');
 
 const {
     createClientePF,
     checkIfCPFExists,
     updateClientePF,
-    deleteClientePF
 } = require('./pf/cliente-pf.model');
 
 
@@ -183,12 +181,16 @@ async function updateCliente(
 
     if (pessoa) {
 
-        if (cliente.tipo === 'PF') {
+        if (cliente.tipo === 'PF' && pessoa.nome) {
+
             await updateClientePF(id, pessoa.nome);
+
         }
 
-        else if (cliente.tipo === 'PJ') {
+        else if (cliente.tipo === 'PJ' && (pessoa.razao_social || pessoa.nome_fantasia)) {
+
             await updateClientePJ(id, pessoa.nome_fantasia, pessoa.razao_social);
+
         }
 
     }
@@ -208,15 +210,6 @@ async function deleteCliente(id) {
     if (!cliente)
         throw new Error('Cliente não encontrado');
 
-    if (cliente.tipo === 'PJ') {
-
-        deleteClientePJ(cliente.id);
-
-    } else if (cliente.tipo === 'PF') {
-
-        deleteClientePF(cliente.id);
-
-    }
 
     await Cliente.destroy({ where: { id } });
 

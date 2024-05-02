@@ -31,14 +31,10 @@ async function updateClientePJ(id_cliente, nome_fantasia, razao_social){
     });
 }
 
-async function deleteClientePJ(id){
-    await ClientePJ.destroy({where : {id_cliente: id}});
-}
 
 module.exports = {
     createClientePJ,
     checkIfCNPJExists,
-    updateClientePJ,
-    deleteClientePJ
+    updateClientePJ
 }
 

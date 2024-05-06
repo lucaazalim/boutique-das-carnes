@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "cb3bdb95-1123-4acd-ad81-7cbfa14cc6a0",
+		"_postman_id": "abf2cfc8-18c6-406b-b1a5-5504ba32d3e5",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1830422"
+		"_exporter_id": "27457409"
 	},
 	"item": [
 		{
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_fornecedor\": 4,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
+							"raw": "{\n  \"id_fornecedor\": 1,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -95,7 +95,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"pagamento\": [\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 77777.00,\n                \"id_documento_comprovante\": null\n            },\n            {\n                \"data\": \"2024-03-28\",\n                \"meio_pagamento\": \"PIX\",\n                \"valor\": 8000.00,\n                \"id_documento_comprovante\": null\n            }\n        ]\n}",
+							"raw": "{\n    \"data\": \"2024-03-28\",\n    \"meio_pagamento\": \"PIX\",\n    \"valor\": 77777.00,\n    \"id_documento_comprovante\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,13 +103,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2/pagamentos",
+							"raw": "{{base_url}}/compras/1/pagamentos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2",
+								"1",
 								"pagamentos"
 							]
 						}
@@ -149,7 +149,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"pesagem\": [\n            {\n                \"unidades\": 777,\n                \"peso\": 5000.25,\n                \"criado_em\": \"2024-04-01T01:27:51.000Z\"\n            }\n        ]\n}",
+							"raw": "{\n    \"unidades\": 777,\n    \"peso\": 5000.25,\n    \"criado_em\": \"2024-04-01T01:27:51.000Z\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -157,13 +157,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2/pesagens",
+							"raw": "{{base_url}}/compras/1/pesagens",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2",
+								"1",
 								"pesagens"
 							]
 						}
@@ -203,7 +203,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"sequencial\": 1,\n    \"carregado\": true,\n    \"peso_total\": 30.50\n}",
+							"raw": "{\n    \"sequencial\": 1,\n    \"carregado\": false,\n    \"peso_total\": 170.50\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -211,13 +211,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/compras/2/carcacas",
+							"raw": "{{base_url}}/compras/1/carcacas",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
-								"2",
+								"1",
 								"carcacas"
 							]
 						}
@@ -1667,6 +1667,118 @@
 							],
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "estoque",
+			"item": [
+				{
+					"name": "/estoque",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false,
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sequencial\": 1,\n    \"carregado\": true,\n    \"peso_total\": 30.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/estoque",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estoque"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/estoque/summary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followRedirects": true,
+						"disableUrlEncoding": false,
+						"disableCookies": false,
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/8.6.1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sequencial\": 1,\n    \"carregado\": true,\n    \"peso_total\": 30.50\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/estoque/summary",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"estoque",
+								"summary"
 							]
 						}
 					},

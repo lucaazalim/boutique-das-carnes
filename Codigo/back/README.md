@@ -541,21 +541,23 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 ```
 
 ---
+
 ### Clientes
 
-| Método | Rota                          | Descrição                             |
-| :----: | ----------------------------- | ------------------------------------- |
-|  POST  | `/clientes`                   | Criar um novo cliente                 |
-|  GET   | `/clientes`                   | Consultar os clientes criados         |
-|  GET   | `/clientes/{id}`              | Consultar o cliente pelo ID           |
-|  PUT   | `/clientes/{id}`              | Atualizar dados do cliente pelo ID    |
-| DELETE | `/clientes/{id}`              | Deletar cliente pelo ID               |
+| Método | Rota             | Descrição                          |
+| :----: | ---------------- | ---------------------------------- |
+|  POST  | `/clientes`      | Criar um novo cliente              |
+|  GET   | `/clientes`      | Consultar os clientes criados      |
+|  GET   | `/clientes/{id}` | Consultar o cliente pelo ID        |
+|  PUT   | `/clientes/{id}` | Atualizar dados do cliente pelo ID |
+| DELETE | `/clientes/{id}` | Deletar cliente pelo ID            |
 
 ---
 
 #### POST /clientes
 
 **Exemplo de Requisição:**
+
 ```json
 {
   "tipo": "PJ",
@@ -580,6 +582,7 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 ```
 
 ---
+
 #### GET /clientes
 
 Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtrar fornecedores pelo CPF, nome, CNPJ, razão social e nome fantasia. Os parâmetros de paginação são ignorados quando o parâmetro de busca é utilizado.
@@ -609,18 +612,18 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
       "razao_social": "Empresa 123",
       "nome_fantasia": "Empresa Number"
     }
-  } 
+  }
   ...
 ]
 ```
 
 ---
+
 #### GET /clientes/{id}
 
 **Exemplo de Resposta:**
 
 ```json
-
 {
   "id": 2,
   "tipo": "PJ",
@@ -638,12 +641,11 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
   "notas": "Notas do fornecedor",
   "criado_em": "2024-05-02T20:45:17.000Z",
   "pessoa": {
-        "cnpj": "121156851955",
-        "razao_social": "Empresa 123",
-        "nome_fantasia": "Empresa Number"
+    "cnpj": "121156851955",
+    "razao_social": "Empresa 123",
+    "nome_fantasia": "Empresa Number"
   }
 }
-
 ```
 
 ---
@@ -653,18 +655,12 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 **Exemplo de Requisiçãp:**
 
 ```json
-
 {
-  "email": "admin@boutiquedascarnes.com",
+  "email": "admin@boutiquedascarnes.com"
 }
-
 ```
 
 ---
-
-
-
-
 
 ### Documentos
 
@@ -677,7 +673,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 |  GET   | `/documentos/uploads/{nome_arquivo}` | Consultar arquivo pelo nome |
 
 ---
-
 
 #### POST /documentos
 
@@ -843,3 +838,48 @@ fetch("http://localhost:3001/documentos", {
 ```
 
 **Exemplo de Resposta:**
+
+### Estoque
+
+| Método | Rota               | Descrição                                                  |
+| :----: | ------------------ | ---------------------------------------------------------- |
+|  GET   | `/estoque`         | Consulta todos os produtos no estoque                      |
+|  GET   | `/estoque/summary` | Consulta a quantidade de produtos no estoque por cada tipo |
+
+#### GET /estoque
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+      "id": 1,
+      "id_compra_carcaca": 12,
+      "tipo": "FIGADO"
+  },
+  {
+      "id": 2,
+      "id_compra_carcaca": 12,
+      "tipo": "DIANTEIRO_SEM_CUPIM"
+  },
+  ...
+]
+```
+
+#### GET /estoque/summary
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+      "tipo": "FIGADO",
+      "quantidade": 2
+  },
+  {
+      "tipo": "DIANTEIRO_SEM_CUPIM",
+      "quantidade": 2
+  },
+  ...
+]
+```

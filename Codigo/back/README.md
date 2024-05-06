@@ -839,12 +839,16 @@ fetch("http://localhost:3001/documentos", {
 
 **Exemplo de Resposta:**
 
+---
+
 ### Estoque
 
 | Método | Rota               | Descrição                                                  |
 | :----: | ------------------ | ---------------------------------------------------------- |
 |  GET   | `/estoque`         | Consulta todos os produtos no estoque                      |
 |  GET   | `/estoque/summary` | Consulta a quantidade de produtos no estoque por cada tipo |
+
+---
 
 #### GET /estoque
 
@@ -865,6 +869,8 @@ fetch("http://localhost:3001/documentos", {
   ...
 ]
 ```
+
+---
 
 #### GET /estoque/summary
 

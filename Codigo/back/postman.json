@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "abf2cfc8-18c6-406b-b1a5-5504ba32d3e5",
+		"_postman_id": "fd815415-09b3-42b3-a64d-0afbb6802630",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27457409"
+		"_exporter_id": "33001966"
 	},
 	"item": [
 		{
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_fornecedor\": 1,\n  \"status\": \"CONCLUIDA\",\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"animais_abatidos\": 15,\n  \"peso_total_abate\": 200.75,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
+							"raw": "{\n  \"id_fornecedor\": 2,\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -804,14 +804,14 @@
 							}
 						],
 						"url": {
-							"raw": "{{base_url}}/compras/carcacas/1",
+							"raw": "{{base_url}}/compras/carcacas/2",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"compras",
 								"carcacas",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -952,7 +952,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"contato\": [\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 1\",\n\t\t\t\t\"celular\": \"987654321\",\n\t\t\t\t\"cargo\": \"Cargo 1\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"nome\": \"Contato 2\",\n\t\t\t\t\"celular\": \"987654322\",\n\t\t\t\t\"cargo\": \"Cargo 2\"\n\t\t\t}\n\t\t]\n}",
+							"raw": "\n{\n\t\"nome\": \"Contato 1\",\n\t\"celular\": \"987654321\",\n\t\"cargo\": \"Cargo 1\"\n}\n\t\t\t",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -960,13 +960,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/fornecedores/4/contatos",
+							"raw": "{{base_url}}/fornecedores/2/contatos",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"fornecedores",
-								"4",
+								"2",
 								"contatos"
 							]
 						}
@@ -1675,7 +1675,7 @@
 			]
 		},
 		{
-			"name": "estoque",
+			"name": "Estoque",
 			"item": [
 				{
 					"name": "/estoque",
@@ -1779,6 +1779,117 @@
 							"path": [
 								"estoque",
 								"summary"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "clientes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tipo\": \"PF\",\n\t\"email\": \"teste@email.com\",\n\t\"telefone\": \"1234567890\",\n\t\"celular\": \"987654321\",\n\t\"cep\": \"12345678\",\n\t\"logradouro\": \"Rua Exemplo\",\n\t\"bairro\": \"Bairro Exemplo\",\n\t\"numero\": \"123\",\n\t\"complemento\": \"Comple\",\n\t\"estado\": \"SP\",\n\t\"cidade\": \"São Paulo\",\n\t\"ativo\": true,\n\t\"notas\": \"Notas do cliente\",\n\t\"pessoa\" : {\n\t\t\"cpf\": \"12309938483\",\n        \"nome\": \"Antonio Silva\"\n\t}\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clientes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clientes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cliente/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clientes/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientes/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test@email.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clientes/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clientes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "clientes/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clientes/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clientes",
+								"5"
 							]
 						}
 					},

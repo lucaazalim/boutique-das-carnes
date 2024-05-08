@@ -41,11 +41,15 @@ async function deleteUsuario(id) {
 async function verifySenha(usuario, senha) {
 
     const data = await Usuario.findOne({ where: { usuario } });
-        
+
+    if (!data) {
+        return null;
+    }
+
     if (await bycrypt.compare(senha, data.senha)) {
         return data;
     }
-    
+
     return null;
 
 }

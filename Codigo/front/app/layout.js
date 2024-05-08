@@ -1,11 +1,8 @@
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
-import { Poppins } from "next/font/google";
 
-const openSans = Poppins({
-  weight: "400",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -15,11 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={openSans.className + " bg-[#d9d9d9]"}>
+      <body className={inter.className + " bg-zinc-300"}>
         <Navbar />
-        <div className="mx-[120px] bg-white h-[calc(100vh-120px)] overflow-auto">
+        <section className="mx-[120px] bg-white h-[calc(100vh-132px)] shadow-2xl">
           {children}
-        </div>
+        </section>
       </body>
     </html>
   );

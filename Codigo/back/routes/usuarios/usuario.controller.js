@@ -25,13 +25,13 @@ async function httpGetByIdUsuario(req, res) {
 
         const usuario = await getByIdUsuario(id);
 
-        delete usuario.dataValues.senha;
-
-        if (usuario === null) {
-            res.status(404).json({ erro: 'Usuario não encontrado' })
+        if (!usuario) {
+            res.status(404).json({ erro: 'Usuario não encontrado' });
         }
 
+        delete usuario.dataValues.senha;
         res.status(200).json(usuario);
+
     } catch (error) {
         res.status(500).json({ erro: error.message })
     }
@@ -43,6 +43,7 @@ async function httpPostUsuario(req, res) {
 
     if (!usuario || !nome || !email || !cargo || !senha) {
         res.status(400).json({ erro: 'Campos: usuario, nome, email, cargo, senha são obrigatórios' });
+        return;
     }
 
     try {
@@ -70,7 +71,7 @@ async function httpPutUsuario(req, res) {
 
         const data = await getByIdUsuario(id);
 
-        if (data === null) {
+        if (!data) {
             res.status(400).json({ erro: 'Usuario não encontrado' })
         }
 

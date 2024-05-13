@@ -90,6 +90,8 @@ CREATE TABLE `compra` (
   `unidades_macho` smallint(5) unsigned NOT NULL,
   `unidades_femea` smallint(5) unsigned NOT NULL,
   `preco_arroba` decimal(15,2) NOT NULL,
+  `preco_frete` decimal(15,2) NOT NULL,
+  `preco_sangria` decimal(15,2) NOT NULL,
   `desconto` decimal(15,2) DEFAULT NULL,
   `id_documento_romaneio` bigint(20) DEFAULT NULL,
   `id_documento_gta` bigint(20) DEFAULT NULL,

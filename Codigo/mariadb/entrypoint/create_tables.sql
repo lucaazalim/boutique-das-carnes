@@ -181,6 +181,46 @@ CREATE TABLE `compra_pesagem` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `despesa`
+--
+
+DROP TABLE IF EXISTS `despesa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `despesa` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) NOT NULL,
+  `valor` decimal(15,2) NOT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp(),
+  `id_categoria` bigint(20) DEFAULT NULL,
+  `id_documento_comprovante` bigint(20) DEFAULT NULL,
+  `criado_em` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `despesa_categoria_id_categoria_FK` (`id_categoria`),
+  KEY `despesa_id_documento_comprovante_FK` (`id_documento_comprovante`),
+  CONSTRAINT `despesa_categoria_id_categoria_FK` FOREIGN KEY (`id_categoria`) REFERENCES `despesa_categoria` (`id`),
+  CONSTRAINT `despesa_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `despesa_categoria`
+--
+
+DROP TABLE IF EXISTS `despesa_categoria`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `despesa_categoria` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(255) DEFAULT NULL,
+  `cor` varchar(6) DEFAULT NULL,
+  `criado_em` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `documento`
 --
 
@@ -331,4 +371,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-07 11:29:18
+-- Dump completed on 2024-05-13 16:44:47

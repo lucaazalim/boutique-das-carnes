@@ -196,9 +196,9 @@ CREATE TABLE `despesa` (
   `id_documento_comprovante` bigint(20) DEFAULT NULL,
   `criado_em` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
-  KEY `despesa_categoria_id_categoria_FK` (`id_categoria`),
   KEY `despesa_id_documento_comprovante_FK` (`id_documento_comprovante`),
-  CONSTRAINT `despesa_categoria_id_categoria_FK` FOREIGN KEY (`id_categoria`) REFERENCES `despesa_categoria` (`id`),
+  KEY `despesa_categoria_id_categoria_FK` (`id_categoria`),
+  CONSTRAINT `despesa_categoria_id_categoria_FK` FOREIGN KEY (`id_categoria`) REFERENCES `despesa_categoria` (`id`) ON DELETE SET NULL,
   CONSTRAINT `despesa_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -371,4 +371,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 16:44:47
+-- Dump completed on 2024-05-13 19:56:02

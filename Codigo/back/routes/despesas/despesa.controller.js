@@ -42,10 +42,16 @@ async function httpGetAllDespesas(req, res){
 
     try{
 
-        const search = req.query.search;
+        const {
+            searchCategoria, 
+            searchNome, 
+            startOfDateRange, 
+            endOfDateRange
+        } = req.query;
+
         const { offset, limit } = getPagination(req.query);
 
-        const data = await getAllDespesas(offset, limit, search);
+        const data = await getAllDespesas(offset, limit, searchCategoria, searchNome, startOfDateRange, endOfDateRange);
 
         return res.status(200).json(data);
 

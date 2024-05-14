@@ -10,22 +10,32 @@ async function createDespesa(id_categoria, id_documento_comprovante, data, valor
 }
 
 
-async function getAllDespesas(offset, limit, search = null){
+async function getAllDespesas(offset, limit, searchCategoria, searchNome, startOfDateRange, endOfDateRange){
 
     var options = {};
 
+    //filtering
+    if (searchCategoria || searchNome || (startOfDateRange && endOfDateRange)) {
 
-    if (search) {
+        options.where = {}; 
 
-        options = {
-            where: {
-                [Op.or]: [
-                    { 'id': { [Op.like]: `%${search}%` } },
-                    { 'id_categoria': { [Op.like]: `%${search}%` } },
-                    { 'nome': { [Op.like]: `%${search}%` } },
-                ]
-            }
-        };
+        if (searchCategoria) {
+            options.where["id_categoria"] = { [Op.eq]: `%${searchCategoria}%` };
+        }
+        
+        if (searchNome) {
+            options.where["nome"] = { [Op.like]: `%${searchNome}%` };
+        }
+        
+        if (startOfDateRange && endOfDateRange) {
+            options.where["data"] = {
+                [Op.and]: {
+                    [Op.gte]: startOfDateRange,
+                    [Op.lte]: endOfDateRange
+                }
+            };
+        }
+        
 
     } else {
 

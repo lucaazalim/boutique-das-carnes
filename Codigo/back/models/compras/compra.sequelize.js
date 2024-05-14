@@ -13,13 +13,21 @@ const Compra = sequelize.define('compra',
         },
         unidades_macho: {
             type: DataTypes.SMALLINT.UNSIGNED,
-            allowNull: false
+            allowNull: false 
         },
         unidades_femea: {
             type: DataTypes.SMALLINT.UNSIGNED,
             allowNull: false
         },
         preco_arroba: {
+            type: DataTypes.DECIMAL(15, 2),
+            allowNull: false
+        },
+        preco_frete: {
+            type: DataTypes.DECIMAL(15, 2),
+            allowNull: false
+        },
+        preco_sangria: {
             type: DataTypes.DECIMAL(15, 2),
             allowNull: false
         },

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "fd815415-09b3-42b3-a64d-0afbb6802630",
+		"_postman_id": "1dec70ef-a303-4ddb-b376-fd9cacae2ea4",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "33001966"
@@ -42,7 +42,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id_fornecedor\": 2,\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"desconto\": null,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
+							"raw": "{\n  \"id_fornecedor\": 2,\n  \"unidades_macho\": 10,\n  \"unidades_femea\": 5,\n  \"preco_arroba\": 10.50,\n  \"preco_frete\": 10,\n  \"preco_sangria\": 10,\n  \"desconto\": null,\n  \"id_documento_romaneio\": null,\n  \"id_documento_gta\": null,\n  \"id_documento_nf_compra\": null,\n  \"id_documento_nf_abate\": null,\n  \"id_documento_nfs_matadouro\": null,\n  \"id_documento_nf_retorno\": null\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1890,6 +1890,134 @@
 							"path": [
 								"clientes",
 								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Despesas",
+			"item": [
+				{
+					"name": "despesas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Despesa X\",\n    \"id_categoria\": null,\n    \"id_documento_comprovante\": null,\n    \"data\": \"2024-05-13\",\n    \"valor\": 100,\n    \"criado_em\": \"2024-05-14T00:50:29.000Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/despesas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"despesas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "despesas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/despesas",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"despesas"
+							],
+							"query": [
+								{
+									"key": "startOfDateRange",
+									"value": "2024-05-11\"",
+									"disabled": true
+								},
+								{
+									"key": "endOfDateRange",
+									"value": "2024-05-13\"",
+									"disabled": true
+								},
+								{
+									"key": "nome",
+									"value": "Despesa X",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "despesas/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/despesas/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"despesas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "despesas/{id}",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"nome\": \"Despesa X\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/despesas/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"despesas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "despesas/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/despesas/7",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"despesas",
+								"7"
 							]
 						}
 					},

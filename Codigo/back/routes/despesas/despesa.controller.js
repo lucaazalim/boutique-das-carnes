@@ -5,7 +5,7 @@ const {
     updateDespesaById,
     deleteDespesaById
 } = require('../../models/despesas/despesa.model');
-const { getFornecedorById } = require('../../models/fornecedores/fornecedor.model');
+
 
 const getPagination = require('../../services/query.service');
 

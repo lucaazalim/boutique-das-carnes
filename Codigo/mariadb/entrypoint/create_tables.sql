@@ -248,10 +248,13 @@ CREATE TABLE `estoque` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_compra_carcaca` bigint(20) NOT NULL,
   `tipo` enum('FIGADO','DIANTEIRO_SEM_CUPIM','CUPIM','SERROTE_SEM_RABADA','COSTELA','RABADA') NOT NULL,
+  `id_pedido_item` bigint(20) NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `estoque_id_compra_carcaca_FK` (`id_compra_carcaca`),
-  CONSTRAINT `estoque_id_compra_carcaca_FK` FOREIGN KEY (`id_compra_carcaca`) REFERENCES `compra_carcaca` (`id`) ON DELETE CASCADE
+  KEY `pedido_item_id_FK` (`id_pedido_item`),
+  CONSTRAINT `estoque_id_compra_carcaca_FK` FOREIGN KEY (`id_compra_carcaca`) REFERENCES `compra_carcaca` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `pedido_item_id_FK` FOREIGN KEY (`id_pedido_item`) REFERENCES `pedido_item` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -338,6 +341,44 @@ CREATE TABLE `fornecedor_pj` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `pedido`
+--
+
+DROP TABLE IF EXISTS `pedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedido` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `id_cliente` bigint(20) NOT NULL,
+  `id_compra` bigint(20) NOT NULL,
+  `criado_em` varchar(100) NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `cliente_id_FK` (`id_cliente`),
+  KEY `compra_id_FK` (`id_compra`),
+  CONSTRAINT `cliente_id_FK` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id`),
+  CONSTRAINT `compra_id_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `pedido_item`
+--
+
+DROP TABLE IF EXISTS `pedido_item`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pedido_item` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `conjunto` enum('MUDAR') NOT NULL,
+  `letra` varchar(2) DEFAULT NULL,
+  `quantidade` int(11) NOT NULL,
+  `peso` decimal(7,2) NOT NULL,
+  `preco` decimal(15,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -371,4 +412,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-13 19:56:02
+-- Dump completed on 2024-05-15 16:05:01

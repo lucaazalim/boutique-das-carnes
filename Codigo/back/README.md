@@ -895,3 +895,89 @@ fetch("http://localhost:3001/documentos", {
   ...
 ]
 ```
+
+
+---
+
+### Despesas
+
+| Método | Rota             | Descrição                   |
+| :----: | ---------------- | --------------------------- |
+|  POST  | `/despesas`      | Criar nova despesa          |
+|  GET   | `/despesas`      | Consultar todas as despesas |
+|  GET   | `/despesas/{id}` | Consultar despesa pelo ID   |
+|  PUT   | `/despesas/{id}` | Editar despesa pelo ID      |
+| DELETE | `/despesas/{id}` | Deletar despesa pelo ID     |
+
+---
+
+
+#### POST /despesas
+
+**Exemplo de Requisição:**
+
+```js
+{
+  "nome": "Despesa X",
+  "id_categoria": null,
+  "id_documento_comprovante": null,
+  "data": "2024-05-13",
+  "valor": 100,
+  "criado_em": "2024-05-14T00:50:29.000Z"
+}
+```
+
+---
+
+#### GET /despesas
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+    "id": 3,
+    "nome": "Despesa X",
+    "id_categoria": null,
+    "id_documento_comprovante": null,
+    "data": "2024-05-13",
+    "valor": 100,
+    "criado_em": "2024-05-14T00:50:29.000Z"
+  },
+    ...
+]
+```
+
+---
+
+#### GET /despesas/{id}
+
+**Exemplo de Resposta:**
+
+```js
+
+{
+  "id": 3,
+  "nome": "Despesa X",
+  "id_categoria": null,
+  "id_documento_comprovante": null,
+  "data": "2024-05-13",
+  "valor": 100,
+  "criado_em": "2024-05-14T00:50:29.000Z"
+}
+```
+
+---
+
+#### PUT /despesas/{id}
+
+**Exemplo de Requisição:**
+
+```js
+
+{
+  "data": "2023-11-05",
+}
+```
+
+---

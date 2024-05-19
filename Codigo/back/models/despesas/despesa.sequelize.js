@@ -28,11 +28,6 @@ const Despesa = sequelize.define('despesa', {
       type: DataTypes.DECIMAL(15, 2),
       allowNull: false
     },
-    criado_em: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW
-    },
   }, {
     timestamps: false
   });

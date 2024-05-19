@@ -17,12 +17,7 @@ const DespesaCategorias = sequelize.define('despesa_categoria',
         },
         cor: {
             type: DataTypes.STRING,
-        },
-        criado_em: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW
-        },
+        }
     },
     {
         timestamps: false

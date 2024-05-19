@@ -62,7 +62,7 @@ async function httpGetAllDespesas(req, res){
 }
 
 
-async function httpGetByIdClientes(req, res){
+async function httpGetByIdDepesas(req, res){
 
     try{
 
@@ -99,7 +99,7 @@ async function httpPutDespesas(req, res){
 
     try{
 
-        const updatedFornecedor = await updateDespesaById(
+        const updatedDespesa = await updateDespesaById(
             id,
             id_categoria,
             id_documento_comprovante,
@@ -108,9 +108,9 @@ async function httpPutDespesas(req, res){
             nome
         );
         
-        if(updatedFornecedor){
+        if(updatedDespesa){
 
-            return res.status(200).json(updatedFornecedor);
+            return res.status(200).json(updatedDespesa);
 
         }else{
 
@@ -156,7 +156,7 @@ async function httpDeleteDespesa(req, res){
 module.exports = {
     httpPostDespesas,
     httpGetAllDespesas,
-    httpGetByIdClientes,
+    httpGetByIdDepesas,
     httpPutDespesas,
     httpDeleteDespesa,
 }

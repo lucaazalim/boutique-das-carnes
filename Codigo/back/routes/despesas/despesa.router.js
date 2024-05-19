@@ -3,7 +3,7 @@ const express = require('express');
 const {
     httpPostDespesas,
     httpGetAllDespesas,
-    httpGetByIdClientes,
+    httpGetByIdDepesas,
     httpPutDespesas,
     httpDeleteDespesa
 } = require('./despesa.controller');
@@ -11,7 +11,7 @@ const {
 const despesasRouter = express.Router();
 
 despesasRouter.get('/', httpGetAllDespesas);
-despesasRouter.get('/:id', httpGetByIdClientes);
+despesasRouter.get('/:id', httpGetByIdDepesas);
 despesasRouter.post('/', httpPostDespesas);
 despesasRouter.put('/:id', httpPutDespesas);
 despesasRouter.delete('/:id', httpDeleteDespesa);

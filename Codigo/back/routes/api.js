@@ -7,6 +7,7 @@ const routerLogin = require('../routes/login/login.router');
 const routerCliente = require('../routes/clientes/cliente.router');
 const routerEstoque = require('../routes/estoque/estoque.router');
 const routerDespesa = require('../routes/despesas/despesa.router');
+const routerDespesaCategorias = require('../routes/despesas-categorias/despesas-categorias.router');
 
 const tokenValidated = require('../middlewares/authentication.middleware');
 
@@ -25,5 +26,6 @@ api.use('/login', routerLogin);
 api.use('/clientes', routerCliente);
 api.use('/estoque', routerEstoque);
 api.use('/despesas', routerDespesa);
+api.use('/despesas-categorias', routerDespesaCategorias);
 
 module.exports = api;

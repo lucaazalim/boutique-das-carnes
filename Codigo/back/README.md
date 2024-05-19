@@ -922,8 +922,7 @@ fetch("http://localhost:3001/documentos", {
   "id_categoria": null,
   "id_documento_comprovante": null,
   "data": "2024-05-13",
-  "valor": 100,
-  "criado_em": "2024-05-14T00:50:29.000Z"
+  "valor": 100
 }
 ```
 
@@ -941,8 +940,7 @@ fetch("http://localhost:3001/documentos", {
     "id_categoria": null,
     "id_documento_comprovante": null,
     "data": "2024-05-13",
-    "valor": 100,
-    "criado_em": "2024-05-14T00:50:29.000Z"
+    "valor": 100
   },
     ...
 ]
@@ -962,8 +960,7 @@ fetch("http://localhost:3001/documentos", {
   "id_categoria": null,
   "id_documento_comprovante": null,
   "data": "2024-05-13",
-  "valor": 100,
-  "criado_em": "2024-05-14T00:50:29.000Z"
+  "valor": 100
 }
 ```
 
@@ -981,3 +978,77 @@ fetch("http://localhost:3001/documentos", {
 ```
 
 ---
+
+
+### Despesas Categorias
+
+| Método | Rota                        | Descrição                    |
+| :----: | --------------------------- | ---------------------------- |
+|  POST  | `/despesas-categorias`      | Criar nova categoria         |
+|  GET   | `/despesas-categorias`      | Consultar todas as categorias|
+|  GET   | `/despesas-categorias/{id}` | Consultar categorias pelo ID |
+|  PUT   | `/despesas-categorias/{id}` | Editar categorias pelo ID    |
+| DELETE | `/despesas-categorias/{id}` | Deletar categorias pelo ID   |
+
+---
+
+
+#### POST /despesas-categorias
+
+**Exemplo de Requisição:**
+
+```js
+{
+  "nome": "salarial",
+  "descricao": "folha assalarial dos funcionários",
+  "cor":  "000000"
+}
+```
+
+---
+
+#### GET /despesas-categorias
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+    "id": 1,
+    "nome": "Salarial",
+    "descricao": "folha assalarial dos funcionários",
+    "cor": "000000"
+  },
+  ...
+]
+```
+
+---
+
+#### GET /despesas-categorias/{id}
+
+**Exemplo de Resposta:**
+
+```js
+
+{
+  "id": 1,
+  "nome": "Salarial",
+  "descricao": "folha assalarial dos funcionários",
+  "cor": "000000"
+  },
+}
+```
+
+---
+
+#### PUT /despesas-categorias/{id}
+
+**Exemplo de Requisição:**
+
+```js
+
+{
+  "nome": "Nome exemplo",
+}
+```

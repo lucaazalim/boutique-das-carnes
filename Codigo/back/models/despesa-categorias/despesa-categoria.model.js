@@ -1,5 +1,5 @@
 const Despesa = require('../despesas/despesa.sequelize');
-const DespesasCategorias = require('./despesas-categorias.sequelize');
+const DespesasCategorias = require('./despesa-categoria.sequelize');
 
 
 async function createDespesasCategoria(

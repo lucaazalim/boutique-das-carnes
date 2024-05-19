@@ -4,7 +4,7 @@ const {
     createDespesasCategoria,
     updateDespesasCategorias,
     deleteDespesaById
-} = require('../../models/despesa-categorias/despesas-categorias.model');
+} = require('../../models/despesa-categorias/despesa-categoria.model');
 
 const getPagination = require('../../services/query.service');
 

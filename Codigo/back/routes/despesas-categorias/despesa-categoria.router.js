@@ -8,7 +8,7 @@ const {
     httpPutDespesasCategorias,
     httpDeleteDespesasCategorias
 
-} = require('./despesas-categorias.controller')
+} = require('./despesa-categoria.controller')
 
 
 

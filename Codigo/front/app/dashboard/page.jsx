@@ -38,6 +38,12 @@ export default function Home() {
         >
           Estoque
         </Link>
+        <Link
+            href={`/relatorios`}
+            className="bg-gray-400 text-white p-2 rounded-md"
+        >
+          Relatórios
+        </Link>
       </div>
       <BtnBack />
     </div>

@@ -9,6 +9,7 @@ const routerEstoque = require('../routes/estoque/estoque.router');
 const routerDespesa = require('../routes/despesas/despesa.router');
 const routerDespesaCategorias = require('./despesas-categorias/despesa-categoria.router');
 const routerRelatorios = require('./relatorios/relatorios.router');
+const routerPedido = require('../routes/pedidos/pedido.router');
 
 const tokenValidated = require('../middlewares/authentication.middleware');
 
@@ -29,5 +30,6 @@ api.use('/estoque', routerEstoque);
 api.use('/despesas', routerDespesa);
 api.use('/despesas-categorias', routerDespesaCategorias);
 api.use('/relatorios', routerRelatorios);
+api.use('/pedidos', routerPedido);
 
 module.exports = api;

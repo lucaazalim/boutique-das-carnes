@@ -59,7 +59,7 @@ async function httpPostPedido(req, res) {
     try {
 
         // precissa finalizar o função caso o item não exista
-        checkItem(conjunto);
+        await checkItem(conjunto);
 
         const resultPedido = await createPedido(pedido);
 

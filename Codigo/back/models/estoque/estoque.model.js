@@ -62,12 +62,14 @@ async function getSummary() {
 
 async function checkItem(item) {
 
-    // console.log("CONJUNTOS: ",CONJUNTOS)
-
-    let pedido = [];
-
     const conjuntoEncontrado = CONJUNTOS.find(conjunto => conjunto.nome === item);
-    pedido = conjuntoEncontrado.itens;
+    if (!conjuntoEncontrado) {
+        throw new Error(`Item do pedido ${item} não encontrado.`);
+    }
+
+    const pedido = conjuntoEncontrado.itens;
+
+    console.log("PEDIDO: ", pedido);
 
     const itensDisponiveis = await Estoque.findAll({
         where: {
@@ -78,12 +80,13 @@ async function checkItem(item) {
         }
     });
 
-    // somente pode retornar true se todos os itens do conjunto estiverem disponíveis
+    console.log("ITENS DISPONÍVEIS: ", itensDisponiveis);
 
-    if (itensDisponiveis) {
+    // Verificar se a quantidade de itens disponíveis é igual à quantidade de itens do conjunto
+    if (itensDisponiveis.length === pedido.length) {
         return true;
     } else {
-        throw new Error(`Item ${item} não está disponivel.`);
+        throw new Error(`Item do pedido ${item} não está disponível no estoque.`);
     }
 
 }

@@ -6,8 +6,10 @@ const {
     deletePedido,
 } = require('../../models/pedidos/pedido.model');
 
-const { createItem } = require('../../models/pedidos/item/item.model');
-const { checkItem } = require('../../models/estoque/estoque.model');
+const { createPedidoItem } = require('../../models/pedidos/item/item.model');
+const { checkItem, updateEstoque } = require('../../models/estoque/estoque.model');
+
+const { CONJUNTOS } = require('../../constants/pedido.constant');
 
 async function httpGetAllPedido(req, res) {
     try {
@@ -56,11 +58,10 @@ async function httpPostPedido(req, res) {
 
     try {
 
+        // precissa finalizar o função caso o item não exista
         checkItem(conjunto);
 
-        const resultPedido = await createPedido(pedido); // retorna o id do pedido (ok)
-
-        //console.log("RESULT PEDIDO: ", resultPedido);
+        const resultPedido = await createPedido(pedido);
 
         const { id } = resultPedido;
 
@@ -75,16 +76,24 @@ async function httpPostPedido(req, res) {
             preco
         }
 
-        const resultItemPedido = await createItem(item);
+        // Criação do item do pedido com id_pedido
+        const resultItemPedido = await createPedidoItem(item);
 
-        //console.log("RESULT ITEM PEDIDO: ", resultItemPedido);
+        // Criação do item pedido com id_pedido_item
+        let itens = [];
+        const id_pedido_item = { id_pedido_item: resultItemPedido.id };
+
+        itens = CONJUNTOS.find(conjunto => conjunto.nome === item.conjunto).itens;
+
+        for (let tipo of itens) {
+            const updated = await updateEstoque( id_pedido_item, tipo);
+            console.log("UPDATED: ", updated);
+        }
 
         const result = {
             ...resultPedido.dataValues,
             ...resultItemPedido.dataValues
         }
-
-        console.log("RESULT: ", result);
 
         return res.status(201).json(result);
     } catch (error) {

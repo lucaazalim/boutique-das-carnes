@@ -39,7 +39,7 @@ async function createEstoque(id_compra_carcaca) {
 // para criterio de update não é ncessario passar id, somente se existir valor null é o suficiente
 async function updateEstoque(updateFields, tipo) {
     console.log("TIPO: ", tipo);
-    console.log("UPDATE_FIELDS: ", updateFields);
+    console.log("ID_PEDIDO_ITEM: ", updateFields);
 
     return await Estoque.update(updateFields, {
         where: {

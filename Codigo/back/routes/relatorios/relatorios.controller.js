@@ -1,11 +1,3 @@
-/*[
-    {
-        nome: "Luca Azalim",
-        compras: 100,
-        valor_total: 28000
-    }
-]*/
-
 const {getComprasByFornecedor} = require("../../models/relatorios/relatorios.model");
 
 async function httpGetComprasByFornecedor(req, res) {

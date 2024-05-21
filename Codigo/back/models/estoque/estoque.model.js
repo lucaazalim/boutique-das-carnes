@@ -37,7 +37,7 @@ async function createEstoque(id_compra_carcaca) {
 }
 
 // para criterio de update não é ncessario passar id, somente se existir valor null é o suficiente
-async function updateEstoque(updateFields, tipo) {
+async function updateEstoque(updateFields, tipo, quantidade) {
     console.log("TIPO: ", tipo);
     console.log("ID_PEDIDO_ITEM: ", updateFields);
 
@@ -46,7 +46,7 @@ async function updateEstoque(updateFields, tipo) {
             tipo: tipo,
             id_pedido_item: null
         },
-        limit: 1
+        limit: quantidade
     });
 }
 // refatorar função para indicar somente itens que estão disponíveis no estoque, ou seja, que não tem vinculo id_pedido_item
@@ -81,9 +81,11 @@ async function checkItem(item) {
     });
 
     console.log("ITENS DISPONÍVEIS: ", itensDisponiveis);
+    console.log("ITENS DISPONÍVEIS LENGTH: ", itensDisponiveis.length);
+    console.log("PEDIDO LENGTH: ", pedido.length);
 
     // Verificar se a quantidade de itens disponíveis é igual à quantidade de itens do conjunto
-    if (itensDisponiveis.length === pedido.length) {
+    if (itensDisponiveis.length >= pedido.length) {
         return true;
     } else {
         throw new Error(`Item do pedido ${item} não está disponível no estoque.`);

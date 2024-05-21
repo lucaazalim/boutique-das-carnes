@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../../services/mariadb.service');
+const Item = require('./item/item.sequelize');
 
 const Pedido = sequelize.define('pedido', {
     id_cliente: {
@@ -19,7 +20,14 @@ const Pedido = sequelize.define('pedido', {
         }
     }
 }, {
-    timestamps: false
+    timestamps: false,
+    defaultScope: {
+        include: [
+            { model: Item, as: 'itens' }
+        ]
+    }
 });
+
+Pedido.hasMany(Item, { foreignKey: 'id_pedido', as: 'itens'});
 
 module.exports = Pedido;

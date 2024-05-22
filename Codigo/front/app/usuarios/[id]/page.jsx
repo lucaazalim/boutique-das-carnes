@@ -19,10 +19,6 @@ function Page({ params }) {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
   }
 
-  useEffect(() => {
-    console.log(usuario);
-  }, [usuario]);
-
   function handleSubmit(e) {
     e.preventDefault();
     fetch(`http://localhost:3001/usuarios/${params.id}`, {
@@ -35,7 +31,6 @@ function Page({ params }) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         window.history.back();
       })
       .catch((error) => console.error(error));

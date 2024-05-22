@@ -370,7 +370,7 @@ DROP TABLE IF EXISTS `pedido_item`;
 CREATE TABLE `pedido_item` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_pedido` bigint(20) NOT NULL,
-  `conjunto` enum('MUDAR') NOT NULL,
+  `conjunto` enum('FIGADO','FATO','DIANTEIRO_SEM_COSTELA','SERROTE_SEM_RABADA','SERROTE_COM_RABADA','COSTELA','CUPIM','CARCACA','BANDA_CARREGADA','BANDA_DESCARREGADA','DIANTEIRO_COM_COSTELA') NOT NULL,
   `letra` varchar(2) DEFAULT NULL,
   `quantidade` int(11) NOT NULL,
   `peso` decimal(7,2) NOT NULL,
@@ -415,4 +415,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-17 17:08:44
+-- Dump completed on 2024-05-22  9:04:11

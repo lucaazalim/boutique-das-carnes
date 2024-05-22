@@ -36,20 +36,27 @@ export default function Table({ compras }) {
               let fornecedor = fornecedores.find(
                 (fornecedor) => fornecedor.id === compra.id_fornecedor
               );
+              let pesagens = 0;
+
+              pesagens = compra.pesagens.reduce((acc, pesagem) => {
+                return acc + pesagem.peso;
+              }, 0);
+
               return (
                 <tr key={compra.id} className="grid grid-cols-5">
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {compra.id}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor && (fornecedor.pessoa.nome || fornecedor.pessoa.razao_social)}
+                    {fornecedor &&
+                      (fornecedor.pessoa.nome ||
+                        fornecedor.pessoa.razao_social)}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {compra.unidades_macho + compra.unidades_femea}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {(compra.preco_arroba * compra.peso_total_abate) -
-                      (compra.desconto === null ? (0) : (compra.desconto))}
+                    {pesagens * compra.preco_arroba - compra.desconto || 0}
                   </td>
                   <td className="flex justify-evenly p-2">
                     <Link href={`compras/${compra.id}`}>

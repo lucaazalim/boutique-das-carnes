@@ -3,6 +3,7 @@ import ModalConfCarcaca from "./ModalConfCarcaca";
 
 function TableCarcacas({ carcacas }) {
   const [open, setOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   return (
     <div>
@@ -36,7 +37,13 @@ function TableCarcacas({ carcacas }) {
                 <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                   {carcaca.peso_total}
                 </td>
-                <td className="flex justify-center">
+                <td className="flex justify-around">
+                  <button
+                    className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
+                    onClick={() => setOpenEdit(!openEdit)}
+                  >
+                    Editar
+                  </button>
                   <button
                     className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
                     onClick={() => setOpen(!open)}

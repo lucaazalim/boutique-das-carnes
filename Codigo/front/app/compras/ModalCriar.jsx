@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function ModalCriar({ openModal, setOpenModal }) {
   const [fornecedores, setFornecedores] = useState([]);
@@ -11,6 +11,8 @@ function ModalCriar({ openModal, setOpenModal }) {
     desconto: null,
     animais_abatidos: null,
     peso_total_abate: null,
+    preco_frete: null,
+    preco_sangria: null,
     id_documento_romaneio: null,
     id_documento_gta: null,
     id_documento_nf_compra: null,
@@ -125,6 +127,24 @@ function ModalCriar({ openModal, setOpenModal }) {
             <input
               type="number"
               name="peso_total_abate"
+              className="p-2 border-2 border-gray-200 rounded-md w-full"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Preço Frete:
+            <input
+              type="number"
+              name="preco_frete"
+              className="p-2 border-2 border-gray-200 rounded-md w-full"
+              onChange={handleChange}
+            />
+          </label>
+          <label>
+            Preço Sangria:
+            <input
+              type="number"
+              name="preco_sangria"
               className="p-2 border-2 border-gray-200 rounded-md w-full"
               onChange={handleChange}
             />

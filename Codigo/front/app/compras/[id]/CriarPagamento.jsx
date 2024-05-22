@@ -60,7 +60,7 @@ function CriarPagamento({ openPagamento, setOpenPagamento, idPagamento }) {
             Meio de Pagamento:
             <select
               name="meio_pagamento"
-              className="p-2 border-2 border-gray-200 rounded-md w-full"
+              className="p-2 border-2 border-gray-200 rounded-md w-full h-[46px]"
               onChange={handleChange}
             >
               <option value="">Selecione uma forma de pagamento</option>

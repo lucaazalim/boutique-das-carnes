@@ -63,7 +63,7 @@ function Page({ params }) {
             name="id_fornecedor"
             value={compra.id_fornecedor}
             onChange={handleChange}
-            className="p-2 border-2 border-gray-300 rounded-md w-full"
+            className="p-2 border-2 border-gray-300 rounded-md w-full h-[44px]"
           >
             {fornecedores.map((fornecedor) => (
               <option key={fornecedor.id} value={fornecedor.id}>
@@ -112,6 +112,27 @@ function Page({ params }) {
             className="p-2 border-2 border-gray-300 rounded-md w-full"
           />
         </label>
+        <label>
+          Preço frete:
+          <input
+            onChange={handleChange}
+            type="number"
+            name="preco_frete"
+            value={compra.preco_frete}
+            className="p-2 border-2 border-gray-300 rounded-md w-full"
+          />
+        </label>
+        <label>
+          Preço sangria:
+          <input
+            onChange={handleChange}
+            type="number"
+            name="preco_sangria"
+            value={compra.preco_sangria}
+            className="p-2 border-2 border-gray-300 rounded-md w-full"
+          />
+        </label>
+
         <button className="p-2 bg-green-500 hover:bg-green-400 text-white rounded-md col-span-2">
           Salvar
         </button>

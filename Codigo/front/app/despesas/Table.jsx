@@ -45,7 +45,12 @@ export default function Table({ despesas }) {
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {despesa.data}
                   </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                  <td
+                    className={`text-[#${
+                      despesa.id_categoria &&
+                      catDesp.find((cat) => cat.id === despesa.id_categoria).cor
+                    }] border-r-2 border-gray-200 p-2 flex items-center justify-center`}
+                  >
                     {despesa.id_categoria &&
                     catDesp.find((cat) => cat.id === despesa.id_categoria).nome
                       ? catDesp.find((cat) => cat.id === despesa.id_categoria)

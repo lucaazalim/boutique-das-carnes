@@ -2,28 +2,27 @@
 
 import React from "react";
 import Table from "./Table";
-import BtnBack from "../components/BtnBack";
 import ModalCriar from "./ModalCriar";
+import BtnBack from "../components/BtnBack";
 import Pagination from "../components/Pagination";
 
 function Page() {
-  const [search, setsearch] = React.useState("");
-  const [despesas, setDespesas] = React.useState([]);
+  const [catDespesas, setCatDespesas] = React.useState([]);
   const [openModal, setOpenModal] = React.useState(false);
-  const [page, setPage] = React.useState(1);
+  const [search, setsearch] = React.useState("");
 
   React.useEffect(() => {
-    fetch(`http://localhost:3001/despesas`)
+    fetch(`http://localhost:3001/despesas-categorias`)
       .then((response) => response.json())
       .then((data) => {
-        setDespesas(data);
+        setCatDespesas(data);
       })
       .catch((error) => console.error(error));
   }, []);
 
   return (
     <div className="p-5">
-      <h1 className="text-4xl font-semibold">Consultar Despesas</h1>
+      <h1 className="text-4xl font-semibold">Criar Categoria de Despesa</h1>
       <div className="mt-5 grid grid-cols-9 gap-2">
         <input
           type="text"
@@ -34,19 +33,19 @@ function Page() {
         />
         <button
           onClick={() => {
-            setOpenModal(true);
+            setOpenModal(!openModal);
           }}
           className="bg-green-500 text-white p-2 rounded-md col-span-2"
         >
-          Criar Fornecedor
+          Criar Categoria
         </button>
       </div>
       <div className="mt-5 border-2 border-gray-200 rounded-md w-full">
-        <Table despesas={despesas} />
+        <Table catDespesas={catDespesas}/>
       </div>
-      <BtnBack />
       <ModalCriar openModal={openModal} setOpenModal={setOpenModal} />
-      <Pagination page={page} setPage={setPage} />
+      <BtnBack />
+      <Pagination />
     </div>
   );
 }

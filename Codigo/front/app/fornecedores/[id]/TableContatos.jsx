@@ -15,7 +15,7 @@ function TableContatos({ contatos }) {
             <th className="border-r-2 border-gray-200 p-2">Nome</th>
             <th className="border-r-2 border-gray-200 p-2">Celular</th>
             <th className="border-r-2 border-gray-200 p-2">Cargo</th>
-            <th className="p-2">Apagar</th>
+            <th className="p-2">Editar/Apagar</th>
           </tr>
         </thead>
         <tbody className="border-t-2 border-gray-300">
@@ -37,7 +37,7 @@ function TableContatos({ contatos }) {
                   </td>
                   <td className="flex justify-around mx-4">
                     <button
-                      className="p-2 rounded-md text-white bg-yellow-400 hover:bg-yellow-500"
+                      className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
                       onClick={() => setOpenEdit(!openEdit)}
                     >
                       Editar

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { estados } from "../utils/estados";
 
 function ModalCriar({ openModal, setOpenModal }) {

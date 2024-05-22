@@ -214,7 +214,7 @@ CREATE TABLE `despesa_categoria` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(255) DEFAULT NULL,
-  `cor` varchar(6) DEFAULT NULL,
+  `cor` varchar(7) DEFAULT NULL,
   `criado_em` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ModalConfContato from "./ModalConfContato";
+import ModalEditContato from "./ModalEditContato";
 
 function TableContatos({ contatos }) {
   const [open, setOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   return (
     <div>
@@ -33,18 +35,29 @@ function TableContatos({ contatos }) {
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {contato.cargo}
                   </td>
-                  <td className="flex justify-center">
+                  <td className="flex justify-around mx-4">
+                    <button
+                      className="p-2 rounded-md text-white bg-yellow-400 hover:bg-yellow-500"
+                      onClick={() => setOpenEdit(!openEdit)}
+                    >
+                      Editar
+                    </button>
+                    <ModalEditContato
+                      contato={contato}
+                      setEditContato={setOpenEdit}
+                      editContato={openEdit}
+                    />
+                    <ModalConfContato
+                      open={open}
+                      setOpen={setOpen}
+                      idContato={contato.id}
+                    />
                     <button
                       className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
                       onClick={() => setOpen(!open)}
                     >
                       Apagar
                     </button>
-                    <ModalConfContato
-                      open={open}
-                      setOpen={setOpen}
-                      idContato={contato.id}
-                    />
                   </td>
                 </tr>
               );

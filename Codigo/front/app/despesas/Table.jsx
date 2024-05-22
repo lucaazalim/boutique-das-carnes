@@ -46,16 +46,23 @@ export default function Table({ despesas }) {
                     {despesa.data}
                   </td>
                   <td
-                    className={`text-[#${
-                      despesa.id_categoria &&
-                      catDesp.find((cat) => cat.id === despesa.id_categoria).cor
-                    }] border-r-2 border-gray-200 p-2 flex items-center justify-center`}
+                    className={`border-r-2 border-gray-200 p-2 flex items-center justify-center`}
                   >
-                    {despesa.id_categoria &&
-                    catDesp.find((cat) => cat.id === despesa.id_categoria).nome
-                      ? catDesp.find((cat) => cat.id === despesa.id_categoria)
-                          .nome
-                      : "Sem categoria"}
+                    <div
+                    className="px-2 rounded-full text-white text-xl"
+                      style={{
+                        "background-color": catDesp.find(
+                          (cat) => cat.id == despesa.id_categoria
+                        ).cor || "gray",
+                      }}
+                    >
+                      {despesa.id_categoria &&
+                      catDesp.find((cat) => cat.id === despesa.id_categoria)
+                        .nome
+                        ? catDesp.find((cat) => cat.id === despesa.id_categoria)
+                            .nome
+                        : "Sem categoria"}
+                    </div>
                   </td>
                   <td className="flex justify-evenly p-2">
                     <Link href={`despesas/${despesa.id}`}>

@@ -27,7 +27,8 @@ export default function Table({ catDespesas }) {
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {catDesp.descricao}
                   </td>
-                  <td className={`border-r-2 border-gray-200 p-2 flex items-center justify-center bg-[${catDesp.cor}]`}>
+                  <td className={`border-r-2 border-gray-200 p-2 flex items-center justify-center`}>
+                    <div className="h-6 w-6 rounded-full" style={{'background-color': catDesp.cor}}></div>
                   </td>
                   <td className="flex justify-evenly p-2">
                     <Link href={`categoria-despesa/${catDesp.id}`}>

@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "75ce6e7d-87d8-46d9-afd7-df647afab7f4",
+		"_postman_id": "057abdfe-a48b-41f6-be4c-1d4deeaf23ec",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "33001966"
+		"_exporter_id": "27457409"
 	},
 	"item": [
 		{
@@ -2130,6 +2130,181 @@
 							"path": [
 								"despesas-categorias",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "pedidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_cliente\": 1,\r\n    \"id_compra\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pedidos/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pedidos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pedidos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_cliente\": 1,\r\n    \"id_compra\": 2,\r\n    \"conjunto\": \"CARCACA\",\r\n    \"letra\": \"A\",\r\n    \"quantidade\": 1,\r\n    \"peso\": 175,\r\n    \"preco\": 17.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pedidos/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pedidos",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pedidos/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_cliente\": 1,\r\n    \"id_compra\": 2,\r\n    \"conjunto\": \"CARCACA\",\r\n    \"letra\": \"A\",\r\n    \"quantidade\": 1,\r\n    \"peso\": 175,\r\n    \"preco\": 17.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pedidos/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pedidos",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos Itens",
+			"item": [
+				{
+					"name": "itens",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pedido\": 4,\r\n    \"conjunto\": \"FATO\",\r\n    \"letra\": \"A\",\r\n    \"quantidade\": 1,\r\n    \"peso\": 175,\r\n    \"preco\": 17.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/itens/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itens",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "itens",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itens/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itens",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "itens/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itens/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itens",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "itens/{id}",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itens/30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itens",
+								"30"
 							]
 						}
 					},

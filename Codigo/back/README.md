@@ -1052,3 +1052,142 @@ fetch("http://localhost:3001/documentos", {
   "nome": "Nome exemplo",
 }
 ```
+
+### Pedidos
+
+| Método | Rota                        | Descrição                    |
+| :----: | --------------------------- | ---------------------------- |
+|  POST  | `/pedidos`                  | Criar novo pedido            |
+|  GET   | `/pedidos`                  | Consultar todos os pedidos   |
+|  GET   | `/pedidos/{id}`             | Consultar pedido pelo ID     |
+|  PUT   | `/pedidos/{id}`             | Editar pedido pelo ID        |
+| DELETE | `/pedidos/{id}`             | Deletar pedido pelo ID       |
+
+---
+
+
+#### POST /pedidos
+
+**Exemplo de Requisição:**
+
+```js
+{
+  "id_cliente": 1,
+  "id_compra": 2
+}
+```
+
+---
+
+#### GET /pedidos
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+    "id": 1,
+    "id_cliente": 1,
+    "id_compra": 2
+  },
+  ...
+]
+```
+
+---
+
+#### GET /pedidos/{id}
+
+**Exemplo de Resposta:**
+
+```js
+
+{
+  "id": 1,
+  "id_cliente": 1,
+  "id_compra": 2
+}
+```
+
+---
+
+#### PUT /pedidos/{id}
+
+**Exemplo de Requisição:**
+
+```js
+
+{
+    "id_cliente": 5
+}
+```
+
+
+### Pedidos Itens
+
+| Método | Rota                        | Descrição                    |
+| :----: | --------------------------- | ---------------------------- |
+|  POST  | `/itens`                    | Criar novo item              |
+|  GET   | `/itens`                    | Consultar todos os itens     |
+|  GET   | `/itens/{id}`               | Consultar item pelo ID       |
+| DELETE | `/itens/{id}`               | Deletar item pelo ID         |
+
+---
+
+
+#### POST /itens
+
+**Exemplo de Requisição:**
+
+```js
+{
+  "id_pedido": 4,
+  "conjunto": "FATO",
+  "letra": "A",
+  "quantidade": 1,
+  "peso": 175,
+  "preco": 17.5
+}
+```
+
+---
+
+#### GET /itens
+
+**Exemplo de Resposta:**
+
+```js
+[
+  {
+    "id": 1,
+    "id_pedido": 4,
+    "conjunto": "COSTELA",
+    "letra": "A",
+    "quantidade": 1,
+    "peso": 175,
+    "preco": 17.5
+  },
+  ...
+]
+```
+
+---
+
+#### GET /itens/{id}
+
+**Exemplo de Resposta:**
+
+```js
+
+{
+  "id": 1,
+  "id_pedido": 4,
+  "conjunto": "COSTELA",
+  "letra": "A",
+  "quantidade": 1,
+  "peso": 175,
+  "preco": 17.5
+}
+```
+
+---

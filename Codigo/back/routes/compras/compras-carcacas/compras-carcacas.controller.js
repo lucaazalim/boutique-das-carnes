@@ -29,7 +29,7 @@ async function httpPostCompraCarcaca(req, res) {
 
         if (await getCompraById(compraId)) {
             const result = await createCompraCarcaca(compraId, sequencial, carregado, peso_total);
-            await createEstoque(result.id, carregado);
+            await createEstoque(result.id);
             return res.status(201).json(result);
         } else {
             return res.status(400).json({ erro: `Compra com id ${compraId} não encontrada` });

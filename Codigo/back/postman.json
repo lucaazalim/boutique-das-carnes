@@ -2141,7 +2141,7 @@
 			"name": "Pedidos",
 			"item": [
 				{
-					"name": "pedidos",
+					"name": "/pedidos",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -2168,7 +2168,35 @@
 					"response": []
 				},
 				{
-					"name": "pedidos",
+					"name": "/pedidos/itens/",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_pedido\": 4,\r\n    \"conjunto\": \"FATO\",\r\n    \"letra\": \"A\",\r\n    \"quantidade\": 1,\r\n    \"peso\": 175,\r\n    \"preco\": 17.5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/pedidos/itens/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pedidos",
+								"itens",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/pedidos",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -2198,7 +2226,44 @@
 					"response": []
 				},
 				{
-					"name": "pedidos/{id}",
+					"name": "/pedidos/{id}/itens/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pedidos/itens/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"pedidos",
+								"itens",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/pedidos/itens/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/itens/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"itens",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/pedidos/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -2223,77 +2288,9 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Pedidos Itens",
-			"item": [
-				{
-					"name": "itens",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"id_pedido\": 4,\r\n    \"conjunto\": \"FATO\",\r\n    \"letra\": \"A\",\r\n    \"quantidade\": 1,\r\n    \"peso\": 175,\r\n    \"preco\": 17.5\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{base_url}}/itens/",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"itens",
-								""
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "itens",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/itens/",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"itens",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "itens/{id}",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/itens/2",
-							"host": [
-								"{{base_url}}"
-							],
-							"path": [
-								"itens",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "itens/{id}",
+					"name": "/pedidos/itens/{id}",
 					"request": {
 						"method": "DELETE",
 						"header": [],

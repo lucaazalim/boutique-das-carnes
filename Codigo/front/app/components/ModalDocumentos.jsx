@@ -12,7 +12,6 @@ function ModalDocumentos({ openDocumento, setOpenDocumento, setIdDoc }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Create a new FormData object
     const formData = new FormData();
     formData.append("file", arquivo);
     formData.append("numero_referencia", dados.numero_referencia);
@@ -24,14 +23,12 @@ function ModalDocumentos({ openDocumento, setOpenDocumento, setIdDoc }) {
     })
       .then((response) => {
         if (response.ok) {
-          // Return the JSON response to the next promise chain
           return response.json();
         } else {
           throw new Error("Falha ao criar documento");
         }
       })
       .then((data) => {
-        // Access the id from the returned JSON data
         console.log("Documento criado com sucesso");
         setIdDoc(data.id);
         setOpenDocumento(false);

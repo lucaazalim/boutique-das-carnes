@@ -4,11 +4,21 @@ const { updateEstoque } = require('../../estoque/estoque.model');
 
 const { CONJUNTOS } = require('../../../constants/pedido.constant');
 
-async function getAllPedidoItem() {
-    return await Item.findAll();
+async function getByIdPedidoItem(id_pedido) {
+
+    const result = await Item.findAll({
+        where: {
+            id_pedido
+        }
+    });
+    if (!result) {
+        throw new Error('Item do pedido não encontrado.');
+    }
+
+    return result;
 }
 
-async function getByIdPedidoItem(id) {
+async function getByIdItem(id) {
 
     const result = await Item.findByPk(id);
     if (!result) {
@@ -18,7 +28,7 @@ async function getByIdPedidoItem(id) {
     return result;
 }
 
-async function createPedidoItem(item) {
+async function createItem(item) {
     const {
         id_pedido,
         conjunto,
@@ -48,7 +58,7 @@ async function createPedidoItem(item) {
     return result;
 }
 
-async function deletePedidoItem(id) {
+async function deleteItem(id) {
     await Item.destroy({
         where: {
             id
@@ -57,8 +67,8 @@ async function deletePedidoItem(id) {
 }
 
 module.exports = {
-    getAllPedidoItem,
     getByIdPedidoItem,
-    createPedidoItem,
-    deletePedidoItem,
+    getByIdItem,
+    createItem,
+    deleteItem
 }

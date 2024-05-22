@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function CriarCarcaca({ openCarcaca, setOpenCarcaca, idCompra }) {
   const [carcaca, setCarcaca] = useState({
-    id_compra: idCompra,
     sequencial: null,
     carregado: false,
     peso_total: null,

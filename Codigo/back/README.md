@@ -265,9 +265,9 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
   "id_fornecedor": 1,
   "unidades_macho": 10,
   "unidades_femea": 5,
-  "preco_arroba": 205.00,
-  "preco_frete" : 500.00,
-  "preco_sangria": 20.00,
+  "preco_arroba": 205.0,
+  "preco_frete": 500.0,
+  "preco_sangria": 20.0,
   "desconto": null,
   "id_documento_romaneio": null,
   "id_documento_gta": null,
@@ -356,8 +356,8 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
   "unidades_macho": 10,
   "unidades_femea": 5,
   "preco_arroba": 150.5,
-  "preco_frete" : 500.00,
-  "preco_sangria": 20.00,
+  "preco_frete": 500.0,
+  "preco_sangria": 20.0,
   "desconto": null,
   "id_documento_romaneio": null,
   "id_documento_gta": null,
@@ -896,7 +896,6 @@ fetch("http://localhost:3001/documentos", {
 ]
 ```
 
-
 ---
 
 ### Despesas
@@ -910,7 +909,6 @@ fetch("http://localhost:3001/documentos", {
 | DELETE | `/despesas/{id}` | Deletar despesa pelo ID     |
 
 ---
-
 
 #### POST /despesas
 
@@ -979,19 +977,17 @@ fetch("http://localhost:3001/documentos", {
 
 ---
 
-
 ### Despesas Categorias
 
-| Método | Rota                        | Descrição                    |
-| :----: | --------------------------- | ---------------------------- |
-|  POST  | `/despesas-categorias`      | Criar nova categoria         |
-|  GET   | `/despesas-categorias`      | Consultar todas as categorias|
-|  GET   | `/despesas-categorias/{id}` | Consultar categorias pelo ID |
-|  PUT   | `/despesas-categorias/{id}` | Editar categorias pelo ID    |
-| DELETE | `/despesas-categorias/{id}` | Deletar categorias pelo ID   |
+| Método | Rota                        | Descrição                     |
+| :----: | --------------------------- | ----------------------------- |
+|  POST  | `/despesas-categorias`      | Criar nova categoria          |
+|  GET   | `/despesas-categorias`      | Consultar todas as categorias |
+|  GET   | `/despesas-categorias/{id}` | Consultar categorias pelo ID  |
+|  PUT   | `/despesas-categorias/{id}` | Editar categorias pelo ID     |
+| DELETE | `/despesas-categorias/{id}` | Deletar categorias pelo ID    |
 
 ---
-
 
 #### POST /despesas-categorias
 
@@ -1055,16 +1051,15 @@ fetch("http://localhost:3001/documentos", {
 
 ### Pedidos
 
-| Método | Rota                        | Descrição                    |
-| :----: | --------------------------- | ---------------------------- |
-|  POST  | `/pedidos`                  | Criar novo pedido            |
-|  GET   | `/pedidos`                  | Consultar todos os pedidos   |
-|  GET   | `/pedidos/{id}`             | Consultar pedido pelo ID     |
-|  PUT   | `/pedidos/{id}`             | Editar pedido pelo ID        |
-| DELETE | `/pedidos/{id}`             | Deletar pedido pelo ID       |
+| Método | Rota            | Descrição                  |
+| :----: | --------------- | -------------------------- |
+|  POST  | `/pedidos`      | Criar novo pedido          |
+|  GET   | `/pedidos`      | Consultar todos os pedidos |
+|  GET   | `/pedidos/{id}` | Consultar pedido pelo ID   |
+|  PUT   | `/pedidos/{id}` | Editar pedido pelo ID      |
+| DELETE | `/pedidos/{id}` | Deletar pedido pelo ID     |
 
 ---
-
 
 #### POST /pedidos
 
@@ -1122,20 +1117,18 @@ fetch("http://localhost:3001/documentos", {
 }
 ```
 
-
 ### Pedidos Itens
 
-| Método | Rota                        | Descrição                    |
-| :----: | --------------------------- | ---------------------------- |
-|  POST  | `/itens`                    | Criar novo item              |
-|  GET   | `/itens`                    | Consultar todos os itens     |
-|  GET   | `/itens/{id}`               | Consultar item pelo ID       |
-| DELETE | `/itens/{id}`               | Deletar item pelo ID         |
+| Método | Rota                         | Descrição                                  |
+| :----: | ---------------------------- | ------------------------------------------ |
+|  POST  | `/pedidos/itens`             | Criar novo item                            |
+|  GET   | `/pedidos/{id_pedido}/itens` | Consultar todos os itens pelo ID do pedido |
+|  GET   | `/pedidos/itens/{id}`        | Consultar item pelo ID                     |
+| DELETE | `/pedidos/itens/{id}`        | Deletar item pelo ID                       |
 
 ---
 
-
-#### POST /itens
+#### POST /pedidos/itens
 
 **Exemplo de Requisição:**
 
@@ -1152,7 +1145,7 @@ fetch("http://localhost:3001/documentos", {
 
 ---
 
-#### GET /itens
+#### GET /pedidos/{id_pedido}/itens
 
 **Exemplo de Resposta:**
 
@@ -1173,7 +1166,7 @@ fetch("http://localhost:3001/documentos", {
 
 ---
 
-#### GET /itens/{id}
+#### GET /pedidos/itens/{id}
 
 **Exemplo de Resposta:**
 

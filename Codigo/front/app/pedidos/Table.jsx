@@ -1,10 +1,9 @@
+import { Link } from "next/navigation";
+import ModalConf from "./ModalConf";
 import { useState } from "react";
-import ModalConfContato from "./ModalConfContato";
-import ModalEditContato from "./ModalEditContato";
 
-function TableContatos({ contatos }) {
+function Table({ pedidos }) {
   const [open, setOpen] = useState(false);
-  const [openEdit, setOpenEdit] = useState(false);
 
   return (
     <div>
@@ -12,45 +11,39 @@ function TableContatos({ contatos }) {
         <thead>
           <tr className="grid grid-cols-5">
             <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Nome</th>
-            <th className="border-r-2 border-gray-200 p-2">Celular</th>
-            <th className="border-r-2 border-gray-200 p-2">Cargo</th>
+            <th className="border-r-2 border-gray-200 p-2">Data</th>
+            <th className="border-r-2 border-gray-200 p-2">Cliente</th>
+            <th className="border-r-2 border-gray-200 p-2">Valor Total</th>
             <th className="p-2">Editar/Apagar</th>
           </tr>
         </thead>
         <tbody className="border-t-2 border-gray-300">
-          {contatos &&
-            contatos.map((contato) => {
+          {pedidos &&
+            pedidos.map((pedido) => {
               return (
-                <tr key={contato.id} className="grid grid-cols-5">
+                <tr key={pedido.id} className="grid grid-cols-5">
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {contato.id}
+                    {pedido.id}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {contato.nome}
+                    {pedido.id_cliente}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {contato.celular}
+                    {pedido.id_compra}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {contato.cargo}
+                    {pedido.valor_total}
                   </td>
-                  <td className="flex justify-around mx-4">
-                    <button
-                      className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
-                      onClick={() => setOpenEdit(!openEdit)}
-                    >
-                      Editar
-                    </button>
-                    <ModalEditContato
-                      contato={contato}
-                      setEditContato={setOpenEdit}
-                      editContato={openEdit}
-                    />
-                    <ModalConfContato
+                  <td className="flex justify-evenly p-2">
+                    <Link href={`pedidos/${pedido.id}`}>
+                      <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+                        Editar
+                      </button>
+                    </Link>
+                    <ModalConf
                       open={open}
                       setOpen={setOpen}
-                      idContato={contato.id}
+                      idPedido={pedido.id}
                     />
                     <button
                       className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
@@ -68,4 +61,4 @@ function TableContatos({ contatos }) {
   );
 }
 
-export default TableContatos;
+export default Table;

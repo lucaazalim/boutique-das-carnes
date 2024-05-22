@@ -2,64 +2,63 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import ModalConf from "./ModalConf";
 
-export default function Table({ compras }) {
+export default function Table({ despesas }) {
   const [open, setOpen] = useState(false);
-  const [fornecedores, setFornecedores] = useState([]);
+  const [catDesp, setCatDesp] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3001/fornecedores`)
+    fetch(`http://localhost:3001/despesas-categorias`)
       .then((response) => response.json())
       .then((data) => {
-        setFornecedores(data);
+        setCatDesp(data);
       })
       .catch((error) => console.error(error));
-  }, []);
+  });
 
   return (
     <div>
       <table className="w-full">
         <thead>
-          <tr className="grid grid-cols-5">
+          <tr className="grid grid-cols-6">
             <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Fornecedor</th>
-            <th className="border-r-2 border-gray-200 p-2">
-              Numero de Animais
-            </th>
-            <th className="border-r-2 border-gray-200 p-2">Preço Total</th>
+            <th className="border-r-2 border-gray-200 p-2">Nome</th>
+            <th className="border-r-2 border-gray-200 p-2">Valor</th>
+            <th className="border-r-2 border-gray-200 p-2">Data</th>
+            <th className="border-r-2 border-gray-200 p-2">Categoria</th>
             <th className="p-2">Editar/Apagar</th>
           </tr>
         </thead>
         <tbody className="border-t-2 border-gray-300">
-          {compras &&
-            fornecedores &&
-            compras.map((compra) => {
-              let fornecedor = fornecedores.find(
-                (fornecedor) => fornecedor.id === compra.id_fornecedor
-              );
-              let pesagens = 0;
-
-              pesagens = compra.pesagens.reduce((acc, pesagem) => {
-                return acc + pesagem.peso;
-              }, 0);
-
+          {despesas &&
+            despesas.map((despesa) => {
               return (
-                <tr key={compra.id} className="grid grid-cols-5">
+                <tr key={despesa.id} className="grid grid-cols-6">
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {compra.id}
+                    {despesa.id}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {fornecedor &&
-                      (fornecedor.pessoa.nome ||
-                        fornecedor.pessoa.razao_social)}
+                    {despesa.nome}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {compra.unidades_macho + compra.unidades_femea}
+                    {despesa.valor}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pesagens * compra.preco_arroba - compra.desconto || 0}
+                    {despesa.data}
+                  </td>
+                  <td
+                    className={`text-[#${
+                      despesa.id_categoria &&
+                      catDesp.find((cat) => cat.id === despesa.id_categoria).cor
+                    }] border-r-2 border-gray-200 p-2 flex items-center justify-center`}
+                  >
+                    {despesa.id_categoria &&
+                    catDesp.find((cat) => cat.id === despesa.id_categoria).nome
+                      ? catDesp.find((cat) => cat.id === despesa.id_categoria)
+                          .nome
+                      : "Sem categoria"}
                   </td>
                   <td className="flex justify-evenly p-2">
-                    <Link href={`compras/${compra.id}`}>
+                    <Link href={`despesas/${despesa.id}`}>
                       <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
                         Editar
                       </button>
@@ -67,7 +66,7 @@ export default function Table({ compras }) {
                     <ModalConf
                       open={open}
                       setOpen={setOpen}
-                      idCompra={compra.id}
+                      idDespesa={despesa.id}
                     />
                     <button
                       className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"

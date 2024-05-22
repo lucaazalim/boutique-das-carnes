@@ -1,26 +1,28 @@
 const {
-    createPedidoItem,
-    getAllPedidoItem,
     getByIdPedidoItem,
-    deletePedidoItem,
+    getByIdItem,
+    createItem,
+    deleteItem
 } = require('../../../models/pedidos/item/item.model');
 
 const { checkItem } = require('../../../models/estoque/estoque.model');
 
-async function httpGetAllPedidoItem(req, res) {
+async function httpGetByIdPedidoItem(req, res) {
+    const { id_pedido } = req.params;
+
     try {
-        const result = await getAllPedidoItem();
+        const result = await getByIdPedidoItem(id_pedido);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 }
 
-async function httpGetByIdPedidoItem(req, res) {
+async function httpGetByIdItem(req, res) {
     const { id } = req.params;
 
     try {
-        const result = await getByIdPedidoItem(id);
+        const result = await getByIdItem(id);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -28,14 +30,14 @@ async function httpGetByIdPedidoItem(req, res) {
 }
 
 // Caso o pedido seja criado é necessario a mudança do estoque
-async function httpPostPedidoItem(req, res) {
+async function httpPostItem(req, res) {
     const pedidoItem = req.body;
 
     try {
 
         await checkItem(pedidoItem.conjunto);
 
-        const result = await createPedidoItem(pedidoItem);
+        const result = await createItem(pedidoItem);
         res.status(201).json(result);
 
     } catch (error) {
@@ -44,11 +46,11 @@ async function httpPostPedidoItem(req, res) {
 }
 
 
-async function httpDeletePedidoItem(req, res) {
+async function httpDeleteItem(req, res) {
     const { id } = req.params;
     
     try {
-        await deletePedidoItem(id);
+        await deleteItem(id);
         res.status(204).end();
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -57,8 +59,8 @@ async function httpDeletePedidoItem(req, res) {
 }
 
 module.exports = {
-    httpGetAllPedidoItem,
     httpGetByIdPedidoItem,
-    httpPostPedidoItem,
-    httpDeletePedidoItem,
+    httpGetByIdItem,
+    httpPostItem,
+    httpDeleteItem
 }

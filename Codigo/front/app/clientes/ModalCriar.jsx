@@ -40,8 +40,6 @@ function ModalCriar({ openModal, setOpenModal }) {
     } else setFornecedor({ ...fornecedor, [e.target.name]: e.target.value });
   }
 
-  useEffect(() => console.log(fornecedor), [fornecedor]);
-
   async function handleSubmit(e) {
     e.preventDefault();
     const response = await fetch("http://localhost:3001/clientes", {

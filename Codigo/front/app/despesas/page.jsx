@@ -38,7 +38,7 @@ function Page() {
           }}
           className="bg-green-500 text-white p-2 rounded-md col-span-2"
         >
-          Criar Fornecedor
+          Criar Despesa
         </button>
       </div>
       <div className="mt-5 border-2 border-gray-200 rounded-md w-full">

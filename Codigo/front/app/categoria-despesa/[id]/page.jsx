@@ -17,31 +17,20 @@ function Page({ params }) {
     setCategoria({ ...categoria, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    if (categoria.cor) {
-      setCategoria({ ...categoria, cor: categoria.cor.replace("#", "") });
-    }
-  }, [categoria.cor]);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const categoriaSubmit = {
-      ...categoria,
-      cor: categoria.cor.replace("#", ""),
-    };
 
     fetch(`http://localhost:3001/despesas-categorias/${params.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(categoriaSubmit),
+      body: JSON.stringify(categoria),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        window.location.href = "/criar-categoria-despesa";
+        // window.location.href = "/categoria-despesa";
       })
       .catch((error) => console.error(error));
   };
@@ -76,7 +65,7 @@ function Page({ params }) {
             type="color"
             name="cor"
             className="p-2 border-2 border-gray-200 rounded-md w-full h-14"
-            value={categoria.cor ? `#${categoria.cor}` : "#000000"}
+            value={categoria.cor}
             onChange={handleChange}
           />
         </label>

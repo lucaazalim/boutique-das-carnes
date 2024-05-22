@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import BtnBack from "../components/BtnBack";
-import Table from "./Table";
 import Pagination from "../components/Pagination";
 import ModalCriar from "./ModalCriar";
+import Table from "./Table";
 
 function Page() {
   const [openModal, setOpenModal] = useState(false);
@@ -16,7 +16,7 @@ function Page() {
       .then((response) => response.json())
       .then((data) => setPedidos(data))
       .catch((error) => console.error(error));
-  });
+  }, []);
 
   return (
     <div className="p-5">
@@ -38,8 +38,9 @@ function Page() {
           Criar Pedido
         </button>
       </div>
+
       <div className="mt-5 border-2 border-gray-200 rounded-md">
-        {/* <Table pedidos={pedidos} /> */}
+        <Table pedidos={pedidos} />
       </div>
       <ModalCriar open={openModal} setOpen={setOpenModal} />
       <Pagination />

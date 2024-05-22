@@ -1,9 +1,22 @@
-import { Link } from "next/navigation";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
 import ModalConf from "./ModalConf";
-import { useState } from "react";
 
-function Table({ pedidos }) {
+const Table = ({ pedidos }) => {
   const [open, setOpen] = useState(false);
+  const [clientes, setClientes] = useState([]);
+  const [itens, setItens] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/clientes")
+      .then((response) => response.json())
+      .then((data) => setClientes(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    console.log(itens);
+  }, [itens]);
 
   return (
     <div>
@@ -13,7 +26,7 @@ function Table({ pedidos }) {
             <th className="border-r-2 border-gray-200 p-2">ID</th>
             <th className="border-r-2 border-gray-200 p-2">Data</th>
             <th className="border-r-2 border-gray-200 p-2">Cliente</th>
-            <th className="border-r-2 border-gray-200 p-2">Valor Total</th>
+            <th className="border-r-2 border-gray-200 p-2">Valor total</th>
             <th className="p-2">Editar/Apagar</th>
           </tr>
         </thead>
@@ -26,13 +39,19 @@ function Table({ pedidos }) {
                     {pedido.id}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pedido.id_cliente}
+                    {pedido.data}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pedido.id_compra}
+                    {clientes &&
+                      (clientes.find(
+                        (cliente) => cliente.id == pedido.id_cliente
+                      ).pessoa.nome ||
+                        clientes.find(
+                          (cliente) => cliente.id == pedido.id_cliente
+                        ).pessoa.razao_social)}
                   </td>
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pedido.valor_total}
+                    {""}
                   </td>
                   <td className="flex justify-evenly p-2">
                     <Link href={`pedidos/${pedido.id}`}>
@@ -59,6 +78,6 @@ function Table({ pedidos }) {
       </table>
     </div>
   );
-}
+};
 
 export default Table;

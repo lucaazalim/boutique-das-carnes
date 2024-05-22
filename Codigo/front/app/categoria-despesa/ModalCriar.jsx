@@ -14,23 +14,18 @@ function ModalCriar({ openModal, setOpenModal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const categoriaSubmit = {
-      ...categoria,
-      cor: categoria.cor.replace("#", ""),
-    }
-
     fetch("http://localhost:3001/despesas-categorias", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(categoriaSubmit),
+      body: JSON.stringify(categoria),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
         setOpenModal(false)
-        window.location.reload()
+        // window.location.reload()
       })
       .catch((error) => console.error(error));
   };

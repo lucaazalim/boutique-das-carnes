@@ -22,7 +22,7 @@ function Page() {
 
   return (
     <div className="p-5">
-      <h1 className="text-4xl font-semibold">Criar Categoria de Despesa</h1>
+      <h1 className="text-4xl font-semibold">Categoria de Despesa</h1>
       <div className="mt-5 grid grid-cols-9 gap-2">
         <input
           type="text"

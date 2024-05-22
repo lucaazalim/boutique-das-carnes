@@ -46,10 +46,10 @@ export default function Home() {
             Despesas
           </Link>
           <Link
-            href={`/criar-categoria-despesa`}
+            href={`/categoria-despesa`}
             className="bg-gray-400 text-white p-2 rounded-md"
           >
-            Ciar categoria de despesa
+            Categorias de despesa
           </Link>
           <Link
             href={`/pedidos`}

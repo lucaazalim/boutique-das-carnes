@@ -1,7 +1,12 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import TableItens from "./TableItens";
+import BtnBack from "@/app/components/BtnBack";
+import ModalCriarItem from "./ModalCriarItem";
 
 function Page({ params }) {
+  const [openCriar, setOpenCriar] = useState(false);
   const [pedido, setPedido] = useState({
     id_cliente: "",
     id_compra: "",
@@ -22,7 +27,7 @@ function Page({ params }) {
       .then((response) => response.json())
       .then((data) => setCompras(data))
       .catch((error) => console.error(error));
-  });
+  }, [params]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +51,7 @@ function Page({ params }) {
 
   return (
     <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
-      <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
+      <h1 className="text-4xl font-semibold">Editar Pedido</h1>
       <form className="grid grid-cols-1 gap-2" onSubmit={handleSubmit}>
         <label>
           Cliente
@@ -57,7 +62,11 @@ function Page({ params }) {
           >
             <option value={""}>Selecione um cliente</option>
             {clientes.map((cliente) => (
-              <option key={cliente.id} value={cliente.id}>
+              <option
+                key={cliente.id}
+                value={cliente.id}
+                selected={cliente.id == pedido.id_cliente}
+              >
                 {cliente.pessoa.nome}
               </option>
             ))}
@@ -72,7 +81,11 @@ function Page({ params }) {
           >
             <option value={""}>Selecione uma compra</option>
             {compras.map((compra) => (
-              <option key={compra.id} value={compra.id}>
+              <option
+                key={compra.id}
+                value={compra.id}
+                selected={compra.id == pedido.id_compra}
+              >
                 {compra.id}
               </option>
             ))}
@@ -86,7 +99,25 @@ function Page({ params }) {
         </button>
       </form>
 
-      <TableItens itens={pedido.itens}/>
+      <h1 className="text-4xl font-semibold mt-5">Itens</h1>
+      <div className="mt-5 border-2 border-gray-200 rounded-md">
+        <TableItens idPedido={params.id} />
+      </div>
+      <div className="mt-2 w-full flex justify-center">
+        <button
+          onClick={() => setOpenCriar(true)}
+          className="p-2 bg-green-500 text-white rounded-md"
+        >
+          Adicionar Item
+        </button>
+      </div>
+      <ModalCriarItem
+        openCriar={openCriar}
+        setOpenCriar={setOpenCriar}
+        idPedido={params.id}
+      />
+
+      <BtnBack />
     </div>
   );
 }

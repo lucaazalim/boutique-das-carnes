@@ -27,11 +27,10 @@ export default function Table({ catDespesas }) {
                   <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
                     {catDesp.descricao}
                   </td>
-                  <td className={`text-[#${catDesp.cor}] border-r-2 border-gray-200 p-2 flex items-center justify-center`}>
-                    {catDesp.cor}
+                  <td className={`border-r-2 border-gray-200 p-2 flex items-center justify-center bg-[${catDesp.cor}]`}>
                   </td>
                   <td className="flex justify-evenly p-2">
-                    <Link href={`criar-categoria-despesa/${catDesp.id}`}>
+                    <Link href={`categoria-despesa/${catDesp.id}`}>
                       <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
                         Editar
                       </button>

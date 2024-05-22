@@ -30,7 +30,7 @@ function Page({ params }) {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // window.location.href = "/categoria-despesa";
+        window.location.href = "/categoria-despesa";
       })
       .catch((error) => console.error(error));
   };

@@ -25,7 +25,7 @@ function ModalCriar({ openModal, setOpenModal }) {
       .then((data) => {
         console.log(data);
         setOpenModal(false)
-        // window.location.reload()
+        window.location.reload()
       })
       .catch((error) => console.error(error));
   };

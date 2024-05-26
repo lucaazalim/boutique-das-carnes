@@ -33,7 +33,7 @@ export default function Page() {
     return (
         <div>
             <h1 className="text-4xl font-semibold">Relatório de compras por fornecedor</h1>
-            <div className="mt-5 grid grid-cols-7 gap-2">
+            <div className="mt-5 grid grid-cols-7 gap-2 mb-5">
                 <div className="col-span-3 flex flex-col">
                     <label className="block mb-1" htmlFor="start-date">
                         Data mínima

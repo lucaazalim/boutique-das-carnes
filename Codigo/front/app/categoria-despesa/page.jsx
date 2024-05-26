@@ -39,7 +39,7 @@ function Page() {
                     Criar Categoria
                 </button>
             </div>
-            <div className="mt-5 border-2 border-gray-200 rounded-md w-full">
+            <div className="mt-5">
                 <Table catDespesas={catDespesas}/>
             </div>
             <ModalCriar openModal={openModal} setOpenModal={setOpenModal}/>

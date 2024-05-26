@@ -22,7 +22,7 @@ function Page() {
   }, []);
 
   return (
-    <div className="p-5">
+    <div>
       <h1 className="text-4xl font-semibold">Consultar Compras</h1>
       <div className="mt-5 grid grid-cols-9 gap-2">
         <input
@@ -42,7 +42,7 @@ function Page() {
         </button>
       </div>
 
-      <div className="mt-5 border-2 border-gray-200 rounded-md">
+      <div className="mt-5">
         <Table compras={compras} />
       </div>
       <BtnBack />

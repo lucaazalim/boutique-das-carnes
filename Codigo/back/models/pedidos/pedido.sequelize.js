@@ -18,6 +18,11 @@ const Pedido = sequelize.define('pedido', {
             model: 'compra',
             key: 'id'
         }
+    },
+    criado_em: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: DataTypes.NOW
     }
 }, {
     timestamps: false,

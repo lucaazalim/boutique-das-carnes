@@ -33,9 +33,9 @@ export default function Table({ relatorio }) {
             <table className="w-full mt-5 border-2 border-gray-200 rounded-md">
                 <thead>
                 <tr className="grid grid-cols-3">
-                    <th className="border-r-2 border-gray-200 p-2">Nome do fornecedor</th>
-                    <th className="border-r-2 border-gray-200 p-2">Compras no período</th>
-                    <th className="border-r-2 border-gray-200 p-2">
+                    <th>Nome do fornecedor</th>
+                    <th>Compras no período</th>
+                    <th>
                         Valor total das compras no período
                     </th>
                 </tr>

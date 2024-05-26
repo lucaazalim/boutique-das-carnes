@@ -19,12 +19,12 @@ function Page() {
   }, []);
 
   return (
-    <div className="p-5">
+    <div>
       <h1 className="text-4xl font-semibold">Pedidos</h1>
       <div className="mt-5 grid grid-cols-9 gap-2">
         <input
           type="text"
-          placeholder=""
+          placeholder="Informe o ID do pedido"
           className="p-2 border-2 border-gray-200 rounded-md col-span-7"
           value={search}
           onChange={(e) => setsearch(e.target.value)}
@@ -39,7 +39,7 @@ function Page() {
         </button>
       </div>
 
-      <div className="mt-5 border-2 border-gray-200 rounded-md">
+      <div className="mt-5">
         <Table pedidos={pedidos} />
       </div>
       <ModalCriar open={openModal} setOpen={setOpenModal} />

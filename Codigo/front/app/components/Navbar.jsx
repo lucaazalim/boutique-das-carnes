@@ -1,17 +1,21 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Sidebar from "@/app/components/Sidebar";
 
 function Navbar() {
     return (
-        <nav className='grid grid-cols-3 p-4 bg-[#77302E]'>
-            <div></div>
-            <div className='flex justify-center'>
-                <Link href='/'>
-                    <Image alt='' src='/logo.png' width={100} height={100} priority/>
-                </Link>
+        <nav className='bg-primary'>
+            <div className='container mx-auto h-24 pt-4'>
+                <div className='absolute top-5'>
+                    <Sidebar/>
+                </div>
+                <div className='flex justify-center hover:scale-105 transition-all'>
+                    <Link href='/'>
+                        <Image alt='' src='/logo.png' width={150} height={100} priority/>
+                    </Link>
+                </div>
             </div>
-            <div></div>
         </nav>
     )
 }

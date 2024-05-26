@@ -18,10 +18,10 @@ function TableItens({ idPedido }) {
       <table className="w-full">
         <thead>
           <tr className="grid grid-cols-5">
-            <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Produto</th>
-            <th className="border-r-2 border-gray-200 p-2">Quantidade</th>
-            <th className="border-r-2 border-gray-200 p-2">Valor</th>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
             <th className="p-2">Apagar</th>
           </tr>
         </thead>

@@ -36,7 +36,7 @@ function Page({ params }) {
   };
 
   return (
-    <div className="p-5">
+    <div>
       <h1 className="text-4xl font-semibold">Editar Categoria de Despesa</h1>
       <form className="grid grid-cols-1 gap-2 mt-5">
         <label>

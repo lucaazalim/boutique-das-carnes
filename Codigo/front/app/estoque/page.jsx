@@ -28,13 +28,13 @@ function Page() {
   }, []);
 
   return (
-    <div className="p-5 overflow-auto h-[calc(100vh-217px)]">
+    <div className="overflow-auto h-[calc(100vh-217px)]">
       <h1 className="text-4xl font-semibold">Resumo do Estoque</h1>
-      <div className="mt-5 border-2 border-gray-300 rounded-md">
+      <div className="mt-5">
         <TableResumo resumo={resumoEstoque} />
       </div>
       <h1 className="text-4xl font-semibold mt-5">Consultar Itens em Estoque</h1>
-      <div className="mt-5 border-2 border-gray-300 rounded-md">
+      <div className="mt-5">
         <TableEstoque estoque={estoque} />
       </div>
       <BtnBack />

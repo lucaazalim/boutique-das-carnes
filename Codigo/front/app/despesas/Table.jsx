@@ -1,92 +1,77 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ModalConf from "./ModalConf";
+import {FaEdit} from "react-icons/fa";
+import {FaTrash} from "react-icons/fa6";
 
-export default function Table({ despesas }) {
-  const [open, setOpen] = useState(false);
-  const [catDesp, setCatDesp] = useState([]);
+export default function Table({despesas}) {
+    const [open, setOpen] = useState(false);
+    const [catDesp, setCatDesp] = useState([]);
 
-  useEffect(() => {
-    fetch(`http://localhost:3001/despesas-categorias`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCatDesp(data);
-      })
-      .catch((error) => console.error(error));
-  });
+    useEffect(() => {
+        fetch(`http://localhost:3001/despesas-categorias`)
+            .then((response) => response.json())
+            .then((data) => {
+                setCatDesp(data);
+            })
+            .catch((error) => console.error(error));
+    });
 
-  return (
-    <div>
-      <table className="w-full">
-        <thead>
-          <tr className="grid grid-cols-6">
-            <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Nome</th>
-            <th className="border-r-2 border-gray-200 p-2">Valor</th>
-            <th className="border-r-2 border-gray-200 p-2">Data</th>
-            <th className="border-r-2 border-gray-200 p-2">Categoria</th>
-            <th className="p-2">Editar/Apagar</th>
-          </tr>
-        </thead>
-        <tbody className="border-t-2 border-gray-300">
-          {despesas &&
-            despesas.map((despesa) => {
-              return (
-                <tr key={despesa.id} className="grid grid-cols-6">
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {despesa.id}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {despesa.nome}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {despesa.valor}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {despesa.data}
-                  </td>
-                  <td
-                    className={`border-r-2 border-gray-200 p-2 flex items-center justify-center`}
-                  >
-                    <div
-                    className="px-2 rounded-full text-white text-xl"
-                      style={{
-                        "background-color": catDesp.find(
-                          (cat) => cat.id == despesa.id_categoria
-                        ).cor || "gray",
-                      }}
-                    >
-                      {despesa.id_categoria &&
-                      catDesp.find((cat) => cat.id === despesa.id_categoria)
-                        .nome
-                        ? catDesp.find((cat) => cat.id === despesa.id_categoria)
-                            .nome
-                        : "Sem categoria"}
-                    </div>
-                  </td>
-                  <td className="flex justify-evenly p-2">
-                    <Link href={`despesas/${despesa.id}`}>
-                      <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
-                        Editar
-                      </button>
-                    </Link>
-                    <ModalConf
-                      open={open}
-                      setOpen={setOpen}
-                      idDespesa={despesa.id}
-                    />
-                    <button
-                      className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                      onClick={() => setOpen(!open)}
-                    >
-                      Apagar
-                    </button>
-                  </td>
-                </tr>
-              );
+    return (
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Categoria</th>
+                <th>Opções</th>
+            </tr>
+            </thead>
+            <tbody>
+            {despesas && despesas.map((despesa) => {
+
+                const categoria = catDesp.find(
+                    (cat) => cat.id === despesa.id_categoria
+                );
+
+                return <tr key={despesa.id}>
+                    <td>{despesa.id}</td>
+                    <td>{despesa.nome}</td>
+                    <td>{despesa.valor}</td>
+                    <td>{despesa.data}</td>
+                    <td>
+                        <div className="flex justify-center">
+                            <div
+                                className="px-2 rounded-full text-white"
+                                style={{"background-color": categoria ? categoria.cor : "gray"}}
+                            >
+                                {categoria ? categoria.nome : "Sem categoria"}
+                            </div>
+                        </div>
+                    </td>
+                    <td className="flex justify-center gap-1">
+                        <Link href={`despesas/${despesa.id}`}>
+                            <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+                                <FaEdit/>
+                            </button>
+                        </Link>
+                        <ModalConf
+                            open={open}
+                            setOpen={setOpen}
+                            idDespesa={despesa.id}
+                        />
+                        <button
+                            className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
+                            onClick={() => setOpen(!open)}
+                        >
+                            <FaTrash/>
+                        </button>
+                    </td>
+                </tr>;
             })}
-        </tbody>
-      </table>
-    </div>
-  );
+            </tbody>
+        </table>
+    );
 }

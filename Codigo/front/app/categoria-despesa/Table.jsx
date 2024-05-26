@@ -1,58 +1,59 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ModalConf from "./ModalConf";
+import {FaEdit} from "react-icons/fa";
+import {FaTrash} from "react-icons/fa6";
 
-export default function Table({ catDespesas }) {
-  const [open, setOpen] = useState(false);
+export default function Table({catDespesas}) {
+    const [open, setOpen] = useState(false);
 
-  return (
-    <div>
-      <table className="w-full">
-        <thead>
-          <tr className="grid grid-cols-4">
-            <th className="border-r-2 border-gray-200 p-2">Nome</th>
-            <th className="border-r-2 border-gray-200 p-2">Descrição</th>
-            <th className="border-r-2 border-gray-200 p-2">Cor</th>
-            <th className="p-2">Editar/Apagar</th>
-          </tr>
-        </thead>
-        <tbody className="border-t-2 border-gray-300">
-          {catDespesas &&
-            catDespesas.map((catDesp) => {
-              return (
-                <tr key={catDesp.id} className="grid grid-cols-4">
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {catDesp.nome}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {catDesp.descricao}
-                  </td>
-                  <td className={`border-r-2 border-gray-200 p-2 flex items-center justify-center`}>
-                    <div className="h-6 w-6 rounded-full" style={{'background-color': catDesp.cor}}></div>
-                  </td>
-                  <td className="flex justify-evenly p-2">
-                    <Link href={`categoria-despesa/${catDesp.id}`}>
-                      <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
-                        Editar
-                      </button>
-                    </Link>
-                    <ModalConf
-                      open={open}
-                      setOpen={setOpen}
-                      idCatDesp={catDesp.id}
-                    />
-                    <button
-                      className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                      onClick={() => setOpen(!open)}
-                    >
-                      Apagar
-                    </button>
-                  </td>
+    return (
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Cor</th>
+                    <th>Opções</th>
                 </tr>
-              );
-            })}
-        </tbody>
-      </table>
-    </div>
-  );
+                </thead>
+                <tbody>
+                {catDespesas && catDespesas.map((catDesp) =>
+                    <tr key={catDesp.id}>
+                        <td>
+                            {catDesp.nome}
+                        </td>
+                        <td>
+                            {catDesp.descricao}
+                        </td>
+                        <td>
+                            <div className="flex justify-center">
+                                <div className="h-6 w-6 rounded-full" style={{'background-color': catDesp.cor}}></div>
+                            </div>
+                        </td>
+                        <td className="flex justify-center gap-1">
+                            <Link href={`categoria-despesa/${catDesp.id}`}>
+                                <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+                                    <FaEdit/>
+                                </button>
+                            </Link>
+                            <ModalConf
+                                open={open}
+                                setOpen={setOpen}
+                                idCatDesp={catDesp.id}
+                            />
+                            <button
+                                className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
+                                onClick={() => setOpen(!open)}
+                            >
+                                <FaTrash/>
+                            </button>
+                        </td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        </div>
+    );
 }

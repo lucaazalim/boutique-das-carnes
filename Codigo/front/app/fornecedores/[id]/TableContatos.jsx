@@ -11,11 +11,11 @@ function TableContatos({ contatos }) {
       <table className="w-full">
         <thead>
           <tr className="grid grid-cols-5">
-            <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Nome</th>
-            <th className="border-r-2 border-gray-200 p-2">Celular</th>
-            <th className="border-r-2 border-gray-200 p-2">Cargo</th>
-            <th className="p-2">Editar/Apagar</th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Celular</th>
+            <th>Cargo</th>
+            <th className="p-2">Opções</th>
           </tr>
         </thead>
         <tbody className="border-t-2 border-gray-300">

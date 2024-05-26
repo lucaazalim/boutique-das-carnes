@@ -2,12 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font: 100%;
-}
 @layer utilities {
-  .scrollbartop::-webkit-scrollbar-thumb {
-    background-color: #f1f1f1;
-    border-radius: 10px;
-  }
+    .scrollbartop::-webkit-scrollbar-thumb {
+        background-color: #f1f1f1;
+        border-radius: 10px;
+    }
+}
+
+table {
+    @apply border-separate w-full;
+}
+
+thead {
+    @apply h-10 bg-gray-200;
+}
+
+th:first-child {
+    @apply rounded-tl-md;
+}
+
+th:last-child {
+    @apply rounded-tr-md;
+}
+
+td {
+    @apply py-2 text-center border-b-2 border-gray-100;
 }

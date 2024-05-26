@@ -1,83 +1,72 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import ModalConf from "./ModalConf";
+import {FaEdit, FaTrash} from "react-icons/fa";
 
-const Table = ({ pedidos }) => {
-  const [open, setOpen] = useState(false);
-  const [clientes, setClientes] = useState([]);
-  const [itens, setItens] = useState([]);
+const Table = ({pedidos}) => {
 
-  useEffect(() => {
-    fetch("http://localhost:3001/clientes")
-      .then((response) => response.json())
-      .then((data) => setClientes(data))
-      .catch((error) => console.error(error));
-  }, []);
+    const [open, setOpen] = useState(false);
+    const [clientes, setClientes] = useState([]);
 
-  useEffect(() => {
-    console.log(itens);
-  }, [itens]);
+    useEffect(() => {
+        fetch("http://localhost:3001/clientes")
+            .then((response) => response.json())
+            .then((data) => setClientes(data))
+            .catch((error) => console.error(error));
+    }, []);
 
-  return (
-    <div>
-      <table className="w-full">
-        <thead>
-          <tr className="grid grid-cols-5">
-            <th className="border-r-2 border-gray-200 p-2">ID</th>
-            <th className="border-r-2 border-gray-200 p-2">Data</th>
-            <th className="border-r-2 border-gray-200 p-2">Cliente</th>
-            <th className="border-r-2 border-gray-200 p-2">Valor total</th>
-            <th className="p-2">Editar/Apagar</th>
-          </tr>
-        </thead>
-        <tbody className="border-t-2 border-gray-300">
-          {pedidos &&
-            pedidos.map((pedido) => {
-              return (
-                <tr key={pedido.id} className="grid grid-cols-5">
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pedido.id}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {pedido.data}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {clientes &&
-                      (clientes.find(
-                        (cliente) => cliente.id == pedido.id_cliente
-                      ).pessoa.nome ||
-                        clientes.find(
-                          (cliente) => cliente.id == pedido.id_cliente
-                        ).pessoa.razao_social)}
-                  </td>
-                  <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
-                    {""}
-                  </td>
-                  <td className="flex justify-evenly p-2">
-                    <Link href={`pedidos/${pedido.id}`}>
-                      <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
-                        Editar
-                      </button>
-                    </Link>
-                    <ModalConf
-                      open={open}
-                      setOpen={setOpen}
-                      idPedido={pedido.id}
-                    />
-                    <button
-                      className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                      onClick={() => setOpen(!open)}
-                    >
-                      Apagar
-                    </button>
-                  </td>
+    return (
+        <div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Valor total</th>
+                    <th>Opções</th>
                 </tr>
-              );
-            })}
-        </tbody>
-      </table>
-    </div>
-  );
+                </thead>
+                <tbody>
+                {pedidos && pedidos.map((pedido) => {
+
+                    const cliente = clientes.find(c => c.id === pedido.id_cliente);
+                    const clienteName = cliente.tipo === "PJ" ? cliente.pessoa.razao_social : cliente.pessoa.nome;
+
+                    return <tr key={pedido.id}>
+                        <td>{pedido.id}</td>
+                        <td>{formatTimestampToDate(pedido.criado_em)}</td>
+                        <td>{clienteName}</td>
+                        <td></td>
+                        <td className="flex justify-center gap-1">
+                            <Link href={`pedidos/${pedido.id}`}>
+                                <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
+                                    <FaEdit/>
+                                </button>
+                            </Link>
+                            <ModalConf
+                                open={open}
+                                setOpen={setOpen}
+                                idPedido={pedido.id}
+                            />
+                            <button
+                                className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
+                                onClick={() => setOpen(!open)}
+                            >
+                                <FaTrash/>
+                            </button>
+                        </td>
+                    </tr>;
+                })}
+                </tbody>
+            </table>
+        </div>
+    );
 };
+
+function formatTimestampToDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.toLocaleDateString("pt-BR");
+}
 
 export default Table;

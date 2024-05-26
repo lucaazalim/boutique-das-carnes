@@ -1,41 +1,39 @@
 import Link from "next/link";
 import React from "react";
+import {FaArrowUpRightFromSquare} from "react-icons/fa6";
 
-function TableResumo({ estoque }) {
-  return (
-    <table className="w-full">
-      <thead>
-        <tr className="grid grid-cols-3">
-          {/* <th className="p-2 border-r-2 border-gray-300">ID</th>
-          <th className="p-2 border-r-2 border-gray-300">ID da Compra</th> */}
-          <th className="p-2 border-r-2 border-gray-300">Letra</th>
-          <th className="p-2 border-r-2 border-gray-300">Tipo</th>
-          <th className="p-2">Link para compra</th>
-        </tr>
-      </thead>
-      <tbody className="border-t-2 border-gray-300">
-        {estoque &&
-          estoque.map((item) => (
-            <tr key={item.id} className="grid grid-cols-3">
-              <td className="p-2 border-r-2 border-gray-300 flex items-center justify-center">
-                {item.id_compra_carcaca}
-              </td>
-              <td className="p-2 border-r-2 border-gray-300 flex items-center justify-center">
-                {item.tipo}
-              </td>
-              <td className="p-2 flex items-center justify-center">
-                <Link
-                  className="text-blue-500"
-                  href={`/compras/${item.id_compra_carcaca}`}
-                >
-                  Link
-                </Link>
-              </td>
-            </tr>
-          ))}
-      </tbody>
-    </table>
-  );
+function TableResumo({estoque}) {
+    return (
+        <div className="border-2 border-gray-200 rounded-md">
+            <table className="w-full table-auto">
+                <thead className="h-10 bg-gray-200">
+                <tr>
+                    <th>Letra</th>
+                    <th>Tipo</th>
+                    <th>Compra</th>
+                </tr>
+                </thead>
+                <tbody>
+                {estoque && estoque.map((item) =>
+                    <tr key={item.id} className="text-center">
+                        <td className="py-2">
+                            {item.id_compra_carcaca}
+                        </td>
+                        <td>{item.tipo}</td>
+                        <td className="flex justify-center py-2">
+                            <Link
+                                className="text-blue-500"
+                                href={`/compras/${item.id_compra_carcaca}`}
+                            >
+                                <FaArrowUpRightFromSquare/>
+                            </Link>
+                        </td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default TableResumo;

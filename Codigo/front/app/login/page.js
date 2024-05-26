@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function Home() {
+export default function Login() {
   const [data, setData] = useState({
     usuario: "",
     senha: "",
@@ -23,7 +23,7 @@ export default function Home() {
       redirect: "follow",
     });
     if (response.ok) {
-      window.location.replace("/dashboard");
+      window.location.replace("/");
     }
   }
 

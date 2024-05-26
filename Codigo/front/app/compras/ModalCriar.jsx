@@ -9,8 +9,6 @@ function ModalCriar({openModal, setOpenModal}) {
         unidades_femea: null,
         preco_arroba: null,
         desconto: null,
-        animais_abatidos: null,
-        peso_total_abate: null,
         preco_frete: null,
         preco_sangria: null,
         id_documento_romaneio: null,
@@ -110,24 +108,6 @@ function ModalCriar({openModal, setOpenModal}) {
                         <input
                             type="number"
                             name="desconto"
-                            className="p-2 border-2 border-gray-200 rounded-md w-full"
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <label>
-                        Animais Abatidos:
-                        <input
-                            type="number"
-                            name="animais_abatidos"
-                            className="p-2 border-2 border-gray-200 rounded-md w-full"
-                            onChange={handleChange}
-                        />
-                    </label>
-                    <label>
-                        Peso Total Abate:
-                        <input
-                            type="number"
-                            name="peso_total_abate"
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />

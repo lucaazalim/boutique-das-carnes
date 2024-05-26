@@ -32,7 +32,7 @@ export default function Sidebar() {
     return (
         <>
             <button onClick={toggleDrawer}
-                    className="p-4 text-xl bg-secondary text-white rounded hover:scale-105 transition-all">
+                    className="p-4 text-xl bg-secondary text-white rounded hover:scale-105 transition-transform z-10">
                 <FaBars/>
             </button>
             <div

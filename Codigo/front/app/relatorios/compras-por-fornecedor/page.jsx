@@ -1,7 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import BtnBack from '../../components/BtnBack';
+import {useEffect, useState} from 'react';
 import dynamic from 'next/dynamic';
 
 const Table = dynamic(() => import('./Table'));
@@ -68,8 +67,7 @@ export default function Page() {
                     </button>
                 </div>
             </div>
-            <Table relatorio={relatorio} />
-            <BtnBack />
+            <Table relatorio={relatorio}/>
         </div>
     );
 }

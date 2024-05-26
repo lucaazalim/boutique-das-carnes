@@ -1,6 +1,5 @@
 "use client";
 
-import BtnBack from "@/app/components/BtnBack";
 import {useEffect, useState} from "react";
 import TableCarcacas from "./TableCarcacas";
 import CriarCarcaca from "./CriarCarcaca";
@@ -191,8 +190,6 @@ export default function Page({params}) {
                     idCompra={params.id}
                 />
             </div>
-
-            <BtnBack/>
         </div>
     );
 }

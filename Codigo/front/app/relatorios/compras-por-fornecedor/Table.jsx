@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 
 const formatCurrency = (value) => {
     return new Intl.NumberFormat('pt-BR', {
@@ -7,7 +7,7 @@ const formatCurrency = (value) => {
     }).format(value);
 };
 
-export default function Table({ relatorio }) {
+export default function Table({relatorio}) {
     const [fornecedorData, setFornecedorData] = useState([]);
 
     useEffect(() => {

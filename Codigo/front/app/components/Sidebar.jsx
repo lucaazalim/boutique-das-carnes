@@ -1,7 +1,17 @@
 'use client';
 
 import {useState} from 'react';
-import {FaBars, FaX, FaUser, FaCartShopping, FaMoneyBill, FaClipboardList, FaChartLine, FaWarehouse, FaFileInvoice} from "react-icons/fa6";
+import {
+    FaBars,
+    FaX,
+    FaUser,
+    FaCartShopping,
+    FaMoneyBill,
+    FaClipboardList,
+    FaChartLine,
+    FaWarehouse,
+    FaFileInvoice
+} from "react-icons/fa6";
 import Link from "next/link";
 import {FaHome} from "react-icons/fa";
 
@@ -23,6 +33,7 @@ function Item({href, name, onClick, icon: Icon}) {
 }
 
 export default function Sidebar() {
+
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleDrawer = () => {
@@ -32,7 +43,7 @@ export default function Sidebar() {
     return (
         <>
             <button onClick={toggleDrawer}
-                    className="p-4 text-xl bg-secondary text-white rounded hover:scale-105 transition-transform z-10">
+                    className="p-4 mr-2 text-xl bg-secondary text-white rounded hover:scale-105 transition-transform z-10">
                 <FaBars/>
             </button>
             <div

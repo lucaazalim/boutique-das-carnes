@@ -1,16 +1,18 @@
 "use client"
 
-import React from "react";
+import {FaBars, FaChevronLeft, FaChevronRight} from "react-icons/fa6";
 
-function BtnBack() {
-  return (
-    <button
-      className="p-2 rounded-md text-white bg-gray-400 hover:bg-gray-500 absolute bottom-5 left-[140px] shadow-lg"
-      onClick={() => window.history.back()}
-    >
-      Voltar
-    </button>
-  );
+export default function BtnBack() {
+    return <>
+        <div className="flex gap-2">
+            <button onClick={() => window.history.back()}
+                    className="p-4 text-xl bg-secondary text-white rounded hover:scale-105 transition-transform z-10">
+                <FaChevronLeft/>
+            </button>
+            <button onClick={() => window.history.forward()}
+                    className="p-4 text-xl bg-secondary text-white rounded hover:scale-105 transition-transform z-10">
+                <FaChevronRight/>
+            </button>
+        </div>
+    </>;
 }
-
-export default BtnBack;

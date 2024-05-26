@@ -2,7 +2,6 @@
 
 import React, {useEffect, useState} from "react";
 import TableItens from "./TableItens";
-import BtnBack from "@/app/components/BtnBack";
 import ModalCriarItem from "./ModalCriarItem";
 
 function Page({params}) {
@@ -116,8 +115,6 @@ function Page({params}) {
                 setOpenCriar={setOpenCriar}
                 idPedido={params.id}
             />
-
-            <BtnBack/>
         </div>
     );
 }

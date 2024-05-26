@@ -21,7 +21,7 @@ function Item({href, name, onClick, icon: Icon}) {
             <li className="py-2 bg-gray-100 rounded-xl px-3 mb-3 hover:bg-gray-200">
                 <div className="flex">
                     <div className="flex flex-col justify-center">
-                        {Icon && <Icon className="inline-block mr-2"/>}
+                        {Icon && <Icon className="text-xl inline-block mr-2"/>}
                     </div>
                     <div>
                         {name}
@@ -50,7 +50,7 @@ export default function Sidebar() {
                 className={`fixed inset-0 bg-black bg-opacity-75 z-40 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 onClick={toggleDrawer}></div>
             <div
-                className={`fixed inset-y-0 left-0 w-64 bg-white shadow-md z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                className={`overflow-auto fixed inset-y-0 left-0 w-max bg-white shadow-md z-50 transform transition-transform duration-300 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="p-4">
                     <div className="absolute right-3 top-3">
                         <button onClick={toggleDrawer} className="text-gray-600">

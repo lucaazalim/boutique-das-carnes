@@ -11,6 +11,10 @@ const Compra = sequelize.define('compra',
             type: DataTypes.BIGINT,
             allowNull: false
         },
+        data: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
         unidades_macho: {
             type: DataTypes.SMALLINT.UNSIGNED,
             allowNull: false 

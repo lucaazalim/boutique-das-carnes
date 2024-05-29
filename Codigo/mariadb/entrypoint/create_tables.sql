@@ -87,6 +87,7 @@ DROP TABLE IF EXISTS `compra`;
 CREATE TABLE `compra` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_fornecedor` bigint(20) NOT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp(),
   `unidades_macho` smallint(5) unsigned NOT NULL,
   `unidades_femea` smallint(5) unsigned NOT NULL,
   `preco_arroba` decimal(15,2) NOT NULL,
@@ -179,6 +180,35 @@ CREATE TABLE `compra_pesagem` (
   CONSTRAINT `compra_pesagem_id_compra_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary table structure for view `compra_totais`
+--
+
+DROP TABLE IF EXISTS `compra_totais`;
+/*!50001 DROP VIEW IF EXISTS `compra_totais`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `compra_totais` AS SELECT
+ 1 AS `id`,
+  1 AS `id_fornecedor`,
+  1 AS `data`,
+  1 AS `unidades_macho`,
+  1 AS `unidades_femea`,
+  1 AS `preco_arroba`,
+  1 AS `preco_frete`,
+  1 AS `preco_sangria`,
+  1 AS `desconto`,
+  1 AS `id_documento_romaneio`,
+  1 AS `id_documento_gta`,
+  1 AS `id_documento_nf_compra`,
+  1 AS `id_documento_nf_abate`,
+  1 AS `id_documento_nfs_matadouro`,
+  1 AS `id_documento_nf_retorno`,
+  1 AS `criado_em`,
+  1 AS `valor_total`,
+  1 AS `custo_total` */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `despesa`
@@ -351,6 +381,7 @@ CREATE TABLE `pedido` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_cliente` bigint(20) DEFAULT NULL,
   `id_compra` bigint(20) DEFAULT NULL,
+  `data` date NOT NULL DEFAULT current_timestamp(),
   `criado_em` varchar(100) NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `cliente_id_FK` (`id_cliente`),
@@ -373,13 +404,63 @@ CREATE TABLE `pedido_item` (
   `conjunto` enum('FIGADO','FATO','DIANTEIRO_SEM_COSTELA','SERROTE_SEM_RABADA','SERROTE_COM_RABADA','COSTELA','CUPIM','CARCACA','BANDA_CARREGADA','BANDA_DESCARREGADA','DIANTEIRO_COM_COSTELA') NOT NULL,
   `letra` varchar(2) DEFAULT NULL,
   `quantidade` int(11) NOT NULL,
-  `peso` decimal(7,2) NOT NULL,
+  `peso` decimal(7,2) DEFAULT NULL,
   `preco` decimal(15,2) NOT NULL,
+  `preco_total` decimal(15,2) NOT NULL,
+  `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `pedido_id_FK` (`id_pedido`),
   CONSTRAINT `pedido_id_FK` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Temporary table structure for view `relatorio_compras_por_fornecedor`
+--
+
+DROP TABLE IF EXISTS `relatorio_compras_por_fornecedor`;
+/*!50001 DROP VIEW IF EXISTS `relatorio_compras_por_fornecedor`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `relatorio_compras_por_fornecedor` AS SELECT
+ 1 AS `id_fornecedor`,
+  1 AS `preco_arroba`,
+  1 AS `total_compras`,
+  1 AS `valor_total`,
+  1 AS `data` */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `relatorio_lucro_por_compra`
+--
+
+DROP TABLE IF EXISTS `relatorio_lucro_por_compra`;
+/*!50001 DROP VIEW IF EXISTS `relatorio_lucro_por_compra`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `relatorio_lucro_por_compra` AS SELECT
+ 1 AS `id`,
+  1 AS `valor_total`,
+  1 AS `custo_total`,
+  1 AS `receita_total`,
+  1 AS `lucro`,
+  1 AS `data` */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary table structure for view `relatorio_pedidos_por_cliente`
+--
+
+DROP TABLE IF EXISTS `relatorio_pedidos_por_cliente`;
+/*!50001 DROP VIEW IF EXISTS `relatorio_pedidos_por_cliente`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `relatorio_pedidos_por_cliente` AS SELECT
+ 1 AS `id_cliente`,
+  1 AS `total_pedidos`,
+  1 AS `SUM(pedido_item.preco_total)`,
+  1 AS `data` */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Table structure for table `usuario`
@@ -405,6 +486,78 @@ CREATE TABLE `usuario` (
 --
 -- Dumping routines for database 'boutique_das_carnes'
 --
+
+--
+-- Final view structure for view `compra_totais`
+--
+
+/*!50001 DROP VIEW IF EXISTS `compra_totais`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `compra_totais` AS select `compra`.`id` AS `id`,`compra`.`id_fornecedor` AS `id_fornecedor`,`compra`.`data` AS `data`,`compra`.`unidades_macho` AS `unidades_macho`,`compra`.`unidades_femea` AS `unidades_femea`,`compra`.`preco_arroba` AS `preco_arroba`,`compra`.`preco_frete` AS `preco_frete`,`compra`.`preco_sangria` AS `preco_sangria`,`compra`.`desconto` AS `desconto`,`compra`.`id_documento_romaneio` AS `id_documento_romaneio`,`compra`.`id_documento_gta` AS `id_documento_gta`,`compra`.`id_documento_nf_compra` AS `id_documento_nf_compra`,`compra`.`id_documento_nf_abate` AS `id_documento_nf_abate`,`compra`.`id_documento_nfs_matadouro` AS `id_documento_nfs_matadouro`,`compra`.`id_documento_nf_retorno` AS `id_documento_nf_retorno`,`compra`.`criado_em` AS `criado_em`,sum(`compra_pesagem`.`peso`) / 30 * `compra`.`preco_arroba` - `compra`.`desconto` AS `valor_total`,`compra`.`preco_frete` + `compra`.`preco_sangria` AS `custo_total` from (`compra` join `compra_pesagem` on(`compra_pesagem`.`id_compra` = `compra`.`id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `relatorio_compras_por_fornecedor`
+--
+
+/*!50001 DROP VIEW IF EXISTS `relatorio_compras_por_fornecedor`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `relatorio_compras_por_fornecedor` AS select `compra`.`id_fornecedor` AS `id_fornecedor`,`compra`.`preco_arroba` AS `preco_arroba`,count(0) AS `total_compras`,coalesce(sum(`compra_pesagem`.`peso`),0) / 15 * `compra`.`preco_arroba` AS `valor_total`,`compra`.`data` AS `data` from (`compra` join `compra_pesagem` on(`compra_pesagem`.`id_compra` = `compra`.`id`)) group by `compra`.`id_fornecedor` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `relatorio_lucro_por_compra`
+--
+
+/*!50001 DROP VIEW IF EXISTS `relatorio_lucro_por_compra`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `relatorio_lucro_por_compra` AS select `compra_totais`.`id` AS `id`,`compra_totais`.`valor_total` AS `valor_total`,`compra_totais`.`custo_total` AS `custo_total`,coalesce(sum(`pedido_item`.`preco_total`),0) AS `receita_total`,coalesce(sum(`pedido_item`.`preco_total`),0) - `compra_totais`.`valor_total` - `compra_totais`.`custo_total` AS `lucro`,`compra_totais`.`data` AS `data` from (((`compra_totais` left join `compra_pesagem` on(`compra_pesagem`.`id_compra` = `compra_totais`.`id`)) left join `pedido` on(`pedido`.`id_compra` = `compra_totais`.`id`)) left join `pedido_item` on(`pedido_item`.`id_pedido` = `pedido`.`id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `relatorio_pedidos_por_cliente`
+--
+
+/*!50001 DROP VIEW IF EXISTS `relatorio_pedidos_por_cliente`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`%` SQL SECURITY DEFINER */
+/*!50001 VIEW `relatorio_pedidos_por_cliente` AS select `pedido`.`id_cliente` AS `id_cliente`,count(0) AS `total_pedidos`,sum(`pedido_item`.`preco_total`) AS `SUM(pedido_item.preco_total)`,`pedido`.`data` AS `data` from (`pedido` join `pedido_item` on(`pedido`.`id` = `pedido_item`.`id_pedido`)) group by `pedido`.`id_cliente` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -415,4 +568,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-22  9:04:11
+-- Dump completed on 2024-05-29 15:11:49

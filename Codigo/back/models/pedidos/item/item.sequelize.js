@@ -24,9 +24,13 @@ const Item = sequelize.define('pedido_item', {
     },
     peso: {
         type: DataTypes.DECIMAL(7,2),
-        allowNull: false
+        allowNull: true
     },
     preco: {
+        type: DataTypes.DECIMAL(15,2),
+        allowNull: false
+    },
+    preco_total: {
         type: DataTypes.DECIMAL(15,2),
         allowNull: false
     }

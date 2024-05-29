@@ -19,6 +19,10 @@ const Pedido = sequelize.define('pedido', {
             key: 'id'
         }
     },
+    data: {
+        type: DataTypes.DATE,
+        allowNull: false
+    },
     criado_em: {
         type: DataTypes.DATE,
         allowNull: false,

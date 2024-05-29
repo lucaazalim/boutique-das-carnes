@@ -1,8 +1,8 @@
 const Item = require('./item.sequelize');
 
-const { updateEstoque } = require('../../estoque/estoque.model');
+const {updateEstoque} = require('../../estoque/estoque.model');
 
-const { CONJUNTOS } = require('../../../constants/pedido.constant');
+const {CONJUNTOS} = require('../../../constants/pedido.constant');
 
 async function getByIdPedidoItem(id_pedido) {
 
@@ -42,17 +42,18 @@ async function createItem(item) {
         throw new Error('Campos do item do pedido: conjunto, letra, quantidade, peso e preco são obrigatórios.');
     }
 
+    item.preco_total = peso ? peso * preco : quantidade * preco;
+
     // Criação do item pedido com id_pedido_item
     const result = await Item.create(item);
-    
+
     let itens = [];
-    const id_pedido_item = { id_pedido_item: result.id };
+    const id_pedido_item = {id_pedido_item: result.id};
 
     itens = CONJUNTOS.find(conjunto => conjunto.nome === item.conjunto).itens;
 
     for (let tipo of itens) {
-        const updated = await updateEstoque( id_pedido_item, tipo, quantidade);
-        console.log("UPDATED: ", updated);
+        await updateEstoque(id_pedido_item, tipo, quantidade);
     }
 
     return result;

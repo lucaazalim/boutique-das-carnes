@@ -5,6 +5,7 @@ const Compra = require('./compra.sequelize');
 
 async function createCompra(
     id_fornecedor,
+    data,
     status,
     unidades_macho,
     unidades_femea,
@@ -24,6 +25,7 @@ async function createCompra(
     try {
         const compra = Compra.create({
             id_fornecedor,
+            data,
             status,
             unidades_macho,
             unidades_femea,

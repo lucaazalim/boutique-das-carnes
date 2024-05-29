@@ -16,6 +16,7 @@ async function httpPostCompra(req, res) {
 
     const {
         id_fornecedor,
+        data,
         status,
         unidades_macho,
         unidades_femea,
@@ -39,8 +40,9 @@ async function httpPostCompra(req, res) {
             return res.status(400).json({ erro: `Fornecedor com id ${id_fornecedor} não encontrado` });
         }
 
-        const data = await createCompra(
+        await createCompra(
             id_fornecedor,
+            data,
             status,
             unidades_macho,
             unidades_femea,

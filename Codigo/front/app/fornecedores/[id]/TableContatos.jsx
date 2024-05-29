@@ -1,6 +1,8 @@
 import {useState} from "react";
 import ModalConfContato from "./ModalConfContato";
 import ModalEditContato from "./ModalEditContato";
+import {FaEdit} from "react-icons/fa";
+import {FaTrash} from "react-icons/fa6";
 
 function TableContatos({contatos}) {
     const [open, setOpen] = useState(false);
@@ -8,9 +10,9 @@ function TableContatos({contatos}) {
 
     return (
         <div>
-            <table className="w-full">
+            <table>
                 <thead>
-                <tr className="grid grid-cols-5">
+                <tr>
                     <th>ID</th>
                     <th>Nome</th>
                     <th>Celular</th>
@@ -18,29 +20,29 @@ function TableContatos({contatos}) {
                     <th className="p-2">Opções</th>
                 </tr>
                 </thead>
-                <tbody className="border-t-2 border-gray-300">
+                <tbody>
                 {contatos &&
                     contatos.map((contato) => {
                         return (
                             <tr key={contato.id} className="grid grid-cols-5">
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {contato.id}
                                 </td>
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {contato.nome}
                                 </td>
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {contato.celular}
                                 </td>
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {contato.cargo}
                                 </td>
-                                <td className="flex justify-around mx-4">
+                                <td className="flex justify-around">
                                     <button
                                         className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600"
                                         onClick={() => setOpenEdit(!openEdit)}
                                     >
-                                        Editar
+                                        <FaEdit/>
                                     </button>
                                     <ModalEditContato
                                         contato={contato}
@@ -56,7 +58,7 @@ function TableContatos({contatos}) {
                                         className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
                                         onClick={() => setOpen(!open)}
                                     >
-                                        Apagar
+                                        <FaTrash/>
                                     </button>
                                 </td>
                             </tr>

@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import ModalConf from "./ModalConf";
 import {FaEdit} from "react-icons/fa";
 import {FaTrash} from "react-icons/fa6";
+import {formatCPFOrCNPJ} from "@/app/utils/string";
 
 function Table({clientes}) {
     const [open, setOpen] = useState(false);
@@ -19,12 +20,16 @@ function Table({clientes}) {
             </tr>
             </thead>
             <tbody>
-            {clientes && clientes.map((cliente) =>
+            {clientes && clientes.map((cliente) => {
+
+                let document = cliente.pessoa.cpf || cliente.pessoa.cnpj;
+                document = formatCPFOrCNPJ(document);
+
                 <tr key={cliente.id}>
                     <td>{cliente.id}</td>
                     <td>{cliente.tipo}</td>
                     <td>{cliente.pessoa.nome || cliente.pessoa.razao_social}</td>
-                    <td>{cliente.pessoa.cpf || cliente.pessoa.cnpj}</td>
+                    <td>{document}</td>
                     <td className="flex justify-center gap-2">
                         <Link href={`clientes/${cliente.id}`}>
                             <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
@@ -44,7 +49,7 @@ function Table({clientes}) {
                         </button>
                     </td>
                 </tr>
-            )}
+            })}
             </tbody>
         </table>
     );

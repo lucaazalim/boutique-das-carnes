@@ -15,7 +15,7 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body className={inter.className + " bg-gray-200"}>
         <Navbar/>
-        <section className="container mx-auto p-5 bg-white h-screen">
+        <section className="container mx-auto p-5 bg-white min-h-[calc(100vh-6rem)]">
             {children}
         </section>
         </body>

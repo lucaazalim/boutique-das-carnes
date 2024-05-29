@@ -50,7 +50,6 @@ function ModalCriar({openModal, setOpenModal}) {
             redirect: "follow",
         });
         const data = await response.json();
-        console.log(data);
         window.location.reload();
     }
 

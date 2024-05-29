@@ -57,7 +57,7 @@ function Page({params}) {
     }
 
     return (
-        <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
+        <div className="p-5">
             <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
             <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
                 {fornecedor.tipo === "PF" && (
@@ -237,7 +237,7 @@ function Page({params}) {
             </form>
 
             <h1 className="text-3xl font-semibold mt-5">Contatos</h1>
-            <div className="mt-5 border-2 border-gray-300 rounded-md">
+            <div className="mt-5">
                 <TableContatos contatos={fornecedor.contatos}/>
             </div>
             <button

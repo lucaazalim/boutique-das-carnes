@@ -59,7 +59,7 @@ async function httpPostCompra(req, res) {
             id_documento_nfs_matadouro,
             id_documento_nf_retorno
         );
-        
+
         res.status(201).json(createdCompra);
 
     } catch (error) {

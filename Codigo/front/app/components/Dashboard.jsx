@@ -22,19 +22,18 @@ ChartJS.register(
 );
 
 export default function Dashboard() {
-    return <div className="grid grid-cols-2 gap-10 justify-items-center">
-        <div className="h-full w-full">
-            <QuantidadeDePedidosPorDia/>
-        </div>
-        <div className="h-full w-full">
-            <ValorTotalDePedidosPorDia/>
-        </div>
-        <div className="h-full w-full">
-            <ClientesUnicosDiarios/>
-        </div>
-        <div className="h-full w-full">
-            <Estoque/>
-        </div>
+
+    return <div className="grid grid-cols-2 gap-2 justify-items-center">
+        <Chart><QuantidadeDePedidosPorDia/></Chart>
+        <Chart><ValorTotalDePedidosPorDia/></Chart>
+        <Chart><ClientesUnicosDiarios/></Chart>
+        <Chart><Estoque/></Chart>
+    </div>
+}
+
+function Chart({children}) {
+    return <div className="h-full w-full bg-gray-100 p-2 rounded-2xl">
+        {children}
     </div>
 }
 

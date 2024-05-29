@@ -1,8 +1,13 @@
 const Pedido = require('./pedido.sequelize');
 
+const { getCompraById } = require('../compras/compra.model');
+const { getClienteById } = require('../clientes/cliente.model');
 
-async function getAllPedido() {
-    return await Pedido.findAll();
+async function getAllPedido(offset, limit) {
+    return await Pedido.findAll({
+        offset,
+        limit
+    });
 }
 
 async function getByIdPedido(id) {
@@ -23,6 +28,12 @@ async function createPedido(pedido) {
     if ( !id_cliente || !id_compra) {
         throw new Error('Campos: id_cliente e id_compra são obrigatório.');
     }
+
+    if(!(await getCompraById(id_compra)))
+        throw new Error('Compra não encontrada');
+
+    if(!(await getClienteById(id_cliente)))
+        throw new Error('Cliente não encontrado');
 
     return await Pedido.create(pedido);
 }

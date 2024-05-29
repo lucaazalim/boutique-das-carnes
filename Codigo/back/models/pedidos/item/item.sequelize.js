@@ -30,7 +30,7 @@ const Item = sequelize.define('pedido_item', {
         type: DataTypes.DECIMAL(15,2),
         allowNull: false
     },
-    preco_total: {
+    valor_total: {
         type: DataTypes.DECIMAL(15,2),
         allowNull: false
     }

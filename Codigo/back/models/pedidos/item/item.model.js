@@ -42,7 +42,7 @@ async function createItem(item) {
         throw new Error('Campos do item do pedido: conjunto, letra, quantidade, peso e preco são obrigatórios.');
     }
 
-    item.preco_total = peso ? peso * preco : quantidade * preco;
+    item.valor_total = peso ? peso * preco : quantidade * preco;
 
     // Criação do item pedido com id_pedido_item
     const result = await Item.create(item);

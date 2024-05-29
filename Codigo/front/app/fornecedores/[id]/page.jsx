@@ -57,7 +57,7 @@ function Page({params}) {
     }
 
     return (
-        <div className="p-5">
+        <div>
             <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
             <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
                 {fornecedor.tipo === "PF" && (

@@ -12,7 +12,7 @@ export default function Page() {
     const [relatorio, setRelatorio] = useState([]);
 
     const fetchRelatorio = () => {
-        const url = `http://localhost:3001/relatorios/compras-por-fornecedor?fromDate=${convertDateToISO(fromDate)}&toDate=${convertDateToISO(toDate)}`;
+        const url = `http://localhost:3001/relatorios/lucro-por-compra?fromDate=${convertDateToISO(fromDate)}&toDate=${convertDateToISO(toDate)}`;
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
@@ -27,7 +27,7 @@ export default function Page() {
 
     return (
         <div>
-            <h1 className="text-4xl font-semibold">Relatório de compras por fornecedor</h1>
+            <h1 className="text-4xl font-semibold">Relatório de lucro por compra</h1>
             <div className="mt-5 grid grid-cols-7 gap-2 mb-5">
                 <div className="col-span-3 flex flex-col">
                     <label className="block mb-1" htmlFor="start-date">

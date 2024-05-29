@@ -79,7 +79,7 @@ export default function Sidebar() {
                               onClick={toggleDrawer} icon={FaChartLine}/>
                         <Item href="/relatorios/pedidos-por-cliente" name="Pedidos por cliente" onClick={toggleDrawer}
                               icon={FaChartLine}/>
-                        <Item href="/relatorios/financeiro" name="Financeiro" onClick={toggleDrawer}
+                        <Item href="/relatorios/lucro-por-compra" name="Lucro por compra" onClick={toggleDrawer}
                               icon={FaChartLine}/>
                     </ul>
                 </div>

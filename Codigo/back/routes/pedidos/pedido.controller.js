@@ -6,9 +6,14 @@ const {
     deletePedido,
 } = require('../../models/pedidos/pedido.model');
 
+const getPagination = require('../../services/query.service');
+
 async function httpGetAllPedido(req, res) {
     try {
-        const result = await getAllPedido();
+
+        const { offset, limit } = getPagination(req.query);
+
+        const result = await getAllPedido(offset, limit);
         return res.status(200).json(result);
     } catch (error) {
         return res.status(500).json({ message: error.message });

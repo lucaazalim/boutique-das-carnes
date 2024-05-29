@@ -4,6 +4,7 @@ function ModalCriar({open, setOpen}) {
     const [pedido, setPedido] = useState({
         id_cliente: "",
         id_compra: "",
+        data: null,
         valor_total: "",
     });
     const [compras, setCompras] = useState([]);
@@ -48,6 +49,15 @@ function ModalCriar({open, setOpen}) {
                 <h1 className="text-2xl font-semibold">Criar Pedido</h1>
                 <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
                     <label>
+                        Data:
+                        <input
+                            type="date"
+                            name="data"
+                            className="p-2 border-2 border-gray-200 rounded-md w-full"
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
                         Cliente:
                         <select
                             name="id_cliente"
@@ -77,21 +87,23 @@ function ModalCriar({open, setOpen}) {
                             )}
                         </select>
                     </label>
-                    <button
-                        type="submit"
-                        className="p-2 rounded-md text-white bg-green-500 hover:bg-green-600 col-span-2"
-                    >
-                        Criar Pedido
-                    </button>
-                    <button
-                        className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600 col-span-2"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setOpen(!open);
-                        }}
-                    >
-                        Cancelar
-                    </button>
+                    <div className="grid grid-cols-2 col-span-2 gap-2 mt-5">
+                        <button
+                            className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setOpen(!open);
+                            }}
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            type="submit"
+                            className="p-2 rounded-md text-white bg-green-500 hover:bg-green-600"
+                        >
+                            Criar
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from "react";
 import ModalConf from "./ModalConf";
+import {formatCurrency} from "@/app/utils/currency";
+import {FaTrash} from "react-icons/fa6";
 
 function TableItens({idPedido}) {
     const [openEdit, setOpenEdit] = useState(false);
@@ -15,32 +17,32 @@ function TableItens({idPedido}) {
 
     return (
         <div>
-            <table className="w-full">
+            <table>
                 <thead>
-                <tr className="grid grid-cols-5">
+                <tr>
                     <th>ID</th>
                     <th>Produto</th>
                     <th>Quantidade</th>
                     <th>Valor</th>
-                    <th className="p-2">Apagar</th>
+                    <th>Opções</th>
                 </tr>
                 </thead>
-                <tbody className="border-t-2 border-gray-300">
+                <tbody>
                 {itens &&
                     itens.map((item) => {
                         return (
-                            <tr key={item.id} className="grid grid-cols-5">
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                            <tr key={item.id}>
+                                <td>
                                     {item.id}
                                 </td>
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {item.conjunto}
                                 </td>
-                                <td className="border-r-2 border-gray-200 p-2 flex items-center justify-center">
+                                <td>
                                     {item.quantidade}
                                 </td>
-                                <td className="border-r-2 border-gray-200  p-2 flex items-center justify-center">
-                                    {item.preco}
+                                <td>
+                                    {formatCurrency(item.preco)}
                                 </td>
                                 <td className="p-2 flex items-center justify-center ">
 
@@ -51,7 +53,7 @@ function TableItens({idPedido}) {
                                             setOpen(!open);
                                         }}
                                     >
-                                        Apagar
+                                        <FaTrash/>
                                     </button>
                                 </td>
                             </tr>

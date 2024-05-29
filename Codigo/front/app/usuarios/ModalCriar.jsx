@@ -94,7 +94,7 @@ function ModalCriar({openModal, setOpenModal}) {
                         }}
                         className="bg-red-500 text-white p-2 rounded-md col-span-2"
                     >
-                        Fechar
+                        Cancelar
                     </button>
                 </form>
             </div>

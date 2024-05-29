@@ -35,7 +35,7 @@ const Table = ({pedidos}) => {
 
                     return <tr key={pedido.id}>
                         <td>{pedido.id}</td>
-                        <td>{formatTimestampToDate(pedido.criado_em)}</td>
+                        <td>{formatTimestampToDate(pedido.data)}</td>
                         <td>{clienteName}</td>
                         <td></td>
                         <td className="flex justify-center gap-1">

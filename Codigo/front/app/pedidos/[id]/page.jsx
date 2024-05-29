@@ -9,6 +9,7 @@ function Page({params}) {
     const [pedido, setPedido] = useState({
         id_cliente: "",
         id_compra: "",
+        data: null,
     });
     const [clientes, setClientes] = useState([]);
     const [compras, setCompras] = useState([]);
@@ -50,8 +51,18 @@ function Page({params}) {
 
     return (
         <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
-            <h1 className="text-4xl font-semibold">Editar Pedido</h1>
+            <h1 className="text-4xl font-semibold mb-5">Editar Pedido</h1>
             <form className="grid grid-cols-1 gap-2" onSubmit={handleSubmit}>
+                <label>
+                    Data
+                    <input
+                        type="date"
+                        name="data"
+                        className="p-2 border-2 border-gray-200 rounded-md w-full"
+                        onChange={handleChange}
+                        value={pedido.data}
+                    />
+                </label>
                 <label>
                     Cliente
                     <select
@@ -99,7 +110,7 @@ function Page({params}) {
             </form>
 
             <h1 className="text-4xl font-semibold mt-5">Itens</h1>
-            <div className="mt-5 border-2 border-gray-200 rounded-md">
+            <div className="mt-5">
                 <TableItens idPedido={params.id}/>
             </div>
             <div className="mt-2 w-full flex justify-center">

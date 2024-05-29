@@ -4,7 +4,7 @@ function ModalCriar({openModal, setOpenModal}) {
     const [fornecedores, setFornecedores] = useState([]);
     const [compra, setCompra] = useState({
         id_fornecedor: null,
-        status: "",
+        data: null,
         unidades_macho: null,
         unidades_femea: null,
         preco_arroba: null,
@@ -77,6 +77,15 @@ function ModalCriar({openModal, setOpenModal}) {
                         </select>
                     </label>
                     <label>
+                        Data:
+                        <input
+                            type="date"
+                            name="data"
+                            className="p-2 border-2 border-gray-200 rounded-md w-full"
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
                         Unidades Macho:
                         <input
                             type="number"
@@ -130,21 +139,23 @@ function ModalCriar({openModal, setOpenModal}) {
                             onChange={handleChange}
                         />
                     </label>
-                    <button
-                        type="submit"
-                        className="bg-green-500 text-white p-2 rounded-md col-span-2"
-                    >
-                        Criar
-                    </button>
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setOpenModal(false);
-                        }}
-                        className="bg-red-500 text-white p-2 rounded-md col-span-2"
-                    >
-                        Fechar
-                    </button>
+                    <div className="grid grid-cols-2 mt-5 col-span-2 gap-2">
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setOpenModal(false);
+                            }}
+                            className="bg-red-500 text-white p-2 rounded-md"
+                        >
+                            Cancelar
+                        </button>
+                        <button
+                            type="submit"
+                            className="bg-green-500 text-white p-2 rounded-md"
+                        >
+                            Criar
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

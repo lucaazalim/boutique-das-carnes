@@ -22,11 +22,6 @@ const Pedido = sequelize.define('pedido', {
     data: {
         type: DataTypes.DATE,
         allowNull: false
-    },
-    criado_em: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: DataTypes.NOW
     }
 }, {
     timestamps: false,

@@ -22,17 +22,17 @@ ChartJS.register(
 );
 
 export default function Dashboard() {
-    return <div className="grid grid-cols-2 gap-5 justify-items-center">
-        <div>
+    return <div className="grid grid-cols-2 gap-10 justify-items-center">
+        <div className="h-full w-full">
             <QuantidadeDePedidosPorDia/>
         </div>
-        <div>
+        <div className="h-full w-full">
             <ValorTotalDePedidosPorDia/>
         </div>
-        <div>
+        <div className="h-full w-full">
             <ClientesUnicosDiarios/>
         </div>
-        <div>
+        <div className="h-full w-full">
             <Estoque/>
         </div>
     </div>
@@ -61,6 +61,7 @@ function QuantidadeDePedidosPorDia() {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false,
@@ -104,6 +105,7 @@ function ValorTotalDePedidosPorDia() {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false,
@@ -147,6 +149,7 @@ function ClientesUnicosDiarios() {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false,
@@ -194,6 +197,7 @@ function Estoque() {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: true,

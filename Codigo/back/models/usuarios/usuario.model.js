@@ -43,14 +43,14 @@ async function verifySenha(usuario, senha) {
     const data = await Usuario.findOne({ where: { usuario } });
 
     if (!data) {
-        return null;
+        throw new Error('Usuario não encontrado');
     }
 
     if (await bycrypt.compare(senha, data.senha)) {
         return data;
+    } else {
+        throw new Error('Senha inválida');
     }
-
-    return null;
 
 }
 

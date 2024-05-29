@@ -4,9 +4,7 @@ import Link from "next/link";
 import {FaArrowUpRightFromSquare} from "react-icons/fa6";
 
 export default function Table({relatorio}) {
-
-    console.log(relatorio);
-
+    
     const [clienteData, setClienteData] = useState([]);
 
     useEffect(() => {

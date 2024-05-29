@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "057abdfe-a48b-41f6-be4c-1d4deeaf23ec",
+		"_postman_id": "c7d7d7e9-a174-4c65-82d6-2d6ca7c2d433",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27457409"
+		"_exporter_id": "1830422"
 	},
 	"item": [
 		{
@@ -1838,13 +1838,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/clientes/2",
+							"raw": "{{base_url}}/clientes/1",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"clientes",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -2302,6 +2302,65 @@
 							"path": [
 								"itens",
 								"30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Relatórios",
+			"item": [
+				{
+					"name": "/relatorios/compras-por-fornecedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/relatorios/compras-por-fornecedor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"relatorios",
+								"compras-por-fornecedor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/relatorios/pedidos-por-cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/relatorios/pedidos-por-cliente",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"relatorios",
+								"pedidos-por-cliente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/relatorios/lucro-por-compra",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/relatorios/lucro-por-compra",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"relatorios",
+								"lucro-por-compra"
 							]
 						}
 					},

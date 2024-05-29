@@ -14,11 +14,15 @@ import {
 } from "react-icons/fa6";
 import Link from "next/link";
 import {FaHome} from "react-icons/fa";
+import {usePathname} from "next/navigation";
 
 function Item({href, name, onClick, icon: Icon}) {
+
+    const isCurrent = href === usePathname();
+
     return (
         <Link href={href} className="text-gray-700" onClick={onClick}>
-            <li className="py-2 bg-gray-100 rounded-xl px-3 mb-3 hover:bg-gray-200">
+            <li className={`py-2 rounded-xl px-3 mb-3 ${isCurrent ? 'bg-primary text-white' : 'bg-gray-200 hover:bg-gray-300'}`}>
                 <div className="flex">
                     <div className="flex flex-col justify-center">
                         {Icon && <Icon className="text-xl inline-block mr-2"/>}

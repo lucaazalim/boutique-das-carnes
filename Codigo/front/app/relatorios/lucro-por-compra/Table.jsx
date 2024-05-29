@@ -30,7 +30,7 @@ export default function Table({relatorio}) {
     return <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th>Compra</th>
             <th>Fornecedor</th>
             <th>Valor</th>
             <th>Custo</th>
@@ -47,10 +47,10 @@ export default function Table({relatorio}) {
                 <tr key={record.id_compra}>
                     <td>
                         <Link href={`/compras/${record.id}`}>
-                                <div className="flex flex-row items-center justify-center gap-2">
-                                    <span>{record.id}</span>
-                                    <FaArrowUpRightFromSquare className="text-link"/>
-                                </div>
+                            <div className="flex flex-row items-center justify-center gap-2">
+                                <span>{record.id}</span>
+                                <FaArrowUpRightFromSquare className="text-link"/>
+                            </div>
                         </Link>
                     </td>
                     <td>
@@ -76,9 +76,10 @@ export default function Table({relatorio}) {
                 </tr>
             );
         })}
+        </tbody>
+        <tfoot>
         <tr>
             <td colSpan="2">
-                Total
             </td>
             <td>
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.valor_total, 0))}
@@ -93,6 +94,6 @@ export default function Table({relatorio}) {
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.lucro, 0))}
             </td>
         </tr>
-        </tbody>
+        </tfoot>
     </table>;
 }

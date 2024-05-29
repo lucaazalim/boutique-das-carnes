@@ -46,10 +46,10 @@ export default function Table({relatorio}) {
                 <tr key={record.id_cliente}>
                     <td>
                         <Link href={`/clientes/${record.id_cliente}`}>
-                                <div className="flex flex-row items-center justify-center gap-2">
-                                    {cliente && (cliente.pessoa.nome || cliente.pessoa.razao_social)}
-                                    <FaArrowUpRightFromSquare className="text-link"/>
-                                </div>
+                            <div className="flex flex-row items-center justify-center gap-2">
+                                {cliente && (cliente.pessoa.nome || cliente.pessoa.razao_social)}
+                                <FaArrowUpRightFromSquare className="text-link"/>
+                            </div>
                         </Link>
                     </td>
                     <td>
@@ -61,9 +61,10 @@ export default function Table({relatorio}) {
                 </tr>
             );
         })}
+        </tbody>
+        <tfoot>
         <tr>
             <td>
-                Total
             </td>
             <td>
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.total_pedidos, 0))}
@@ -72,6 +73,6 @@ export default function Table({relatorio}) {
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.valor_total, 0))}
             </td>
         </tr>
-        </tbody>
+        </tfoot>
     </table>;
 }

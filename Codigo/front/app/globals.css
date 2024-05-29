@@ -26,5 +26,31 @@ th:last-child {
 }
 
 td {
-    @apply py-2 text-center border-b-2 border-gray-100;
+    @apply py-2 text-center;
+}
+
+tbody {
+
+    td {
+        @apply border-b-2 border-gray-100;
+    }
+
+    tr:last-child td {
+        @apply border-b-0;
+    }
+
+}
+
+tfoot {
+
+    @apply bg-gray-200;
+
+    td:first-child {
+        @apply rounded-bl-md;
+    }
+
+    td:last-child {
+        @apply rounded-br-md;
+    }
+
 }

@@ -38,7 +38,7 @@ export default function Table({relatorio}) {
         {relatorio.map((record, index) => {
 
             const fornecedor = fornecedorData[index];
-            
+
             return (
                 <tr key={record.id_fornecedor}>
                     <td>
@@ -57,9 +57,10 @@ export default function Table({relatorio}) {
                 </tr>
             );
         })}
+        </tbody>
+        <tfoot>
         <tr>
             <td>
-                Total
             </td>
             <td>
                 {relatorio.reduce((acc, record) => acc + record.total_compras, 0)}
@@ -68,6 +69,6 @@ export default function Table({relatorio}) {
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.valor_total, 0))}
             </td>
         </tr>
-        </tbody>
+        </tfoot>
     </table>;
 }

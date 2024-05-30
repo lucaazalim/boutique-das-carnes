@@ -6,6 +6,7 @@ import {FaTrash} from "react-icons/fa6";
 import {formatCPFOrCNPJ} from "@/app/utils/string";
 
 function Table({clientes}) {
+
     const [open, setOpen] = useState(false);
 
     return (
@@ -25,7 +26,7 @@ function Table({clientes}) {
                 let document = cliente.pessoa.cpf || cliente.pessoa.cnpj;
                 document = formatCPFOrCNPJ(document);
 
-                <tr key={cliente.id}>
+                return <tr key={cliente.id}>
                     <td>{cliente.id}</td>
                     <td>{cliente.tipo}</td>
                     <td>{cliente.pessoa.nome || cliente.pessoa.razao_social}</td>
@@ -48,7 +49,7 @@ function Table({clientes}) {
                             <FaTrash/>
                         </button>
                     </td>
-                </tr>
+                </tr>;
             })}
             </tbody>
         </table>

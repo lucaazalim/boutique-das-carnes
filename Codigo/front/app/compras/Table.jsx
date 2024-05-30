@@ -2,6 +2,7 @@ import Link from "next/link";
 import React, {useEffect, useState} from "react";
 import ModalConf from "./ModalConf";
 import {FaEdit, FaTrash} from "react-icons/fa";
+import {formatCurrency} from "@/app/utils/currency";
 
 export default function Table({compras}) {
     const [open, setOpen] = useState(false);
@@ -47,7 +48,7 @@ export default function Table({compras}) {
                                 (fornecedor.pessoa.nome ||
                                     fornecedor.pessoa.razao_social)}</td>
                             <td>{compra.unidades_macho + compra.unidades_femea}</td>
-                            <td>{pesagens * compra.preco_arroba - compra.desconto || 0}</td>
+                            <td>{formatCurrency(pesagens * compra.preco_arroba - compra.desconto || 0)}</td>
                             <td className="flex justify-center gap-1">
                                 <Link href={`compras/${compra.id}`}>
                                     <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">

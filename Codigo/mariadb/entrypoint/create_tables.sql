@@ -136,7 +136,7 @@ CREATE TABLE `compra_carcaca` (
   PRIMARY KEY (`id`),
   KEY `compra_carcaca_id_compra_FK` (`id_compra`),
   CONSTRAINT `compra_carcaca_id_compra_FK` FOREIGN KEY (`id_compra`) REFERENCES `compra` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +230,7 @@ CREATE TABLE `despesa` (
   KEY `despesa_categoria_id_categoria_FK` (`id_categoria`),
   CONSTRAINT `despesa_categoria_id_categoria_FK` FOREIGN KEY (`id_categoria`) REFERENCES `despesa_categoria` (`id`) ON DELETE SET NULL,
   CONSTRAINT `despesa_id_documento_comprovante_FK` FOREIGN KEY (`id_documento_comprovante`) REFERENCES `documento` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -264,7 +264,7 @@ CREATE TABLE `documento` (
   `nome_arquivo` varchar(100) DEFAULT NULL,
   `criado_em` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

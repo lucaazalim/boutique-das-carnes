@@ -35,7 +35,7 @@ function CriarPagamento({openPagamento, setOpenPagamento, idPagamento}) {
 
     useEffect(() => {
         setPagamento({...pagamento, id_documento_comprovante: idDoc});
-    }, [idDoc]);
+    }, [idDoc, pagamento]);
 
     function handleChange(e) {
         setPagamento({...pagamento, [e.target.name]: e.target.value});

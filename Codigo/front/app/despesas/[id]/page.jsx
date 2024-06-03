@@ -2,7 +2,7 @@
 
 import React from "react";
 
-function Page({params}) {
+function Page({ params }) {
     const [despesa, setDespesa] = React.useState({});
     const [categorias, setCategorias] = React.useState([]);
 
@@ -23,7 +23,7 @@ function Page({params}) {
     }, [params.id]);
 
     const handleChange = (e) => {
-        setDespesa({...despesa, [e.target.name]: e.target.value});
+        setDespesa({ ...despesa, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
@@ -43,6 +43,18 @@ function Page({params}) {
             })
             .catch((error) => console.error(error));
     };
+
+    function handleRedirect(idDespesa) {
+        fetch(`http://localhost:3001/documentos/${idDespesa}`)
+            .then((response) => response.json())
+            .then((data) => {
+                window.open(
+                    `http://localhost:3001/documentos/uploads/${data.nome_arquivo}`,
+                    "_blank"
+                );
+            })
+            .catch((error) => console.error(error));
+    }
 
     return (
         <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
@@ -84,6 +96,7 @@ function Page({params}) {
                         name="id_categoria"
                         onChange={handleChange}
                         className="p-2 border-2 border-gray-200 rounded-md w-full"
+                        value={despesa.id_categoria}
                     >
                         <option value="">Selecione uma categoria</option>
                         {categorias.map((cat) => {
@@ -95,6 +108,23 @@ function Page({params}) {
                         })}
                     </select>
                 </label>
+                <button
+                    className={`${
+                        despesa.id_documento_comprovante ? "" : "hidden "
+                    } bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 rounded-md p-2`}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (despesa.id_documento_comprovante) {
+                            handleRedirect(despesa.id_documento_comprovante);
+                        } else {
+                            alert("Documento não encontrado");
+                        }
+                    }}
+                >
+                    {despesa.id_documento_comprovante
+                        ? "Documento Comprovante"
+                        : "Adicionar Comprovante"}
+                </button>
                 <div className="w-full flex justify-center">
                     <button className="mt-2 p-2 bg-green-500 hover:bg-green-600 rounded-md text-white w-1/4">
                         Salvar

@@ -1,15 +1,22 @@
 import React from "react";
+import ModalDocumentos from "../components/ModalDocumentos";
 
-function ModalCriar({openModal, setOpenModal}) {
+function ModalCriar({ openModal, setOpenModal }) {
     const [despesa, setDespesa] = React.useState({
         data: "",
         valor: "",
         nome: "",
     });
+    const [openDocumento, setOpenDocumento] = React.useState(false);
+    const [idDoc, setIdDoc] = React.useState(null);
 
     const handleChange = (e) => {
-        setDespesa({...despesa, [e.target.name]: e.target.value});
+        setDespesa({ ...despesa, [e.target.name]: e.target.value });
     };
+
+    React.useEffect(() => {
+        setDespesa({ ...despesa, id_documento_comprovante: idDoc });
+    }, [idDoc]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +32,7 @@ function ModalCriar({openModal, setOpenModal}) {
             .then((data) => {
                 console.log(data);
                 setOpenModal(false);
-                window.location.reload();
+                // window.location.reload();
             })
             .catch((error) => console.error(error));
     };
@@ -33,10 +40,12 @@ function ModalCriar({openModal, setOpenModal}) {
     return (
         <div className={`${openModal ? "" : "hidden"}`}>
             <div className="fixed top-0 left-0 w-full h-full bg-zinc-800/70 z-50"></div>
-            <div
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto scrollbartop">
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto scrollbartop">
                 <h1 className="text-2xl font-semibold">Criar Despesa</h1>
-                <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
+                <form
+                    className="mt-5 grid grid-cols-2 gap-2"
+                    onSubmit={handleSubmit}
+                >
                     <label>
                         Data:
                         <input
@@ -65,6 +74,15 @@ function ModalCriar({openModal, setOpenModal}) {
                         />
                     </label>
                     <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setOpenDocumento(true);
+                        }}
+                        className="bg-blue-500 text-white p-2 rounded-md col-span-2"
+                    >
+                        Adicionar Documento
+                    </button>
+                    <button
                         type="submit"
                         className="bg-green-500 text-white p-2 rounded-md col-span-2"
                     >
@@ -81,6 +99,11 @@ function ModalCriar({openModal, setOpenModal}) {
                     </button>
                 </form>
             </div>
+            <ModalDocumentos
+                openDocumento={openDocumento}
+                setOpenDocumento={setOpenDocumento}
+                setIdDoc={setIdDoc}
+            />
         </div>
     );
 }

@@ -15,7 +15,7 @@ export default function Table({despesas}) {
                 setCatDesp(data);
             })
             .catch((error) => console.error(error));
-    });
+    }, []);
 
     return (
         <table>

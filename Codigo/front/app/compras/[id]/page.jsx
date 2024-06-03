@@ -1,14 +1,15 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import TableCarcacas from "./TableCarcacas";
 import CriarCarcaca from "./CriarCarcaca";
 import CriarPagamento from "./CriarPagamento";
 import CriarPesagem from "./CriarPesagem";
 import TablePagamentos from "./TablePagamentos";
 import TablePesagens from "./TablePesagens";
+import DocumentWrapper from "./DocumentWrapper";
 
-export default function Page({params}) {
+export default function Page({ params }) {
     const [compra, setCompra] = useState({});
     const [fornecedores, setFornecedores] = useState([]);
     const [openCarcaca, setOpenCarcaca] = useState(false);
@@ -34,28 +35,34 @@ export default function Page({params}) {
     }, []);
 
     function handleChange(e) {
-        setCompra({...compra, [e.target.name]: e.target.value});
+        setCompra({ ...compra, [e.target.name]: e.target.value });
     }
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3001/compras/${params.id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(compra),
-            redirect: "follow",
-        });
+        const response = await fetch(
+            `http://localhost:3001/compras/${params.id}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(compra),
+                redirect: "follow",
+            }
+        );
         const data = await response.json();
         console.log(data);
         window.history.back();
     }
 
     return (
-        <div className="p-5 h-[calc(100vh-212px)] overflow-auto">
+        <div className="p-5 h-[calc(100vh-136px)] overflow-auto">
             <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
-            <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
+            <form
+                className="mt-5 grid grid-cols-2 gap-2"
+                onSubmit={handleSubmit}
+            >
                 <label>
                     Fornecedor:
                     <select
@@ -66,7 +73,8 @@ export default function Page({params}) {
                     >
                         {fornecedores.map((fornecedor) => (
                             <option key={fornecedor.id} value={fornecedor.id}>
-                                {fornecedor.pessoa.nome || fornecedor.pessoa.razao_social}
+                                {fornecedor.pessoa.nome ||
+                                    fornecedor.pessoa.razao_social}
                             </option>
                         ))}
                     </select>
@@ -136,11 +144,14 @@ export default function Page({params}) {
                     Salvar
                 </button>
             </form>
+            <div className="col-span-2 w-full">
+                <DocumentWrapper compra={compra} />
+            </div>
 
             <div>
                 <h1 className="text-3xl font-semibold mt-5">Pagamentos</h1>
                 <div className="mt-5">
-                    <TablePagamentos pagamentos={compra.pagamentos}/>
+                    <TablePagamentos pagamentos={compra.pagamentos} />
                 </div>
                 <button
                     className="bg-green-500 p-2 text-white rounded-md w-full mt-2"
@@ -158,7 +169,7 @@ export default function Page({params}) {
             <div>
                 <h1 className="text-3xl font-semibold mt-5">Pesagens</h1>
                 <div className="mt-5">
-                    <TablePesagens pesagens={compra.pesagens}/>
+                    <TablePesagens pesagens={compra.pesagens} />
                 </div>
                 <button
                     className="bg-green-500 p-2 text-white rounded-md w-full mt-2"
@@ -176,7 +187,7 @@ export default function Page({params}) {
             <div>
                 <h1 className="text-3xl font-semibold mt-5">Carcaças</h1>
                 <div className="mt-5">
-                    <TableCarcacas carcacas={compra.carcacas}/>
+                    <TableCarcacas carcacas={compra.carcacas} />
                 </div>
                 <button
                     className="bg-green-500 p-2 text-white rounded-md w-full mt-2"

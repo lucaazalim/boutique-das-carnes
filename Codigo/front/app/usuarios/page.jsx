@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
 import Table from "./Table";
 import ModalCriar from "./ModalCriar";
@@ -8,7 +8,6 @@ import ModalCriar from "./ModalCriar";
 function Page() {
     const [search, setsearch] = useState("");
     const [usuarios, setUsuarios] = useState([]);
-    const [page, setPage] = useState(1);
     const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
@@ -42,10 +41,9 @@ function Page() {
             </div>
 
             <div className="mt-5">
-                <Table usuarios={usuarios}/>
+                <Table usuarios={usuarios} />
             </div>
-            <Pagination page={page} setPage={setPage}/>
-            <ModalCriar openModal={openModal} setOpenModal={setOpenModal}/>
+            <ModalCriar openModal={openModal} setOpenModal={setOpenModal} />
         </div>
     );
 }

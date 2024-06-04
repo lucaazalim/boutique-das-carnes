@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "c7d7d7e9-a174-4c65-82d6-2d6ca7c2d433",
+		"_postman_id": "617f2740-fa24-4285-b57d-0c386c11dc82",
 		"name": "Boutique das Carnes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "1830422"
+		"_exporter_id": "33001966"
 	},
 	"item": [
 		{
@@ -1932,7 +1932,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/despesas",
+							"raw": "{{base_url}}/despesas?startOfDateRange=2024-05-11&endOfDateRange=2024-05-14&nome=Despesa X",
 							"host": [
 								"{{base_url}}"
 							],
@@ -1942,17 +1942,19 @@
 							"query": [
 								{
 									"key": "startOfDateRange",
-									"value": "2024-05-11\"",
-									"disabled": true
+									"value": "2024-05-11"
 								},
 								{
 									"key": "endOfDateRange",
-									"value": "2024-05-13\"",
-									"disabled": true
+									"value": "2024-05-14"
 								},
 								{
 									"key": "nome",
-									"value": "Despesa X",
+									"value": "Despesa X"
+								},
+								{
+									"key": "searchedCategoria",
+									"value": "1",
 									"disabled": true
 								}
 							]

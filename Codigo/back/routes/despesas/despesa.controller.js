@@ -43,7 +43,7 @@ async function httpGetAllDespesas(req, res){
     try{
 
         const {
-            searchCategoria, 
+            searchedCategoria, 
             searchNome, 
             startOfDateRange, 
             endOfDateRange
@@ -51,7 +51,7 @@ async function httpGetAllDespesas(req, res){
 
         const { offset, limit } = getPagination(req.query);
 
-        const data = await getAllDespesas(offset, limit, searchCategoria, searchNome, startOfDateRange, endOfDateRange);
+        const data = await getAllDespesas(offset, limit, searchedCategoria, searchNome, startOfDateRange, endOfDateRange);
 
         return res.status(200).json(data);
 

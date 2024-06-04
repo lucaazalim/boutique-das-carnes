@@ -12,10 +12,17 @@ async function createDespesa(id_categoria, id_documento_comprovante, data, valor
 
 async function getAllDespesas(offset, limit, searchCategoria, searchNome, startOfDateRange, endOfDateRange){
 
-    var options = {};
+    var options = {
+        offset,
+        limit,
+        where: {}
+    };
+
+    var startDate = startOfDateRange || new Date(1990, 0 , 1);
+    var endDate = endOfDateRange || new Date(2100, 11, 30);
 
     //filtering
-    if (searchCategoria || searchNome || (startOfDateRange && endOfDateRange)) {
+    if (searchCategoria || searchNome || (startDate && endDate)) {
 
         options.where = {}; 
 
@@ -27,17 +34,14 @@ async function getAllDespesas(offset, limit, searchCategoria, searchNome, startO
             options.where["nome"] = { [Op.like]: `%${searchNome}%` };
         }
         
-        if (startOfDateRange && endOfDateRange) {
+        if (startDate && endDate) {
             options.where["data"] = {
-                [Op.and]: {
-                    [Op.gte]: startOfDateRange,
-                    [Op.lte]: endOfDateRange
-                }
-            };
-        }
+                [Op.gte]: startDate,
+                [Op.lte]: endDate
+            }
+        };
         
-
-    } else {
+    }else {
 
         options = { offset, limit };
 

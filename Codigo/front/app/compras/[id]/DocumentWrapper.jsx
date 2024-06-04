@@ -55,10 +55,7 @@ function DocumentWrapper({ compra }) {
                 .then((response) => response.ok)
                 .then(() => {
                     setSuccess(true);
-                    setTimeout(() => {
-                        setSuccess(false);
-                        window.location.reload();
-                    }, 2000);
+                    window.location.reload();
                 })
                 .catch((error) => console.error(error));
         },
@@ -114,7 +111,7 @@ function DocumentWrapper({ compra }) {
             {documentos.map((doc) => (
                 <>
                     <button
-                        key={doc.nome}
+                        key={doc.id}
                         className="bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 rounded-md p-2 w-full col-span-11"
                         onClick={() => handleButtonClick(doc.id, doc.nome)}
                     >
@@ -136,19 +133,19 @@ function DocumentWrapper({ compra }) {
                 setOpenDocumento={setOpenDocumento}
                 setIdDoc={setIdDoc}
             />
-            <div
+            {/* <div
                 className={`${
                     success ? "" : "hidden"
                 } absolute z-50 bg-zinc-800/80 h-full w-full top-0 left-0`}
             >
                 <div className="flex items-center justify-center h-full">
                     <div className="bg-white p-5 rounded-md">
-                        <p className="text-lg font-semibold">
+                        <p className=" animate-none text-lg">
                             Documento adicionado com sucesso!
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

@@ -3,7 +3,7 @@
 import Table from "./Table";
 import Pagination from "../components/Pagination";
 import ModalCriar from "./ModalCriar";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 function Page() {
     const [compras, setCompras] = useState([]);
@@ -12,13 +12,17 @@ function Page() {
     const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/compras`)
+        fetch(
+            `http://localhost:3001/compras${
+                page ? `?page=${page}&page_size=11` : ""
+            }`
+        )
             .then((response) => response.json())
             .then((data) => {
                 setCompras(data);
             })
             .catch((error) => console.error(error));
-    }, []);
+    }, [page]);
 
     return (
         <div>
@@ -42,10 +46,10 @@ function Page() {
             </div>
 
             <div className="mt-5">
-                <Table compras={compras}/>
+                <Table compras={compras} />
             </div>
-            <Pagination page={page} setPage={setPage}/>
-            <ModalCriar openModal={openModal} setOpenModal={setOpenModal}/>
+            <Pagination page={page} setPage={setPage} />
+            <ModalCriar openModal={openModal} setOpenModal={setOpenModal} />
         </div>
     );
 }

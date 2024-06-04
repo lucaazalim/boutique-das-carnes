@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Table from "./Table";
 import Pagination from "../components/Pagination";
 import ModalCriar from "./ModalCriar";
@@ -13,12 +13,14 @@ function Page() {
 
     useEffect(() => {
         fetch(
-            `http://localhost:3001/clientes`
+            `http://localhost:3001/clientes${
+                page ? `?page=${page}&page_size=11` : ""
+            }`
         )
             .then((response) => response.json())
             .then((data) => setFornecedores(data))
             .catch((error) => console.error(error));
-    }, []);
+    }, [page]);
 
     return (
         <div>
@@ -42,10 +44,10 @@ function Page() {
             </div>
 
             <div className="mt-5">
-                <Table clientes={clientes}/>
+                <Table clientes={clientes} />
             </div>
-            <Pagination page={page} setPage={setPage}/>
-            <ModalCriar openModal={openModal} setOpenModal={setOpenModal}/>
+            <Pagination page={page} setPage={setPage} />
+            <ModalCriar openModal={openModal} setOpenModal={setOpenModal} />
         </div>
     );
 }

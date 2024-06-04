@@ -9,13 +9,14 @@ function Page() {
     const [openModal, setOpenModal] = useState(false);
     const [pedidos, setPedidos] = useState([]);
     const [search, setsearch] = useState("");
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/pedidos`)
+        fetch(`http://localhost:3001/pedidos${page ? `?page=${page}&page_size=11` : ""}`)
             .then((response) => response.json())
             .then((data) => setPedidos(data))
             .catch((error) => console.error(error));
-    }, []);
+    }, [page]);
 
     return (
         <div>
@@ -42,7 +43,7 @@ function Page() {
                 <Table pedidos={pedidos}/>
             </div>
             <ModalCriar open={openModal} setOpen={setOpenModal}/>
-            <Pagination/>
+            <Pagination page={page} setPage={setPage}/>
         </div>
     );
 }

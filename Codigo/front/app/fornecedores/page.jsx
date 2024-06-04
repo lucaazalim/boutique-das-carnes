@@ -15,7 +15,7 @@ function Page() {
         fetch(
             `http://localhost:3001/fornecedores${
                 search ? `?search=${encodeURI(search)}` : ""
-            }${page ? `?page=${page}&page_size=15` : ""}`
+            }${page ? `?page=${page}&page_size=11` : ""}`
         )
             .then((response) => response.json())
             .then((data) => setFornecedores(data))

@@ -9,6 +9,7 @@ function ModalCriar({ openModal, setOpenModal }) {
     });
     const [openDocumento, setOpenDocumento] = React.useState(false);
     const [idDoc, setIdDoc] = React.useState(null);
+    const [catDespesas, setCatDespesas] = React.useState([]);
 
     const handleChange = (e) => {
         setDespesa({ ...despesa, [e.target.name]: e.target.value });
@@ -17,6 +18,15 @@ function ModalCriar({ openModal, setOpenModal }) {
     React.useEffect(() => {
         setDespesa({ ...despesa, id_documento_comprovante: idDoc });
     }, [idDoc]);
+
+    React.useEffect(() => {
+        fetch(`http://localhost:3001/despesas-categorias`)
+            .then((response) => response.json())
+            .then((data) => {
+                setCatDespesas(data);
+            })
+            .catch((error) => console.error(error));
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +42,7 @@ function ModalCriar({ openModal, setOpenModal }) {
             .then((data) => {
                 console.log(data);
                 setOpenModal(false);
-                // window.location.reload();
+                window.location.reload();
             })
             .catch((error) => console.error(error));
     };
@@ -72,6 +82,21 @@ function ModalCriar({ openModal, setOpenModal }) {
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
+                    </label>
+                    <label>
+                        Categoria:
+                        <select
+                            name="id_categoria"
+                            className="p-2 border-2 border-gray-200 rounded-md w-full"
+                            onChange={handleChange}
+                        >
+                            <option value="">Selecione uma categoria</option>
+                            {catDespesas.map((cat) => (
+                                <option key={cat.id} value={cat.id}>
+                                    {cat.nome}
+                                </option>
+                            ))}
+                        </select>
                     </label>
                     <button
                         onClick={(e) => {

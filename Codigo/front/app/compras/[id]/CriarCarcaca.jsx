@@ -3,7 +3,6 @@ import React, {useState} from "react";
 function CriarCarcaca({openCarcaca, setOpenCarcaca, idCompra}) {
     const [carcaca, setCarcaca] = useState({
         sequencial: null,
-        carregado: false,
         peso_total: null,
     });
 
@@ -56,18 +55,6 @@ function CriarCarcaca({openCarcaca, setOpenCarcaca, idCompra}) {
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
-                    </label>
-                    <label>
-                        Carregado:
-                        <select
-                            name="carregado"
-                            className="p-2 border-2 border-gray-200 rounded-md w-full"
-                            onChange={handleChange}
-                        >
-                            <option value="">Selecione</option>
-                            <option value="true">Sim</option>
-                            <option value="false">Não</option>
-                        </select>
                     </label>
                     <div className="col-span-2 flex justify-between">
                         <button

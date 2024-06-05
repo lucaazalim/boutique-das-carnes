@@ -19,6 +19,7 @@
 -- Table structure for table `cliente`
 --
 
+DROP TABLE IF EXISTS `cliente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente` (
@@ -45,6 +46,7 @@ CREATE TABLE `cliente` (
 -- Table structure for table `cliente_pf`
 --
 
+DROP TABLE IF EXISTS `cliente_pf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente_pf` (
@@ -61,6 +63,7 @@ CREATE TABLE `cliente_pf` (
 -- Table structure for table `cliente_pj`
 --
 
+DROP TABLE IF EXISTS `cliente_pj`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cliente_pj` (
@@ -78,6 +81,7 @@ CREATE TABLE `cliente_pj` (
 -- Table structure for table `compra`
 --
 
+DROP TABLE IF EXISTS `compra`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compra` (
@@ -119,13 +123,13 @@ CREATE TABLE `compra` (
 -- Table structure for table `compra_carcaca`
 --
 
+DROP TABLE IF EXISTS `compra_carcaca`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compra_carcaca` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_compra` bigint(20) NOT NULL,
   `sequencial` tinyint(2) NOT NULL,
-  `carregado` tinyint(1) NOT NULL,
   `peso_total` decimal(5,2) NOT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
@@ -138,6 +142,7 @@ CREATE TABLE `compra_carcaca` (
 -- Table structure for table `compra_pagamento`
 --
 
+DROP TABLE IF EXISTS `compra_pagamento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compra_pagamento` (
@@ -160,6 +165,7 @@ CREATE TABLE `compra_pagamento` (
 -- Table structure for table `compra_pesagem`
 --
 
+DROP TABLE IF EXISTS `compra_pesagem`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compra_pesagem` (
@@ -178,6 +184,8 @@ CREATE TABLE `compra_pesagem` (
 -- Temporary table structure for view `compra_totais`
 --
 
+DROP TABLE IF EXISTS `compra_totais`;
+/*!50001 DROP VIEW IF EXISTS `compra_totais`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `compra_totais` AS SELECT
@@ -205,6 +213,7 @@ SET character_set_client = @saved_cs_client;
 -- Table structure for table `despesa`
 --
 
+DROP TABLE IF EXISTS `despesa`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `despesa` (
@@ -227,6 +236,7 @@ CREATE TABLE `despesa` (
 -- Table structure for table `despesa_categoria`
 --
 
+DROP TABLE IF EXISTS `despesa_categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `despesa_categoria` (
@@ -243,6 +253,7 @@ CREATE TABLE `despesa_categoria` (
 -- Table structure for table `documento`
 --
 
+DROP TABLE IF EXISTS `documento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `documento` (
@@ -259,6 +270,7 @@ CREATE TABLE `documento` (
 -- Table structure for table `estoque`
 --
 
+DROP TABLE IF EXISTS `estoque`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `estoque` (
@@ -279,6 +291,7 @@ CREATE TABLE `estoque` (
 -- Table structure for table `fornecedor`
 --
 
+DROP TABLE IF EXISTS `fornecedor`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor` (
@@ -305,6 +318,7 @@ CREATE TABLE `fornecedor` (
 -- Table structure for table `fornecedor_contato`
 --
 
+DROP TABLE IF EXISTS `fornecedor_contato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor_contato` (
@@ -324,6 +338,7 @@ CREATE TABLE `fornecedor_contato` (
 -- Table structure for table `fornecedor_pf`
 --
 
+DROP TABLE IF EXISTS `fornecedor_pf`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor_pf` (
@@ -340,6 +355,7 @@ CREATE TABLE `fornecedor_pf` (
 -- Table structure for table `fornecedor_pj`
 --
 
+DROP TABLE IF EXISTS `fornecedor_pj`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `fornecedor_pj` (
@@ -357,6 +373,7 @@ CREATE TABLE `fornecedor_pj` (
 -- Table structure for table `pedido`
 --
 
+DROP TABLE IF EXISTS `pedido`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pedido` (
@@ -377,6 +394,7 @@ CREATE TABLE `pedido` (
 -- Table structure for table `pedido_item`
 --
 
+DROP TABLE IF EXISTS `pedido_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pedido_item` (
@@ -399,6 +417,8 @@ CREATE TABLE `pedido_item` (
 -- Temporary table structure for view `relatorio_lucro_por_compra`
 --
 
+DROP TABLE IF EXISTS `relatorio_lucro_por_compra`;
+/*!50001 DROP VIEW IF EXISTS `relatorio_lucro_por_compra`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `relatorio_lucro_por_compra` AS SELECT
@@ -415,6 +435,7 @@ SET character_set_client = @saved_cs_client;
 -- Table structure for table `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `usuario` (
@@ -480,4 +501,4 @@ CREATE TABLE `usuario` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-05 10:53:23
+-- Dump completed on 2024-06-05 11:15:12

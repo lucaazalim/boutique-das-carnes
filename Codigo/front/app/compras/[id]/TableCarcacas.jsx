@@ -15,7 +15,6 @@ export default function TableCarcacas({ carcacas }) {
                         <th>ID</th>
                         <th>Sequencial</th>
                         <th>Letra</th>
-                        <th>Carregado</th>
                         <th>Peso Total</th>
                         <th>Opções</th>
                     </tr>
@@ -31,7 +30,6 @@ export default function TableCarcacas({ carcacas }) {
                                         64 + carcaca.sequencial
                                     )}
                                 </td>
-                                <td>{carcaca.carregado ? "Sim" : "Não"}</td>
                                 <td>{carcaca.peso_total}</td>
                                 <td className="flex justify-around">
                                     <button

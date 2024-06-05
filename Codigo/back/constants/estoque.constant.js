@@ -1,5 +1,6 @@
 ESTOQUE_ITENS = [
     'FIGADO',
+    'CUPIM',
     'DIANTEIRO_SEM_COSTELA',
     'DIANTEIRO_SEM_COSTELA',
     'SERROTE_SEM_RABADA',
@@ -7,6 +8,6 @@ ESTOQUE_ITENS = [
     'COSTELA',
     'COSTELA',
     'FATO'
-]
+] 
 
 module.exports = ESTOQUE_ITENS;

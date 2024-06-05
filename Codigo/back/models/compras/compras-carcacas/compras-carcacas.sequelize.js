@@ -15,10 +15,6 @@ const CompraCarcacas = sequelize.define('compra_carcaca',
             type: DataTypes.TINYINT(2),
             allowNull: false,
         },
-        carregado: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-        },
         peso_total: {
             type: DataTypes.DECIMAL(5, 2),
             allowNull: false,

@@ -1,13 +1,12 @@
 const CompraCarcacas = require('./compras-carcacas.sequelize');
 
-async function createCompraCarcaca(id_compra, sequencial, carregado, peso_total) {
+async function createCompraCarcaca(id_compra, sequencial, peso_total) {
 
     try {
 
         return await CompraCarcacas.create({
             id_compra,
             sequencial,
-            carregado,
             peso_total
         });
 
@@ -25,14 +24,13 @@ async function getCompraCarcacaById(id) {
     }
 }
 
-async function updateCompraCarcacaById(id, sequencial, carregado, peso_total) {
+async function updateCompraCarcacaById(id, sequencial, peso_total) {
 
     try {
 
         await CompraCarcacas.update(
             {
                 sequencial,
-                carregado,
                 peso_total
             }, {
             where: { id },

@@ -23,12 +23,11 @@ async function httpPostCompraCarcaca(req, res) {
 
         const {
             sequencial,
-            carregado,
             peso_total
         } = req.body;
 
         if (await getCompraById(compraId)) {
-            const result = await createCompraCarcaca(compraId, sequencial, carregado, peso_total);
+            const result = await createCompraCarcaca(compraId, sequencial, peso_total);
             await createEstoque(result.id);
             return res.status(201).json(result);
         } else {
@@ -72,11 +71,10 @@ async function httpPutCompraCarcacaById(req, res) {
         const id = req.params.id;
         const {
             sequencial,
-            carregado,
             peso_total
         } = req.body;
 
-        const updatedCompraCarcaca = await updateCompraCarcacaById(id, sequencial, carregado, peso_total);
+        const updatedCompraCarcaca = await updateCompraCarcacaById(id, sequencial, peso_total);
 
         if (updatedCompraCarcaca) {
             return res.status(200).json(updatedCompraCarcaca);

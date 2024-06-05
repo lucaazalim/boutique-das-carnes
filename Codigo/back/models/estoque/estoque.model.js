@@ -1,28 +1,14 @@
 const Estoque = require('./estoque.sequelize');
-//const { ESTOQUE_ITENS } = require('../../constants/estoque.constant');
+const ESTOQUE_ITENS = require('../../constants/estoque.constant');
 const { INDIVISIVEIS, CONJUNTOS } = require('../../constants/pedido.constant');
 const { Op } = require('sequelize');
-
-ESTOQUE_ITENS = [
-    'FIGADO',
-    'DIANTEIRO_SEM_COSTELA',
-    'DIANTEIRO_SEM_COSTELA',
-    'SERROTE_SEM_RABADA',
-    'SERROTE_COM_RABADA',
-    'COSTELA',
-    'COSTELA',
-    'FATO'
-]
 
 async function getAllEstoque() {
     return await Estoque.findAll();
 }
 
-// enum('FIGADO','DIANTEIRO_SEM_COSTELA','CUPIM','SERROTE_SEM_RABADA','SERROTE_COM_RABADA','COSTELA','FATO')
-
 async function createEstoque(id_compra_carcaca) {
 
-    console.log("ESTOQUE: ",ESTOQUE_ITENS);
     const itens = [];
 
     for (let tipo of ESTOQUE_ITENS) {
@@ -38,8 +24,6 @@ async function createEstoque(id_compra_carcaca) {
 
 // para criterio de update não é ncessario passar id, somente se existir valor null é o suficiente
 async function updateEstoque(updateFields, tipo, quantidade) {
-    console.log("TIPO: ", tipo);
-    console.log("ID_PEDIDO_ITEM: ", updateFields);
 
     return await Estoque.update(updateFields, {
         where: {
@@ -69,8 +53,6 @@ async function checkItem(item) {
 
     const pedido = conjuntoEncontrado.itens;
 
-    console.log("PEDIDO: ", pedido);
-
     const itensDisponiveis = await Estoque.findAll({
         where: {
             tipo: {
@@ -79,10 +61,6 @@ async function checkItem(item) {
             id_pedido_item: null
         }
     });
-
-    console.log("ITENS DISPONÍVEIS: ", itensDisponiveis);
-    console.log("ITENS DISPONÍVEIS LENGTH: ", itensDisponiveis.length);
-    console.log("PEDIDO LENGTH: ", pedido.length);
 
     // Verificar se a quantidade de itens disponíveis é igual à quantidade de itens do conjunto
     if (itensDisponiveis.length >= pedido.length) {

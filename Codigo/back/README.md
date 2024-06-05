@@ -333,7 +333,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
         "id": 1,
         "id_compra": 1,
         "sequencial": 1,
-        "carregado": true,
         "peso_total": 30.5,
         "criado_em": "2024-04-23T20:35:47.000Z"
       }
@@ -397,7 +396,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
       "id": 1,
       "id_compra": 2,
       "sequencial": 1,
-      "carregado": true,
       "peso_total": 30.5,
       "criado_em": "2024-04-23T20:35:47.000Z"
     }
@@ -510,7 +508,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 ```json
 {
   "sequencial": 10,
-  "carregado": true,
   "peso_total": 210.45
 }
 ```
@@ -526,7 +523,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
   "id": 1,
   "id_compra": 2,
   "sequencial": 1,
-  "carregado": true,
   "peso_total": 30.5,
   "criado_em": "2024-04-23T20:35:47.000Z"
 }
@@ -541,7 +537,6 @@ Opcionalmente, pode ser passado parâmetro `?search=<termo de busca>` para filtr
 ```json
 {
   "sequencial": 15,
-  "carregado": false,
   "peso_total": 300.53
 }
 ```

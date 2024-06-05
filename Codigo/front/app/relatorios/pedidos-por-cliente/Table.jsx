@@ -51,7 +51,7 @@ export default function Table({relatorio}) {
                         </Link>
                     </td>
                     <td>
-                        {formatCurrency(record.total_pedidos)}
+                        {record.total_pedidos}
                     </td>
                     <td>
                         {formatCurrency(record.valor_total)}
@@ -65,7 +65,7 @@ export default function Table({relatorio}) {
             <td>
             </td>
             <td>
-                {formatCurrency(relatorio.reduce((acc, record) => acc + record.total_pedidos, 0))}
+                {relatorio.reduce((acc, record) => acc + record.total_pedidos, 0)}
             </td>
             <td>
                 {formatCurrency(relatorio.reduce((acc, record) => acc + record.valor_total, 0))}

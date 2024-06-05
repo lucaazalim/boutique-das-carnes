@@ -264,7 +264,7 @@ CREATE TABLE `documento` (
 CREATE TABLE `estoque` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `id_compra_carcaca` bigint(20) NOT NULL,
-  `tipo` enum('FIGADO','DIANTEIRO_SEM_COSTELA','SERROTE_SEM_RABADA','SERROTE_COM_RABADA','COSTELA','FATO') NOT NULL,
+  `tipo` enum('CUPIM','FIGADO','DIANTEIRO_SEM_COSTELA','SERROTE_SEM_RABADA','SERROTE_COM_RABADA','COSTELA','FATO') NOT NULL,
   `id_pedido_item` bigint(20) DEFAULT NULL,
   `criado_em` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),

@@ -32,10 +32,11 @@ async function httpGetByIdItem(req, res) {
 // Caso o pedido seja criado é necessario a mudança do estoque
 async function httpPostItem(req, res) {
     const pedidoItem = req.body;
+    const { quantidade } = pedidoItem;
 
     try {
 
-        await checkItem(pedidoItem.conjunto);
+        await checkItem(pedidoItem.conjunto, quantidade);
 
         const result = await createItem(pedidoItem);
         res.status(201).json(result);

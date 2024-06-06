@@ -44,7 +44,7 @@ async function getSummary() {
 
 // Criar função onde verifica se o item já existe no estoque
 
-async function checkItem(item) {
+async function checkItem(item, quantidade) {
 
     const conjuntoEncontrado = CONJUNTOS.find(conjunto => conjunto.nome === item);
     if (!conjuntoEncontrado) {
@@ -59,16 +59,34 @@ async function checkItem(item) {
                 [Op.in]: pedido
             },
             id_pedido_item: null
-        }
+        },
+        group: ['tipo'],
+        attributes: ['tipo', [Estoque.sequelize.fn('COUNT', '*'), 'quantidade']],
+        raw: true
     });
 
-    // Verificar se a quantidade de itens disponíveis é igual à quantidade de itens do conjunto
-    if (itensDisponiveis.length >= pedido.length) {
-        return true;
-    } else {
-        throw new Error(`Item do pedido ${item} não está disponível no estoque.`);
+    let pedidoEstoque = pedido.reduce((acc, item) => {
+        if (!acc[item]) {
+            acc[item] = 1;
+        } else {
+            acc[item]++;
+        }
+        return acc;
+    }, {});
+
+    pedidoEstoque = Object.keys(pedidoEstoque).map(nome => ({
+        nome: nome,
+        quantidade: pedidoEstoque[nome] * quantidade
+    }));
+
+    for (let item of pedidoEstoque) {
+        let itemDisponivel = itensDisponiveis.find(i => i.tipo === item.nome);
+        if (!itemDisponivel || itemDisponivel.quantidade < item.quantidade) {
+            throw new Error(`Item do pedido ${item.nome} não está disponível no estoque.`);
+        }
     }
 
+    return true;
 }
 
 module.exports = {

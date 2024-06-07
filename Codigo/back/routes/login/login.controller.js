@@ -13,7 +13,10 @@ async function httpLogin(req, res) {
     }
 
     const token = jwt.sign({
-        data: userLogin.id
+        data: {
+            id: userLogin.id,
+            role: userLogin.cargo
+        }
     }, process.env.SECRET_KEY_JWT, { expiresIn: 24 * 60 * 60 });
 
     res.status(200).json({ 

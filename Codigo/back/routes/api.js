@@ -12,24 +12,28 @@ const routerRelatorios = require('./relatorios/relatorios.router');
 const routerPedido = require('../routes/pedidos/pedido.router');
 
 const tokenValidated = require('../middlewares/authentication.middleware');
+const authorize = require('../middlewares/authorization.middleware');
 
 const api = express();
 
-// Rota para teste
-api.get('/teste', tokenValidated, (req, res) => {
-    res.status(200).send('<h1>Acessado com sucesso</h1>');
-})
-
-api.use('/fornecedores', routerFonecedor);
-api.use('/compras', routerCompra);
-api.use('/documentos', routerDocumentos);
-api.use('/usuarios', routerUsuario);
+// Rota Pública
 api.use('/login', routerLogin);
-api.use('/clientes', routerCliente);
-api.use('/estoque', routerEstoque);
-api.use('/despesas', routerDespesa);
-api.use('/despesas-categorias', routerDespesaCategorias);
-api.use('/relatorios', routerRelatorios);
-api.use('/pedidos', routerPedido);
+
+// Rotas Privadas
+api.use(tokenValidated);
+
+// Autenticação administrador
+api.use('/usuarios', authorize(['ADMINISTRADOR']), routerUsuario);
+api.use('/relatorios', authorize(['ADMINISTRADOR']), routerRelatorios);
+
+// Autenticação administrador e gerente
+api.use('/fornecedores', authorize(['ADMINISTRADOR', 'GERENTE']), routerFonecedor);
+api.use('/compras', authorize(['ADMINISTRADOR', 'GERENTE']), routerCompra);
+api.use('/documentos', authorize(['ADMINISTRADOR', 'GERENTE']), routerDocumentos);
+api.use('/clientes', authorize(['ADMINISTRADOR', 'GERENTE']), routerCliente);
+api.use('/estoque', authorize(['ADMINISTRADOR', 'GERENTE']), routerEstoque);
+api.use('/despesas', authorize(['ADMINISTRADOR', 'GERENTE']), routerDespesa);
+api.use('/despesas-categorias', authorize(['ADMINISTRADOR', 'GERENTE']), routerDespesaCategorias);
+api.use('/pedidos', authorize(['ADMINISTRADOR', 'GERENTE']), routerPedido);
 
 module.exports = api;

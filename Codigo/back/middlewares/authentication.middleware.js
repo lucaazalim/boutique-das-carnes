@@ -8,10 +8,13 @@ module.exports = function tokenValidated(req, res, next) {
  
     try {
         const payload = jwt.verify(token, process.env.SECRET_KEY_JWT);
-        if (payload.exp - payload.iat <= 0) res.statu(401).json({ message: 'Token expirado.' })
+        if (payload.exp - payload.iat <= 0) {
+            res.statu(401).json({ message: 'Token expirado.' });
+        }
+        req.user = payload.data;
     } catch (error) {
         console.log(error);
-        return res.status(401).json({ message: 'Token inválido' })
+        return res.status(401).json({ message: 'Token inválido' });
     }
 
     next();

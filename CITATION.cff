@@ -1,11 +1,9 @@
 cff-version: 1.0.1
-message: Please cite this software using these metadata.
-title:
+message: Utilize estes metadados para citar o software.
+title: Boutique das Carnes
 authors:
   - family-names: Ferreira Ibrahim
     given-names: Fernando Antônio
-  - family-names: Silva Pereira
-    given-names: Gabriel Henrique
   - family-names: Silveira Dias
     given-names: Jhonata
   - family-names: Ferrari Azalim
@@ -23,7 +21,7 @@ authors:
 keywords:
   - management
   - software
-repository-code:
+repository-code: https://github.com/ICEI-PUC-Minas-PPLES-TI/plf-es-2024-1-ti3-8966100-boutique-das-carnes
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2024-06-19

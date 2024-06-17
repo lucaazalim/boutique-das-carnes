@@ -5,7 +5,6 @@ import {FaEdit, FaTrash} from "react-icons/fa";
 import {formatCurrency} from "@/app/utils/currency";
 
 export default function Table({compras}) {
-    const [open, setOpen] = useState(false);
     const [fornecedores, setFornecedores] = useState([]);
 
     useEffect(() => {
@@ -16,6 +15,27 @@ export default function Table({compras}) {
             })
             .catch((error) => console.error(error));
     }, []);
+
+    const apagarCompra = async (idCompra) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/compras/${idCompra}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Compra apagada com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar compra.");
+                console.error("Falha ao apagar compra.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -55,14 +75,9 @@ export default function Table({compras}) {
                                         <FaEdit/>
                                     </button>
                                 </Link>
-                                <ModalConf
-                                    open={open}
-                                    setOpen={setOpen}
-                                    idCompra={compra.id}
-                                />
                                 <button
                                     className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                    onClick={() => setOpen(!open)}
+                                    onClick={() => apagarCompra(compra.id)}
                                 >
                                     <FaTrash/>
                                 </button>

@@ -6,7 +6,27 @@ import {FaTrash} from "react-icons/fa6";
 import {formatCPFOrCNPJ} from "@/app/utils/string";
 
 function Table({fornecedores}) {
-    const [open, setOpen] = useState(false);
+
+    const apagarFornecedor = async (idFornecedor) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/fornecedores/${idFornecedor}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Fornecedor apagado com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar fornecedor.");
+                console.error("Falha ao apagar fornecedor.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <table>
@@ -36,14 +56,9 @@ function Table({fornecedores}) {
                                 <FaEdit/>
                             </button>
                         </Link>
-                        <ModalConf
-                            open={open}
-                            setOpen={setOpen}
-                            idFornecedor={fornecedor.id}
-                        />
                         <button
                             className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                            onClick={() => setOpen(!open)}
+                            onClick={() => apagarFornecedor(fornecedor.id)}
                         >
                             <FaTrash/>
                         </button>

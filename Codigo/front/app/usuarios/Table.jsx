@@ -5,7 +5,27 @@ import {FaEdit} from "react-icons/fa";
 import {FaTrash} from "react-icons/fa6";
 
 export default function Table({usuarios}) {
-    const [open, setOpen] = useState(false);
+
+    const apagarUsuario = async (idUsuario) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/usuarios/${idUsuario}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Usuário apagado com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar usuário.");
+                console.error("Falha ao apagar usuário.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -32,14 +52,9 @@ export default function Table({usuarios}) {
                                     <FaEdit/>
                                 </button>
                             </Link>
-                            <ModalConf
-                                open={open}
-                                setOpen={setOpen}
-                                idUsuario={usuario.id}
-                            />
                             <button
                                 className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                onClick={() => setOpen(!open)}
+                                onClick={() => apagarUsuario(usuario.id)}
                             >
                                 <FaTrash/>
                             </button>

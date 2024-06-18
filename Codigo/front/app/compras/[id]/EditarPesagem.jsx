@@ -32,28 +32,27 @@ function EditarPesagem({ open, setOpen, pesagem }) {
         <div className={`${open ? "" : "hidden"}`}>
             <div className="fixed top-0 left-0 w-full h-full bg-zinc-800/70 z-50"></div>
             <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto">
-                <h1 className="text-2xl font-semibold">Editar Carcaça</h1>
+                <h1 className="text-2xl font-semibold">Editar Pesagem</h1>
                 <form
                     className="mt-5 grid grid-cols-2 gap-2"
                     onSubmit={handleSubmit}
                 >
                     <label>
-                        Sequencial:
+                        Unidades:
                         <input
                             type="number"
-                            name="sequencial"
-                            value={newPesagem.sequencial}
+                            name="unidades"
+                            value={newPesagem.unidades}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
                     </label>
                     <label>
-                        Peso Total:
+                        Peso:
                         <input
                             type="number"
-                            name="peso_total"
-                            max={999}
-                            value={newPesagem.peso_total}
+                            name="peso"
+                            value={newPesagem.peso}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />

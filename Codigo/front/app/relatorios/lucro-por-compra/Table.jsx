@@ -10,7 +10,7 @@ export default function Table({relatorio}) {
     useEffect(() => {
 
         const fetchFornecedor = async (id_fornecedor) => {
-            const response = await fetch(`http://localhost:3001/fornecedores/${id_fornecedor}`);
+            const response = await fetch(`http://vps.azal.im:3001/fornecedores/${id_fornecedor}`);
             return response.json();
         };
 

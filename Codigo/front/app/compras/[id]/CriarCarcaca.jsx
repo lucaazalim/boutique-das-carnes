@@ -12,7 +12,7 @@ function CriarCarcaca({openCarcaca, setOpenCarcaca, idCompra}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3001/compras/${idCompra}/carcacas`, {
+        fetch(`http://vps.azal.im:3001/compras/${idCompra}/carcacas`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

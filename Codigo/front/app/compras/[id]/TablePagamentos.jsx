@@ -6,10 +6,10 @@ export default function TablePagamentos({pagamentos}) {
     const [open, setOpen] = useState(false);
 
     function handleRedirect(idPagamento) {
-        fetch(`http://localhost:3001/documentos/${idPagamento}`)
+        fetch(`http://vps.azal.im:3001/documentos/${idPagamento}`)
             .then((response) => response.json())
             .then((data) => {
-                window.open(`http://localhost:3001/documentos/uploads/${data.nome_arquivo}`, "_blank");
+                window.open(`http://vps.azal.im:3001/documentos/uploads/${data.nome_arquivo}`, "_blank");
             })
             .catch((error) => console.error(error));
     }

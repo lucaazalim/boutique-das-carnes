@@ -9,7 +9,7 @@ export default function Table({compras}) {
     const [fornecedores, setFornecedores] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/fornecedores`)
+        fetch(`http://vps.azal.im:3001/fornecedores`)
             .then((response) => response.json())
             .then((data) => {
                 setFornecedores(data);

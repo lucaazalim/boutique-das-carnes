@@ -14,7 +14,7 @@ export default function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3001/login`, {
+        const response = await fetch(`http://vps.azal.im:3001/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

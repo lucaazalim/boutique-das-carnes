@@ -4,7 +4,7 @@ function ModalConfPesagem({open, setOpen, idPesagem}) {
     async function apagarPesagem() {
         try {
             const response = await fetch(
-                `http://localhost:3001/compras/pesagens/${idPesagem}`,
+                `http://vps.azal.im:3001/compras/pesagens/${idPesagem}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

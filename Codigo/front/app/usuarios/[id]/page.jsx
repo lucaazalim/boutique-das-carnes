@@ -6,7 +6,7 @@ function Page({params}) {
     const [usuario, setUsuario] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:3001/usuarios/${params.id}`)
+        fetch(`http://vps.azal.im:3001/usuarios/${params.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setUsuario(data);
@@ -20,7 +20,7 @@ function Page({params}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3001/usuarios/${params.id}`, {
+        fetch(`http://vps.azal.im:3001/usuarios/${params.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

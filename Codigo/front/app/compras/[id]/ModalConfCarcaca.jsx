@@ -4,7 +4,7 @@ function ModalConfCarcaca({open, setOpen, idCarcaca}) {
     const apagarCarcaca = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/compras/carcacas/${idCarcaca}`,
+                `http://vps.azal.im:3001/compras/carcacas/${idCarcaca}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

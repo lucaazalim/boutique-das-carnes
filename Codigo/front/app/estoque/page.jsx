@@ -9,7 +9,7 @@ export default function Page() {
     const [resumoEstoque, setResumoEstoque] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/estoque`)
+        fetch(`http://vps.azal.im:3001/estoque`)
             .then((response) => response.json())
             .then((data) => {
                 setEstoque(data);
@@ -18,7 +18,7 @@ export default function Page() {
     }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/estoque/summary`)
+        fetch(`http://vps.azal.im:3001/estoque/summary`)
             .then((response) => response.json())
             .then((data) => {
                 setResumoEstoque(data);

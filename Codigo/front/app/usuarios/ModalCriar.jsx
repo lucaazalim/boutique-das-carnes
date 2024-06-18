@@ -11,7 +11,7 @@ function ModalCriar({openModal, setOpenModal}) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        const response = await fetch(`http://localhost:3001/usuarios`, {
+        const response = await fetch(`http://vps.azal.im:3001/usuarios`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

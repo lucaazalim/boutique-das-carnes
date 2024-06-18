@@ -6,7 +6,7 @@ function Page({params}) {
     const [categoria, setCategoria] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:3001/despesas-categorias/${params.id}`)
+        fetch(`http://vps.azal.im:3001/despesas-categorias/${params.id}`)
             .then((response) => response.json())
             .then((data) => setCategoria(data))
             .catch((error) => console.error(error));
@@ -19,7 +19,7 @@ function Page({params}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:3001/despesas-categorias/${params.id}`, {
+        fetch(`http://vps.azal.im:3001/despesas-categorias/${params.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

@@ -7,14 +7,14 @@ function Page({ params }) {
     const [categorias, setCategorias] = React.useState([]);
 
     React.useEffect(() => {
-        fetch(`http://localhost:3001/despesas/${params.id}`)
+        fetch(`http://vps.azal.im:3001/despesas/${params.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setDespesa(data);
             })
             .catch((error) => console.error(error));
 
-        fetch(`http://localhost:3001/despesas-categorias`)
+        fetch(`http://vps.azal.im:3001/despesas-categorias`)
             .then((response) => response.json())
             .then((data) => {
                 setCategorias(data);
@@ -28,7 +28,7 @@ function Page({ params }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3001/despesas/${params.id}`, {
+        fetch(`http://vps.azal.im:3001/despesas/${params.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -45,11 +45,11 @@ function Page({ params }) {
     };
 
     function handleRedirect(idDespesa) {
-        fetch(`http://localhost:3001/documentos/${idDespesa}`)
+        fetch(`http://vps.azal.im:3001/documentos/${idDespesa}`)
             .then((response) => response.json())
             .then((data) => {
                 window.open(
-                    `http://localhost:3001/documentos/uploads/${data.nome_arquivo}`,
+                    `http://vps.azal.im:3001/documentos/uploads/${data.nome_arquivo}`,
                     "_blank"
                 );
             })

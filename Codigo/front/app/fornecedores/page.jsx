@@ -13,7 +13,7 @@ function Page() {
 
     useEffect(() => {
         fetch(
-            `http://localhost:3001/fornecedores?search=${encodeURI(search)}&page=${page}&page_size=11`
+            `http://vps.azal.im:3001/fornecedores?search=${encodeURI(search)}&page=${page}&page_size=11`
         )
             .then((response) => response.json())
             .then((data) => setFornecedores(data))

@@ -4,7 +4,7 @@ function ModalConf({open, setOpen, idCompra}) {
     const apagarCompra = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/compras/${idCompra}`,
+                `http://vps.azal.im:3001/compras/${idCompra}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

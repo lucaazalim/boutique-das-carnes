@@ -24,7 +24,7 @@ function ModalCriar({openModal, setOpenModal}) {
     }
 
     useEffect(() => {
-        fetch("http://localhost:3001/fornecedores")
+        fetch("http://vps.azal.im:3001/fornecedores")
             .then((response) => response.json())
             .then((data) => {
                 setFornecedores(data);
@@ -35,7 +35,7 @@ function ModalCriar({openModal, setOpenModal}) {
     async function handleSubmit(e) {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:3001/compras", {
+            const response = await fetch("http://vps.azal.im:3001/compras", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

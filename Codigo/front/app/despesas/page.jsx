@@ -12,7 +12,7 @@ function Page() {
     const [page, setPage] = React.useState(1);
 
     React.useEffect(() => {
-        fetch(`http://localhost:3001/despesas${page ? `?page=${page}&page_size=11` : ""}`)
+        fetch(`http://vps.azal.im:3001/despesas${page ? `?page=${page}&page_size=11` : ""}`)
             .then((response) => response.json())
             .then((data) => {
                 setDespesas(data);

@@ -11,7 +11,7 @@ function Page() {
     const [search, setsearch] = React.useState("");
 
     React.useEffect(() => {
-        fetch(`http://localhost:3001/despesas-categorias`)
+        fetch(`http://vps.azal.im:3001/despesas-categorias`)
             .then((response) => response.json())
             .then((data) => {
                 setCatDespesas(data);

@@ -5,7 +5,7 @@ function ModalConfContato({open, setOpen, idContato}) {
     async function apagarContato() {
         try {
             const response = await fetch(
-                `http://localhost:3001/fornecedores/contatos/${idContato}`,
+                `http://vps.azal.im:3001/fornecedores/contatos/${idContato}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

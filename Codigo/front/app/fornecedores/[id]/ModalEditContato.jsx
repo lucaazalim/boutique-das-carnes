@@ -9,7 +9,7 @@ function ModalEditContato({editContato, setEditContato, contato}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3001/fornecedores/contatos/${contato.id}`, {
+        fetch(`http://vps.azal.im:3001/fornecedores/contatos/${contato.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

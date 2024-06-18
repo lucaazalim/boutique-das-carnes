@@ -16,7 +16,7 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3001/pedidos/itens", {
+        fetch("http://vps.azal.im:3001/pedidos/itens", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -17,7 +17,7 @@ export default function Page({ params }) {
     const [openPagamento, setOpenPagamento] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/compras/${params.id}`)
+        fetch(`http://vps.azal.im:3001/compras/${params.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setCompra(data);
@@ -26,7 +26,7 @@ export default function Page({ params }) {
     }, [params.id]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/fornecedores`)
+        fetch(`http://vps.azal.im:3001/fornecedores`)
             .then((response) => response.json())
             .then((data) => {
                 setFornecedores(data);
@@ -41,7 +41,7 @@ export default function Page({ params }) {
     async function handleSubmit(e) {
         e.preventDefault();
         const response = await fetch(
-            `http://localhost:3001/compras/${params.id}`,
+            `http://vps.azal.im:3001/compras/${params.id}`,
             {
                 method: "PUT",
                 headers: {

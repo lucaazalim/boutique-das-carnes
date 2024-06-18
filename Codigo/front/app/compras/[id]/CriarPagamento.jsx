@@ -14,7 +14,7 @@ function CriarPagamento({openPagamento, setOpenPagamento, idPagamento}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3001/compras/${idPagamento}/pagamentos`, {
+        fetch(`http://vps.azal.im:3001/compras/${idPagamento}/pagamentos`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

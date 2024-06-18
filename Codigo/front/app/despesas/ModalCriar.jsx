@@ -20,7 +20,7 @@ function ModalCriar({ openModal, setOpenModal }) {
     }, [idDoc]);
 
     React.useEffect(() => {
-        fetch(`http://localhost:3001/despesas-categorias`)
+        fetch(`http://vps.azal.im:3001/despesas-categorias`)
             .then((response) => response.json())
             .then((data) => {
                 setCatDespesas(data);
@@ -31,7 +31,7 @@ function ModalCriar({ openModal, setOpenModal }) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:3001/despesas", {
+        fetch("http://vps.azal.im:3001/despesas", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

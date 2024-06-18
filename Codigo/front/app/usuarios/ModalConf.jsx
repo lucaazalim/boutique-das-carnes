@@ -4,7 +4,7 @@ function ModalConf({open, setOpen, idUsuario}) {
     const apagarFornecedor = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/usuarios/${idUsuario}`,
+                `http://vps.azal.im:3001/usuarios/${idUsuario}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

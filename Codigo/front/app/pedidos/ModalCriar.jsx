@@ -15,11 +15,11 @@ function ModalCriar({open, setOpen}) {
     };
 
     useEffect(() => {
-        fetch("http://localhost:3001/clientes")
+        fetch("http://vps.azal.im:3001/clientes")
             .then((response) => response.json())
             .then((data) => setClientes(data))
             .catch((error) => console.error(error));
-        fetch("http://localhost:3001/compras")
+        fetch("http://vps.azal.im:3001/compras")
             .then((response) => response.json())
             .then((data) => setCompras(data))
             .catch((error) => console.error(error));
@@ -27,7 +27,7 @@ function ModalCriar({open, setOpen}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:3001/pedidos", {
+        fetch("http://vps.azal.im:3001/pedidos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

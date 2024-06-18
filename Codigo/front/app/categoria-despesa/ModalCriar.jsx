@@ -14,7 +14,7 @@ function ModalCriar({openModal, setOpenModal}) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:3001/despesas-categorias", {
+        fetch("http://vps.azal.im:3001/despesas-categorias", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

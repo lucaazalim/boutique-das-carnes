@@ -13,7 +13,7 @@ function Page() {
 
     useEffect(() => {
         fetch(
-            `http://localhost:3001/compras${
+            `http://vps.azal.im:3001/compras${
                 page ? `?page=${page}&page_size=11` : ""
             }`
         )

@@ -9,7 +9,7 @@ export default function Table({despesas}) {
     const [catDesp, setCatDesp] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/despesas-categorias`)
+        fetch(`http://vps.azal.im:3001/despesas-categorias`)
             .then((response) => response.json())
             .then((data) => {
                 setCatDesp(data);

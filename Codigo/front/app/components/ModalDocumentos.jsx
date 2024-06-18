@@ -17,7 +17,7 @@ function ModalDocumentos({openDocumento, setOpenDocumento, setIdDoc}) {
         formData.append("numero_referencia", dados.numero_referencia);
         formData.append("descricao", dados.descricao);
 
-        fetch("http://localhost:3001/documentos", {
+        fetch("http://vps.azal.im:3001/documentos", {
             method: "POST",
             body: formData,
         })

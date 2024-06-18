@@ -7,7 +7,7 @@ function Page({params}) {
     const [fornecedor, setFornecedor] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:3001/clientes/${params.id}`)
+        fetch(`http://vps.azal.im:3001/clientes/${params.id}`)
             .then((response) => response.json())
             .then((data) => {
                 setFornecedor(data);
@@ -39,7 +39,7 @@ function Page({params}) {
     async function handleSubmit(e) {
         e.preventDefault();
         const response = await fetch(
-            `http://localhost:3001/clientes/${params.id}`,
+            `http://vps.azal.im:3001/clientes/${params.id}`,
             {
                 method: "PUT",
                 headers: {

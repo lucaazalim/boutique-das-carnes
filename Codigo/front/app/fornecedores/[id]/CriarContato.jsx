@@ -14,7 +14,7 @@ function CriarContato({openContato, setOpenContato, idFornecedor}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3001/fornecedores/${idFornecedor}/contatos`, {
+        fetch(`http://vps.azal.im:3001/fornecedores/${idFornecedor}/contatos`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -4,7 +4,7 @@ const ModalConf = ({open, setOpen, idItem}) => {
     const apagarItem = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/pedidos/itens/${idItem}`,
+                `http://vps.azal.im:3001/pedidos/itens/${idItem}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

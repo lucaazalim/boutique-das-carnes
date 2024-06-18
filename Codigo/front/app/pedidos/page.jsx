@@ -12,7 +12,7 @@ function Page() {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/pedidos${page ? `?page=${page}&page_size=11` : ""}`)
+        fetch(`http://vps.azal.im:3001/pedidos${page ? `?page=${page}&page_size=11` : ""}`)
             .then((response) => response.json())
             .then((data) => setPedidos(data))
             .catch((error) => console.error(error));

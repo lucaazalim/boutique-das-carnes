@@ -15,15 +15,15 @@ function Page({params}) {
     const [compras, setCompras] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/pedidos/${params.id}`)
+        fetch(`http://vps.azal.im:3001/pedidos/${params.id}`)
             .then((response) => response.json())
             .then((data) => setPedido(data))
             .catch((error) => console.error(error));
-        fetch("http://localhost:3001/clientes")
+        fetch("http://vps.azal.im:3001/clientes")
             .then((response) => response.json())
             .then((data) => setClientes(data))
             .catch((error) => console.error(error));
-        fetch("http://localhost:3001/compras")
+        fetch("http://vps.azal.im:3001/compras")
             .then((response) => response.json())
             .then((data) => setCompras(data))
             .catch((error) => console.error(error));
@@ -31,7 +31,7 @@ function Page({params}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3001/pedidos/${params.id}`, {
+        fetch(`http://vps.azal.im:3001/pedidos/${params.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

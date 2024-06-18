@@ -5,7 +5,7 @@ function ModalConf({open, setOpen, idCatDesp}) {
         console.log(idCatDesp);
         try {
             const response = await fetch(
-                `http://localhost:3001/despesas-categorias/${idCatDesp}`,
+                `http://vps.azal.im:3001/despesas-categorias/${idCatDesp}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

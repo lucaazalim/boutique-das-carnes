@@ -4,7 +4,7 @@ function ModalConfPagamento({open, setOpen, idPagamento}) {
     async function apagarPagamento() {
         try {
             const response = await fetch(
-                `http://localhost:3001/compras/pagamentos/${idPagamento}`,
+                `http://vps.azal.im:3001/compras/pagamentos/${idPagamento}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

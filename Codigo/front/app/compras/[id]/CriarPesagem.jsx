@@ -9,7 +9,7 @@ function CriarPesagem({openPesagem, setOpenPesagem, idCompra}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        fetch(`http://localhost:3001/compras/${idCompra}/pesagens`, {
+        fetch(`http://vps.azal.im:3001/compras/${idCompra}/pesagens`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

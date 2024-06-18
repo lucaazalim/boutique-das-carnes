@@ -13,7 +13,7 @@ export default function Page() {
     const [relatorio, setRelatorio] = useState([]);
 
     const fetchRelatorio = () => {
-        const url = `http://localhost:3001/relatorios/pedidos-por-cliente?fromDate=${convertDateToISO(fromDate)}&toDate=${convertDateToISO(toDate)}`;
+        const url = `http://vps.azal.im:3001/relatorios/pedidos-por-cliente?fromDate=${convertDateToISO(fromDate)}&toDate=${convertDateToISO(toDate)}`;
         fetch(url)
             .then((response) => response.json())
             .then((data) => {

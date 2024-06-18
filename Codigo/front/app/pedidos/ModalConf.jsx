@@ -4,7 +4,7 @@ export default function ModalConf({open, setOpen, idPedido}) {
     const apagarPedido = async () => {
         try {
             const response = await fetch(
-                `http://localhost:3001/pedidos/${idPedido}`,
+                `http://vps.azal.im:3001/pedidos/${idPedido}`,
                 {
                     method: "DELETE",
                     redirect: "follow",

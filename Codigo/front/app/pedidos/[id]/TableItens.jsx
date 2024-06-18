@@ -9,7 +9,7 @@ function TableItens({idPedido}) {
     const [itens, setItens] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/pedidos/${idPedido}/itens`)
+        fetch(`http://vps.azal.im:3001/pedidos/${idPedido}/itens`)
             .then((response) => response.json())
             .then((data) => setItens(data))
             .catch((error) => console.error(error));

@@ -11,7 +11,7 @@ function Page() {
     const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:3001/usuarios`)
+        fetch(`http://vps.azal.im:3001/usuarios`)
             .then((response) => response.json())
             .then((data) => {
                 setUsuarios(data);

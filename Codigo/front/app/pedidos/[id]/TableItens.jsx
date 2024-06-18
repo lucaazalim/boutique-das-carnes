@@ -15,6 +15,27 @@ function TableItens({idPedido}) {
             .catch((error) => console.error(error));
     }, [idPedido]);
 
+    const apagarItem = async (idItem) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/pedidos/itens/${idItem}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Item apagado com sucesso");
+                console.log("Item apagado com sucesso");
+                window.location.reload();
+            } else {
+                console.error("Falha ao apagar item");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <div>
             <table>
@@ -50,7 +71,7 @@ function TableItens({idPedido}) {
                                     <button
                                         className="p-2 bg-red-500 text-white rounded-md"
                                         onClick={() => {
-                                            setOpen(!open);
+                                            apagarItem(item.id);
                                         }}
                                     >
                                         <FaTrash/>

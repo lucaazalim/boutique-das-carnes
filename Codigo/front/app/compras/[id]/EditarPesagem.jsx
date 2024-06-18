@@ -1,28 +1,28 @@
 import React, { useEffect } from "react";
 
-function EditarCarcaca({ open, setOpen, carcaca }) {
-    const [newCarcaca, setNewCarcaca] = React.useState(carcaca);
+function EditarPesagem({ open, setOpen, pesagem }) {
+    const [newPesagem, setNewPesagem] = React.useState(pesagem);
 
     const handleChange = (e) => {
-        setNewCarcaca({ ...newCarcaca, [e.target.name]: e.target.value });
+        setNewPesagem({ ...newPesagem, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3001/compras/carcacas/${newCarcaca.id}`, {
+        fetch(`http://localhost:3001/compras/pesagens/${newPesagem.id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(newCarcaca),
+            body: JSON.stringify(newPesagem),
         })
             .then((response) => {
                 if (response.ok) {
-                    console.log("Contato atualizado com sucesso");
+                    console.log("Pesagem atualizado com sucesso");
                     setOpen(false);
                     window.location.reload();
                 } else {
-                    console.error("Falha ao atualizar contato");
+                    console.error("Falha ao atualizar pesagem");
                 }
             })
             .catch((error) => console.error(error));
@@ -42,7 +42,7 @@ function EditarCarcaca({ open, setOpen, carcaca }) {
                         <input
                             type="number"
                             name="sequencial"
-                            value={newCarcaca.sequencial}
+                            value={newPesagem.sequencial}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
@@ -53,7 +53,7 @@ function EditarCarcaca({ open, setOpen, carcaca }) {
                             type="number"
                             name="peso_total"
                             max={999}
-                            value={newCarcaca.peso_total}
+                            value={newPesagem.peso_total}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
@@ -78,4 +78,4 @@ function EditarCarcaca({ open, setOpen, carcaca }) {
     );
 }
 
-export default EditarCarcaca;
+export default EditarPesagem;

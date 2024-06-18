@@ -18,11 +18,11 @@ function EditarCarcaca({ open, setOpen, carcaca }) {
         })
             .then((response) => {
                 if (response.ok) {
-                    console.log("Contato atualizado com sucesso");
+                    console.log("Carcaça atualizado com sucesso");
                     setOpen(false);
                     window.location.reload();
                 } else {
-                    console.error("Falha ao atualizar contato");
+                    console.error("Falha ao atualizar carcaça");
                 }
             })
             .catch((error) => console.error(error));

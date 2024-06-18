@@ -2,6 +2,7 @@ import { useState } from "react";
 import ModalConfPesagem from "./ModalConfPesagem";
 import { FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import EditarPesagem from "./EditarPesagem";
 
 export default function TablePesagens({ pesagens }) {
     const [open, setOpen] = useState(false);
@@ -31,10 +32,10 @@ export default function TablePesagens({ pesagens }) {
                                     >
                                         <FaEdit />
                                     </button>
-                                    <ModalConfPesagem
+                                    <EditarPesagem
                                         open={open}
                                         setOpen={setOpen}
-                                        idPesagem={pesagem.id}
+                                        pesagem={pesagem}
                                     />
                                     <button
                                         className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"

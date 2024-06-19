@@ -25,7 +25,8 @@ function ModalDocumentos({openDocumento, setOpenDocumento, setIdDoc}) {
                 if (response.ok) {
                     return response.json();
                 } else {
-                    throw new Error("Falha ao criar documento: " + response);
+                    console.log(response);
+                    throw new Error("Falha ao criar documento: ");
                 }
             })
             .then((data) => {

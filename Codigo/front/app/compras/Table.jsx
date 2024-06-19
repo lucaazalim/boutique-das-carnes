@@ -5,7 +5,6 @@ import {FaEdit, FaTrash} from "react-icons/fa";
 import {formatCurrency} from "@/app/utils/currency";
 
 export default function Table({compras}) {
-    const [open, setOpen] = useState(false);
     const [fornecedores, setFornecedores] = useState([]);
 
     useEffect(() => {
@@ -16,6 +15,27 @@ export default function Table({compras}) {
             })
             .catch((error) => console.error(error));
     }, []);
+
+    const apagarCompra = async (idCompra) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/compras/${idCompra}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Compra apagada com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar compra. Confira se não há carcaças vinculadas.");
+                console.error("Falha ao apagar compra.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -48,21 +68,16 @@ export default function Table({compras}) {
                                 (fornecedor.pessoa.nome ||
                                     fornecedor.pessoa.razao_social)}</td>
                             <td>{compra.unidades_macho + compra.unidades_femea}</td>
-                            <td>{formatCurrency(pesagens * compra.preco_arroba - compra.desconto || 0)}</td>
+                            <td>{formatCurrency((pesagens / 30) * compra.preco_arroba - (compra.desconto + compra.preco_sangria - compra.preco_frete) || 0)}</td>
                             <td className="flex justify-center gap-1">
                                 <Link href={`compras/${compra.id}`}>
                                     <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">
                                         <FaEdit/>
                                     </button>
                                 </Link>
-                                <ModalConf
-                                    open={open}
-                                    setOpen={setOpen}
-                                    idCompra={compra.id}
-                                />
                                 <button
                                     className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                    onClick={() => setOpen(!open)}
+                                    onClick={() => apagarCompra(compra.id)}
                                 >
                                     <FaTrash/>
                                 </button>

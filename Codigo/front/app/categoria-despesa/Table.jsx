@@ -5,7 +5,27 @@ import {FaEdit} from "react-icons/fa";
 import {FaTrash} from "react-icons/fa6";
 
 export default function Table({catDespesas}) {
-    const [open, setOpen] = useState(false);
+
+    const apagarCatdespesa = async (idCatDespesa) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/despesas-categorias/${idCatDespesa}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Categoria de despesa apagada com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar categoria de despesa.");
+                console.error("Falha ao apagar categoria de despesa.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -38,14 +58,9 @@ export default function Table({catDespesas}) {
                                     <FaEdit/>
                                 </button>
                             </Link>
-                            <ModalConf
-                                open={open}
-                                setOpen={setOpen}
-                                idCatDesp={catDesp.id}
-                            />
                             <button
                                 className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                onClick={() => setOpen(!open)}
+                                onClick={() => apagarCatdespesa(catDesp.id)}
                             >
                                 <FaTrash/>
                             </button>

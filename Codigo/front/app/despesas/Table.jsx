@@ -17,6 +17,27 @@ export default function Table({despesas}) {
             .catch((error) => console.error(error));
     }, []);
 
+    const apagarDespesa = async (idDespesa) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/despesas/${idDespesa}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Despesa apagada com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar despesa.");
+                console.error("Falha ao apagar despesa.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <table>
             <thead>
@@ -57,14 +78,9 @@ export default function Table({despesas}) {
                                 <FaEdit/>
                             </button>
                         </Link>
-                        <ModalConf
-                            open={open}
-                            setOpen={setOpen}
-                            idDespesa={despesa.id}
-                        />
                         <button
                             className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                            onClick={() => setOpen(!open)}
+                            onClick={() => apagarDespesa(despesa.id)}
                         >
                             <FaTrash/>
                         </button>

@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
-const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
+const ModalCriarItem = ({ openCriar, setOpenCriar, idPedido }) => {
     const [pedido, setPedido] = useState({
         id_pedido: idPedido,
         conjunto: "",
@@ -11,7 +11,7 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
     });
 
     const handleChange = (e) => {
-        setPedido({...pedido, [e.target.name]: e.target.value});
+        setPedido({ ...pedido, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = (e) => {
@@ -26,8 +26,8 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
             .then((response) => response.json())
             .then((data) => console.log(data))
             .catch((error) => console.error(error));
-        setOpenCriar(!openCriar);
-        window.location.reload();
+        // setOpenCriar(!openCriar);
+        // window.location.reload();
     };
 
     useEffect(() => {
@@ -42,7 +42,10 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
         >
             <div className="bg-white p-5 rounded-md w-1/2">
                 <h1 className="text-2xl font-semibold">Criar Item</h1>
-                <form className="grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
+                <form
+                    className="grid grid-cols-2 gap-2"
+                    onSubmit={handleSubmit}
+                >
                     <label>
                         Conjunto:
                         <select
@@ -60,13 +63,21 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
                             <option value="DIANTEIRO_COM_COSTELA">
                                 Dianteiro com costela
                             </option>
-                            <option value="SERROTE_SEM_RABADA">Serrote sem rabada</option>
-                            <option value="SERROTE_COM_RABADA">Serrote com rabada</option>
+                            <option value="SERROTE_SEM_RABADA">
+                                Serrote sem rabada
+                            </option>
+                            <option value="SERROTE_COM_RABADA">
+                                Serrote com rabada
+                            </option>
                             <option value="COSTELA">Costela</option>
                             <option value="CUPIM">Cupim</option>
                             <option value="CARCACA">Carcaça</option>
-                            <option value="BANDA_CARREGADA">Banda carregada</option>
-                            <option value="BANDA_DESCARREGADA">Banda descarregada</option>
+                            <option value="BANDA_CARREGADA">
+                                Banda carregada
+                            </option>
+                            <option value="BANDA_DESCARREGADA">
+                                Banda descarregada
+                            </option>
                         </select>
                     </label>
                     <label>
@@ -90,7 +101,8 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
                     <label>
                         Peso:
                         <input
-                            type="number"
+                            type={"number"}
+                            step={0.01}
                             name="peso"
                             onChange={handleChange}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
@@ -99,7 +111,8 @@ const ModalCriarItem = ({openCriar, setOpenCriar, idPedido}) => {
                     <label>
                         Preço:
                         <input
-                            type="number"
+                            type={"number"}
+                            step={0.01}
                             name="preco"
                             onChange={handleChange}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"

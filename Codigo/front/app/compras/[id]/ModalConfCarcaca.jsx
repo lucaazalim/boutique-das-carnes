@@ -12,6 +12,7 @@ function ModalConfCarcaca({open, setOpen, idCarcaca}) {
             );
             if (response.ok) {
                 console.log("Carcaça apagada com sucesso");
+                window.location.reload();
             } else {
                 console.error("Falha ao apagar carcaça");
             }

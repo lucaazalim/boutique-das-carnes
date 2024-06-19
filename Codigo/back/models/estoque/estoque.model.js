@@ -38,7 +38,10 @@ async function updateEstoque(updateFields, tipo, quantidade) {
 async function getSummary() {
     return await Estoque.findAll({
         attributes: ['tipo', [Estoque.sequelize.fn('COUNT', '*'), 'quantidade']],
-        group: ['tipo']
+        group: ['tipo'],
+        where: {
+            id_pedido_item: null
+        },
     });
 }
 

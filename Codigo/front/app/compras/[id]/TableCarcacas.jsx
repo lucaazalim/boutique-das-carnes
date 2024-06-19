@@ -2,10 +2,30 @@ import { useState } from "react";
 import ModalConfCarcaca from "./ModalConfCarcaca";
 import { FaTrash } from "react-icons/fa6";
 import { FaEdit } from "react-icons/fa";
+import EditarCarcaca from "./EditarCarcaca";
 
 export default function TableCarcacas({ carcacas }) {
-    const [open, setOpen] = useState(false);
     const [openEdit, setOpenEdit] = useState(false);
+
+    const apagarCarcaca = async (idCarcaca) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/compras/carcacas/${idCarcaca}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Carcaça apagada com sucesso");
+                window.location.reload();
+            } else {
+                console.error("Falha ao apagar carcaça");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -38,14 +58,16 @@ export default function TableCarcacas({ carcacas }) {
                                     >
                                         <FaEdit />
                                     </button>
-                                    <ModalConfCarcaca
-                                        open={open}
-                                        setOpen={setOpen}
-                                        idCarcaca={carcaca.id}
+                                    <EditarCarcaca
+                                        open={openEdit}
+                                        setOpen={setOpenEdit}
+                                        carcaca={carcaca}
                                     />
                                     <button
                                         className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                        onClick={() => setOpen(!open)}
+                                        onClick={() =>
+                                            apagarCarcaca(carcaca.id)
+                                        }
                                     >
                                         <FaTrash />
                                     </button>

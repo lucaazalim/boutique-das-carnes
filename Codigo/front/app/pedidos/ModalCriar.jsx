@@ -1,6 +1,6 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-function ModalCriar({open, setOpen}) {
+function ModalCriar({ open, setOpen }) {
     const [pedido, setPedido] = useState({
         id_cliente: "",
         id_compra: "",
@@ -11,7 +11,7 @@ function ModalCriar({open, setOpen}) {
     const [clientes, setClientes] = useState([]);
 
     const handleChange = (e) => {
-        setPedido({...pedido, [e.target.name]: e.target.value});
+        setPedido({ ...pedido, [e.target.name]: e.target.value });
     };
 
     useEffect(() => {
@@ -35,7 +35,11 @@ function ModalCriar({open, setOpen}) {
             body: JSON.stringify(pedido),
         })
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => {
+                alert("Pedido criado com sucesso");
+                console.log(data);
+                window.location.reload();
+            })
             .catch((error) => console.error(error));
         setOpen(!open);
         window.location.reload();
@@ -44,10 +48,12 @@ function ModalCriar({open, setOpen}) {
     return (
         <div className={`${open ? "" : "hidden"}`}>
             <div className="fixed top-0 left-0 w-full h-full bg-zinc-800/70 z-50"></div>
-            <div
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto scrollbartop">
+            <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 z-50 max-h-[calc(100vh-20%)] rounded-md overflow-auto scrollbartop">
                 <h1 className="text-2xl font-semibold">Criar Pedido</h1>
-                <form className="mt-5 grid grid-cols-2 gap-2" onSubmit={handleSubmit}>
+                <form
+                    className="mt-5 grid grid-cols-2 gap-2"
+                    onSubmit={handleSubmit}
+                >
                     <label>
                         Data:
                         <input
@@ -65,11 +71,14 @@ function ModalCriar({open, setOpen}) {
                             onChange={handleChange}
                         >
                             <option value="">Selecione um cliente</option>
-                            {clientes && clientes.map((cliente) =>
-                                <option key={cliente.id} value={cliente.id}>
-                                    {cliente.tipo === "PJ" ? cliente.pessoa.razao_social : cliente.pessoa.nome}
-                                </option>
-                            )}
+                            {clientes &&
+                                clientes.map((cliente) => (
+                                    <option key={cliente.id} value={cliente.id}>
+                                        {cliente.tipo === "PJ"
+                                            ? cliente.pessoa.razao_social
+                                            : cliente.pessoa.nome}
+                                    </option>
+                                ))}
                         </select>
                     </label>
                     <label>
@@ -80,11 +89,12 @@ function ModalCriar({open, setOpen}) {
                             onChange={handleChange}
                         >
                             <option value="">Selecione uma compra</option>
-                            {compras && compras.map((compra) =>
-                                <option key={compra.id} value={compra.id}>
-                                    {compra.id}
-                                </option>
-                            )}
+                            {compras &&
+                                compras.map((compra) => (
+                                    <option key={compra.id} value={compra.id}>
+                                        {compra.id}
+                                    </option>
+                                ))}
                         </select>
                     </label>
                     <div className="grid grid-cols-2 col-span-2 gap-2 mt-5">

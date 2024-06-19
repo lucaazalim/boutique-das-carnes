@@ -73,6 +73,7 @@ function CriarPagamento({openPagamento, setOpenPagamento, idPagamento}) {
                         <input
                             type="number"
                             name="valor"
+                            step={0.01}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />

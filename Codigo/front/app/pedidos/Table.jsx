@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React, {useEffect, useState} from "react";
-import ModalConf from "./ModalConf";
 import {FaEdit, FaTrash} from "react-icons/fa";
 import {formatCurrency} from "@/app/utils/currency";
 

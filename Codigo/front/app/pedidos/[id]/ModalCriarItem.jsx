@@ -26,8 +26,8 @@ const ModalCriarItem = ({ openCriar, setOpenCriar, idPedido }) => {
             .then((response) => response.json())
             .then((data) => console.log(data))
             .catch((error) => console.error(error));
-        // setOpenCriar(!openCriar);
-        // window.location.reload();
+        setOpenCriar(!openCriar);
+        window.location.reload();
     };
 
     useEffect(() => {

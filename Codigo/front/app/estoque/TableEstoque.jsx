@@ -6,7 +6,7 @@ export default function TableResumo({estoque}) {
     return <table>
         <thead>
         <tr>
-            <th>Letra</th>
+            {/* <th>ID da compra</th> */}
             <th>Tipo</th>
             <th>Compra</th>
         </tr>
@@ -14,7 +14,7 @@ export default function TableResumo({estoque}) {
         <tbody>
         {estoque && estoque.map((item) =>
             <tr key={item.id}>
-                <td>{item.id_compra_carcaca}</td>
+                {/* <td>{item.id_compra_carcaca}</td> */}
                 <td>{item.tipo}</td>
                 <td>
                     <div className="flex justify-center">

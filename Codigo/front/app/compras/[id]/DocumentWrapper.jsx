@@ -112,7 +112,7 @@ function DocumentWrapper({ compra }) {
                 <>
                     <button
                         key={doc.id}
-                        className="bg-gray-100 border-2 border-gray-300 hover:bg-gray-200 rounded-md p-2 w-full col-span-11"
+                        className={`${doc.id ? "bg-blue-100 border-2 border-blue-300 hover:bg-blue-200" : "bg-gray-100 border-2 border-gray-300 hover:bg-gray-200"} rounded-md p-2 w-full col-span-11`}
                         onClick={() => handleButtonClick(doc.id, doc.nome)}
                     >
                         {doc.id

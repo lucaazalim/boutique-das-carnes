@@ -29,7 +29,7 @@ export default function Table({compras}) {
                 alert("Compra apagada com sucesso!");
                 window.location.reload();
             } else {
-                alert("Falha ao apagar compra.");
+                alert("Falha ao apagar compra. Confira se não há carcaças vinculadas.");
                 console.error("Falha ao apagar compra.");
             }
         } catch (error) {
@@ -68,7 +68,7 @@ export default function Table({compras}) {
                                 (fornecedor.pessoa.nome ||
                                     fornecedor.pessoa.razao_social)}</td>
                             <td>{compra.unidades_macho + compra.unidades_femea}</td>
-                            <td>{formatCurrency(pesagens * compra.preco_arroba - compra.desconto || 0)}</td>
+                            <td>{formatCurrency((pesagens / 30) * compra.preco_arroba - (compra.desconto + compra.preco_sangria - compra.preco_frete) || 0)}</td>
                             <td className="flex justify-center gap-1">
                                 <Link href={`compras/${compra.id}`}>
                                     <button className="p-2 rounded-md text-white bg-blue-500 hover:bg-blue-600">

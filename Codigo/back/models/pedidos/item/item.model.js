@@ -53,7 +53,7 @@ async function createItem(item) {
     itens = CONJUNTOS.find(conjunto => conjunto.nome === item.conjunto).itens;
 
     for (let tipo of itens) {
-        await updateEstoque(id_pedido_item, tipo, quantidade);
+        await updateEstoque(id_pedido_item, tipo, parseInt(quantidade));
     }
 
     return result;

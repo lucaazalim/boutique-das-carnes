@@ -6,8 +6,28 @@ import {formatCurrency} from "@/app/utils/currency";
 
 const Table = ({pedidos}) => {
 
-    const [open, setOpen] = useState(false);
     const [clienteData, setClienteData] = useState([]);
+
+    const apagarPedido = async (idPedido) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/pedidos/${idPedido}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Pedido apagado com sucesso");
+                console.log("Pedido apagado com sucesso");
+                window.location.reload();
+            } else {
+                console.error("Falha ao apagar pedido");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     useEffect(() => {
 
@@ -60,14 +80,9 @@ const Table = ({pedidos}) => {
                                     <FaEdit/>
                                 </button>
                             </Link>
-                            <ModalConf
-                                open={open}
-                                setOpen={setOpen}
-                                idPedido={pedido.id}
-                            />
                             <button
                                 className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                                onClick={() => setOpen(!open)}
+                                onClick={() => apagarPedido(pedido.id)}
                             >
                                 <FaTrash/>
                             </button>

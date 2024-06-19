@@ -58,7 +58,7 @@ export default function Page({ params }) {
 
     return (
         <div className="p-5 h-[calc(100vh-136px)] overflow-auto">
-            <h1 className="text-4xl font-semibold">Editar Fornecedor</h1>
+            <h1 className="text-4xl font-semibold">Editar Compra</h1>
             <form
                 className="mt-5 grid grid-cols-2 gap-2"
                 onSubmit={handleSubmit}

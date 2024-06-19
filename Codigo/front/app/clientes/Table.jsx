@@ -1,13 +1,31 @@
 import Link from "next/link";
 import React, {useState} from "react";
-import ModalConf from "./ModalConf";
 import {FaEdit} from "react-icons/fa";
 import {FaTrash} from "react-icons/fa6";
 import {formatCPFOrCNPJ} from "@/app/utils/string";
 
 function Table({clientes}) {
 
-    const [open, setOpen] = useState(false);
+    const apagarCliente = async (idCliente) => {
+        try {
+            const response = await fetch(
+                `http://localhost:3001/clientes/${idCliente}`,
+                {
+                    method: "DELETE",
+                    redirect: "follow",
+                }
+            );
+            if (response.ok) {
+                alert("Cliente apagado com sucesso!");
+                window.location.reload();
+            } else {
+                alert("Falha ao apagar cliente.");
+                console.error("Falha ao apagar cliente.");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <table>
@@ -37,14 +55,9 @@ function Table({clientes}) {
                                 <FaEdit/>
                             </button>
                         </Link>
-                        <ModalConf
-                            open={open}
-                            setOpen={setOpen}
-                            idCliente={cliente.id}
-                        />
                         <button
                             className="p-2 rounded-md text-white bg-red-500 hover:bg-red-600"
-                            onClick={() => setOpen(!open)}
+                            onClick={() => apagarCliente(cliente.id)}
                         >
                             <FaTrash/>
                         </button>

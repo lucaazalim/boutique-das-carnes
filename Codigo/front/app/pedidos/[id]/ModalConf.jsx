@@ -1,24 +1,7 @@
 import React from "react";
 
 const ModalConf = ({open, setOpen, idItem}) => {
-    const apagarItem = async () => {
-        try {
-            const response = await fetch(
-                `http://localhost:3001/pedidos/itens/${idItem}`,
-                {
-                    method: "DELETE",
-                    redirect: "follow",
-                }
-            );
-            if (response.ok) {
-                console.log("Item apagado com sucesso");
-            } else {
-                console.error("Falha ao apagar item");
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    
 
     return (
         <div

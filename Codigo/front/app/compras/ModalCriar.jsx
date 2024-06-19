@@ -108,6 +108,7 @@ function ModalCriar({openModal, setOpenModal}) {
                         <input
                             type="number"
                             name="preco_arroba"
+                            step={0.01}
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
                         />
@@ -116,6 +117,7 @@ function ModalCriar({openModal, setOpenModal}) {
                         Desconto:
                         <input
                             type="number"
+                            step={0.01}
                             name="desconto"
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
@@ -125,6 +127,7 @@ function ModalCriar({openModal, setOpenModal}) {
                         Preço Frete:
                         <input
                             type="number"
+                            step={0.01}
                             name="preco_frete"
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}
@@ -134,6 +137,7 @@ function ModalCriar({openModal, setOpenModal}) {
                         Preço Sangria:
                         <input
                             type="number"
+                            step={0.01}
                             name="preco_sangria"
                             className="p-2 border-2 border-gray-200 rounded-md w-full"
                             onChange={handleChange}

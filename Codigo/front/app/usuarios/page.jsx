@@ -25,10 +25,11 @@ function Page() {
             <div className="mt-5 grid grid-cols-9 gap-2">
                 <input
                     type="text"
-                    placeholder="Digite o ID do usuário"
+                    placeholder="Procure pelo ID do usuário"
                     className="p-2 border-2 border-gray-200 rounded-md col-span-7"
                     value={search}
                     onChange={(e) => setsearch(e.target.value)}
+                    disabled
                 />
                 <button
                     onClick={() => {

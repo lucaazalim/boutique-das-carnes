@@ -2,7 +2,7 @@
 
 A **Boutique das Carnes** é uma empresa de compra e venda de produtos alimentícios, que opera na cidade de Ilhéus, na Bahia. A operação ocorre por meio da compra de gado vivo em fazendas, encaminhamento do gado ao matadouro, transformação do produto em carcaça e venda aos clientes, que geralmente são açougues da região.
 
-Este software tem como objetivo auxiliar a empresa a gerenciar suas atividades, substituindo o sistema de controle por planilhas, que tem se mostrado cada vez mais inadequada e limitada para acompanhar o crescimento e a complexidade da operação.
+Este software tem como objetivo auxiliar a empresa a gerenciar suas atividades, substituindo o sistema de controle por planilhas, que tem se mostrado cada vez mais inadequado e limitado para acompanhar o crescimento e a complexidade da operação.
 
 ## Alunos integrantes da equipe
 
